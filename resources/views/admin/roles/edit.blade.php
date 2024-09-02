@@ -29,13 +29,7 @@
                             $sections = [
                                 'roles' => ['permissions' => ['view_role', 'add_role', 'edit_role', 'delete_role']],
                                 'users' => ['permissions' => ['view_user', 'add_user', 'edit_user', 'delete_user']],
-                                'companies' => ['permissions' => ['view_company', 'add_company', 'edit_company', 'delete_company']],
                                 'jobs' => ['permissions' => ['view_job', 'add_job', 'edit_job', 'delete_job']],
-                                'teachers' => ['permissions' => ['view_teacher', 'add_teacher', 'edit_teacher', 'delete_teacher']],
-                                'testimonials' => ['permissions' => ['view_testimonial', 'add_testimonial', 'edit_testimonial', 'delete_testimonial']],
-                                'subjects' => ['permissions' => ['view_subject', 'add_subject', 'edit_subject', 'delete_subject']],
-                                'plans' => ['permissions' => ['view_plan', 'add_plan', 'edit_plan', 'delete_plan']],
-                                'courses' => ['permissions' => ['view_course', 'add_course', 'edit_course', 'delete_course']],
                             ];
                         @endphp
                         @foreach($sections as $section => $details)

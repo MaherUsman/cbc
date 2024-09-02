@@ -11,11 +11,7 @@
                 $user = auth()->user();
                 $logo = null;
                 if ($user->hasRole('admin')) {
-                    $logo = $user->admin->logo ?? '';
-                } elseif ($user->hasRole('teacher')) {
-                    $logo = $user->teacher->image ?? '';
-                } elseif ($user->hasRole('company')) {
-                    $logo = $user->organization->logo ?? '';
+                    $logo = $user->admin->logo ?: '';
                 }
             @endphp--}}
             <img src="{{ asset(Auth::user()->pic?:"images/avatar/1.jpg") }}" width="20" alt="User Profile">
