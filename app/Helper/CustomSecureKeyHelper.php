@@ -26,5 +26,5 @@ function EncryptedKey($length_of_string = 10)
 {
     $str_result = uniqid() . '0123456789#ABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyz';
     $hashed_key = Hash::make(substr(str_shuffle($str_result), 0, $length_of_string));
-    return str_replace(['$', '.', '/', '\\', ','], '', $hashed_key);
+    return substr(str_replace(['$', '.', '/', '\\', ','], '', $hashed_key), 7, $length_of_string);
 }

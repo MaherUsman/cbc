@@ -2,22 +2,14 @@
 
 namespace App\Services;
 
-
-use App\Models\Affiliate;
 use App\Models\User;
-use App\Models\Vendor;
 use App\Notifications\ResetPasswordNotification;
 use App\Notifications\VerifyOTPNotification;
-use App\Traits\AffiliateTrait;
-use App\Traits\UserResponseTrait;
-use App\Traits\VendorTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Session;
-use function NunoMaduro\Collision\Exceptions\getMessage;
 
 class AuthenticationService
 {
@@ -27,24 +19,15 @@ class AuthenticationService
         $user->fresh();
         $data = [
             'user_id' => $user->id,
-            'name' => $user->name,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
             'email' => $user->email,
-            'profile_picture' => $user->profile_picture,
-            'country_code' => $user->country_code,
-            'mobile_number' => $user->mobile_number,
             'username' => $user->username,
-            'dob' => $user->dob,
+            'phone' => $user->phone,
+            'pic' => $user->pic,
             'url' => $url,
-            'role_id' => $user->role_id,
             'fcm_token' => $user->fcm_token,
         ];
-        if ($user->role_id == 2) {
-            $data['advisor'] = $user->advisor;
-            $data['advisor']['categories'] = $user->advisor->categories;
-            $data['advisor']['skills'] = $user->advisor->skills;
-            $data['advisor']['tools'] = $user->advisor->tools;
-            $data['advisor']['languages'] = $user->advisor->languages;
-        }
         return $data;
     }
 
@@ -59,16 +42,14 @@ class AuthenticationService
         }
     }
 
-    public function createCustomer($request)
+    public function createUser($request)
     {
         DB::beginTransaction();
         try {
 
-//            $otp = Hash::make(rand(10000000, 99999999));
-//            $otp = substr($otp, 7, 28);
             $user = new User;
             $user->role_id = $request->role_id;
-//            $user->otp = $otp;
+            $user->otp = EncryptedKey(6);
             $saveResponse = $this->saveRecord($user, $request);
             if (isset($saveResponse['error'])) {
                 return makeResponse('error', 'Error in Saving User: ' . $saveResponse['error'], Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -91,7 +72,7 @@ class AuthenticationService
 //            $message = 'Registered Successfully!';
             $message = 'Verify Email to login!';
 //            $data = $this->userResponse(Auth::user());
-//            $token = Auth::user()->createToken('HarryFox')->plainTextToken;
+//            $token = Auth::user()->createToken('HoubaraFund')->plainTextToken;
 //            return makeResponse($result, $message, $status, $data, $token);
             return makeResponse($result, $message, $status);
         } catch (\Exception $e) {
@@ -100,9 +81,32 @@ class AuthenticationService
         }
     }
 
+    public function saveRecord($model, $request)
+    {
+        try {
+            $model->user_name = $request->user_name;
+            $model->first_name = $request->first_name;
+            $model->last_name = $request->last_name;
+            $model->email = $request->email;
+            if ($request->has('password') && $request->password != '') {
+                $model->password = Hash::make($request->password);
+            }
+            if ($request->has('is_verified')) {
+                $model->is_verified = $request->is_verified;
+                if ($request->is_verified) {
+                    $model->otp = null;
+                }
+            }
+            $model->save();
+            return $model;
+        } catch (\Exception $e) {
+            return ['error' => $e];
+        }
+    }
+
     public function sendEmail($user)
     {
-//        Notification::send($user, new VerifyOTPNotification($user));
+        Notification::send($user, new VerifyOTPNotification($user));
     }
 
     public function VerifyOTP($request)
@@ -132,9 +136,7 @@ class AuthenticationService
         }
         DB::beginTransaction();
         try {
-//            $otp = Hash::make(rand(10000000, 99999999));
-            $encString = EncryptedKey();
-            $otp = substr($encString, -5);
+            $otp = EncryptedKey(5);
             $user->otp = $otp;
             $user->save();
             if ($request->email) {
@@ -165,8 +167,7 @@ class AuthenticationService
         if (!$user) {
             return makeResponse('error', 'Token Expired!', Response::HTTP_UNAUTHORIZED);
         }
-        $otp = EncryptedKey();
-        $user->otp = $otp;
+        $user->otp = EncryptedKey();
         $user->save();
         $validated=['secure_key'=>$user->otp,'email'=>$user->email];
         return makeResponse('success', 'OTP verified!', Response::HTTP_OK,$validated);
@@ -178,7 +179,8 @@ class AuthenticationService
         if (!$user) {
             return makeResponse('error', 'Token Expired!', Response::HTTP_UNAUTHORIZED);
         }
-//        $user->password = Hash::make($request->password);
+
+        /* THIS PASSWORD WILL BE ENCRYPTED AS I HAVE USED SET */
         $user->password = $request->password;
         $user->save();
         return makeResponse('success', 'Password Updated Successfully now Login!', Response::HTTP_OK);

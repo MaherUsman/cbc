@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->string('username')->unique();
+            $table->string('username')->nullable();
             $table->string('phone')->nullable();
             $table->string('pic')->nullable();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('otp')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
