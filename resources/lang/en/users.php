@@ -6,10 +6,11 @@ return [
     'admin' => [
         'create' => [
             'create' => 'Create User',
-            'username' => 'username',
+            'username' => 'Username',
             'email' => 'Email',
             'phone' => 'Phone',
             'address' => 'Address',
+            'image' => 'Image',
             'password' => 'Password',
             'confirm_password' => 'Confirm Password',
             'submit' => 'Submit',

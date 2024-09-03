@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>E-Commerce</title>
+    <title>HoubaraFund (CBC)</title>
 
     <!-- Meta -->
 @include('layouts.admin.includes.meta')

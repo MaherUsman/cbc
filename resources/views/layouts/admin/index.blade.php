@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>E-Commerce</title>
+    <title>HoubaraFund (CBC)</title>
 
     <!-- Meta -->
 @include('layouts.admin.includes.meta')
@@ -215,7 +215,7 @@
 
 </script>--}}
 @yield('script')
-{{--@include('layouts.admin.includes.scripts.custom-js')--}}
+@include('layouts.admin.includes.scripts.custom-js')
 
 
 </body>
