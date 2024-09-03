@@ -19,7 +19,6 @@ class RoleSeeds extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'company']);
-        Role::create(['name' => 'customer']);
+        Role::create(['name' => 'user']);
     }
 }
