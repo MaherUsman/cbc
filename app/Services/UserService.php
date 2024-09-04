@@ -46,8 +46,9 @@ class UserService
     {
         DB::beginTransaction();
         try {
-            $image = ImageUploadHelper::checkUploadImage($request, 'pic', 'pic/');
-            $user = User::create(collect($request->validated())->except('pic', 'role')->all() + ['pic' => $image]);
+            /*$image = ImageUploadHelper::checkUploadImage($request, 'pic', 'pic/');
+            $user = User::create(collect($request->validated())->except('pic', 'role')->all() + ['pic' => $image]);*/
+            $user = User::create(collect($request->validated())->except('role')->all());
             $user->assignRole($request->role);
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $user);
@@ -76,7 +77,7 @@ class UserService
             return makeResponse('success', 'User Details', Response::HTTP_OK, new UserResource($user));
         } else {
             $roles = Role::all();
-            return view('admin.users.edit', compact('user','roles'));
+            return view('admin.users.edit', compact('user', 'roles'));
         }
     }
 
@@ -84,8 +85,10 @@ class UserService
     {
         DB::beginTransaction();
         try {
-            $image = ImageUploadHelper::checkUploadImage($request, 'pic', 'pic/', $user)?: $user->pic;
-            $user->update(collect($request->validated())->except('pic','role')->all() + ['pic' => $image]);
+            /*$image = ImageUploadHelper::checkUploadImage($request, 'pic', 'pic/', $user)?: $user->pic;
+            $user->update(collect($request->validated())->except('pic','role')->all() + ['pic' => $image]);*/
+            ($request->has('pic') && $request->pic != '' && $user->pic != null && $user->pic != '') ? unlink(public_path($user->pic)) : '';
+            $user->update(collect($request->validated())->except('role')->all());
             $user->syncRoles([]);
             $user->assignRole($request->role);
             DB::commit();

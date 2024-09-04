@@ -31,7 +31,8 @@ class UserUpdateRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->user->id)],
             'phone' => ['required', 'string', Rule::unique('users', 'phone')->ignore($this->route()->user->id)],
 //            'role_id' => ['required', 'integer', 'exists:roles,id'],
-            'pic' => ['nullable', 'mimes:jpeg,jpg,png'],
+//            'pic' => ['nullable', 'mimes:jpeg,jpg,png'],
+            'pic' => ['nullable', 'string'],
             'password' => ['nullable', 'confirmed', 'min:8'],//, 'password'
         ];
     }

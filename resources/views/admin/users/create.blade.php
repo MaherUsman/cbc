@@ -162,47 +162,103 @@
         });
 
         $(document).ready(function () {
+            var imageColName = 'pic';
+
             $('#formValidation').validate({
-                submitHandler: function (form, event) {
+                submitHandler: async function (form, event) {
                     event.preventDefault();
                     var url = $(form).attr('action');
+                    var imageColName = $('#imageUpload').attr('name');
                     var data = new FormData($(form)[0]);
-                    $.blockUI({
-                        css: {
-                            border: 'none',
-                            padding: '15px',
-                            backgroundColor: '#000',
-                            '-webkit-border-radius': '10px',
-                            '-moz-border-radius': '10px',
-                            opacity: .5,
-                            color: '#fff'
+                    var imageFile = $('#imageUpload')[0].files[0];
+
+                    if (imageFile) {
+                        try {
+                            let response = await uploadImageInChunks(imageFile);
+                            if (response.success) {
+                                data.set(imageColName, response.filePath);
+                                await submitFormData(url, data);
+                            } else {
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            errorMsg('An error occurred during the image upload');
                         }
-                    });
-                    $.ajax({
+                    } else {
+                        await submitFormData(url, data);
+                    }
+                }
+            });
+
+            async function uploadImageInChunks(file) {
+                var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
+                var totalChunks = Math.ceil(file.size / chunkSize);
+                var currentChunk = 0;
+
+                while (currentChunk < totalChunks) {
+                    var start = currentChunk * chunkSize;
+                    var end = Math.min(start + chunkSize, file.size);
+                    var chunk = file.slice(start, end);
+                    var chunkData = new FormData();
+                    chunkData.append('chunk', chunk);
+                    chunkData.append('chunkNumber', currentChunk + 1);
+                    chunkData.append('totalChunks', totalChunks);
+                    chunkData.append('fileName', file.name);
+                    chunkData.append('ImageUploadPath', imageColName);
+
+                    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" } });
+
+                    try {
+                        let response = await $.ajax({
+                            type: 'POST',
+                            url: '/upload-chunk',
+                            data: chunkData,
+                            processData: false,
+                            contentType: false,
+                        });
+
+                        currentChunk++;
+                        if (currentChunk === totalChunks) {
+                            return { success: true, filePath: response.filePath };
+                        }
+                    } catch (error) {
+                        return { success: false, error: error };
+                    }
+                }
+            }
+
+            async function submitFormData(url, data) {
+                $.blockUI({
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }
+                });
+
+                try {
+                    let response = await $.ajax({
                         type: 'POST',
                         url: url,
                         data: data,
                         processData: false,
                         contentType: false,
-                        success: function (response, status, xhr) {
-                            $.unblockUI();
-                            successMsg(response.message);
-                            setTimeout(function () {
-                                window.location.href = "{{route('user.index')}}";
-                            }, 1000);
-                        },
-                        error: function (xhr, status, error) {
-                            if (xhr.status === 422) {
-                                $.unblockUI();
-                                errorMsg(xhr.responseJSON.message);
-                            } else {
-                                $.unblockUI();
-                                errorMsg(xhr.responseJSON.message);
-                            }
-                        }
                     });
+                    $.unblockUI();
+                    successMsg(response.message);
+                    setTimeout(function () {
+                        window.location.href = "{{route('user.index')}}";
+                    }, 1000);
+                } catch (xhr) {
+                    $.unblockUI();
+                    errorMsg(xhr.responseJSON.message || 'An error occurred');
                 }
-            });
+            }
         });
+
     </script>
 @endsection

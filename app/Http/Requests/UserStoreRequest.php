@@ -27,7 +27,8 @@ class UserStoreRequest extends FormRequest
             'username' => ['nullable', 'string', 'unique:users,username'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone' => ['required', 'string', 'unique:users,phone'],
-            'pic' => ['nullable', 'mimes:jpeg,jpg,png', 'max:2048'],
+//            'pic' => ['nullable', 'mimes:jpeg,jpg,png', 'max:2048'],
+            'pic' => ['nullable', 'string'],
             'password' => ['required', 'confirmed', 'min:8'],
             'fcm_token' => ['nullable'],
         ];

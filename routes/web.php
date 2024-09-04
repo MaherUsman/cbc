@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,26 +25,14 @@ Route::prefix('admin')->group(function () {
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
 
         Route::resource('user',UserController::class);
-        Route::resource('categories', App\Http\Controllers\CategoryController::class);
     });
 
 
 
 });
+
+Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->name('uploadImageChunk');
+
 //dd(123);
 Route::get('{any?}', function () {return 'no no no'/*view('welcome')*/;})->where('any', '.*');
 
-
-
-
-Route::resource('additional-options', App\Http\Controllers\AdditionalOptionController::class);
-
-Route::resource('category-fields', App\Http\Controllers\CategoryFieldController::class);
-
-Route::resource('category-filters', App\Http\Controllers\CategoryFilterController::class);
-
-Route::resource('custom-fields', App\Http\Controllers\CustomFieldController::class);
-
-Route::resource('item-conditions', App\Http\Controllers\ItemConditionController::class);
-
-Route::resource('products', App\Http\Controllers\ProductController::class);
