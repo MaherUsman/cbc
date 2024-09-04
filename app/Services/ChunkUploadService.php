@@ -21,7 +21,8 @@ class ChunkUploadService
         }
         $chunk->move($chunkUploadDir, $fileName . '.part' . $chunkNumber);
         if ($chunkNumber == $totalChunks) {
-            $finalFile = $uploadDir . $FinalPath . '/' . $fileName;
+            $FinalImageName = time() . '-' . $fileName;
+            $finalFile = $uploadDir . $FinalPath . '/' . $FinalImageName;
             $out = fopen($finalFile, 'w');
             for ($i = 1; $i <= $totalChunks; $i++) {
                 $in = fopen($chunkUploadDir . $fileName . '.part' . $i, 'r');
@@ -32,7 +33,7 @@ class ChunkUploadService
                 unlink($chunkUploadDir . $fileName . '.part' . $i);
             }
             fclose($out);
-            return response()->json(['message' => 'Upload complete', 'filePath' => 'upload/' . $FinalPath . '/' . $fileName]);
+            return response()->json(['message' => 'Upload complete', 'filePath' => 'upload/' . $FinalPath . '/' . $FinalImageName]);
         }
         return response()->json(['message' => 'Chunk uploaded']);
     }
