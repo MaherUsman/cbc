@@ -22,6 +22,20 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
+                    <i class="la la-blogs"></i>
+                    <span class="nav-text">Blogs</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('blogs.index')}}">All Blogs</a>
+                    </li>
+                    <li class="{{ request()->is('admin/blogs/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('blogs.create')}}">Create Blog</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="copyright">

@@ -16,8 +16,8 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => 'List Users' , 'route' => null]],
-'pageTitle' => 'All Users'
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => 'List Events' , 'route' => null]],
+'pageTitle' => 'All Events'
 ])
 
     <div class="row">
@@ -34,9 +34,9 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('users.list_users') }}</h4>
-                            <a href="{{ route('user.create') }}"
-                               class="btn btn-primary">{{ __('users.add_user') }}</a>
+                            <h4 class="card-title">{{ __('blogs.list_blogs') }}</h4>
+                            <a href="{{ route('blogs.create') }}"
+                               class="btn btn-primary">{{ __('blogs.add_blog') }}</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -89,13 +89,13 @@
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
                             setTimeout(function () {
-                                window.location.href = "{{route('user.index')}}";
+                                window.location.href = "{{route('blogs.index')}}";
                             }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
                             setTimeout(function () {
-                                window.location.href = "{{route('user.index')}}";
+                                window.location.href = "{{route('blogs.index')}}";
                             }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();

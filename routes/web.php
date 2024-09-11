@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ Route::prefix('admin')->group(function () {
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
 
         Route::resource('user',UserController::class);
+        Route::resource('blogs', BlogController::class);
     });
 
 

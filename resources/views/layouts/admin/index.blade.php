@@ -23,7 +23,7 @@
             color: #ffffff !important;
         }
     </style>
-
+    @yield("css")
 </head>
 <body>
 
