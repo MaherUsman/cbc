@@ -22,5 +22,10 @@ return [
         'index' => 'All Events',
         'create' => 'Create Events',
     ],
+    'contactUs' => [
+        'name' => 'Contact Us Mails',
+        'index' => 'All Contact Us Mails',
+        'create' => 'Create Contact Us Mail',
+    ],
 
 ];

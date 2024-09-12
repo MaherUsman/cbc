@@ -43,7 +43,7 @@ class UsersDataTable extends DataTable
                 }
                 return $editButton . $deleteButton;
             })
-            ->setRowId('id')->rawColumns(['pic', 'action']);;
+            ->setRowId('id')->rawColumns(['pic', 'action']);
     }
 
     /**

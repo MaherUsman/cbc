@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('user',UserController::class);
         Route::resource('blogs', BlogController::class);
+        Route::resource('contact-uses', ContactUsController::class);
     });
 
 

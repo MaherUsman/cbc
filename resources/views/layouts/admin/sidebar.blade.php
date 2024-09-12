@@ -36,6 +36,20 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.contactUs.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('contact-uses.index')}}">{{__('sidebar.contactUs.index')}}</a>
+                    </li>
+                    <li class="{{ request()->is('admin/contact-uses/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('contact-uses.create')}}">{{__('sidebar.contactUs.create')}}</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="copyright">
