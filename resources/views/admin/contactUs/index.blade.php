@@ -34,7 +34,7 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('blogs.list_blogs') }}</h4>
+                            <h4 class="card-title">{{ __('contactUs.list') }}</h4>
                             <a href="{{ route('contact-uses.create') }}"
                                class="btn btn-primary">{{ __('contactUs.add') }}</a>
                         </div>

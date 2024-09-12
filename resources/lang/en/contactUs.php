@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'list' => 'List Contact Us',
+    'list' => 'Contact Us List',
     'add' => 'Add Contact Us',
     'name' => 'Contact Us Mails',
     'pageTitle' => 'Contact Us Mail List',

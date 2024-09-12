@@ -23,3 +23,6 @@ yarn-error.log
 draft.yaml
 /draft.yaml
 /.blueprint
+*.zip
+*.sql
+/public/unwantedVendor

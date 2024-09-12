@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('vendor/toastr/css/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/bootstrap-datepicker-master/css/bootstrap-datepicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/toaster/toaster.css')}}">
 
 </head>
 <body>
