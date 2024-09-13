@@ -50,7 +50,25 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-label">{{__('sidebar.home_page')}}</li>
+            <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.sliders.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('sliders.index')}}">{{__('sidebar.sliders.index')}}</a>
+                    </li>
+                    <li class="{{ request()->is('admin/sliders/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('sliders.create')}}">{{__('sidebar.sliders.create')}}</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
+
 
         <div class="copyright">
             <p>{{config('app.name')}}</p>

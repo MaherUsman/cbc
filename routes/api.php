@@ -18,3 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::apiResource('contact-uses', App\Http\Controllers\ContactUsController::class);
+
+
+Route::apiResource('sliders', App\Http\Controllers\SliderController::class);

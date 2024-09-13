@@ -16,17 +16,17 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => __('blogs.name') , 'route' => null]],
-'pageTitle' => __('blogs.pageTitle')
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('sliders.name') , 'route' => null]],
+'pageTitle' => __('sliders.pageTitle')
 ])
 
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
-                {{--<li class="nav-item"><a href="#list-view" data-bs-toggle="tab"
+                <li class="nav-item"><a href="{{route('sliders.index')}}#list-view" data-bs-toggle="tab"
                                         class="nav-link me-1 show active">{{ __('common.list_view') }}</a></li>
-                <li class="nav-item"><a href="#grid-view" data-bs-toggle="tab"
-                                        class="nav-link">{{ __('common.grid_view') }}</a></li>--}}
+                <li class="nav-item"><a href="{{route('sliders.gridView')}}#grid-view" {{--data-bs-toggle="tab"--}}
+                                        class="nav-link">{{ __('common.grid_view') }}</a></li>
             </ul>
         </div>
         <div class="col-lg-12">
@@ -34,9 +34,9 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('blogs.list_blogs') }}</h4>
-                            <a href="{{ route('blogs.create') }}"
-                               class="btn btn-primary">{{ __('blogs.add_blog') }}</a>
+                            <h4 class="card-title">{{ __('sliders.list_sliders') }}</h4>
+                            <a href="{{ route('sliders.create') }}"
+                               class="btn btn-primary">{{ __('sliders.add_slider') }}</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -50,6 +50,7 @@
         </div>
     </div>
     @include('layouts.admin.modal.delete_modal')
+    @include('layouts.admin.modal.message_modal')
     <div id="loader" style="display: none;">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -61,6 +62,12 @@
 
     <script>
         $(document).ready(function () {
+            $(document).on('click', '.messageDetails', function () {
+                var details = $(this).data('details');
+                $('#messageText').html(details);
+                $('#message_modal').modal('show');
+            });
+
             $(document).on('click', '.deleteRecord', function () {
                 var url = $(this).data('url');
                 $('#delete_form').attr('action', url);
@@ -89,13 +96,13 @@
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
                             setTimeout(function () {
-                                window.location.href = "{{route('blogs.index')}}";
+                                window.location.href = "{{route('sliders.index')}}";
                             }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
                             setTimeout(function () {
-                                window.location.href = "{{route('blogs.index')}}";
+                                window.location.href = "{{route('sliders.index')}}";
                             }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();

@@ -7,6 +7,7 @@ return [
     'all_users' => 'All Users',
     'language' => 'Language',
     'category' => 'Categories',
+    'home_page' => 'Home Page Sections',
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',
@@ -26,6 +27,11 @@ return [
         'name' => 'Contact Us Mails',
         'index' => 'All Contact Us Mails',
         'create' => 'Create Contact Us Mail',
+    ],
+    'sliders' => [
+        'name' => 'Home Page Slider',
+        'index' => 'All Sliders',
+        'create' => 'Create Slider',
     ],
 
 ];

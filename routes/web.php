@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('user',UserController::class);
         Route::resource('blogs', BlogController::class);
         Route::resource('contact-uses', ContactUsController::class);
+        Route::resource('sliders', SliderController::class);
+        Route::get('reorder-sliders', [SliderController::class, 'gridView'])->name('sliders.gridView');
+        Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
     });
 
 
@@ -39,4 +43,7 @@ Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->n
 
 //dd(123);
 Route::get('{any?}', function () {return 'no no no'/*view('welcome')*/;})->where('any', '.*');
+
+
+
 
