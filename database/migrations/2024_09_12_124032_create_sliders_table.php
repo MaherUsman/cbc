@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255)->nullable();
             $table->string('slink', 255)->nullable();
-            $table->string('details', 255)->nullable();
+            $table->longText('details')->nullable();
             $table->string('image', 255)->nullable();
             $table->integer('display_order')->default(1);
             $table->boolean('status')->default(1);
@@ -26,7 +26,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('sliders');
     }
