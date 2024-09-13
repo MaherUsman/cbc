@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SliderUpdateRequest extends FormRequest
+class IntroUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +21,8 @@ class SliderUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'slink' => ['required', 'string', 'max:255'],
-            'details' => ['required', 'string', 'max:255'],
-            'image' => [$this->route('slider')->image ? 'nullable' : 'required', 'string', 'max:255'],
-//            'display_order' => ['required', 'integer'],
+            'details' => ['required', 'string'],
+            'image' => [$this->route('intro')->image ? 'nullable' : 'required', 'string', 'max:255'],
 //            'status' => ['required'],
         ];
     }

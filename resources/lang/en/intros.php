@@ -1,0 +1,65 @@
+<?php
+
+return [
+    'list_intros' => 'List Introductions',
+    'add_intro' => 'Add Introduction',
+    'name' => 'Introductions List',
+    'pageTitle' => 'All Introductions',
+    'reOrder' => 'Reorder Introductions',
+    'admin' => [
+        'create' => [
+            'create' => 'Create Introduction',
+            'title' => 'Title',
+            'image' => 'Image',
+            'slink' => 'Introduction Link',
+            'details' => 'Details',
+            'submit' => 'Submit',
+            'title_message' => 'Please Enter Title',
+            'slink_message' => 'Please Enter Introduction Link',
+            'image_message' => 'Please Select Image',
+            'details_message' => 'Please Enter Details',
+            'title_required' => 'Title is Required',
+            'slink_required' => 'Introduction Link is Required',
+            'image_required' => 'Image is Required',
+            'details_required' => 'Details are Required',
+        ],
+        'edit' => [
+            'edit' => 'Edit Introduction',
+            'title' => 'Title',
+            'image' => 'Image',
+            'slink' => 'Introduction Link',
+            'details' => 'Details',
+            'submit' => 'Submit',
+            'title_message' => 'Please Enter Title',
+            'slink_message' => 'Please Enter Introduction Link',
+            'image_message' => 'Please Select Image',
+            'details_message' => 'Please Enter Details',
+            'title_required' => 'Title is Required',
+            'slink_required' => 'Introduction Link is Required',
+            'image_required' => 'Image is Required',
+            'details_required' => 'Details are Required',
+        ],
+        'index' => [
+            'action' => 'Action',
+            'title' => 'Title',
+            'image' => 'Image',
+            'slink' => 'Introduction Link',
+            'details' => 'Details',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ],
+        'breadcrumbs' => [
+            'name' => 'List Introductions',
+            'create' => 'Create Introduction',
+            'edit' => 'Edit Introduction',
+            'show' => 'Edit Introduction',
+        ],
+        'response_msg' => [
+            'success' => 'Introduction created successfully',
+            'update' => 'Introduction Updated successfully',
+            'error' => 'Error creating Introduction',
+            'delete' => 'Introduction Deleted Successfully'
+        ],
+        'form' => ['cancel' => 'Cancel']
+    ],
+];

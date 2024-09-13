@@ -66,6 +66,12 @@
                     </li>
                 </ul>
             </li>
+            <li {{ request()->is('admin/intros*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{route('intros.COE')}}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">Site Introduction</span>
+                </a>
+            </li>
 
         </ul>
 

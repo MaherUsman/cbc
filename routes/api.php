@@ -21,3 +21,6 @@ Route::apiResource('contact-uses', App\Http\Controllers\ContactUsController::cla
 
 
 Route::apiResource('sliders', App\Http\Controllers\SliderController::class);
+
+
+Route::apiResource('intros', App\Http\Controllers\IntroController::class);
