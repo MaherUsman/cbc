@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
@@ -40,6 +41,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('abouts', AboutController::class);
         Route::get('reorder-abouts', [AboutController::class, 'gridView'])->name('abouts.gridView');
         Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
+        Route::resource('about-uses', AboutUsController::class);
+        Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
     });
 
 

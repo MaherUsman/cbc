@@ -87,6 +87,14 @@
                 </ul>
             </li>
 
+            <li class="nav-label">{{__('sidebar.aboutUs_page')}}</li>
+            <li {{ request()->is('admin/about-us*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{route('about-uses.COE')}}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">About Us</span>
+                </a>
+            </li>
+
         </ul>
 
 

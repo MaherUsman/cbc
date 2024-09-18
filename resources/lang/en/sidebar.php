@@ -8,6 +8,7 @@ return [
     'language' => 'Language',
     'category' => 'Categories',
     'home_page' => 'Home Page Sections',
+    'aboutUs_page' => 'About Us Page Sections',
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',

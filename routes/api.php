@@ -27,3 +27,9 @@ Route::apiResource('intros', App\Http\Controllers\IntroController::class);
 
 
 Route::apiResource('abouts', App\Http\Controllers\AboutController::class);
+
+
+Route::apiResource('abouts', App\Http\Controllers\AboutController::class);
+
+
+Route::apiResource('about-uses', App\Http\Controllers\AboutUsController::class);
