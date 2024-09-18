@@ -24,3 +24,6 @@ Route::apiResource('sliders', App\Http\Controllers\SliderController::class);
 
 
 Route::apiResource('intros', App\Http\Controllers\IntroController::class);
+
+
+Route::apiResource('abouts', App\Http\Controllers\AboutController::class);

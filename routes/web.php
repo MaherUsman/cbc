@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
@@ -36,6 +37,9 @@ Route::prefix('admin')->group(function () {
         Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
         Route::resource('intros', IntroController::class);
         Route::get('intro', [IntroController::class, 'createOrEdit'])->name('intros.COE');
+        Route::resource('abouts', AboutController::class);
+        Route::get('reorder-abouts', [AboutController::class, 'gridView'])->name('abouts.gridView');
+        Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
     });
 
 

@@ -33,5 +33,10 @@ return [
         'index' => 'All Sliders',
         'create' => 'Create Slider',
     ],
+    'abouts' => [
+        'name' => 'Home Page About',
+        'index' => 'All Abouts',
+        'create' => 'Create About',
+    ],
 
 ];

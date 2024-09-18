@@ -26,3 +26,4 @@ draft.yaml
 *.zip
 *.sql
 /public/unwantedVendor
+/frontend
