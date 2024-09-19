@@ -9,7 +9,7 @@ class AboutUsGalleryUpdateRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -17,12 +17,12 @@ class AboutUsGalleryUpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'string', 'max:255'],
-            'status' => ['required'],
+            //'image' => ['nullable', 'string', 'max:255'],
+            //'status' => ['required'],
         ];
     }
 }
