@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AboutUsGalleryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
@@ -43,9 +44,10 @@ Route::prefix('admin')->group(function () {
         Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
+        Route::resource('about-us-galleries', AboutUsGalleryController::class);
     });
 
-
+Route::view('gal','admin/gallery/AboutUsGallery');
 
 });
 

@@ -88,11 +88,25 @@
             </li>
 
             <li class="nav-label">{{__('sidebar.aboutUs_page')}}</li>
-            <li {{ request()->is('admin/about-us*') ? 'active mm-active' : '' }}>
+            <li {{ request()->is('admin/about-uses*') ? 'active mm-active' : '' }}>
                 <a class="ai-icon" href="{{route('about-uses.COE')}}" aria-expanded="false">
                     <i class="la la-calendar"></i>
-                    <span class="nav-text">About Us</span>
+                    <span class="nav-text">{{__('sidebar.aboutUs.sec')}}</span>
                 </a>
+            </li>
+            <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.aboutUs.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/about-us-galleries*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/about-us-galleries*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('about-us-galleries.index')}}">{{__('sidebar.aboutUs.index')}}</a>
+                    </li>
+                    <li class="{{ request()->is('admin/about-us-galleries/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('about-us-galleries.create')}}">{{__('sidebar.aboutUs.create')}}</a>
+                    </li>
+                </ul>
             </li>
 
         </ul>

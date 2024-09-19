@@ -39,5 +39,11 @@ return [
         'index' => 'All Abouts',
         'create' => 'Create About',
     ],
+    'aboutUs' => [
+        'name' => 'About Us Gallery',
+        'index' => 'Gallery Pics',
+        'create' => 'Add Gallery Pics',
+        'sec' => 'About Us',
+    ],
 
 ];
