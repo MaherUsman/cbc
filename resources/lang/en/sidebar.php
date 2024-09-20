@@ -9,6 +9,7 @@ return [
     'category' => 'Categories',
     'home_page' => 'Home Page Sections',
     'aboutUs_page' => 'About Us Page Sections',
+    'animals_page' => 'Animal Page Sections',
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',
@@ -44,6 +45,11 @@ return [
         'index' => 'Gallery Pics',
         'create' => 'Add Gallery Pics',
         'sec' => 'About Us',
+    ],
+    'animals' => [
+        'name' => 'Animals',
+        'index' => 'All Animals',
+        'create' => 'Add Animal',
     ],
 
 ];

@@ -5,6 +5,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUsGalleryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\AnimalGalleryController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
@@ -45,6 +47,21 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
         Route::resource('about-us-galleries', AboutUsGalleryController::class);
+        Route::resource('animals', AnimalController::class);
+        Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
+        Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
+        Route::controller(AnimalGalleryController::class)->group(function () {
+            Route::get('/animal-galleries/{animal}', 'index')->name('animal-galleries.index');
+            Route::get('/animal-galleries/create/{animal}', 'create')->name('animal-galleries.create');
+            Route::post('/animal-galleries/{animal}', 'store')->name('animal-galleries.store');
+            Route::get('/animal-galleries/{animal_gallery}', 'show')->name('animal-galleries.show');
+            Route::get('/animal-galleries/{animal_gallery}/edit', 'edit')->name('animal-galleries.edit');
+            Route::put('/animal-galleries/{animal_gallery}', 'update')->name('animal-galleries.update');
+            Route::delete('/animal-galleries/{animal_gallery}', 'destroy')->name('animal-galleries.destroy');
+            Route::get('/animal-galleries/reorder/{animal}', 'gridView')->name('animal-galleries.gridView');
+            //Route::post('/animal-galleries/update-order', 'updateOrder')->name('animal-galleries.updateOrder');
+            Route::post('/update-animal-galleries-order', 'updateOrder')->name('animal-galleries.updateOrder');
+        });
     });
 
 Route::view('gal','admin/gallery/AboutUsGallery');

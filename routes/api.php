@@ -36,3 +36,9 @@ Route::apiResource('about-uses', App\Http\Controllers\AboutUsController::class);
 
 
 Route::apiResource('about-us-galleries', App\Http\Controllers\AboutUsGalleryController::class);
+
+
+Route::apiResource('animals', App\Http\Controllers\AnimalController::class);
+
+
+Route::apiResource('animals', App\Http\Controllers\AnimalController::class);

@@ -109,6 +109,22 @@
                 </ul>
             </li>
 
+            <li class="nav-label">{{__('sidebar.animals_page')}}</li>
+            <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.animals.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('animals.index')}}">{{__('sidebar.animals.index')}}</a>
+                    </li>
+                    <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
 
 
