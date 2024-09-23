@@ -16,6 +16,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Frontend\HomeController;
 
 //Route::get('/', function () {return view('welcome');});
 
@@ -70,6 +71,8 @@ Route::view('gal','admin/gallery/AboutUsGallery');
 
 Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->name('uploadImageChunk');
 
+Route::get('/' , [HomeController::class, 'index'])->name('home');
+
 //dd(123);
-Route::get('{any?}', function () {return 'no no no'/*view('welcome')*/;})->where('any', '.*');
+Route::get('{any?}', function () {view('welcome');})->where('any', '.*');
 
