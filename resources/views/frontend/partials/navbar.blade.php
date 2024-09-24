@@ -1,5 +1,5 @@
 <header class="main-header header-style-one">
-    <div class="header-top">
+    {{-- <div class="header-top">
         <div class="top-inner">
             <div class="top-left">
                 <ul class="info clearfix">
@@ -12,7 +12,7 @@
                 @include('frontend.partials.social_links')
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="header-lower">
         <div class="outer-box">
             <div class="logo-box">
@@ -32,13 +32,11 @@
 
 
                             <li class="dropdown"><a href="about.html">About Us</a>
-                                <ul>
+                                {{-- <ul>
                                     <li><a href="tobas.html">Tobas</a></li>
                                     <li><a href="activities.html">Acitivities </a></li>
                                     <li><a href="visitors.html">Visitors </a></li>
-
-
-                                </ul>
+                                </ul> --}}
                             </li>
 
                             <li class="dropdown"><a href="animals.html">Our Animals</a>
@@ -50,7 +48,6 @@
                                     <li><a href="whitethroatedkingfisher.html">White-throated Kingfisher</a></li>
                                     <li><a href="tawnyeagle.html">Tawny Eagle</a></li>
                                     <li><a href="whiteearedbulbul.html">White-eared Bulbul</a></li>
-
                                 </ul>
                             </li>
 
@@ -64,16 +61,19 @@
                             <li><a href="researcandarticles.html">Research & Articles</a></li>
 
                             <li><a href="contact.html">Contact</a></li>
+                            <li class="dropdown"><a href="tobas.html">Tobas</a></li>
+                            <li class="dropdown"><a href="activities.html">Acitivities</a></li>
+                            <li class="dropdown"><a href="visitors.html">Visitors</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
             <div class="menu-right-content">
-                <div class="support-box">
+                {{-- <div class="support-box">
                     <div class="icon"><i class="flaticon-phone-ringing"></i></div>
                     <span>Have Questions?</span>
                     <h6><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></h6>
-                </div>
+                </div> --}}
                 <div class="search-box-outer">
                     <div class="dropdown">
                         <button class="search-box-btn" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
