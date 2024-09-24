@@ -75,7 +75,7 @@
                                     <p>{!! $animal->details !!}</p>
                                 </div>
                                 <div class="btn-box">
-                                    <a href="{{url($animal->slug)}}" class="theme-btn btn-one">discover more</a>
+                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
                         </div>
@@ -178,54 +178,22 @@
         </div>
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
-                    <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="flaticon-polar-bear"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="60">0</span><span>+</span>
+                @foreach($homeCounter as $counter)
+                    <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
+                        <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <div class="icon-box"><i class="{{$counter->icon}}"></i></div>
+                                <div class="count-outer count-box">
+                                    <span class="count-text" data-speed="1500" data-stop="{{(int)$counter->count}}">{{$counter->count}}</span>
+                                </div>
+                                <p>{{$counter->name}}</p>
                             </div>
-                            <p>Wild Animals</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
-                    <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="flaticon-whale"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="20">0</span><span>+</span>
-                            </div>
-                            <p>Aquatic Animals</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
-                    <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="flaticon-bird"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="40">0</span><span>+</span>
-                            </div>
-                            <p>Beautiful Birds</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
-                    <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="flaticon-smiling-emoticon-square-face"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="60">0</span><span>k</span>
-                            </div>
-                            <p>Happy Visitors</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-    <!-- funfact-section end -->
 
 
     <!-- news-section -->
