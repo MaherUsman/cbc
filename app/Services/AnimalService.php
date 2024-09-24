@@ -43,7 +43,9 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
+
             $data = $this->record($request);
+//            dd($data);
             $animal = Animal::create($data['animal']);
             count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
             count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';
@@ -119,15 +121,18 @@ class AnimalService
             ];
         }
         $data['props'] = $props;
-        foreach ($request->gal_title as $key => $value) {
+//        dd($request->gal_title);
+        foreach ($request->gal_image as $key => $value) {
+
             $gallery[] = [
-                'title' => $request->gal_title[$key],
+                //'title' => $request->gal_title[$key],
                 'image' => $request->gal_image[$key],
                 //'status' => $request->status?:1,
                 //'display_order' => $request->display_order?:1,
             ];
         }
         $data['gallery'] = $gallery;
+
         return $data;
     }
 

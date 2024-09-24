@@ -173,16 +173,16 @@
                         <hr class="p-2">
                         <div class="row"><h1>Gallery</h1></div>
                         <div class="row rowTemplate">
-                            <div class="col-sm-5">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"
-                                           name="gal_title[]" class="form-control"
-                                           placeholder="{{__('aboutUsGallery.admin.create.title')}}">
-                                </div>
-                            </div>
+{{--                            <div class="col-sm-5">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span--}}
+{{--                                            class="text-danger">*</span> </label>--}}
+{{--                                    <input type="text" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"--}}
+{{--                                           name="gal_title[]" class="form-control"--}}
+{{--                                           placeholder="{{__('aboutUsGallery.admin.create.title')}}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-3">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
@@ -416,9 +416,10 @@
         $(document).ready(function () {
             // Function to validate if current row has both title and image filled
             function validateRow($row) {
-                let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
+                // let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
                 let imageFilled = $row.find('input[name="gal_image[]"]').val() !== '';
-                return titleFilled && imageFilled;
+                // return titleFilled && imageFilled;
+                return imageFilled;
             }
 
             // Add Row functionality
@@ -450,7 +451,7 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and image fields before adding a new row.');
+                    alert('Please fill image field before adding a new row.');
                 }
             });
 
