@@ -28,10 +28,10 @@
                 <nav class="main-menu navbar-expand-md navbar-light">
                     <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                         <ul class="navigation clearfix">
-                            <li class="dropdown"><a href="index.html">Home</a></li>
+                            <li class=""><a href="index.html">Home</a></li>
 
 
-                            <li class="dropdown"><a href="about.html">About Us</a>
+                            <li class=""><a href="about.html">About Us</a>
                                 {{-- <ul>
                                     <li><a href="tobas.html">Tobas</a></li>
                                     <li><a href="activities.html">Acitivities </a></li>
@@ -51,7 +51,7 @@
                                 </ul>
                             </li>
 
-                            <li class="dropdown"><a href="events.html">Events</a>
+                            <li class=""><a href="events.html">Events</a>
 
                                 <!-- <ul>
                                     <li><a href="events.html">Our Blog</a></li>
@@ -61,9 +61,9 @@
                             <li><a href="researcandarticles.html">Research & Articles</a></li>
 
                             <li><a href="contact.html">Contact</a></li>
-                            <li class="dropdown"><a href="tobas.html">Tobas</a></li>
-                            <li class="dropdown"><a href="activities.html">Acitivities</a></li>
-                            <li class="dropdown"><a href="visitors.html">Visitors</a></li>
+                            <li class=""><a href="tobas.html">Tobas</a></li>
+                            <li class=""><a href="activities.html">Acitivities</a></li>
+                            <li class=""><a href="visitors.html">Visitors</a></li>
                         </ul>
                     </div>
                 </nav>
