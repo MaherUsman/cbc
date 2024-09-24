@@ -75,6 +75,7 @@ Route::get('/' , [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
    Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
+   Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
 });
 
 //dd(123);

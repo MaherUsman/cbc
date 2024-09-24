@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Services\Frontend\EventService;
+use Illuminate\Http\Request;
+
+class EventController extends Controller
+{
+    protected $service;
+
+    public function __construct(EventService $service)
+    {
+        $this->service = $service;
+    }
+    public function findEvent($slug)
+    {
+        $data = $this->service->findEvent($slug);
+        return view('frontend.event' , $data);
+    }
+}

@@ -8,6 +8,10 @@ class AnimalService
 {
     public function findAnimal($slug)
     {
-        return Animal::where('slug' , $slug)->first();
+        $data['animal'] = Animal::where('slug' , $slug)
+            ->with('animalProps' , 'animalGalleries')
+            ->first();
+        $data['relatedAnimals'] = Animal::limit(3);
+        return $data;
     }
 }

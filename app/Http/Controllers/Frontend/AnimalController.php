@@ -16,7 +16,6 @@ class AnimalController extends Controller
     public function findAnimal($slug)
     {
         $animal = $this->animalService->findAnimal($slug);
-
-        return view('frontend.animal', compact('animal'));
+        return view('frontend.animal', $animal);
     }
 }
