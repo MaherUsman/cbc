@@ -74,7 +74,11 @@ Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->n
 Route::get('/' , [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
-   Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
+
+    Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
+    Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
+    Route::get('about-us' , [HomeController::class , 'aboutUs']);
+
    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
 });
 

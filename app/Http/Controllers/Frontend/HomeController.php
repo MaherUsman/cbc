@@ -20,4 +20,9 @@ class HomeController extends Controller
         $data = $this->service->index();
         return view('frontend.index' , $data);
     }
+
+    public function aboutUs()
+    {
+        return view('frontend.about-us');
+    }
 }

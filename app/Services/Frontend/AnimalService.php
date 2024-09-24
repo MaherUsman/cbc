@@ -14,4 +14,9 @@ class AnimalService
         $data['relatedAnimals'] = Animal::limit(3);
         return $data;
     }
+    public function listingAnimals()
+    {
+        $data['animals'] = Animal::paginte(10);
+        return $data;
+    }
 }

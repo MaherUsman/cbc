@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Animal;
 use App\Services\Frontend\AnimalService;
 use Illuminate\Http\Request;
 
@@ -17,5 +18,10 @@ class AnimalController extends Controller
     {
         $animal = $this->animalService->findAnimal($slug);
         return view('frontend.animal', $animal);
+    }
+    public function listingAnimal()
+    {
+        $animals = $this->animalService->listingAnimals();
+        return view('frontend.animal-listing', $animals);
     }
 }
