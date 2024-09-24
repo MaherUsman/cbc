@@ -108,11 +108,11 @@
                 </nav>
             </div>
             <div class="menu-right-content">
-                <div class="support-box">
+                {{-- <div class="support-box">
                     <div class="icon"><i class="flaticon-phone-ringing"></i></div>
                     <span>Have Questions?</span>
                     <h6><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></h6>
-                </div>
+                </div> --}}
                 <div class="search-box-outer">
                     <div class="dropdown">
                         <button class="search-box-btn" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
