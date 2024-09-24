@@ -43,7 +43,7 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-
+//            dd($request->all());
             $data = $this->record($request);
 //            dd($data);
             $animal = Animal::create($data['animal']);
@@ -83,7 +83,8 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
+//            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
+//            dd($request->all());
             $animal->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animal);
@@ -109,6 +110,8 @@ class AnimalService
             'image' => $request->image,
             'details' => $request->details,
             'show_on_top_bar' => $request->show_on_top_bar ?: 0,
+            'home_image' => $request->home_image,
+            'banner_image' => $request->banner_image,
             //'status' => $request->status?:1,
             //'display_order' => $request->display_order?:1,
         ];
@@ -122,10 +125,10 @@ class AnimalService
         }
         $data['props'] = $props;
 //        dd($request->gal_title);
-        foreach ($request->gal_image as $key => $value) {
+        foreach ($request->gal_title as $key => $value) {
 
             $gallery[] = [
-                //'title' => $request->gal_title[$key],
+                'title' => $request->gal_title[$key],
                 'image' => $request->gal_image[$key],
                 //'status' => $request->status?:1,
                 //'display_order' => $request->display_order?:1,

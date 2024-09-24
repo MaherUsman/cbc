@@ -46,7 +46,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger">* (200x200)</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.create.image_message')}}">
@@ -57,14 +57,65 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="form-label">Show In Top Bar Animal List<span
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.home_image')}}<span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control" name="show_on_top_bar">
+                                    <input type="file" id="homeImageUpload" name="home_image" class="form-control imageUpload"
+                                           accept="image/*" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.home_image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img src="#" id="homeImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="banner_image" class="form-control imageUpload" id="bannerImageUpload"
+                                           accept="image/*" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img src="#" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.create.show_on_top_bar')}}<span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control" name="show_on_top_bar" data-rule-required="true"
+                                            data-msg-required="{{__('animals.admin.create.show_on_top_bar_message')}}">
                                         <option value="" disabled>Select</option>
                                         <option value="1" selected>Yes</option>
                                         <option value="0">No</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.create.is_amazing')}}<span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control" name="is_amazing" data-rule-required="true"
+                                            data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">
+                                        <option value="">Select</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.create.display_order')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.display_order_message')}}"
+                                           name="display_order" value="{{old('display_order')}}" class="form-control"
+                                           placeholder="{{__('animals.admin.create.display_order')}}">
                                 </div>
                             </div>
                         </div>
@@ -173,16 +224,16 @@
                         <hr class="p-2">
                         <div class="row"><h1>Gallery</h1></div>
                         <div class="row rowTemplate">
-{{--                            <div class="col-sm-5">--}}
-{{--                                <div class="mb-3">--}}
-{{--                                    <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span--}}
-{{--                                            class="text-danger">*</span> </label>--}}
-{{--                                    <input type="text" data-rule-required="true"--}}
-{{--                                           data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"--}}
-{{--                                           name="gal_title[]" class="form-control"--}}
-{{--                                           placeholder="{{__('aboutUsGallery.admin.create.title')}}">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"
+                                           name="gal_title[]" class="form-control"
+                                           placeholder="{{__('aboutUsGallery.admin.create.title')}}">
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
@@ -233,6 +284,35 @@
             }
         });
 
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('bannerImagePreview').style.display = 'none';
+            }
+        });
+
+        document.getElementById('homeImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('homeImagePreview').style.display = 'block';
+                    document.getElementById('homeImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('homeImagePreview').style.display = 'none';
+            }
+        });
+
+
         $(document).ready(function () {
             var imageColName = 'image';
 
@@ -269,6 +349,42 @@
                         } catch (error) {
                             $.unblockUI();
                             errorMsg('An error occurred during the image upload');
+                        }
+                    }
+
+                    var homeImageColName = $('#homeImageUpload').attr('name');
+                    var homeImageFile = $('#homeImageUpload')[0].files[0];
+
+                    if (homeImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(homeImageFile);
+                            if (response.success) {
+                                formData.set(homeImageColName, response.filePath);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the bannerImage upload');
+                        }
+                    }
+
+                    var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+
+                    if (bannerImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(bannerImageFile);
+                            if (response.success) {
+                                formData.set(bannerImageColName, response.filePath);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the banner Image upload');
                         }
                     }
 
@@ -416,10 +532,9 @@
         $(document).ready(function () {
             // Function to validate if current row has both title and image filled
             function validateRow($row) {
-                // let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
+                let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
                 let imageFilled = $row.find('input[name="gal_image[]"]').val() !== '';
-                // return titleFilled && imageFilled;
-                return imageFilled;
+                return titleFilled && imageFilled;
             }
 
             // Add Row functionality

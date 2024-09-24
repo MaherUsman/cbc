@@ -3,71 +3,160 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' =>'sliders.index'],
-        ['name' => __('sliders.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('sliders.admin.breadcrumbs.edit')
+        'breadcrumbs' => [['name' => __('animals.admin.breadcrumbs.name'), 'route' => 'animals.index'],
+        ['name' => __('animals.admin.breadcrumbs.edit'), 'route' => null]],
+        'pageTitle' => __('animals.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('sliders.admin.edit.edit')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('sliders.update',['slider'=>$slider])}}"
+                    <h6 class="card-title">{{__('animals.admin.edit.edit')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('animals.update',['animal'=>$animal])}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="row">
+                        <div class="row {{--bg-blue-light pt-2 rounded--}}">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.title')}}<span
+                                    <label class="form-label">{{__('animals.admin.edit.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('sliders.admin.edit.title_message')}}"
-                                           name="title" value="{{$slider->title}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.title')}}">
+                                           data-msg-required="{{__('animals.admin.edit.title_message')}}"
+                                           name="title" value="{{$animal->title}}" class="form-control"
+                                           placeholder="{{__('animals.admin.edit.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
-                                           name="slink" value="{{$slider->slink}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.slink')}}">
+                                    <label class="form-label">{{__('animals.admin.edit.slug')}}</label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('animals.admin.edit.slug_message')}}"
+                                           name="slug" value="{{$animal->slug}}" class="form-control"
+                                           placeholder="{{__('animals.admin.edit.slug')}}">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label class="form-label"
-                                    >{{__('sliders.admin.edit.details')}}</label>
-                                    <textarea name="details" id="ckeditor">{{$slider->details}}</textarea>
+                                    <label class="form-label">{{__('animals.admin.edit.details')}}<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="details" id="ckeditor" data-rule-required="true"
+                                              data-msg-required="{{__('animals.admin.edit.details_message')}}">{{$animal->details}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.edit.image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="image" class="form-control" id="imageUpload"
+                                           accept="image/*"
+                                           data-msg-required="{{__('animals.admin.edit.image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="imagePreview" src="{{asset($animal->image?:'no_image.jpg')}}"
+                                         alt="Image Preview" class="img-thumbnail"
+                                         style="{{$animal->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.home_image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" id="homeImageUpload" name="home_image" class="form-control imageUpload"
+                                           accept="image/*"
+                                           data-msg-required="{{__('animals.admin.create.home_image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img src="{{asset($animal->home_image?:'no_image.jpg')}}" id="homeImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
+                                         style="{{$animal->home_image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="banner_image" id="bannerImageUpload" class="form-control imageUpload"
+                                           accept="image/*"
+                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img src="{{asset($animal->banner_image?:'no_image.jpg')}}" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
+                                         style="{{$animal->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Show In Top Bar Animal List<span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control" name="show_on_top_bar">
+                                        <option value="" disabled>Select</option>
+                                        <option value="1" {{ $animal->show_on_top_bar == 1 ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ $animal->show_on_top_bar == 0 ? 'selected' : '' }}>No</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+{{--                        @dd($animal->animalProps)--}}
+                        <hr class="p-2">
+                        <div class="row"><h1>Properties</h1></div>
+                        @foreach($animal->animalProps as $animalprops)
+                        <div class="row rowTemplateProps">
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.edit.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.edit.title_message')}}"
+                                           name="prop_title[]" disabled class="form-control" value="{{$animalprops->title}}"
+                                           placeholder="{{__('animals.admin.edit.title')}}">
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.image')}}</label>
-                                    <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*">
+                                    <label class="form-label">{{__('animals.admin.edit.details')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.edit.details_message')}}"
+                                           name="prop_details[]" disabled class="form-control" value="{{$animalprops->details}}"
+                                           placeholder="{{__('animals.admin.edit.details')}}">
                                 </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <a href="" class="btn btn-primary submit">Update Properties</a>
+                        <hr class="p-2">
+                        <div class="row"><h1>Gallery</h1></div>
+                        @foreach($animal->animalGalleries as $animalgallery)
+                        <div class="row rowTemplate">
+                            <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($slider->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$slider->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                    <label class="form-label">{{__('aboutUsGallery.admin.edit.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('aboutUsGallery.admin.edit.title_message')}}"
+                                           name="gal_title[]" disabled class="form-control" value="{{$animalgallery->title}}"
+                                           placeholder="{{__('aboutUsGallery.admin.edit.title')}}">
                                 </div>
-                            </div><!-- Col -->
-                        </div><!-- Row -->
-                        <a href="{{route('sliders.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
-                            {{__('sliders.admin.form.cancel')}}
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img id="imagePreview" src="{{asset($animalgallery->image?:'no_image.jpg')}}"
+                                         alt="Image Preview" class="img-thumbnail"
+                                         style="{{$animalgallery->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <a href="" class="btn btn-primary">Update Gallery</a>
+                        <hr class="p-2">
+                        <a href="{{route('animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('animals.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('sliders.admin.edit.submit')}}
+                            {{__('animals.admin.edit.submit')}}
                         </button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -75,6 +164,7 @@
 @endsection
 
 @section('script')
+
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -90,8 +180,36 @@
             }
         });
 
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('bannerImagePreview').style.display = 'none';
+            }
+        });
+
+        document.getElementById('homeImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('homeImagePreview').style.display = 'block';
+                    document.getElementById('homeImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('homeImagePreview').style.display = 'none';
+            }
+        });
+
         $(document).ready(function () {
-            var imageColName = 'pic';
+            var imageColName = 'image';
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
@@ -111,24 +229,84 @@
 
                     var url = $(form).attr('action');
                     var imageColName = $('#imageUpload').attr('name');
-                    var data = new FormData($(form)[0]);
+                    var formData = new FormData($(form)[0]);
                     var imageFile = $('#imageUpload')[0].files[0];
 
                     if (imageFile) {
                         try {
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
-                                data.set(imageColName, response.filePath);
-                                await submitFormData(url, data);
+                                formData.set(imageColName, response.filePath);
                             } else {
+                                $.unblockUI();
                                 errorMsg('Image upload failed');
                             }
                         } catch (error) {
+                            $.unblockUI();
                             errorMsg('An error occurred during the image upload');
                         }
-                    } else {
-                        await submitFormData(url, data);
                     }
+
+                    var homeImageColName = $('#homeImageUpload').attr('name');
+                    var homeImageFile = $('#homeImageUpload')[0].files[0];
+
+                    if (homeImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(homeImageFile);
+                            if (response.success) {
+                                formData.set(homeImageColName, response.filePath);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the bannerImage upload');
+                        }
+                    }
+
+                    var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+
+                    if (bannerImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(bannerImageFile);
+                            if (response.success) {
+                                formData.set(bannerImageColName, response.filePath);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the banner Image upload');
+                        }
+                    }
+
+                    formData.delete('gal_image[]');
+                    var imageInputs = $('input[name="gal_image[]"]');
+                    try {
+                        for (let i = 0; i < imageInputs.length; i++) {
+                            let imageFile = imageInputs[i].files[0]; // Get file from each input
+
+                            if (imageFile) {
+                                let response = await uploadImageInChunks(imageFile, i);
+                                if (response.success) {
+                                    formData.append(`gal_image[${i}]`, response.filePath);
+                                } else {
+                                    $.unblockUI();
+                                    errorMsg('Image upload failed');
+                                    return;
+                                }
+                            }
+                        }
+                        //await submitFormData(url, formData);
+                    } catch (error) {
+                        $.unblockUI();
+                        errorMsg('An error occurred during the image upload');
+                    }
+                    await submitFormData(url, formData);
+
                 }
             });
 
@@ -169,7 +347,7 @@
                 }
             }
 
-            async function submitFormData(url, data) {
+            async function submitFormData(url, formData) {
                 $.blockUI({
                     css: {
                         border: 'none',
@@ -181,19 +359,18 @@
                         color: '#fff'
                     }
                 });
-
                 try {
                     let response = await $.ajax({
                         type: 'POST',
                         url: url,
-                        data: data,
+                        data: formData,
                         processData: false,
                         contentType: false,
                     });
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('sliders.index')}}";
+                        window.location.href = "{{route('animals.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
@@ -201,5 +378,111 @@
                 }
             }
         });
+
+        $(document).ready(function () {
+            // Function to validate if current row has both title and image filled
+            function validateRow($row) {
+                let titleFilled = $row.find('input[name="prop_title[]"]').val().trim() !== '';
+                let detailsFilled = $row.find('input[name="prop_details[]"]').val().trim() !== '';
+                return titleFilled && detailsFilled;
+            }
+
+            // Add Row functionality
+            function addRow() {
+                // Clone the first row, remove its content
+                let $newRow = $('.rowTemplateProps').first().clone();
+                $newRow.find('input').val('');
+
+                // Add "Add Row" button to new row
+                $newRow.find('.removeRowProps').removeClass('btn-danger removeRowProps').addClass('btn-primary addRowProps').text('+');
+
+                // Append new row after the last one
+                $('.rowTemplateProps').last().after($newRow);
+
+                return $newRow;
+            }
+
+            // Handle Add Row Button Click
+            $(document).on('click', '.addRowProps', function () {
+                let $currentRow = $(this).closest('.rowTemplateProps');
+
+                // Validate current row before adding new one
+                if (validateRow($currentRow)) {
+                    // Change current "Add Row" button to "Remove"
+                    $(this).removeClass('btn-primary addRowProps').addClass('btn-danger removeRowProps').text('-');
+
+                    // Add the new row
+                    addRow();
+                } else {
+                    alert('Please fill both title and details fields before adding a new row.');
+                }
+            });
+
+            // Handle Remove Row Button Click
+            $(document).on('click', '.removeRowProps', function () {
+                $(this).closest('.rowTemplateProps').remove();
+            });
+        });
+
+        $(document).ready(function () {
+            // Function to validate if current row has both title and image filled
+            function validateRow($row) {
+                // let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
+                let imageFilled = $row.find('input[name="gal_image[]"]').val() !== '';
+                // return titleFilled && imageFilled;
+                return imageFilled;
+            }
+
+            // Add Row functionality
+            function addRow() {
+                // Clone the first row, remove its content
+                let $newRow = $('.rowTemplate').first().clone();
+                $newRow.find('input').val('');
+                $newRow.find('input[type="file"]').val('');
+                $newRow.find('img').hide();
+
+                // Add "Add Row" button to new row
+                $newRow.find('.removeRow').removeClass('btn-danger removeRow').addClass('btn-primary addRow').text('+');
+
+                // Append new row after the last one
+                $('.rowTemplate').last().after($newRow);
+
+                return $newRow;
+            }
+
+            // Handle Add Row Button Click
+            $(document).on('click', '.addRow', function () {
+                let $currentRow = $(this).closest('.rowTemplate');
+
+                // Validate current row before adding new one
+                if (validateRow($currentRow)) {
+                    // Change current "Add Row" button to "Remove"
+                    $(this).removeClass('btn-primary addRow').addClass('btn-danger removeRow').text('-');
+
+                    // Add the new row
+                    addRow();
+                } else {
+                    alert('Please fill image field before adding a new row.');
+                }
+            });
+
+            // Handle Remove Row Button Click
+            $(document).on('click', '.removeRow', function () {
+                $(this).closest('.rowTemplate').remove();
+            });
+        });
+
+        // Function to preview the selected image
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Find the nearest image element in the same row and display it
+                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(input.files[0]); // Convert the file to a URL
+            }
+        }
+
     </script>
 @endsection

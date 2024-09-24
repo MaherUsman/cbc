@@ -23,6 +23,10 @@ class Animal extends Model
         'show_on_top_bar',
         'status',
         'display_order',
+        'is_homepage',
+        'is_amazing',
+        'home_image',
+        'banner_image'
     ];
 
     /**

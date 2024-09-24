@@ -22,7 +22,9 @@ class AnimalUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'string', 'max:255'],
+            'image' => ['nullable', 'string', 'max:255'],
+            'home_image' => ['nullable', 'string', 'max:255'],
+            'banner_image' => ['nullable', 'string', 'max:255'],
             'details' => ['required', 'string'],
             'show_on_top_bar' => ['required'],
 //            'status' => ['required'],
