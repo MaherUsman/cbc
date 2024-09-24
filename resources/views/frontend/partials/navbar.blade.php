@@ -10,17 +10,13 @@
             </div>
             <div class="top-right">
                 @include('frontend.partials.social_links')
-                <!-- <ul class="other-links clearfix">
-                    <li><a href="index.html">Events</a></li>
-                    <li><a href="index.html">Zoo Map</a></li>
-                </ul> -->
             </div>
         </div>
     </div>
     <div class="header-lower">
         <div class="outer-box">
             <div class="logo-box">
-                <figure class="logo"><a href="index.html"><img src="assets/images/cbc.png" alt="" width="100"></a></figure>
+                <figure class="logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" width="100"></a></figure>
             </div>
             <div class="menu-area">
                 <!--Mobile Navigation Toggler-->
@@ -104,7 +100,7 @@
     <div class="sticky-header">
         <div class="outer-box">
             <div class="logo-box">
-                <figure class="logo"><a href="index.html"><img src="assets/images/cbc.png" alt="" width="100"></a></figure>
+                <figure class="logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" width="100"></a></figure>
             </div>
             <div class="menu-area">
                 <nav class="main-menu clearfix">

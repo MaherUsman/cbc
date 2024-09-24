@@ -14,7 +14,7 @@
             <div id="handle-preloader" class="handle-preloader about-page-2">
                 <div class="animation-preloader">
                     <div class="spinner">
-                        <div class="nav-logo"><a href="index.html"><img src="assets/images/cbc.png" alt="" title="" width="300"></a></div>
+                        <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" title="" width="300"></a></div>
                     </div>
                     <div class="txt-loading">
                             <span data-text-preloader="c" class="letters-loading">
@@ -115,7 +115,7 @@
         <div class="close-btn"><i class="fas fa-times"></i></div>
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="index.html"><img src="assets/images/cbc.png"  width="" title=""></a></div>
+            <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}"  width="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -142,12 +142,12 @@
     <!-- main-footer -->
     <section class="main-footer">
         <div class="footer-top">
-            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-4.png);"></div>
+            <div class="pattern-layer" style="background-image: url({{asset('assets/images/shape/shape-4.png')}});"></div>
             <div class="auto-container">
                 <div class="row clearfix">
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                         <div class="footer-widget logo-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="assets/images/cbc.png" alt="" width="100"></a></figure>
+                            <figure class="footer-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" width="100"></a></figure>
                             @include('frontend.partials.social_links' , ['className' => 'footer-social'])
                         </div>
                     </div>

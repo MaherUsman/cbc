@@ -1,0 +1,418 @@
+
+:root {
+	--primary: #ECAC20;
+	--seconadry: #38291C;
+	--tertiary: #939D00;
+}
+
+/* template-color */
+
+.scroll-top{
+  color: #F29021;
+}
+
+.handle-preloader{
+	background: #F29021;
+}
+
+.header-top .info li i{
+	color: #fff;
+}
+
+.header-top .info li a:hover{
+  color: var(--tertiary);
+}
+
+.header-top .top-right .social-links li a:hover{
+  color: var(--tertiary);
+}
+
+.header-top .top-right .other-links li a:hover{
+  color: var(--tertiary);
+}
+
+.main-header .menu-right-content .btn-box a{
+	background: var(--primary);
+}
+
+.main-header .menu-right-content .support-box .icon{
+	color: var(--seconadry);
+}
+
+.header-style-one .menu-right-content .support-box h6 a:hover{
+  color: var(--seconadry);
+}
+
+.main-header .search-box-btn:hover{
+	color: var(--seconadry);
+}
+
+.main-header .search-box-outer .dropdown-menu{
+	background: var(--seconadry);
+}
+
+.header-style-one .menu-right-content .btn-box a:hover{
+  background: var(--tertiary);
+}
+
+.banner-carousel .content-box h3{
+	color: var(--primary);
+}
+
+.theme-btn.btn-one{
+	background: var(--seconadry);
+}
+
+.info-section .single-item .icon-box{
+	color: #fff;
+}
+
+.info-section .single-item h5 a:hover{
+  color: var(--seconadry);
+}
+
+.image_block_one .image-box .icon-box{
+	background: var(--primary);
+}
+
+.sec-title h2:before{
+	background: var(--primary);
+}
+
+.content_block_one .content-box .text h4{
+	color: var(--seconadry);
+}
+
+.list-style-one li:before{
+	color: var(--primary);
+}
+
+.chooseus-section .content-box .content-inner{
+	background: var(--primary);
+}
+
+.chooseus-section .content-box .content-inner .theme-btn:before{
+	background: var(--tertiary);
+}
+
+.gallery-block-one .inner-box h3 a:hover{
+	color: var(--primary);
+}
+
+.gallery-block-one .inner-box .link a{
+	border: 2px solid var(--primary);
+	color: var(--primary);
+}
+
+.gallery-block-one .inner-box .link a:hover{
+  background: var(--primary);
+}
+
+.scroll-top{
+	background: #F29021;
+}
+
+.content_block_two .content-box .single-item .icon-box{
+	background: var(--primary);
+}
+
+.image_block_two .image-box .video-btn a{
+	background: var(--primary);
+}
+
+.testimonil-block-one .inner-box .author-thumb .quote{
+	background: var(--primary);
+}
+
+.testimonil-block-one .inner-box .author-info .designation{
+	color: var(--seconadry);
+}
+
+.testimonil-block-one .inner-box:before{
+	background: var(--primary);
+}
+
+.events-block-one .inner-box .image-box .image{
+	background: var(--seconadry);
+}
+
+.events-block-one .inner-box .image-box .post-date{
+	background: var(--primary);
+}
+
+.events-block-one .inner-box .info li i{
+	color: var(--seconadry);
+}
+
+.events-block-one .inner-box h3 a:hover{
+  color: var(--seconadry);
+}
+
+.counter-block-one .inner-box .icon-box{
+	background: var(--primary);
+}
+
+.news-block-one .inner-box .image-box .post-date{
+	background: var(--primary);
+}
+
+.news-block-one .inner-box .lower-content .post-info li a:hover{
+  color: var(--seconadry);
+}
+
+.news-block-one .inner-box .lower-content .post-info li i{
+	color: var(--primary);
+}
+
+.news-block-one .inner-box .lower-content h3 a:hover{
+  color: var(--seconadry);
+}
+
+.news-block-one .inner-box .lower-content .link a{
+	background: var(--primary);
+}
+
+.news-block-one .inner-box .lower-content .link a:hover{
+  background: var(--seconadry);
+}
+
+.cta-section .bg-layer{
+	background: var(--primary);
+}
+
+.footer-top .footer-social li a:hover{
+  background: var(--tertiary);
+}
+
+.footer-top .links-widget .links-list li a:hover{
+  color: var(--primary);
+}
+
+.footer-top .contact-widget .info li a:hover{
+  color: var(--primary);
+}
+
+.footer-top .contact-widget .info li i{
+	color: var(--primary);
+}
+
+.footer-top .gallery-widget .image-list li .image{
+	background: var(--primary);
+}
+
+.footer-bottom p a:hover{
+  color: var(--tertiary);
+}
+
+.header-style-two .header-lower .main-menu .navigation > li.current > a, 
+.header-style-two .header-lower .main-menu .navigation > li:hover > a{
+	color: var(--primary);
+}
+
+.header-style-two .header-lower .menu-right-content .other-links li a:hover{
+	color: var(--primary);
+}
+
+.header-style-two .header-lower .search-box-btn:hover{
+  color: var(--primary);
+}
+
+.banner-style-two .social-links li a:hover{
+  color: var(--primary);
+}
+
+.banner-style-two .video-box .video-btn a{
+	background: #4ba750;
+}
+
+.banner-style-two .video-box .link a:hover{
+  background: var(--primary);
+}
+
+.content_block_three .content-box .inner .icon-box{
+	color: var(--seconadry);
+}
+
+.image_block_three .image-box:after{
+	background: var(--seconadry);
+}
+
+.animals-section .single-item .icon-box{
+	color: var(--primary);
+}
+
+.animals-section .single-item:hover,
+.animals-section .single-item.active-btn{
+  background: var(--primary);
+}
+
+.animals-section .single-item:before,
+.animals-section .single-item.active-btn:before{
+	background: var(--primary);
+}
+
+.video-section .inner-box .video-btn a{
+	background: var(--primary);
+}
+
+.gallery-style-two .sec-title{
+	background: var(--seconadry);
+}
+
+.gallery-block-two .inner-box .view-box a{
+	color: var(--primary);
+}
+
+.pricing-block-one .pricing-table .table-header .icon-box{
+	background: var(--primary);
+}
+
+.pricing-block-one .pricing-table .table-header h2{
+	color: var(--seconadry);
+}
+
+.pricing-block-one .pricing-table .table-header .icon-box:before{
+	background: var(--seconadry);
+}
+
+.news-style-two .sec-title .theme-btn:before{
+	background: var(--seconadry);
+}
+
+.news-block-two .inner-box{
+	background: var(--primary);
+}
+
+.news-block-two .inner-box .image-box{
+	background: var(--seconadry);
+}
+
+.news-block-three .inner-box .post-info li i{
+	color: var(--primary);
+}
+
+.news-block-three .inner-box .post-info li a:hover{
+  color: var(--primary);
+}
+
+.news-block-three .inner-box .image-box{
+	background: var(--seconadry);
+}
+
+.news-block-three .inner-box h3 a:hover{
+  color: var(--seconadry);
+}
+
+.page-title .bread-crumb li{
+	color: var(--primary);
+}
+
+.page-title .bread-crumb li a{
+	color: var(--primary);
+}
+
+.content_block_three .content-box .text h4{
+	color: var(--seconadry);
+}
+
+.about-style-three .content_block_three .content-box .theme-btn{
+  background: var(--primary);
+}
+
+.team-block-one .inner-box .lower-content h3 span{
+	color: var(--seconadry);
+}
+
+.team-block-one .inner-box .lower-content h3 a:hover{
+	color: var(--seconadry);
+}
+
+.team-block-one .inner-box .lower-content .social-links li a:hover{
+  background: var(--primary);
+}
+
+.gallery-page-section .gallery-block-two .inner-box .image-box{
+  background: var(--seconadry);
+}
+
+.error-section .inner-box h1{
+	color: var(--seconadry);
+}
+
+.news-block-one .inner-box .lower-content .theme-btn:before{
+	background: var(--primary);
+}
+
+.news-block-one .inner-box .lower-content h2 a:hover{
+  color: var(--seconadry);
+}
+
+.blog-sidebar .search-widget{
+	background: var(--primary);
+}
+
+.blog-sidebar .search-widget .form-group input:focus + button,
+.blog-sidebar .search-widget .form-group button:hover{
+  color: var(--seconadry);
+}
+
+.blog-sidebar .post-widget .post .post-thumb{
+	background: var(--primary);
+}
+
+.blog-sidebar .post-widget .post-inner .post .post-date i{
+	color: var(--primary);
+}
+
+.blog-sidebar .post-widget .post-inner .post .post-date a:hover{
+	color: var(--primary);
+}
+
+.blog-sidebar .post-widget .post-inner .post h6 a:hover{
+  color: var(--primary);
+}
+
+.blog-sidebar .category-widget .category-list li a:hover i{
+  color: var(--seconadry);
+}
+
+.blog-sidebar .tags-widget .tags-list li a:hover{
+  background: var(--primary);
+}
+
+.blog-details-content .post-share-option .tags-list li a{
+	background: var(--primary);
+}
+
+.blog-details-content .post-share-option .tags-list li a:hover{
+	background: var(--seconadry);
+}
+
+.blog-details-content .post-share-option .social-links li a:hover{
+  background: var(--primary);
+}
+
+.blog-details-content .comment-box .comment .reply-btn{
+	background: var(--seconadry);
+}
+
+.blog-details-content .comment-box .comment .reply-btn:hover{
+  background: var(--primary);
+}
+
+.default-form .form-group input:focus,
+.default-form .form-group textarea:focus{
+	border-color: var(--seconadry) !important;
+}
+
+.google-map-section .map-inner .content-box{
+	background: var(--primary);
+}
+
+.google-map-section .content-box .inner .icon-box{
+	color: var(--primary);
+}
+
+.mobile-menu .menu-backdrop{
+	background: var(--primary);
+}
