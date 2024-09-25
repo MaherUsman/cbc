@@ -28,7 +28,7 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                    <figure class="image-box"><img src="assets/images/about/banner.jpg" alt=""></figure>
+                    <figure class="image-box"><img src="{{asset('assets/images/about/banner.jpg')}}" alt=""></figure>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content_block_three">
@@ -63,7 +63,7 @@
     <!-- about-style-three end -->
 
     <!-- gallery-page-section -->
-    <section class="gallery-page-section pt-0">
+    {{-- <section class="gallery-page-section pt-0">
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-md-12">
@@ -76,17 +76,12 @@
                         <div class="inner-box">
                             <figure class="image-box"><img src="assets/images/about/1.jpg" alt=""></figure>
                             <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                <a href="assets/images/about/1.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol">
-
-
-                                    </i>
+                                <a href="assets/images/about/1.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
+                                    <i class="flaticon-plus-symbol"></i>
                                     <span class="text-heading text-center">
-                                   Conservation Breeding Center
+                                        Conservation Breeding Center
                                     </span>
                                 </a>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -155,7 +150,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- gallery-page-section end -->
 
 
@@ -251,7 +246,7 @@
 
 
     <!-- team-section -->
-    <!-- <section class="team-section sec-pad">
+    <section class="team-section sec-pad">
         <div class="auto-container">
             <div class="sec-title centred">
                 <h2>the Team in <br />our zoo</h2>
@@ -261,7 +256,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 team-block">
                         <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="assets/images/team/team-1.jpg" alt=""></figure>
+                                <figure class="image-box"><img src="{{asset('assets/images/team/team-1.jpg')}}" alt=""></figure>
                                 <div class="lower-content">
                                     <h3><a href="about.html">Aleesha</a> <span>Animal Doctor</span></h3>
                                     <p>There are many of lorem ipsum available but the have in some form.</p>
@@ -277,7 +272,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 team-block">
                         <div class="team-block-one wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="assets/images/team/team-2.jpg" alt=""></figure>
+                                <figure class="image-box"><img src="{{asset('assets/images/team/team-2.jpg')}}" alt=""></figure>
                                 <div class="lower-content">
                                     <h3><a href="about.html">michale</a> <span>Animal Doctor</span></h3>
                                     <p>There are many of lorem ipsum available but the have in some form.</p>
@@ -293,7 +288,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 team-block">
                         <div class="team-block-one wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="assets/images/team/team-3.jpg" alt=""></figure>
+                                <figure class="image-box"><img src="{{asset('assets/images/team/team-3.jpg')}}" alt=""></figure>
                                 <div class="lower-content">
                                     <h3><a href="about.html">sarah</a> <span>Animal Doctor</span></h3>
                                     <p>There are many of lorem ipsum available but the have in some form.</p>
@@ -309,7 +304,7 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
     <!-- team-section end -->
 
 @endsection

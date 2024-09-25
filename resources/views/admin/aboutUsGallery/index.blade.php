@@ -48,11 +48,44 @@
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
                                 @foreach($aboutUsGalleries as $gallery)
-                                    <a href="{{asset($gallery->image)}}" data-src="{{asset($gallery->image)}}"
-                                       class="lg-item col-lg-3 col-md-6 mb-4">
-                                        <img src="{{asset($gallery->image)}}" class="rounded" alt=""
-                                             style="width:100%;">
-                                    </a>
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="gallery-img-wrapper position-relative w-100 h-100">
+                                        <a
+                                            href="{{asset($gallery->image)}}"
+                                            data-src="{{asset($gallery->image)}}"
+                                            class="lg-item"
+                                        >
+                                            <img
+                                                src="{{asset($gallery->image)}}"
+                                                class="rounded" alt=""
+                                                style="width:100%;"
+                                            >
+                                        </a>
+                                        <div class="gallery-overlay rounded">
+                                            <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
+                                                <div class="overlay-icon">
+                                                    <a href="#">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="overlay-icon mt-2">
+                                                    <a href="#">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="overlay-icon mt-2">
+                                                    <a href="#">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="img-title mt-3">
+                                                <p>Image Title</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 @endforeach
                             </div>
                         </div>

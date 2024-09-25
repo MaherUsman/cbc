@@ -22886,3 +22886,42 @@ span#counter {
       color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
+
+.gallery-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.gallery-img-wrapper:hover .gallery-overlay{
+    opacity: 1;
+}
+
+.overlay-icon{
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.overlay-icon i{
+    font-size: 16px;
+    color: #fff;
+}
+
+.img-title{
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+}
