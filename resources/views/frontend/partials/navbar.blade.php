@@ -64,6 +64,7 @@
                             <li class=""><a href="tobas.html">Tobas</a></li>
                             <li class=""><a href="activities.html">Acitivities</a></li>
                             <li class=""><a href="visitors.html">Visitors</a></li>
+                            <li class=""><a href="visitors.html">Career</a></li>
                         </ul>
                     </div>
                 </nav>
