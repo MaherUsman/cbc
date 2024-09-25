@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUsGalleryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnimalCategoryController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalGalleryController;
 use App\Http\Controllers\AuthenticationController;
@@ -34,7 +35,11 @@ Route::prefix('admin')->group(function () {
         Route::get('profile',  [AdminController::class, 'edit'])->name('admin.profile');
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
 
+        Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
+        Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
+
         Route::resource('user',UserController::class);
+        Route::resource('animal-categories',AnimalCategoryController::class);
         Route::resource('blogs', BlogController::class);
         Route::resource('contact-uses', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
@@ -77,8 +82,11 @@ Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
 
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
-    Route::get('about-us' , [HomeController::class , 'aboutUs']);
+    Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
 
+    Route::get('contact-us' , [HomeController::class , 'contactUs'])->name('contact.us');
+    Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
+    Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
 });
 

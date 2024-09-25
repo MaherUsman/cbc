@@ -10,6 +10,7 @@ return [
     'home_page' => 'Home Page Sections',
     'aboutUs_page' => 'About Us Page Sections',
     'animals_page' => 'Animal Page Sections',
+    'setting_page' => 'Setting Page Sections',
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',
@@ -50,6 +51,13 @@ return [
         'name' => 'Animals',
         'index' => 'All Animals',
         'create' => 'Add Animal',
+    ],
+    'animalCategories' => [
+        'index' => 'Animal Categories',
+    ],
+    'setting' => [
+        'name' => 'Setting',
+        'update' => 'Update Setting',
     ],
 
 ];

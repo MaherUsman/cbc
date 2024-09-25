@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Animal;
+use App\Models\AnimalCategory;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,49 +12,42 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AnimalDataTable extends DataTable
+class AnimalCategoryDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query)
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return view('admin.animal.action', ['animal' => $query]);
+                return view('admin.animalCategories.action', ['animalCategory' => $query]);
             })
-            ->addColumn('gallery', function ($query) {
-                if ($query->animalGalleries) {
-                    return view('admin.animal.showGallery', ['animal' => $query]);
-                }
+            ->editColumn('image', function ($row) {
+                $imageUrl = asset($row->image ?: 'no_image.jpg');
+                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
             })
-//            ->editColumn('image', function ($row) {
-//                $imageUrl = asset($row->image ?: 'no_image.jpg');
-//                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
-//            })
-            ->editColumn('details', function ($query) {
-                return view('admin.animal.message', ['animal' => $query]);
-            })
-            ->setRowId('id')->rawColumns(['image','action']);
+            ->setRowId('id')
+            ->rawColumns(['image','action']);
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Animal $model)
+    public function query(AnimalCategory $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('display_order','asc');
+        return $model->newQuery();
     }
 
     /**
      * Optional method if you want to use the html builder.
      */
-    public function html()
+    public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('animal-table')
+                    ->setTableId('animalcategory-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -65,27 +58,21 @@ class AnimalDataTable extends DataTable
                         Button::make('csv'),
                         Button::make('pdf'),
                         Button::make('print'),
-                        /*Button::make('reset'),
-                        Button::make('reload')*/
+//                        Button::make('reset'),
+//                        Button::make('reload')
                     ]);
     }
 
     /**
      * Get the dataTable columns definition.
      */
-    public function getColumns()
+    public function getColumns(): array
     {
         return [
+
             Column::make('id'),
-            Column::make('title'),
-//            Column::make('image'),
-            Column::make('slug'),
-            Column::make('details'),
-            Column::computed('gallery')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+            Column::make('name'),
+            Column::make('image'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -99,6 +86,6 @@ class AnimalDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Animal_' . date('YmdHis');
+        return 'AnimalCategory_' . date('YmdHis');
     }
 }

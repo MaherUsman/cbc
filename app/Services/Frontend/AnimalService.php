@@ -16,7 +16,7 @@ class AnimalService
     }
     public function listingAnimals()
     {
-        $data['animals'] = Animal::paginte(10);
+        $data['animals'] = Animal::paginate(1);
         return $data;
     }
 }

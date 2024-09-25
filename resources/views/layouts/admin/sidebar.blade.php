@@ -115,12 +115,28 @@
                     <i class="la la-note"></i>
                     <span class="nav-text">{{__('sidebar.animals.name')}}</span>
                 </a>
-                <ul aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
+                <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/animal-categories*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('animal-categories.index')}}">{{__('sidebar.animalCategories.index')}}</a>
+                    </li>
                     <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
                         <a href="{{route('animals.index')}}">{{__('sidebar.animals.index')}}</a>
                     </li>
                     <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
                         <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-label">{{__('sidebar.setting_page')}}</li>
+            <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.setting.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                        <a href="{{route('admin.settings')}}">{{__('sidebar.setting.update')}}</a>
                     </li>
                 </ul>
             </li>

@@ -22,8 +22,11 @@ class BlogUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'image' => ['nullable', 'string'],
-            'start_date' => ['nullable', 'string'],
+            'banner_image' => ['nullable', 'string'],
+            'start_date' => ['required', 'string'],
+            'time' => ['required', 'string'],
             'details' => ['required', 'string'],
+            'address' => ['required', 'string'],
         ];
     }
 }
