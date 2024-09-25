@@ -3,6 +3,7 @@
     {{-- <!-- Pick date -->--}}
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.date.css')}}">
+    <link href="{{asset('vendor/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
@@ -31,6 +32,26 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('blogs.admin.create.slug')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text" data-msg-required="{{__('blogs.admin.edit.title_message')}}"
+                                           name="slug" value="{{ $blog->slug }}" class="form-control"
+                                           placeholder="{{__('blogs.admin.create.slug')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('blogs.admin.create.start_time')}}</label>
+                                    <div class="input-group clockpicker">
+                                        <input name="time" value="{{ $blog->time }}" type="text" class="form-control" data-rule-required="false" autocomplete="off"
+                                               data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
+                                               placeholder="{{__('blogs.admin.create.start_time')}}">
+                                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="datepicker">{{__('blogs.admin.edit.start_date')}}</label>
@@ -54,6 +75,14 @@
                                     <textarea name="details" id="ckeditor">{{$blog->details}}</textarea>
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                    >{{__('blogs.admin.edit.address')}}<span class="text-danger">*</span></label>
+                                    <textarea name="address" class="form-control" data-rule-required="true"
+                                              data-msg-required="{{__('blogs.admin.edit.address_message')}}">{{$blog->address}}</textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
@@ -66,6 +95,17 @@
                                     <img id="imagePreview" src="{{asset($blog->image?:'no_image.jpg')}}"
                                          alt="Image Preview" class="img-thumbnail"
                                          style="{{$blog->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('blogs.admin.edit.banner_image')}}</label>
+                                    <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
+                                           accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="bannerImagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row -->
@@ -85,11 +125,13 @@
 @section('script')
     <!-- pickdate -->
     <script src="{{asset('vendor/pickadate/picker.js')}}"></script>
+    <script src="{{asset('vendor/clockpicker/js/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('vendor/pickadate/picker.time.js')}}"></script>
     <script src="{{asset('vendor/pickadate/picker.date.js')}}"></script>
 
     <!-- Pickdate -->
     <script src="{{asset('js/plugins-init/pickadate-init.js')}}"></script>
+    <script src="{{asset('js/plugins-init/clock-picker-init.js')}}"></script>
 
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
@@ -99,6 +141,20 @@
                 reader.onload = function (e) {
                     document.getElementById('imagePreview').style.display = 'block';
                     document.getElementById('imagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
+            }
+        });
+
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -141,6 +197,29 @@
                             }
                         } catch (error) {
                             errorMsg('An error occurred during the image upload');
+                        }
+                    } else {
+                        await submitFormData(url, data);
+                    }
+
+                    var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    alert(bannerImageColName);
+                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+
+                    if (bannerImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(bannerImageFile);
+                            if (response.success) {
+                                data.set(bannerImageColName, response.filePath);
+                                console.log(data, 'adil here');
+                                await submitFormData(url, data);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the banner Image upload');
                         }
                     } else {
                         await submitFormData(url, data);

@@ -3,6 +3,7 @@
     {{-- <!-- Pick date -->--}}
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.date.css')}}">
+    <link href="{{asset('vendor/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
@@ -30,13 +31,35 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('blogs.admin.create.slug')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text"
+                                           name="slug" value="{{old('slug')}}" class="form-control"
+                                           placeholder="{{__('blogs.admin.create.slug')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                        <label class="form-label">{{__('blogs.admin.create.start_time')}}<span
+                                                class="text-danger">*</span></label>
+                                        <div class="input-group clockpicker">
+                                            <input name="time" type="text" class="form-control" data-rule-required="true" autocomplete="off"
+                                                   data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
+                                                   placeholder="{{__('blogs.admin.create.start_time')}}">
+                                            <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="datepicker">{{__('blogs.admin.create.start_date')}}</label>
+                                           for="datepicker">{{__('blogs.admin.create.start_date')}}<span
+                                            class="text-danger">*</span></label>
                                     <div class="input-hasicon mb-xl-0 mb-3">
                                         <input name="start_date"
                                                class="datepicker-default form-control" autocomplete="off"
-                                               data-rule-required="false"
+                                               data-rule-required="true"
                                                data-msg-required="{{__('blogs.admin.create.start_date_message')}}"
                                                id="datepicker" value="{{old('start_date')}}"
                                                placeholder="{{__('blogs.admin.create.start_date')}}">
@@ -49,8 +72,17 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           >{{__('blogs.admin.create.details')}}</label>
-                                    <textarea name="details" id="ckeditor"></textarea>
+                                           >{{__('blogs.admin.create.details')}}<span class="text-danger">*</span></label>
+                                    <textarea name="details" id="ckeditor" data-rule-required="true"
+                                              data-msg-required="{{__('blogs.admin.create.address_message')}}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                    >{{__('blogs.admin.create.address')}}<span class="text-danger">*</span></label>
+                                    <textarea name="address" class="form-control" data-rule-required="true"
+                                              data-msg-required="{{__('blogs.admin.create.address_message')}}"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -63,6 +95,18 @@
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div><!-- Col -->
+
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('blogs.admin.create.banner_image')}}</label>
+                                    <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
+                                           accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="bannerImagePreview" src="#" alt="Image Preview" class="img-thumbnail"
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div><!-- Col -->
@@ -84,11 +128,13 @@
 @section('script')
     <!-- pickdate -->
     <script src="{{asset('vendor/pickadate/picker.js')}}"></script>
+    <script src="{{asset('vendor/clockpicker/js/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{asset('vendor/pickadate/picker.time.js')}}"></script>
     <script src="{{asset('vendor/pickadate/picker.date.js')}}"></script>
 
     <!-- Pickdate -->
     <script src="{{asset('js/plugins-init/pickadate-init.js')}}"></script>
+    <script src="{{asset('js/plugins-init/clock-picker-init.js')}}"></script>
 
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
@@ -98,6 +144,20 @@
                 reader.onload = function (e) {
                     document.getElementById('imagePreview').style.display = 'block';
                     document.getElementById('imagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
+            }
+        });
+
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -134,7 +194,7 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
-                                await submitFormData(url, data);
+                                // await submitFormData(url, data);
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -142,6 +202,26 @@
                         } catch (error) {
                             $.unblockUI();
                             errorMsg('An error occurred during the image upload');
+                        }
+                    }
+
+                    var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+
+                    if (bannerImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(bannerImageFile);
+                            if (response.success) {
+                                data.set(bannerImageColName, response.filePath);
+                                // console.log(data, 'adil here');
+                                await submitFormData(url, data);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the banner Image upload');
                         }
                     } else {
                         await submitFormData(url, data);

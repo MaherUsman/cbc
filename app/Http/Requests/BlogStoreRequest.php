@@ -21,9 +21,13 @@ class BlogStoreRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
+            'slug' => ['nullable', 'string'],
             'image' => ['nullable', 'string'],
-            'start_date' => ['nullable', 'string'],
+            'banner_image' => ['nullable', 'string'],
+            'start_date' => ['required', 'string'],
+            'time' => ['required', 'date_format:H:i'],
             'details' => ['required', 'string'],
+            'address' => ['required', 'string'],
         ];
     }
 }

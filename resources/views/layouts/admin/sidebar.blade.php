@@ -125,6 +125,19 @@
                 </ul>
             </li>
 
+            <li class="nav-label">{{__('sidebar.setting_page')}}</li>
+            <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.setting.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                        <a href="{{route('admin.settings')}}">{{__('sidebar.setting.update')}}</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
 
 
