@@ -141,6 +141,19 @@
                 </ul>
             </li>
 
+            <li class="nav-label">{{__('sidebar.career_listing_page')}}</li>
+            <li class="{{ request()->is('admin/career-listing') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/career-listing') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.career_listing_page')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/career-listing') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/career-listing') ? 'active mm-active' : '' }}">
+                        <a href="{{route('admin.career-listing')}}">{{__('sidebar.career-listing.name')}}</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
 
 

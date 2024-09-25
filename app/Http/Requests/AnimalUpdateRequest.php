@@ -27,6 +27,8 @@ class AnimalUpdateRequest extends FormRequest
             'banner_image' => ['nullable', 'string', 'max:255'],
             'details' => ['required', 'string'],
             'show_on_top_bar' => ['required'],
+            'is_amazing' => ['nullable'],
+            'display_order' => ['nullable', 'integer'],
 //            'status' => ['required'],
 //            'display_order' => ['required', 'integer'],
         ];

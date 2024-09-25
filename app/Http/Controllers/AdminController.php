@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CareerApplicationDataTable;
 use App\Helper\ImageUploadHelper;
 use App\Http\Requests\AdminProfileUpdate;
 use App\Http\Requests\AdminSettingUpdate;
+use App\Http\Resources\CareerApplicationCollection;
+use App\Models\CareerApplication;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -82,23 +85,28 @@ class AdminController extends Controller
                 // Create new settings record
                 Settings::create($settingArray);
             }
-//            $image = (ImageUploadHelper::checkUploadImage($request, 'logo', 'logo/', $settings)) ?: $settings->logo;
-//            $settingArray = [];
-//            $settingArray['logo'] = $image;
-//            ($request->has('address') && $request->address != '') ? $settingArray['address'] = $request->address : '';
-//            ($request->has('phone') && $request->phone != '') ? $settingArray['phone'] = $request->phone : '';
-//            ($request->has('email') && $request->email != '') ? $settingArray['email'] = $request->email : '';
-//            ($request->has('zoo_map') && $request->zoo_map != '') ? $settingArray['zoo_map'] = $request->zoo_map : '';
-//            ($request->has('copyright_text') && $request->copyright_text != '') ? $settingArray['copyright_text'] = $request->copyright_text : '';
-//            ($request->has('copyright_link') && $request->copyright_link != '') ? $settingArray['copyright_link'] = $request->copyright_link : '';
-//            ($request->has('copyright_link_name') && $request->copyright_link_name != '') ? $settingArray['copyright_link_name'] = $request->copyright_link_name : '';
-//            $settings->update($settingArray);
             DB::commit();
             $data = $settings;
             return makeResponse('success', 'Settings Updated Successfully!', Response::HTTP_OK, $data);
         } catch (\Exception $exception) {
             DB::rollBack();
             return makeResponse('error', 'error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    public function career_application(CareerApplicationDataTable $dataTable)
+    {
+        return $dataTable->render('admin.career_application.index');
+    }
+
+    public function getCareerApplications()
+    {
+        $applications = CareerApplication::all();
+        if (request()->is('api/*')) {
+            return makeResponse('success', 'List', Response::HTTP_OK, new CareerApplicationCollection($applications));
+        } else {
+            return view('admin.career_application.index', compact('applications'));
         }
     }
 

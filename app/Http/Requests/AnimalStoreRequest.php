@@ -27,11 +27,10 @@ class AnimalStoreRequest extends FormRequest
             'banner_image' => ['required', 'string', 'max:255'],
             'details' => ['required', 'string'],
             'show_on_top_bar' => ['required'],
-            'prop_title' => ['required', 'array'], // Ensure prop_title is an array
-            'prop_title.*' => ['required', 'string'], // Each item in prop_title must be a non-null string
-
-            'prop_details' => ['required', 'array'], // Ensure prop_details is an array
-            'prop_details.*' => ['required', 'string'], // Each item in prop_details must be a non-null string
+            'is_amazing' => ['nullable', 'string'],
+            'display_order' => ['nullable', 'integer'],
+//            'prop_title.*' => ['required', 'string'], // Each item in prop_title must be a non-null string
+//            'prop_details.*' => ['required', 'string'], // Each item in prop_details must be a non-null string
 //            'status' => ['required'],
 //            'display_order' => ['required', 'integer'],
         ];

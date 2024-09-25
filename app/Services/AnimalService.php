@@ -84,7 +84,7 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-            dd($request->all());
+//            dd($request->all());
 //            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
             $data = $this->record($request);
             $animal->update(collect($request->validated())->except('role')->all());
@@ -121,18 +121,21 @@ class AnimalService
             'image' => $request->image,
             'details' => $request->details,
             'show_on_top_bar' => $request->show_on_top_bar ?: 0,
+            'is_amazing' => $request->is_amazing ?: 'no',
             'home_image' => $request->home_image,
             'banner_image' => $request->banner_image,
             //'status' => $request->status?:1,
             //'display_order' => $request->display_order?:1,
         ];
         foreach ($request->prop_title as $key => $value) {
-            $props[] = [
-                'title' => $request->prop_title[$key],
-                'details' => $request->prop_details[$key],
-                //'status' => $request->status ?: 1,
-                //'display_order' => $request->display_order ?: 1,
-            ];
+            if (!empty($request->prop_title[$key]) && !empty($request->prop_details[$key])) {
+                $props[] = [
+                    'title' => $request->prop_title[$key],
+                    'details' => $request->prop_details[$key],
+                    //'status' => $request->status ?: 1,
+                    //'display_order' => $request->display_order ?: 1,
+                ];
+            }
         }
         $data['props'] = $props;
 //        dd($request->gal_title);

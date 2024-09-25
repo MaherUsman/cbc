@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label class="form-label">{{__('animals.admin.create.show_on_top_bar')}}<span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control" name="show_on_top_bar" data-rule-required="true"
+                                    <select class="form-control" name="show_on_top_bar" data-rule-required="false"
                                             data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">
                                         <option value="" disabled>Select</option>
                                         <option value="1" selected>Yes</option>
@@ -107,11 +107,34 @@
                                 </div>
                             </div>
 
+{{--                            <div class="col-sm-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label">{{__('animals.admin.create.is_amazing')}}<span--}}
+{{--                                            class="text-danger">*</span></label>--}}
+{{--                                    <select class="form-control" name="is_amazing" data-rule-required="true"--}}
+{{--                                            data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">--}}
+{{--                                        <option value="">Select</option>--}}
+{{--                                        <option value="yes">Yes</option>--}}
+{{--                                        <option value="no">No</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+{{--                            <div class="col-sm-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label">{{__('animals.admin.create.display_order')}}<span--}}
+{{--                                            class="text-danger">*</span></label>--}}
+{{--                                    <input type="text" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('animals.admin.create.display_order_message')}}"--}}
+{{--                                           name="display_order" value="{{old('display_order')}}" class="form-control"--}}
+{{--                                           placeholder="{{__('animals.admin.create.display_order')}}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label">{{__('animals.admin.create.is_amazing')}}<span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control" name="is_amazing" data-rule-required="true"
+                                    <select class="form-control" id="is_amazing" name="is_amazing" data-rule-required="true"
                                             data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">
                                         <option value="">Select</option>
                                         <option value="yes">Yes</option>
@@ -120,13 +143,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" id="displayOrderContainer" style="display:none;">
                                 <div class="form-group">
                                     <label class="form-label">{{__('animals.admin.create.display_order')}}<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('animals.admin.create.display_order_message')}}"
-                                           name="display_order" value="{{old('display_order')}}" class="form-control"
+                                    <input type="number" data-rule-required="true" data-msg-required="{{__('animals.admin.create.display_order_message')}}"
+                                           name="display_order" id="display_order" value="{{old('display_order')}}" class="form-control"
                                            placeholder="{{__('animals.admin.create.display_order')}}">
                                 </div>
                             </div>
@@ -322,6 +344,30 @@
             } else {
                 document.getElementById('homeImagePreview').style.display = 'none';
             }
+        });
+
+        $(document).ready(function () {
+            // Hide display order field initially
+            $('#displayOrderContainer').hide();
+
+            // Show or hide display_order based on is_amazing selection
+            $('#is_amazing').on('change', function () {
+                if ($(this).val() === 'yes') {
+                    $('#displayOrderContainer').show();
+                    $('#display_order').attr('data-rule-required', 'true');
+                } else {
+                    $('#displayOrderContainer').hide();
+                    $('#display_order').removeAttr('data-rule-required');
+                }
+            });
+
+            // Ensure that display_order input is an integer
+            $('#display_order').on('input', function () {
+                var value = $(this).val();
+                if (!/^\d*$/.test(value)) {
+                    $(this).val(value.replace(/[^0-9]/g, ''));
+                }
+            });
         });
 
 

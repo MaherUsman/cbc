@@ -107,6 +107,29 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.create.is_amazing')}}<span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-control" id="is_amazing" name="is_amazing" data-rule-required="true"
+                                            data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">
+                                        <option value="">Select</option>
+                                        <option value="yes" {{ $animal->is_amazing == 'yes' ? 'selected' : '' }}>Yes</option>
+                                        <option value="no" {{ $animal->is_amazing == 'no' ? 'selected' : '' }}>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6" id="displayOrderContainer" @if($animal->is_amazing == 'no') style="display:none;" @else style="display:block;" @endif>
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.create.display_order')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="number" data-rule-required="true" data-msg-required="{{__('animals.admin.create.display_order_message')}}"
+                                           name="display_order" id="display_order" value="{{$animal->display_order}}" class="form-control"
+                                           placeholder="{{__('animals.admin.create.display_order')}}">
+                                </div>
+                            </div>
                         </div>
 {{--                        @dd($animal->animalProps)--}}
                         <hr class="p-2">
@@ -246,6 +269,30 @@
             } else {
                 document.getElementById('homeImagePreview').style.display = 'none';
             }
+        });
+
+        $(document).ready(function () {
+            // Hide display order field initially
+            // $('#displayOrderContainer').hide();
+
+            // Show or hide display_order based on is_amazing selection
+            $('#is_amazing').on('change', function () {
+                if ($(this).val() === 'yes') {
+                    $('#displayOrderContainer').show();
+                    $('#display_order').attr('data-rule-required', 'true');
+                } else {
+                    $('#displayOrderContainer').hide();
+                    $('#display_order').removeAttr('data-rule-required');
+                }
+            });
+
+            // Ensure that display_order input is an integer
+            $('#display_order').on('input', function () {
+                var value = $(this).val();
+                if (!/^\d*$/.test(value)) {
+                    $(this).val(value.replace(/[^0-9]/g, ''));
+                }
+            });
         });
 
         $(document).ready(function () {

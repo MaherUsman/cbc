@@ -11,6 +11,7 @@ return [
     'aboutUs_page' => 'About Us Page Sections',
     'animals_page' => 'Animal Page Sections',
     'setting_page' => 'Setting Page Sections',
+    'career_listing_page' => 'Career Application Listing',
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',
@@ -59,5 +60,8 @@ return [
         'name' => 'Setting',
         'update' => 'Update Setting',
     ],
+    'career-listing' => [
+        'name' => 'Career Listing',
+    ]
 
 ];

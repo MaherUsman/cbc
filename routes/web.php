@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AboutUsChildGalleryController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUsGalleryController;
 use App\Http\Controllers\AdminController;
@@ -35,6 +36,9 @@ Route::prefix('admin')->group(function () {
         Route::get('profile',  [AdminController::class, 'edit'])->name('admin.profile');
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
 
+        Route::get('career-listing',  [AdminController::class, 'career_application'])->name('admin.career-listing');
+
+
         Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
         Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
 
@@ -53,6 +57,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
         Route::resource('about-us-galleries', AboutUsGalleryController::class);
+
+        Route::get('about-us-child-galleries/{aboutUsGallery}', [AboutUsChildGalleryController::class, 'index'])->name('aboutUsChildGalleries');
+
         Route::resource('animals', AnimalController::class);
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
         Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
