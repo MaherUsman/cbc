@@ -19,9 +19,15 @@ class AnimalController extends Controller
         $animal = $this->animalService->findAnimal($slug);
         return view('frontend.animal', $animal);
     }
-    public function listingAnimal()
+    public function listingAnimal(Request $request)
     {
         $animals = $this->animalService->listingAnimals();
+
+        if ($request->ajax()) {
+            return view('frontend.partials.animal-listings-items', $animals)->render();
+        }
+
         return view('frontend.animal-listing', $animals);
     }
+
 }

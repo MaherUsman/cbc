@@ -203,6 +203,42 @@
 
 @include('frontend.layout.footer')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#load-more-btn').on('click', function() {
+            var button = $(this);
+            var nextPageUrl = button.data('next-page');
+
+            // Disable the button to prevent multiple clicks
+            button.prop('disabled', true);
+
+            $.ajax({
+                url: nextPageUrl,
+                type: 'GET',
+                success: function(response) {
+                    // Append the new animals
+                    $('#animal-list').append(response);
+
+                    // Check if more pages exist
+                    var newNextPageUrl = $(response).find('#load-more-ajax').data('next-page');
+                    if (newNextPageUrl) {
+                        button.data('next-page', newNextPageUrl);
+                        button.prop('disabled', false); // Enable the button again
+                    } else {
+                        // No more pages, hide the load more button
+                        $('#load-more-container').remove();
+                    }
+                },
+                error: function() {
+                    button.prop('disabled', false); // Enable the button on error
+                }
+            });
+        });
+    });
+</script>
+
+
 </body><!-- End of .page_wrapper -->
 
 </html>

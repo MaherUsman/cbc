@@ -77,8 +77,10 @@ Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
 
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
-    Route::get('about-us' , [HomeController::class , 'aboutUs']);
+    Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
 
+    Route::get('contact-us' , [HomeController::class , 'contactUs'])->name('contact.us');
+    Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
 });
 
