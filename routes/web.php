@@ -34,6 +34,9 @@ Route::prefix('admin')->group(function () {
         Route::get('profile',  [AdminController::class, 'edit'])->name('admin.profile');
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
 
+        Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
+        Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
+
         Route::resource('user',UserController::class);
         Route::resource('blogs', BlogController::class);
         Route::resource('contact-uses', ContactUsController::class);

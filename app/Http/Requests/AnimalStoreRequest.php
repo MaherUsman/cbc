@@ -23,6 +23,8 @@ class AnimalStoreRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             //'slug' => ['required', 'string', 'max:255'],
             'image' => ['required', 'string', 'max:255'],
+            'home_image' => ['required', 'string', 'max:255'],
+            'banner_image' => ['required', 'string', 'max:255'],
             'details' => ['required', 'string'],
             'show_on_top_bar' => ['required'],
 //            'status' => ['required'],

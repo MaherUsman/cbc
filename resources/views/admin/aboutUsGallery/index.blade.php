@@ -41,8 +41,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{ __('aboutUsGallery.list_aboutUsGallery') }}</h4>
-                            <a href="{{ route('about-us-galleries.create') }}"
-                               class="btn btn-primary">{{ __('aboutUsGallery.add_aboutUsGallery') }}</a>
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('aboutUsGallery.add_aboutUsGallery') }}</button>
+{{--                            <a href="{{ route('about-us-galleries.create') }}"--}}
+{{--                               class="btn btn-primary">{{ __('aboutUsGallery.add_aboutUsGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
@@ -58,6 +59,56 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="basicModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form method="POST" id="formValidation" action="{{route('about-us-galleries.store')}}"
+                      enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{__('aboutUsGallery.admin.create.create')}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="row rowTemplate">
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span
+                                                class="text-danger">*</span> </label>
+                                        <input type="text" data-rule-required="true"
+                                               data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"
+                                               name="title[]" class="form-control"
+                                               placeholder="{{__('aboutUsGallery.admin.create.title')}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
+                                                class="text-danger">*</span></label>
+                                        <input type="file" name="image[]" class="form-control" accept="image/*"
+                                               data-rule-required="true" onchange="previewImage(this)"
+                                               data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <img src="#" alt="Image Preview" class="img-thumbnail"
+                                             style="display:none; max-width:200px; height:auto;">
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary submit">{{__('aboutUsGallery.admin.create.submit')}}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -134,7 +185,139 @@
                     }
                 });
             });
+
+
+            $('#formValidation').validate({
+                submitHandler: async function (form, event) {
+                    event.preventDefault();
+
+                    $.blockUI({
+                        css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff'
+                        }
+                    });
+
+                    var url = $(form).attr('action');
+                    //var data = new FormData($(form)[0]); // Form data including all images and titles
+                    var data = new FormData();
+                    // Get all file input elements
+                    var titleInputs = $('input[name="title[]"]');
+                    var imageInputs = $('input[name="image[]"]');
+                    titleInputs.each(function (index, element) {
+                        data.append('title[]', $(element).val());
+                    });
+
+                    try {
+                        for (let i = 0; i < imageInputs.length; i++) {
+                            let imageFile = imageInputs[i].files[0]; // Get file from each input
+
+                            if (imageFile) {
+                                let response = await uploadImageInChunks(imageFile, i);
+                                if (response.success) {
+                                    data.append(`image[${i}]`, response.filePath);
+                                } else {
+                                    $.unblockUI();
+                                    errorMsg('Image upload failed');
+                                    return;
+                                }
+                            }
+                        }
+
+                        await submitFormData(url, data);
+                    } catch (error) {
+                        $.unblockUI();
+                        errorMsg('An error occurred during the image upload');
+                    }
+                }
+            });
+
+            async function uploadImageInChunks(file, index) {
+                var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
+                var totalChunks = Math.ceil(file.size / chunkSize);
+                var currentChunk = 0;
+
+                while (currentChunk < totalChunks) {
+                    var start = currentChunk * chunkSize;
+                    var end = Math.min(start + chunkSize, file.size);
+                    var chunk = file.slice(start, end);
+                    var chunkData = new FormData();
+                    chunkData.append('chunk', chunk);
+                    chunkData.append('chunkNumber', currentChunk + 1);
+                    chunkData.append('totalChunks', totalChunks);
+                    chunkData.append('fileName', file.name);
+                    chunkData.append('ImageUploadPath', `image`);//`image[${index}]`
+
+                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
+
+                    try {
+                        let response = await $.ajax({
+                            type: 'POST',
+                            url: '/upload-chunk',
+                            data: chunkData,
+                            processData: false,
+                            contentType: false,
+                        });
+
+                        currentChunk++;
+                        if (currentChunk === totalChunks) {
+                            return {success: true, filePath: response.filePath};
+                        }
+                    } catch (error) {
+                        return {success: false, error: error};
+                    }
+                }
+            }
+
+            async function submitFormData(url, data) {
+                $.blockUI({
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }
+                });
+                $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
+                try {
+                    let response = await $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                    });
+                    $.unblockUI();
+                    successMsg(response.message);
+                    setTimeout(function () {
+                        window.location.href = "{{route('about-us-galleries.index')}}";
+                    }, 1000);
+                } catch (xhr) {
+                    $.unblockUI();
+                    errorMsg(xhr.responseJSON.message || 'An error occurred');
+                }
+            }
         });
+
+        // Function to preview the selected image
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Find the nearest image element in the same row and display it
+                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(input.files[0]); // Convert the file to a URL
+            }
+        }
     </script>
 @endsection
 

@@ -10,6 +10,7 @@ use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BlogService
 {
@@ -41,7 +42,10 @@ class BlogService
     {
         DB::beginTransaction();
         try {
-            $blog = Blog::create(collect($request->validated())->all());
+            $data = $request->validated();
+            $data['slug'] = $request->slug ? : Str::slug($request->title, '-');
+//            dd($data);
+            $blog = Blog::create($data);
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $blog);
         } catch (\Exception $exception) {

@@ -33,6 +33,7 @@ class AnimalController extends Controller
 
     public function store(AnimalStoreRequest $request)
     {
+
         return $this->animalService->store($request);
     }
 
