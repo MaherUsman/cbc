@@ -86,6 +86,7 @@ Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
 
     Route::get('contact-us' , [HomeController::class , 'contactUs'])->name('contact.us');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
+    Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
 });
 

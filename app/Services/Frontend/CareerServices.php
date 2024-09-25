@@ -1,8 +1,24 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Frontend;
 
-class Frontend/CareerServices
+use App\Models\CareerApplication;
+use Illuminate\Support\Facades\Mail;
+
+class CareerServices
 {
-    // Service methods here
+    public function processApplication($validatedData, $uploadedFile)
+    {
+        // Store the uploaded file (resume) and get the file path
+        $filePath = $uploadedFile->store('resumes', 'public');
+
+        // Save form data into the database
+        CareerApplication::create([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
+            'subject' => $validatedData['subject'],
+            'resume_path' => $filePath, // Store the file path
+        ]);
+    }
 }
