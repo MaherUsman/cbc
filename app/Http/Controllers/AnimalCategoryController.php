@@ -2,64 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AnimalCategoryDataTable;
+use App\Http\Requests\AnimalCategoryStoreRequest;
+use App\Http\Requests\AnimalCategoryUpdateRequest;
 use App\Models\AnimalCategory;
+use App\Services\AnimalCategoryService;
 use Illuminate\Http\Request;
 
 class AnimalCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public $animalCategoryService;
+
+    public function __construct(AnimalCategoryService $animalCategoryService)
     {
-        //
+        $this->animalCategoryService= $animalCategoryService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function index(AnimalCategoryDataTable $dataTable)
+    {
+        return $this->animalCategoryService->index($dataTable);
+    }
+
     public function create()
     {
-        //
+        return $this->animalCategoryService->create();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(AnimalCategoryStoreRequest $request)
     {
-        //
+
+        return $this->animalCategoryService->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(AnimalCategory $animalCategory)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(AnimalCategory $animalCategory)
     {
-        //
+        return $this->animalCategoryService->edit($animalCategory);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, AnimalCategory $animalCategory)
+    public function update(AnimalCategoryUpdateRequest $request, AnimalCategory $animalCategory)
     {
-        //
+        return $this->animalCategoryService->update($request , $animalCategory);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(AnimalCategory $animalCategory)
     {
-        //
+        return $this->animalCategoryService->destroy($animalCategory);
+    }
+
+    public function gridView()
+    {
+        return $this->animalCategoryService->getImageObjects();
+    }
+    public function updateOrder(Request $request)
+    {
+        return $this->animalCategoryService->updateOrder($request);
     }
 }

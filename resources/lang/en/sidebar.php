@@ -52,6 +52,9 @@ return [
         'index' => 'All Animals',
         'create' => 'Add Animal',
     ],
+    'animalCategories' => [
+        'index' => 'Animal Categories',
+    ],
     'setting' => [
         'name' => 'Setting',
         'update' => 'Update Setting',

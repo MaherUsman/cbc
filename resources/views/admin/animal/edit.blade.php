@@ -17,7 +17,7 @@
                         @csrf
                         @method('PUT')
                         <div class="row {{--bg-blue-light pt-2 rounded--}}">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.edit.title')}}<span
                                             class="text-danger">*</span> </label>
@@ -25,6 +25,18 @@
                                            data-msg-required="{{__('animals.admin.edit.title_message')}}"
                                            name="title" value="{{$animal->title}}" class="form-control"
                                            placeholder="{{__('animals.admin.edit.title')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.edit.category_id')}}</label>
+                                    <select class="form-control" name="category_id" data-rule-required="true"
+                                            data-msg-required="{{__('animals.admin.edit.category_id_message')}}">
+                                        <option value="">Select Category</option>
+                                        @foreach($animalCategories as $category)
+                                            <option value="{{$category->id}}" @if($animal->category_id == $category->id) selected @endif>{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -107,7 +119,7 @@
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.edit.title_message')}}"
-                                           name="prop_title[]" disabled class="form-control" value="{{$animalprops->title}}"
+                                           name="prop_title[]" class="form-control" value="{{$animalprops->title}}"
                                            placeholder="{{__('animals.admin.edit.title')}}">
                                 </div>
                             </div>
@@ -117,13 +129,41 @@
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.edit.details_message')}}"
-                                           name="prop_details[]" disabled class="form-control" value="{{$animalprops->details}}"
+                                           name="prop_details[]" class="form-control" value="{{$animalprops->details}}"
                                            placeholder="{{__('animals.admin.edit.details')}}">
                                 </div>
                             </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+                            </div>
                         </div>
                         @endforeach
-                        <a href="" class="btn btn-primary submit">Update Properties</a>
+
+                        <div class="row rowTemplateProps">
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.title_message')}}"
+                                           name="prop_title[]" class="form-control"
+                                           placeholder="{{__('animals.admin.create.title')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.details')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.details_message')}}"
+                                           name="prop_details[]" class="form-control"
+                                           placeholder="{{__('animals.admin.create.details')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-primary addRowProps">+</button>
+                            </div>
+                        </div>
                         <hr class="p-2">
                         <div class="row"><h1>Gallery</h1></div>
                         @foreach($animal->animalGalleries as $animalgallery)

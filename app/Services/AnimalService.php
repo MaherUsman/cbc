@@ -8,6 +8,7 @@ use App\Http\Requests\AnimalUpdateRequest;
 use App\Http\Resources\AnimalCollection;
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
+use App\Models\AnimalCategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,8 @@ class AnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', '', Response::HTTP_OK);
         } else {
-            return view('admin.animal.create');
+            $animalCategories = AnimalCategory::all();
+            return view('admin.animal.create', compact('animalCategories'));
         }
     }
 
@@ -43,9 +45,7 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-//            dd($request->all());
             $data = $this->record($request);
-//            dd($data);
             $animal = Animal::create($data['animal']);
             count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
             count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';
@@ -75,7 +75,8 @@ class AnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', 'Animal Details', Response::HTTP_OK, new AnimalResource($animal));
         } else {
-            return view('admin.animal.edit', compact('animal'));
+            $animalCategories = AnimalCategory::all();
+            return view('admin.animal.edit', compact('animal','animalCategories'));
         }
     }
 
@@ -83,9 +84,18 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
+            dd($request->all());
 //            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
-//            dd($request->all());
+            $data = $this->record($request);
             $animal->update(collect($request->validated())->except('role')->all());
+
+            // Remove previous props associated with the animal
+            $animal->animalProps()->where('animal_id', $animal->id)->delete();
+
+            // Insert new props if they exist
+            if (count($data['props']) > 0) {
+                $animal->animalProps()->createMany($data['props']);
+            }
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animal);
         } catch (\Exception $exception) {
@@ -107,6 +117,7 @@ class AnimalService
         $data['animal'] = [
             'title' => $request->title,
             'slug' => $request->slug?:Str::slug($request->title, '-'),
+            'category_id' => $request->category_id,
             'image' => $request->image,
             'details' => $request->details,
             'show_on_top_bar' => $request->show_on_top_bar ?: 0,
@@ -125,15 +136,18 @@ class AnimalService
         }
         $data['props'] = $props;
 //        dd($request->gal_title);
-        foreach ($request->gal_title as $key => $value) {
+        if (isset($request->gal_title)){
+            foreach ($request->gal_title as $key => $value) {
 
-            $gallery[] = [
-                'title' => $request->gal_title[$key],
-                'image' => $request->gal_image[$key],
-                //'status' => $request->status?:1,
-                //'display_order' => $request->display_order?:1,
-            ];
+                $gallery[] = [
+                    'title' => $request->gal_title[$key],
+                    'image' => $request->gal_image[$key],
+                    //'status' => $request->status?:1,
+                    //'display_order' => $request->display_order?:1,
+                ];
+            }
         }
+
         $data['gallery'] = $gallery;
 
         return $data;
