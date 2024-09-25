@@ -16,7 +16,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="row {{--bg-blue-light pt-2 rounded--}}">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
@@ -24,6 +24,18 @@
                                            data-msg-required="{{__('animals.admin.create.title_message')}}"
                                            name="title" value="{{old('title')}}" class="form-control"
                                            placeholder="{{__('animals.admin.create.title')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.category_id')}}</label>
+                                    <select class="form-control" name="category_id" data-rule-required="true"
+                                            data-msg-required="{{__('animals.admin.create.category_id_message')}}">
+                                        <option value="">Select Category</option>
+                                        @foreach($animalCategories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -87,7 +99,7 @@
                                     <label class="form-label">{{__('animals.admin.create.show_on_top_bar')}}<span
                                             class="text-danger">*</span></label>
                                     <select class="form-control" name="show_on_top_bar" data-rule-required="true"
-                                            data-msg-required="{{__('animals.admin.create.show_on_top_bar_message')}}">
+                                            data-msg-required="{{__('animals.admin.create.is_amazing_message')}}">
                                         <option value="" disabled>Select</option>
                                         <option value="1" selected>Yes</option>
                                         <option value="0">No</option>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUsGalleryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnimalCategoryController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalGalleryController;
 use App\Http\Controllers\AuthenticationController;
@@ -38,6 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
 
         Route::resource('user',UserController::class);
+        Route::resource('animal-categories',AnimalCategoryController::class);
         Route::resource('blogs', BlogController::class);
         Route::resource('contact-uses', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
