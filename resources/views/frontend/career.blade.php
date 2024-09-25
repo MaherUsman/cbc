@@ -56,30 +56,72 @@
                     <div class="sec-title centred">
                         <h2>Apply</h2>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+
                     <div class="form-inner">
                         <form method="post" id="career-application-form" action="{{ route('frontend.career.apply') }}" enctype="multipart/form-data" class="default-form">
                             @csrf
                             <div class="row clearfix">
+
+                                <!-- Username -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="Full name" required>
+                                    <input type="text" name="username" placeholder="Full name" value="{{ old('username') }}" required>
+                                    @error('username')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
+                                <!-- Email -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="email" name="email" placeholder="Email address" required>
+                                    <input type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
+                                    @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
+                                <!-- Phone -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                    <input type="text" id="phone" name="phone" required>
+                                    <input type="text" id="phone" name="phone" placeholder="Phone number" value="{{ old('phone') }}" required style="padding: 10px 10px 10px 45px">
+                                    @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
+                                <!-- Subject -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" required placeholder="Subject">
+                                    <input type="text" name="subject" placeholder="Subject" value="{{ old('subject') }}" required>
+                                    @error('subject')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
+                                <!-- File upload (PDF, DOC, DOCX) -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="file" name="upload" required>
+                                    <input type="file" name="upload" accept=".pdf,.doc,.docx" required>
+                                    @error('upload')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0">
                                     <button class="theme-btn btn-one" type="submit" name="submit-form"><span>Submit</span></button>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -90,7 +132,6 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-
                 var input = document.querySelector("#phone");
                 var iti = window.intlTelInput(input, {
                     initialCountry: "auto",
@@ -103,28 +144,11 @@
                     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
                 });
 
-
-                function updatePlaceholder() {
-                    var placeholder = iti.isValidNumber() ? iti.getNumber(intlTelInputUtils.numberFormat.E164) : iti.getSelectedCountryData().dialCode;
-                    var exampleNumber = intlTelInputUtils.getExampleNumber(iti.getSelectedCountryData().iso2, true, intlTelInputUtils.numberFormat.INTERNATIONAL);
-                    input.setAttribute('placeholder', exampleNumber); // Set placeholder based on country
-                    input.maxLength = exampleNumber.length; // Set max length based on placeholder
+                // Placeholder length default to 13, or use the actual placeholder length if present
+                var placeholderLength = 13;
+                if ($('#phone').attr('placeholder')) {
+                    placeholderLength = $('#phone').attr('placeholder').length;
                 }
-
-                // Update placeholder on initialization
-                updatePlaceholder();
-
-                // Update placeholder when the country changes
-                input.addEventListener('countrychange', updatePlaceholder);
-
-                // Restrict the input to the max length based on the placeholder format
-                input.addEventListener('input', function() {
-                    if (input.value.length > input.maxLength) {
-                        input.value = input.value.slice(0, input.maxLength); // Restrict input to max length
-                    }
-                });
-
-
 
                 // When the form is submitted, get the full phone number with the country code
                 $('#career-application-form').on('submit', function() {
@@ -133,6 +157,13 @@
                 });
 
 
+                $.validator.addMethod("strictEmail", function(value, element) {
+                    // Regular expression to ensure email has a valid domain and TLD (e.g., mmr@mmr.com)
+                    return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value);
+                }, "Please enter a valid email address with a proper domain.");
+
+
+                // Set up the validation for the form
                 $('#career-application-form').validate({
                     rules: {
                         username: {
@@ -142,12 +173,14 @@
                         },
                         email: {
                             required: true,
-                            email: true
+                            email: true,
+                            strictEmail: true,  // Use the custom email validation rule
+
                         },
                         phone: {
                             required: true,
                             minlength: 10,
-                            maxlength: 15
+                            maxlength: placeholderLength  // Dynamically use placeholder length here
                         },
                         subject: {
                             required: true,
@@ -173,7 +206,7 @@
                         phone: {
                             required: "Please enter your phone number",
                             minlength: "Your phone number must be at least 10 characters long",
-                            maxlength: "Your phone number cannot exceed 15 characters"
+                            maxlength: "Your phone number cannot exceed " + placeholderLength + " characters"
                         },
                         subject: {
                             required: "Please enter the subject",
@@ -196,6 +229,7 @@
                     return this.optional(element) || (element.files[0].size <= param * 1024);
                 });
             });
+
         </script>
 
 
