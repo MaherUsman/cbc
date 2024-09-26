@@ -6,8 +6,6 @@ use App\DataTables\ContactUsDataTable;
 use App\Http\Requests\ContactUsCreateRequest;
 use App\Http\Resources\ContactUsCollection;
 use App\Models\ContactUs;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 

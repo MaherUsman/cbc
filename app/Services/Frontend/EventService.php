@@ -12,4 +12,10 @@ class EventService
         $data['recentEvents'] = Blog::orderBy('created_at' , 'DESC')->limit(3)->get();
         return $data;
     }
+    public function allEvents()
+    {
+        $data['events'] = Blog::all();
+        $data['recentEvents'] = Blog::orderBy('created_at' , 'DESC')->limit(3)->get();
+        return $data;
+    }
 }

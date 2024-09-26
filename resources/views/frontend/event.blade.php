@@ -59,10 +59,9 @@
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
                                         <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{$recentEvent->image}}" alt=""></a></figure>
-                                        <h6><a href="event-details.html">{{$event->title}}</a></h6>
+                                        <h6><a href="{{url($event->slug)}}">{{$event->title}}</a></h6>
                                     </div>
                                 @endforeach
-
                             </div>
                         </div>
                     </div>

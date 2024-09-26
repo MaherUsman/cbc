@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Tobas</h1>
+                    <h1>Visitors</h1>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
     <section class="gallery-page-section">
         <div class="auto-container">
             <div class="row clearfix" id="gallery-items">
-                @include('frontend.gallery.partials.tobas-gallery-items', ['topasGallery' => $topasGallery])
+                @include('frontend.gallery.partials.visitors-gallery-items', ['visitorGallery' => $visitorGallery])
             </div>
             <div class="text-center">
-                @if ($topasGallery->hasMorePages())
+                @if ($visitorGallery->hasMorePages())
                     <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
                 @endif
             </div>
@@ -40,16 +40,18 @@
             page += 1;
 
             $.ajax({
-                url: '{{ route("frontend.topas.gallery") }}',
+                url: '{{ route("frontend.visitors.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (data) {
-                    $('#gallery-items').append(data);
+                success: function (response) {
+                    $('#gallery-items').append(response.html);
+
+                    // Update the page count
                     $('#load-more').data('page', page);
 
-                    // If no more pages, hide the Load More button
-                    if (data.trim() === '') {
-                        $('#load-more').hide();
+                    // Check if there are more pages
+                    if (!response.morePages) {
+                        $('#load-more').hide();  // Hide the button when there are no more pages
                     }
                 }
             });

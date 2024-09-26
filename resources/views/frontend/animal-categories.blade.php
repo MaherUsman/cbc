@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Tobas</h1>
+                    <h1>Animal Categories</h1>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
     <section class="gallery-page-section">
         <div class="auto-container">
             <div class="row clearfix" id="gallery-items">
-                @include('frontend.gallery.partials.tobas-gallery-items', ['topasGallery' => $topasGallery])
+                @include('frontend.gallery.partials.animal-categories', ['categories' => $categories])
             </div>
             <div class="text-center">
-                @if ($topasGallery->hasMorePages())
+                @if ($categories->hasMorePages())
                     <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
                 @endif
             </div>

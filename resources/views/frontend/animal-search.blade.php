@@ -23,7 +23,18 @@
     <!-- animals-page-section -->
     <section class="animals-page-section">
         <div class="auto-container">
-
+            <div class="row clearfix justify-content-end pb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="srch-wrap">
+                            <form>
+                                <input type="text" class="input" placeholder="search...">
+                            </form>
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row clearfix" id="animal-list">
                 @foreach($animals as $animal)
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
@@ -50,39 +61,11 @@
             <!-- Load More Button -->
             @if ($animals->hasMorePages())
                 <div class="text-center" id="load-more-container">
-                    <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
+                    <button id="load-more-btn" class="btn btn-primary" data-next-page="{{ $animals->nextPageUrl() }}">Load More</button>
                 </div>
             @endif
         </div>
     </section>
     <!-- animals-page-section end -->
 
-
-
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).on('click', '#load-more', function () {
-            let page = $(this).data('page');
-            page += 1;
-
-            $.ajax({
-                url: '{{ route("frontend.listing.animal") }}',
-                type: 'GET',
-                data: {page: page},
-                success: function (response) {
-                    $('#animal-list').append(response.html);
-
-                    // Update the page count
-                    $('#load-more').data('page', page);
-
-                    // Check if there are more pages
-                    if (!response.morePages) {
-                        $('#load-more').hide();  // Hide the button when there are no more pages
-                    }
-                }
-            });
-        });
-    </script>
-@endpush

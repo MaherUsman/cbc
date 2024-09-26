@@ -93,18 +93,20 @@ Route::get('/' , [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
 
-    Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
+    Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])->name('animal.categories');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
     Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
-
-    Route::get('contact-us' , [HomeController::class , 'contactUs'])->name('contact.us');
+    Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
+    Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
     Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
+   Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
    Route::get('tobas' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
    Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
+   Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
+    Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
 });
 
-//dd(123);
 Route::get('{any?}', function () {view('welcome');})->where('any', '.*');
 

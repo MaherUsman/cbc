@@ -9,8 +9,6 @@ use App\Http\Resources\ContactUCollection;
 use App\Http\Resources\ContactUResource;
 use App\Models\ContactUs;
 use App\Services\ContactUsService;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ContactUsController extends Controller
 {
