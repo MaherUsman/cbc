@@ -3,8 +3,10 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('animalGalleries.admin.breadcrumbs.name'), 'route' => 'about-us-galleries.index'],
-        ['name' => __('animalGalleries.admin.breadcrumbs.create'), 'route' => 'about-us-galleries.create']],
+        'breadcrumbs' => [
+            ['name' => __('animalGalleries.admin.breadcrumbs.name'), 'route' => 'animal-galleries.index', 'params' => $animalGallery->animal],
+            ['name' => __('animalGalleries.admin.breadcrumbs.create'), 'route' => 'animal-galleries.create', 'params' => $animalGallery->animal]
+        ],
         'pageTitle' => __('animalGalleries.admin.breadcrumbs.create')
     ])
     <div class="row">
@@ -12,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('animalGalleries.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('about-us-galleries.update',['animalGalleries'=>$animalGalleries])}}"
+                    <form method="POST" id="formValidation" action="{{route('animal-galleries.update',$animalGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -23,7 +25,7 @@
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('animalGalleries.admin.create.title_message')}}"
-                                           name="title" class="form-control" value="{{$animalGalleries->title}}"
+                                           name="title" class="form-control" value="{{$animalGallery->title}}"
                                            placeholder="{{__('animalGalleries.admin.create.title')}}">
                                 </div>
                             </div>
@@ -31,20 +33,20 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
-                                    <input type="file" name="image[]" class="form-control" accept="image/*"
+                                    <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
                                            data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <img src="{{asset($animalGalleries->image)}}" alt="Image Preview" class="img-thumbnail"
+                                    <img src="{{asset($animalGallery->image)}}" alt="Image Preview" class="img-thumbnail"
                                          style="display:block; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{route('about-us-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                        <a href="{{route('animal-galleries.index', $animalGallery->animal)}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('animalGalleries.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
@@ -177,7 +179,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('about-us-galleries.index')}}";
+                        window.location.href = "{{route('animal-galleries.index', $animalGallery->animal)}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

@@ -90,6 +90,8 @@
                             <div class="mb-3 col-md-4">
                                 <label for="text" class="form-label">{{__('setting.home_counter_value')}}</label>
                                 <input type="text" class="form-control" id="copyright_link" name="home_count[]"
+                                       data-rule-required="true"
+                                       data-msg-required="sdfsdf"
                                        value="{{$count->count??''}}">
                             </div>
                             <!-- Email Field -->

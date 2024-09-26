@@ -42,9 +42,9 @@
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRow">+</button>
-                            </div>
+{{--                            <div class="col-sm-1">--}}
+{{--                                <button type="button" class="btn btn-primary addRow">+</button>--}}
+{{--                            </div>--}}
                         </div>
 
                         <a href="{{route('animal-galleries.index',$animal)}}" class="btn btn-danger light btn-sl-sm"

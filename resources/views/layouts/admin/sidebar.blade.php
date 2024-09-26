@@ -128,6 +128,32 @@
                 </ul>
             </li>
 
+            <li class="nav-label">{{__('sidebar.topas_page')}}</li>
+            <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.topas.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('topas-galleries.index')}}">{{__('sidebar.topas.index')}}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-label">{{__('sidebar.visitor_page')}}</li>
+            <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
+                    <i class="la la-note"></i>
+                    <span class="nav-text">{{__('sidebar.visitor.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('visitor-galleries.index')}}">{{__('sidebar.visitor.index')}}</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="nav-label">{{__('sidebar.setting_page')}}</li>
             <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">

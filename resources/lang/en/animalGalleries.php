@@ -5,7 +5,7 @@ return [
     'add' => 'Add ',
     'gallery' => ' Gallery',
     'name' => 'Animals Gallery',
-    'pageTitle' => 'Gallery',
+    'pageTitle' => 'Animal Gallery',
     'reOrder' => 'Reorder ',
     'list_view' => 'Gallery View',
     'grid_view' => 'Reorder/Update',
