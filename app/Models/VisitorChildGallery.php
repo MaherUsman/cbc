@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
-class TopasGallery extends Model
+class VisitorChildGallery extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,7 @@ class TopasGallery extends Model
      * @var array
      */
     protected $fillable = [
+        'visitor_gallery_id',
         'title',
         'slug',
         'image',
@@ -30,12 +31,13 @@ class TopasGallery extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'visitor_gallery_id' => 'integer',
         'status' => 'boolean',
     ];
 
-    public function topasChildGalleries(): HasMany
+    public function visitorGallery(): BelongsTo
     {
-        return $this->hasMany(TopasChildGallery::class);
+        return $this->belongsTo(VisitorGallery::class);
     }
 
     // Mutator for slug

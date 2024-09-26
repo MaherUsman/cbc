@@ -11,6 +11,8 @@ return [
     'aboutUs_page' => 'About Us Page Sections',
     'animals_page' => 'Animal Page Sections',
     'setting_page' => 'Setting Page Sections',
+    'topas_page' => 'Topas Gallery Sections',
+    'visitor_page' => 'Visitor Gallery Sections',
     'career_listing_page' => 'Career Application Listing',
     'jobs' => [
         'name' => 'Jobs',
@@ -52,6 +54,16 @@ return [
         'name' => 'Animals',
         'index' => 'All Animals',
         'create' => 'Add Animal',
+    ],
+    'topas' => [
+        'name' => 'Topas Gallery',
+        'index' => 'All Topas Gallery',
+        'create' => 'Add Topas',
+    ],
+    'visitor' => [
+        'name' => 'Visitor Gallery',
+        'index' => 'All Visitor Gallery',
+        'create' => 'Add Visitor',
     ],
     'animalCategories' => [
         'index' => 'Animal Categories',

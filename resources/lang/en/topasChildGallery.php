@@ -1,18 +1,14 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Animals Gallery',
-    'add' => 'Add ',
-    'gallery' => ' Gallery',
-    'name' => 'Animals Gallery',
-    'pageTitle' => 'Animal Gallery',
-    'reOrder' => 'Reorder ',
-    'list_view' => 'Gallery View',
-    'grid_view' => 'Reorder/Update',
-
+    'list_topasChildGallery' => 'Topas Child Gallery',
+    'add_topasChildGallery' => 'Add Topas Child Gallery',
+    'name' => 'Topas Child Gallery',
+    'pageTitle' => 'Topas Child Gallery',
+    'reOrder' => 'Reorder Topas Child Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Animal Gallery',
+            'create' => 'Add Topas Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal Gallery',
+            'edit' => 'Edit Topas Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'Topas Child Gallery',
+            'create' => 'Add Topas Child Gallery',
+            'edit' => 'Edit Topas Child Gallery',
+            'show' => 'Show Topas Child Gallery',
         ],
         'response_msg' => [
-            'success' => 'Animal Gallery Added successfully',
-            'update' => 'Animal Gallery Updated successfully',
-            'error' => 'Error adding Animal Gallery',
-            'delete' => 'Animal Gallery Item Deleted Successfully'
+            'success' => 'Topas Child Gallery Added successfully',
+            'update' => 'Topas Child Gallery Item Updated successfully',
+            'error' => 'Error in adding Topas Child Gallery',
+            'delete' => 'Topas Child Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

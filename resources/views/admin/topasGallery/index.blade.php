@@ -22,17 +22,17 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('visitorGallery.name') , 'route' => null]],
-'pageTitle' => __('visitorGallery.pageTitle')
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('topasGallery.name') , 'route' => null]],
+'pageTitle' => __('topasGallery.pageTitle')
 ])
 
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
-                {{--<li class="nav-item"><a href="{{route('visitor-galleries.index')}}#list-view" data-bs-toggle="tab"
-                                        class="nav-link me-1 show active">{{ __('visitorGallery.list_view') }}</a></li>--}}
-                {{--<li class="nav-item"><a href="{{route('visitor-galleries.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}{{--
-                    class="nav-link">{{ __('visitorGallery.grid_view') }}</a></li>--}}
+                {{--<li class="nav-item"><a href="{{route('topas-galleries.index')}}#list-view" data-bs-toggle="tab"
+                                        class="nav-link me-1 show active">{{ __('topasGallery.list_view') }}</a></li>--}}
+                {{--<li class="nav-item"><a href="{{route('topas-galleries.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}{{--
+                    class="nav-link">{{ __('topasGallery.grid_view') }}</a></li>--}}
             </ul>
         </div>
         <div class="col-lg-12">
@@ -40,14 +40,14 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('visitorGallery.list_visitorGallery') }}</h4>
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('visitorGallery.add_visitorGallery') }}</button>
-{{--                            <a href="{{ route('visitor-galleries.create') }}"--}}
-{{--                               class="btn btn-primary">{{ __('visitorGallery.add_visitorGallery') }}</a>--}}
+                            <h4 class="card-title">{{ __('topasGallery.list_topasGallery') }}</h4>
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('topasGallery.add_topasGallery') }}</button>
+{{--                            <a href="{{ route('topas-galleries.create') }}"--}}
+{{--                               class="btn btn-primary">{{ __('topasGallery.add_topasGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
-                                @foreach($visitorGalleries as $gallery)
+                                @foreach($topasGalleries as $gallery)
                                 <div class="col-lg-3 col-md-6 mb-4">
                                     <div class="gallery-img-wrapper position-relative w-100 h-100">
                                         <a
@@ -64,17 +64,17 @@
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
                                                 <div class="overlay-icon">
-                                                    <a href="{{route('visitorChildGalleries', $gallery->id)}}">
+                                                    <a href="{{route('topasChildGalleries', $gallery->id)}}">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="{{route('visitor-galleries.edit', $gallery)}}">
+                                                    <a href="{{route('topas-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="#" data-url="{{ route('visitor-galleries.destroy', $gallery) }}" title="Delete"
+                                                    <a href="#" data-url="{{ route('topas-galleries.destroy', $gallery) }}" title="Delete"
                                                        class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
@@ -100,11 +100,11 @@
     <div class="modal fade bd-example-modal-lg" id="basicModal">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form method="POST" id="formValidation" action="{{route('visitor-galleries.store')}}"
+                <form method="POST" id="formValidation" action="{{route('topas-galleries.store')}}"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title">{{__('visitorGallery.admin.create.create')}}</h5>
+                        <h5 class="modal-title">{{__('topasGallery.admin.create.create')}}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
@@ -112,21 +112,21 @@
                             <div class="row rowTemplate">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
+                                        <label class="form-label">{{__('topasGallery.admin.create.title')}}<span
                                                 class="text-danger">*</span> </label>
                                         <input type="text" data-rule-required="true"
-                                               data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
+                                               data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
                                                name="title[]" class="form-control"
-                                               placeholder="{{__('visitorGallery.admin.create.title')}}">
+                                               placeholder="{{__('topasGallery.admin.create.title')}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
+                                        <label class="form-label">{{__('topasGallery.admin.create.image')}}<span
                                                 class="text-danger">*</span></label>
                                         <input type="file" name="image[]" class="form-control" accept="image/*"
                                                data-rule-required="true" onchange="previewImage(this)"
-                                               data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
+                                               data-msg-required="{{__('topasGallery.admin.create.image_message')}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -140,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary submit">{{__('visitorGallery.admin.create.submit')}}</button>
+                        <button type="submit" class="btn btn-primary submit">{{__('topasGallery.admin.create.submit')}}</button>
                     </div>
                 </form>
             </div>
@@ -195,13 +195,13 @@
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
                             setTimeout(function () {
-                                window.location.href = "{{route('visitor-galleries.index')}}";
+                                window.location.href = "{{route('topas-galleries.index')}}";
                             }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
                             setTimeout(function () {
-                                window.location.href = "{{route('visitor-galleries.index')}}";
+                                window.location.href = "{{route('topas-galleries.index')}}";
                             }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();
@@ -331,7 +331,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('visitor-galleries.index')}}";
+                        window.location.href = "{{route('topas-galleries.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

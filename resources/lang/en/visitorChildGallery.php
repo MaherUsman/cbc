@@ -1,18 +1,14 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Animals Gallery',
-    'add' => 'Add ',
-    'gallery' => ' Gallery',
-    'name' => 'Animals Gallery',
-    'pageTitle' => 'Animal Gallery',
-    'reOrder' => 'Reorder ',
-    'list_view' => 'Gallery View',
-    'grid_view' => 'Reorder/Update',
-
+    'list_visitorChildGallery' => 'Visitor Child Gallery',
+    'add_visitorChildGallery' => 'Add Visitor Child Gallery',
+    'name' => 'Visitor Child Gallery',
+    'pageTitle' => 'Visitor Child Gallery',
+    'reOrder' => 'Reorder Visitor Child Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Animal Gallery',
+            'create' => 'Add Visitor Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal Gallery',
+            'edit' => 'Edit Visitor Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'Visitor Child Gallery',
+            'create' => 'Add Visitor Child Gallery',
+            'edit' => 'Edit Visitor Child Gallery',
+            'show' => 'Show Visitor Child Gallery',
         ],
         'response_msg' => [
-            'success' => 'Animal Gallery Added successfully',
-            'update' => 'Animal Gallery Updated successfully',
-            'error' => 'Error adding Animal Gallery',
-            'delete' => 'Animal Gallery Item Deleted Successfully'
+            'success' => 'Visitor Child Gallery Added successfully',
+            'update' => 'Visitor Child Gallery Item Updated successfully',
+            'error' => 'Error in adding Visitor Child Gallery',
+            'delete' => 'Visitor Child Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

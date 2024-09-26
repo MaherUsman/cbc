@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TopasGalleryStoreRequest extends FormRequest
+class TopasChildGalleryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,6 +20,7 @@ class TopasGalleryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'topas_gallery_id' => ['required', 'integer', 'exists:topas_galleries,id'],
             'title' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],

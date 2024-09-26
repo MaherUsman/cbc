@@ -1,18 +1,14 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Animals Gallery',
-    'add' => 'Add ',
-    'gallery' => ' Gallery',
-    'name' => 'Animals Gallery',
-    'pageTitle' => 'Animal Gallery',
-    'reOrder' => 'Reorder ',
-    'list_view' => 'Gallery View',
-    'grid_view' => 'Reorder/Update',
-
+    'list_topasGallery' => 'Topas Gallery',
+    'add_topasGallery' => 'Add Topas Gallery',
+    'name' => 'Topas Gallery',
+    'pageTitle' => 'Topas Gallery',
+    'reOrder' => 'Reorder Topas Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Animal Gallery',
+            'create' => 'Add Topas Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal Gallery',
+            'edit' => 'Edit Topas Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'Topas Gallery',
+            'create' => 'Add Topas Gallery',
+            'edit' => 'Edit Topas Gallery',
+            'show' => 'Show Topas Gallery',
         ],
         'response_msg' => [
-            'success' => 'Animal Gallery Added successfully',
-            'update' => 'Animal Gallery Updated successfully',
-            'error' => 'Error adding Animal Gallery',
-            'delete' => 'Animal Gallery Item Deleted Successfully'
+            'success' => 'Topas Gallery Added successfully',
+            'update' => 'Topas Gallery Item Updated successfully',
+            'error' => 'Error in adding Topas Gallery',
+            'delete' => 'Topas Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

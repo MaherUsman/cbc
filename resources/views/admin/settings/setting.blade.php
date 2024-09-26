@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Profile Update</h4>
+            <h4 class="mb-3 mb-md-0">Settings Update</h4>
         </div>
     </div>
 
@@ -75,6 +75,33 @@
                                          style="max-width: 200px;">
                                 </div>
                             </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <!-- Email Field -->
+                            @foreach($homeCounter as $count)
+                            <div class="mb-3 col-md-4">
+                                <label for="email" class="form-label">{{__('setting.home_counter_name')}}</label>
+                                <input type="text" class="form-control" id="copyright_link" name="name"
+                                       value="{{$count->name??''}}" disabled>
+                            </div>
+                            <!-- Email Field -->
+                            <div class="mb-3 col-md-4">
+                                <label for="text" class="form-label">{{__('setting.home_counter_value')}}</label>
+                                <input type="text" class="form-control" id="copyright_link" name="home_count[]"
+                                       data-rule-required="true"
+                                       data-msg-required="sdfsdf"
+                                       value="{{$count->count??''}}">
+                            </div>
+                            <!-- Email Field -->
+                            <div class="mb-3 col-md-4">
+                                <label for="email" class="form-label">{{__('setting.home_counter_icon')}}</label>
+                                <i class="{{ $count->icon ?? '' }}"></i>
+{{--                                <input type="text" class="form-control" id="copyright_link_name" name="icon"--}}
+{{--                                       value="{{$count->icon??''}}" disabled>--}}
+                            </div>
+                            @endforeach
                         </div>
 
                         <!-- Submit Button -->

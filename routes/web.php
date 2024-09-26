@@ -15,7 +15,10 @@ use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TopasChildGalleryController;
+use App\Http\Controllers\TopasGalleryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitorChildGalleryController;
 use App\Http\Controllers\VisitorGalleryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +61,13 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
 
+        Route::resource('topas-galleries', TopasGalleryController::class);
+        Route::get('topas-child-galleries/{topasGallery}', [TopasChildGalleryController::class, 'index'])->name('topasChildGalleries');
+        Route::resource('topas-child-galleries', TopasChildGalleryController::class);
+
         Route::resource('visitor-galleries', VisitorGalleryController::class);
+        Route::get('visitor-child-galleries/{visitorGallery}', [VisitorChildGalleryController::class, 'index'])->name('visitorChildGalleries');
+        Route::resource('visitor-child-galleries', VisitorChildGalleryController::class);
 
         Route::resource('about-us-galleries', AboutUsGalleryController::class);
         Route::get('get-about-us-gallery/{aboutUsGallery}', [AboutUsGalleryController::class, 'getData']);

@@ -11,7 +11,7 @@ class AnimalGalleryUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class AnimalGalleryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['nullable', 'string'],
+            'image' => ['nullable', 'string'],
         ];
     }
 }

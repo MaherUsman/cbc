@@ -30,6 +30,8 @@ class AdminSettingUpdate extends FormRequest
             'copyright_link' => ['required', 'string', 'max:255'],
             'copyright_link_name' => ['required', 'string', 'max:255'],
             'logo' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],//jpeg,jpg,png,ico,bmp
+            'home_count' => 'required|array|size:4', // Ensure it's an array with exactly 4 elements
+            'home_count.*' => 'required|string',
         ];
     }
 }

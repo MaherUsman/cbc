@@ -1,18 +1,14 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Animals Gallery',
-    'add' => 'Add ',
-    'gallery' => ' Gallery',
-    'name' => 'Animals Gallery',
-    'pageTitle' => 'Animal Gallery',
-    'reOrder' => 'Reorder ',
-    'list_view' => 'Gallery View',
-    'grid_view' => 'Reorder/Update',
-
+    'list_visitorGallery' => 'Visitor Gallery',
+    'add_visitorGallery' => 'Add Visitor Gallery',
+    'name' => 'Visitor Gallery',
+    'pageTitle' => 'Visitor Gallery',
+    'reOrder' => 'Reorder Visitor Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Animal Gallery',
+            'create' => 'Add Visitor Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal Gallery',
+            'edit' => 'Edit Visitor Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'Visitor Gallery',
+            'create' => 'Add Visitor Gallery',
+            'edit' => 'Edit Visitor Gallery',
+            'show' => 'Show Visitor Gallery',
         ],
         'response_msg' => [
-            'success' => 'Animal Gallery Added successfully',
-            'update' => 'Animal Gallery Updated successfully',
-            'error' => 'Error adding Animal Gallery',
-            'delete' => 'Animal Gallery Item Deleted Successfully'
+            'success' => 'Visitor Gallery Added successfully',
+            'update' => 'Visitor Gallery Item Updated successfully',
+            'error' => 'Error in adding Visitor Gallery',
+            'delete' => 'Visitor Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],
