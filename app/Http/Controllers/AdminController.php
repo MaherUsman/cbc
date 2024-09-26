@@ -8,6 +8,7 @@ use App\Http\Requests\AdminProfileUpdate;
 use App\Http\Requests\AdminSettingUpdate;
 use App\Http\Resources\CareerApplicationCollection;
 use App\Models\CareerApplication;
+use App\Models\HomeCounter;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -52,7 +53,8 @@ class AdminController extends Controller
     public function setting()
     {
         $settings = Settings::first();
-        return view('admin.settings.setting', compact('settings'));
+        $homeCounter = HomeCounter::all();
+        return view('admin.settings.setting', compact('settings', 'homeCounter'));
     }
 
     public function update_setting(AdminSettingUpdate $request)
@@ -84,6 +86,14 @@ class AdminController extends Controller
             } else {
                 // Create new settings record
                 Settings::create($settingArray);
+            }
+
+            // Get the array of counts from the request
+            $homeCounts = $request->input('home_count');
+            foreach ($homeCounts as $index => $count) {
+                DB::table('home_counters')
+                    ->where('id', $index + 1)
+                    ->update(['count' => $count]);
             }
             DB::commit();
             $data = $settings;
