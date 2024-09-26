@@ -24,7 +24,7 @@ class TopasChildGalleryUpdateRequest extends FormRequest
             'title' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
-            'status' => ['required'],
+//            'status' => ['required'],
         ];
     }
 }

@@ -6,42 +6,54 @@ use App\Http\Requests\VisitorChildGalleryStoreRequest;
 use App\Http\Requests\VisitorChildGalleryUpdateRequest;
 use App\Http\Resources\VisitorChildGalleryCollection;
 use App\Http\Resources\VisitorChildGalleryResource;
+use App\Models\AboutUsGallery;
 use App\Models\VisitorChildGallery;
+use App\Models\VisitorGallery;
+use App\Services\VisitorChildGalleryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class VisitorChildGalleryController extends Controller
 {
-    public function index(Request $request)
-    {
-        $visitorChildGalleries = VisitorChildGallery::all();
+    public $visitorChildGalleryService;
 
-        return new VisitorChildGalleryCollection($visitorChildGalleries);
+    public function __construct(VisitorChildGalleryService $visitorChildGalleryService)
+    {
+        $this->visitorChildGalleryService= $visitorChildGalleryService;
     }
 
-    public function store(VisitorChildGalleryStoreRequest $request)
+    public function index(VisitorGallery $visitorGallery)
     {
-        $visitorChildGallery = VisitorChildGallery::create($request->validated());
-
-        return new VisitorChildGalleryResource($visitorChildGallery);
+        return $this->visitorChildGalleryService->index($visitorGallery);
     }
 
-    public function show(Request $request, VisitorChildGallery $visitorChildGallery)
+    public function create()
     {
-        return new VisitorChildGalleryResource($visitorChildGallery);
+        return $this->visitorChildGalleryService->create();
+    }
+
+    public function store(/*VisitorChildGalleryStore*/Request $request)
+    {
+        return $this->visitorChildGalleryService->store($request);
+    }
+
+    public function show(VisitorChildGallery $visitorChildGallery)
+    {
+        //
+    }
+
+    public function edit(VisitorChildGallery $visitorChildGallery)
+    {
+        return $this->visitorChildGalleryService->edit($visitorChildGallery);
     }
 
     public function update(VisitorChildGalleryUpdateRequest $request, VisitorChildGallery $visitorChildGallery)
     {
-        $visitorChildGallery->update($request->validated());
-
-        return new VisitorChildGalleryResource($visitorChildGallery);
+        return $this->visitorChildGalleryService->update($request , $visitorChildGallery);
     }
 
-    public function destroy(Request $request, VisitorChildGallery $visitorChildGallery)
+    public function destroy(VisitorChildGallery $visitorChildGallery)
     {
-        $visitorChildGallery->delete();
-
-        return response()->noContent();
+        return $this->visitorChildGalleryService->destroy($visitorChildGallery);
     }
 }

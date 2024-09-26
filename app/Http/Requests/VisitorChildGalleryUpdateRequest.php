@@ -20,11 +20,11 @@ class VisitorChildGalleryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'visitor_gallery_id' => ['required', 'integer', 'exists:visitor_galleries,id'],
+//            'visitor_gallery_id' => ['required', 'integer', 'exists:visitor_galleries,id'],
             'title' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
-            'status' => ['required'],
+//            'status' => ['required'],
         ];
     }
 }

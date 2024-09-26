@@ -3,52 +3,52 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('visitorGallery.admin.breadcrumbs.name'), 'route' => 'visitor-galleries.index'],
-        ['name' => __('visitorGallery.admin.breadcrumbs.create'), 'route' => 'visitor-galleries.create']],
-        'pageTitle' => __('visitorGallery.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('topasGallery.admin.breadcrumbs.name'), 'route' => 'topas-galleries.index'],
+        ['name' => __('topasGallery.admin.breadcrumbs.create'), 'route' => 'topas-galleries.create']],
+        'pageTitle' => __('topasGallery.admin.breadcrumbs.create')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('visitorGallery.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('visitor-galleries.update',$visitorGallery)}}"
+                    <h6 class="card-title">{{__('topasGallery.admin.create.create')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('topas-galleries.update',$topasGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
+                                    <label class="form-label">{{__('topasGallery.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
-                                           name="title" class="form-control" value="{{$visitorGallery->title}}"
-                                           placeholder="{{__('visitorGallery.admin.create.title')}}">
+                                           data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$topasGallery->title}}"
+                                           placeholder="{{__('topasGallery.admin.create.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
+                                    <label class="form-label">{{__('topasGallery.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
                                     <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
-                                           data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
+                                           data-msg-required="{{__('topasGallery.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <img src="{{asset($visitorGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                    <img src="{{asset($topasGallery->image)}}" alt="Image Preview" class="img-thumbnail"
                                          style="display:block; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{route('visitor-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
-                            {{__('visitorGallery.admin.form.cancel')}}
+                        <a href="{{route('topas-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('topasGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('visitorGallery.admin.create.submit')}}
+                            {{__('topasGallery.admin.create.submit')}}
                         </button>
                     </form>
 
@@ -177,7 +177,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('visitor-galleries.index')}}";
+                        window.location.href = "{{route('topas-galleries.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

@@ -7,41 +7,51 @@ use App\Http\Requests\TopasGalleryUpdateRequest;
 use App\Http\Resources\TopasGalleryCollection;
 use App\Http\Resources\TopasGalleryResource;
 use App\Models\TopasGallery;
+use App\Services\TopasGalleryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TopasGalleryController extends Controller
 {
-    public function index(Request $request)
-    {
-        $topasGalleries = TopasGallery::all();
+    public $topasGalleryService;
 
-        return new TopasGalleryCollection($topasGalleries);
+    public function __construct(TopasGalleryService $topasGalleryService)
+    {
+        $this->topasGalleryService= $topasGalleryService;
     }
 
-    public function store(TopasGalleryStoreRequest $request)
+    public function index()
     {
-        $topasGallery = TopasGallery::create($request->validated());
-
-        return new TopasGalleryResource($topasGallery);
+        return $this->topasGalleryService->index();
     }
 
-    public function show(Request $request, TopasGallery $topasGallery)
+    public function create()
     {
-        return new TopasGalleryResource($topasGallery);
+        return $this->topasGalleryService->create();
+    }
+
+    public function store(/*TopasGalleryStore*/Request $request)
+    {
+        return $this->topasGalleryService->store($request);
+    }
+
+    public function show(TopasGallery $topasGallery)
+    {
+        //
+    }
+
+    public function edit(TopasGallery $topasGallery)
+    {
+        return $this->topasGalleryService->edit($topasGallery);
     }
 
     public function update(TopasGalleryUpdateRequest $request, TopasGallery $topasGallery)
     {
-        $topasGallery->update($request->validated());
-
-        return new TopasGalleryResource($topasGallery);
+        return $this->topasGalleryService->update($request , $topasGallery);
     }
 
-    public function destroy(Request $request, TopasGallery $topasGallery)
+    public function destroy(TopasGallery $topasGallery)
     {
-        $topasGallery->delete();
-
-        return response()->noContent();
+        return $this->topasGalleryService->destroy($topasGallery);
     }
 }

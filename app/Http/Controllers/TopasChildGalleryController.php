@@ -7,41 +7,52 @@ use App\Http\Requests\TopasChildGalleryUpdateRequest;
 use App\Http\Resources\TopasChildGalleryCollection;
 use App\Http\Resources\TopasChildGalleryResource;
 use App\Models\TopasChildGallery;
+use App\Models\TopasGallery;
+use App\Services\TopasChildGalleryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TopasChildGalleryController extends Controller
 {
-    public function index(Request $request)
-    {
-        $topasChildGalleries = TopasChildGallery::all();
+    public $topasChildGalleryService;
 
-        return new TopasChildGalleryCollection($topasChildGalleries);
+    public function __construct(TopasChildGalleryService $topasChildGalleryService)
+    {
+        $this->topasChildGalleryService= $topasChildGalleryService;
     }
 
-    public function store(TopasChildGalleryStoreRequest $request)
+    public function index(TopasGallery $topasGallery)
     {
-        $topasChildGallery = TopasChildGallery::create($request->validated());
-
-        return new TopasChildGalleryResource($topasChildGallery);
+        return $this->topasChildGalleryService->index($topasGallery);
     }
 
-    public function show(Request $request, TopasChildGallery $topasChildGallery)
+    public function create()
     {
-        return new TopasChildGalleryResource($topasChildGallery);
+        return $this->topasChildGalleryService->create();
+    }
+
+    public function store(/*TopasChildGalleryStore*/Request $request)
+    {
+        return $this->topasChildGalleryService->store($request);
+    }
+
+    public function show(TopasChildGallery $topasChildGallery)
+    {
+        //
+    }
+
+    public function edit(TopasChildGallery $topasChildGallery)
+    {
+        return $this->topasChildGalleryService->edit($topasChildGallery);
     }
 
     public function update(TopasChildGalleryUpdateRequest $request, TopasChildGallery $topasChildGallery)
     {
-        $topasChildGallery->update($request->validated());
-
-        return new TopasChildGalleryResource($topasChildGallery);
+        return $this->topasChildGalleryService->update($request , $topasChildGallery);
     }
 
-    public function destroy(Request $request, TopasChildGallery $topasChildGallery)
+    public function destroy(TopasChildGallery $topasChildGallery)
     {
-        $topasChildGallery->delete();
-
-        return response()->noContent();
+        return $this->topasChildGalleryService->destroy($topasChildGallery);
     }
 }
