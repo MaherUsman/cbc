@@ -42,8 +42,9 @@ class AboutUsGalleryService
     {
         DB::beginTransaction();
         try {
+//            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $aboutUsGallery = AboutUsGallery::create(['title'=>$value,'image'=>$request->image[$key]]);   
+                $aboutUsGallery = AboutUsGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $aboutUsGallery);
@@ -69,6 +70,7 @@ class AboutUsGalleryService
     public function edit(AboutUsGallery $aboutUsGallery)
     {
         if (request()->is('api/*')) {
+//            dd($aboutUsGallery);
             return makeResponse('success', 'AboutUsGallery Details', Response::HTTP_OK, new AboutUsGalleryResource($aboutUsGallery));
         } else {
             return view('admin.aboutUsGallery.edit', compact('aboutUsGallery'));

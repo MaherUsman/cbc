@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\AboutUsChildGalleryUpdateRequest;
 use App\Http\Resources\AboutUsChildGalleryCollection;
 use App\Models\AboutUsChildGallery;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
@@ -11,8 +13,8 @@ class AboutUsChildGalleryService
 {
     public function index($aboutUsGallery)
     {
-        $aboutUsChildGalleries = AboutUsChildGallery::all();
-        return view('admin.aboutUsChildGallery.index', compact('aboutUsChildGalleries'));
+        $aboutUsChildGalleries = AboutUsChildGallery::where('about_us_gallery_id', $aboutUsGallery->id)->get();
+        return view('admin.aboutUsChildGallery.index', compact('aboutUsChildGalleries','aboutUsGallery'));
     }
 
     public function getAboutUsChildGallery()
@@ -39,7 +41,7 @@ class AboutUsChildGalleryService
         DB::beginTransaction();
         try {
             foreach ($request->title as $key=>$value){
-                $aboutUsChildGallery = AboutUsChildGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
+                $aboutUsChildGallery = AboutUsChildGallery::create(['about_us_gallery_id'=>$request->about_us_gallery_id,'title'=>$value,'image'=>$request->image[$key]]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $aboutUsChildGallery);
@@ -71,10 +73,11 @@ class AboutUsChildGalleryService
         }
     }
 
-    public function update(/*AboutUsChildGalleryUpdateRequest*/ $request, AboutUsChildGallery $aboutUsChildGallery)
+    public function update(AboutUsChildGalleryUpdateRequest $request, AboutUsChildGallery $aboutUsChildGallery)
     {
         DB::beginTransaction();
         try {
+//            dd($request->all());
             ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') ? unlink(public_path($aboutUsChildGallery->image)) : '';
             $aboutUsChildGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();

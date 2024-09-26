@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AboutUsChildGalleryUpdateRequest;
 use App\Models\AboutUsChildGallery;
 use App\Models\AboutUsGallery;
 use App\Services\AboutUsChildGalleryService;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 
 class AboutUsChildGalleryController extends Controller
 {
-    public $aboutUsGalleryService;
+    public $aboutUsChildGalleryService;
 
     public function __construct(AboutUsChildGalleryService $aboutUsChildGalleryService)
     {
@@ -28,6 +29,7 @@ class AboutUsChildGalleryController extends Controller
 
     public function store(/*AboutUsChildGalleryStore*/Request $request)
     {
+//        dd($request->all());
         return $this->aboutUsChildGalleryService->store($request);
     }
 
@@ -43,6 +45,7 @@ class AboutUsChildGalleryController extends Controller
 
     public function update(AboutUsChildGalleryUpdateRequest $request, AboutUsChildGallery $aboutUsChildGallery)
     {
+//        dd($request);
         return $this->aboutUsChildGalleryService->update($request , $aboutUsChildGallery);
     }
 

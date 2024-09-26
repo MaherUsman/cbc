@@ -22,17 +22,17 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('aboutUsChildGallery.name') , 'route' => null]],
-'pageTitle' => __('aboutUsChildGallery.pageTitle')
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('visitorGallery.name') , 'route' => null]],
+'pageTitle' => __('visitorGallery.pageTitle')
 ])
 
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
                 {{--<li class="nav-item"><a href="{{route('about-us-galleries.index')}}#list-view" data-bs-toggle="tab"
-                                        class="nav-link me-1 show active">{{ __('aboutUsGallery.list_view') }}</a></li>--}}
+                                        class="nav-link me-1 show active">{{ __('visitorGallery.list_view') }}</a></li>--}}
                 {{--<li class="nav-item"><a href="{{route('about-us-galleries.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}{{--
-                    class="nav-link">{{ __('aboutUsGallery.grid_view') }}</a></li>--}}
+                    class="nav-link">{{ __('visitorGallery.grid_view') }}</a></li>--}}
             </ul>
         </div>
         <div class="col-lg-12">
@@ -40,48 +40,53 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('aboutUsChildGallery.list_aboutUsChildGallery') }}</h4>
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('aboutUsGallery.add_aboutUsGallery') }}</button>
+                            <h4 class="card-title">{{ __('visitorGallery.list_visitorGallery') }}</h4>
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('visitorGallery.add_visitorGallery') }}</button>
 {{--                            <a href="{{ route('about-us-galleries.create') }}"--}}
-{{--                               class="btn btn-primary">{{ __('aboutUsGallery.add_aboutUsGallery') }}</a>--}}
+{{--                               class="btn btn-primary">{{ __('visitorGallery.add_visitorGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
-                                @foreach($aboutUsChildGalleries as $gallery)
-                                    <div class="col-lg-3 col-md-6 mb-4">
-                                        <div class="gallery-img-wrapper position-relative w-100 h-100">
-                                            <a
-                                                href="{{asset($gallery->image)}}"
-                                                data-src="{{asset($gallery->image)}}"
-                                                class="lg-item"
+                                @foreach($aboutUsGalleries as $gallery)
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="gallery-img-wrapper position-relative w-100 h-100">
+                                        <a
+                                            href="{{asset($gallery->image)}}"
+                                            data-src="{{asset($gallery->image)}}"
+                                            class="lg-item"
+                                        >
+                                            <img
+                                                src="{{asset($gallery->image)}}"
+                                                class="rounded" alt=""
+                                                style="width:100%;"
                                             >
-                                                <img
-                                                    src="{{asset($gallery->image)}}"
-                                                    class="rounded" alt=""
-                                                    style="width:100%;"
-                                                >
-                                            </a>
-                                            <div class="gallery-overlay rounded">
-                                                <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                    <div class="overlay-icon mt-2">
-                                                        <a href="{{route('about-us-child-galleries.edit', $gallery)}}">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="overlay-icon mt-2">
-                                                        <a href="#" data-url="{{ route('about-us-child-galleries.destroy', $gallery) }}" title="Delete"
-                                                           class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
+                                        </a>
+                                        <div class="gallery-overlay rounded">
+                                            <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
+                                                <div class="overlay-icon">
+                                                    <a href="{{route('aboutUsChildGalleries', $gallery->id)}}">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </a>
                                                 </div>
-                                                <div class="img-title mt-3">
-                                                    <p>{{$gallery->title}}</p>
+                                                <div class="overlay-icon mt-2">
+                                                    <a href="{{route('about-us-galleries.edit', $gallery)}}">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="overlay-icon mt-2">
+                                                    <a href="#" data-url="{{ route('about-us-galleries.destroy', $gallery) }}" title="Delete"
+                                                       class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
                                                 </div>
                                             </div>
+                                            <div class="img-title mt-3">
+                                                <p>{{$gallery->title}}</p>
+                                            </div>
                                         </div>
-
                                     </div>
+
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -95,35 +100,33 @@
     <div class="modal fade bd-example-modal-lg" id="basicModal">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form method="POST" id="formValidation" action="{{route('about-us-child-galleries.store')}}"
+                <form method="POST" id="formValidation" action="{{route('about-us-galleries.store')}}"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title">{{__('aboutUsChildGallery.admin.create.create')}}</h5>
+                        <h5 class="modal-title">{{__('visitorGallery.admin.create.create')}}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
                     <div class="modal-body">
                             <div class="row rowTemplate">
-
-                                <input type="hidden" name="about_us_gallery_id" value="{{$aboutUsGallery->id}}">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">{{__('aboutUsChildGallery.admin.create.title')}}<span
+                                        <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
                                                 class="text-danger">*</span> </label>
                                         <input type="text" data-rule-required="true"
-                                               data-msg-required="{{__('aboutUsChildGallery.admin.create.title_message')}}"
+                                               data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
                                                name="title[]" class="form-control"
-                                               placeholder="{{__('aboutUsChildGallery.admin.create.title')}}">
+                                               placeholder="{{__('visitorGallery.admin.create.title')}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">{{__('aboutUsChildGallery.admin.create.image')}}<span
+                                        <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
                                                 class="text-danger">*</span></label>
                                         <input type="file" name="image[]" class="form-control" accept="image/*"
                                                data-rule-required="true" onchange="previewImage(this)"
-                                               data-msg-required="{{__('aboutUsChildGallery.admin.create.image_message')}}">
+                                               data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -137,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary submit">{{__('aboutUsChildGallery.admin.create.submit')}}</button>
+                        <button type="submit" class="btn btn-primary submit">{{__('visitorGallery.admin.create.submit')}}</button>
                     </div>
                 </form>
             </div>
@@ -191,17 +194,15 @@
                         if (xhr.status == 204) {
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
-                            window.location.reload();
-                            {{--setTimeout(function () {--}}
-                            {{--    window.location.reload = "{{route('about-us-galleries.index')}}";--}}
-                            {{--}, 1000);--}}
+                            setTimeout(function () {
+                                window.location.href = "{{route('visitor-galleries.index')}}";
+                            }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
-                            window.location.reload();
-                            {{--setTimeout(function () {--}}
-                            {{--    window.location.href = "{{route('about-us-galleries.index')}}";--}}
-                            {{--}, 1000);--}}
+                            setTimeout(function () {
+                                window.location.href = "{{route('visitor-galleries.index')}}";
+                            }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();
                             errorMsg(response.message);
@@ -218,7 +219,6 @@
                     }
                 });
             });
-
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
@@ -245,8 +245,6 @@
                     titleInputs.each(function (index, element) {
                         data.append('title[]', $(element).val());
                     });
-
-                    data.append('about_us_gallery_id', $('input[name="about_us_gallery_id"]').val());
 
                     try {
                         for (let i = 0; i < imageInputs.length; i++) {
@@ -333,7 +331,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.reload();
+                        window.location.href = "{{route('about-us-galleries.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

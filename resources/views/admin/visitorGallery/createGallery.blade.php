@@ -12,10 +12,9 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('aboutUsGallery.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('about-us-child-galleries.update',$aboutUsChildGallery)}}"
+                    <form method="POST" id="formValidation" action="{{route('about-us-galleries.store')}}"
                           enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
@@ -23,7 +22,7 @@
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"
-                                           name="title" class="form-control" value="{{$aboutUsChildGallery->title}}"
+                                           name="title[]" class="form-control"
                                            placeholder="{{__('aboutUsGallery.admin.create.title')}}">
                                 </div>
                             </div>
@@ -31,20 +30,24 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
-                                    <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
+                                    <input type="file" name="image[]" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
                                            data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <img src="{{asset($aboutUsChildGallery->image)}}" alt="Image Preview" class="img-thumbnail"
-                                         style="display:block; max-width:200px; height:auto;">
+                                    <img src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
                                 </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-primary addRow">+</button>
                             </div>
                         </div>
 
-                        <a href="{{route('about-us-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                        <a href="{{route('about-us-galleries.index')}}" class="btn btn-danger light btn-sl-sm"
+                           type="button">
                             {{__('aboutUsGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
@@ -62,6 +65,53 @@
 @section('script')
 
     <script>
+        $(document).ready(function () {
+            // Function to validate if current row has both title and image filled
+            function validateRow($row) {
+                let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
+                let imageFilled = $row.find('input[name="image[]"]').val() !== '';
+                return titleFilled && imageFilled;
+            }
+
+            // Add Row functionality
+            function addRow() {
+                // Clone the first row, remove its content
+                let $newRow = $('.rowTemplate').first().clone();
+                $newRow.find('input').val('');
+                $newRow.find('input[type="file"]').val('');
+                $newRow.find('img').hide();
+
+                // Add "Add Row" button to new row
+                $newRow.find('.removeRow').removeClass('btn-danger removeRow').addClass('btn-primary addRow').text('+');
+
+                // Append new row after the last one
+                $('.rowTemplate').last().after($newRow);
+
+                return $newRow;
+            }
+
+            // Handle Add Row Button Click
+            $(document).on('click', '.addRow', function () {
+                let $currentRow = $(this).closest('.rowTemplate');
+
+                // Validate current row before adding new one
+                if (validateRow($currentRow)) {
+                    // Change current "Add Row" button to "Remove"
+                    $(this).removeClass('btn-primary addRow').addClass('btn-danger removeRow').text('-');
+
+                    // Add the new row
+                    addRow();
+                } else {
+                    alert('Please fill both title and image fields before adding a new row.');
+                }
+            });
+
+            // Handle Remove Row Button Click
+            $(document).on('click', '.removeRow', function () {
+                $(this).closest('.rowTemplate').remove();
+            });
+        });
+
         // Function to preview the selected image
         function previewImage(input) {
             if (input.files && input.files[0]) {
@@ -75,8 +125,6 @@
         }
 
         $(document).ready(function () {
-            var imageColName = 'pic';
-
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
                     event.preventDefault();
@@ -94,29 +142,40 @@
                     });
 
                     var url = $(form).attr('action');
-                    var imageColName = $('#imageUpload').attr('name');
-                    var data = new FormData($(form)[0]);
-                    var imageFile = $('#imageUpload')[0].files[0];
+                    //var data = new FormData($(form)[0]); // Form data including all images and titles
+                    var data = new FormData();
+                    // Get all file input elements
+                    var titleInputs = $('input[name="title[]"]');
+                    var imageInputs = $('input[name="image[]"]');
+                    titleInputs.each(function (index, element) {
+                        data.append('title[]', $(element).val());
+                    });
 
-                    if (imageFile) {
-                        try {
-                            let response = await uploadImageInChunks(imageFile);
-                            if (response.success) {
-                                data.set(imageColName, response.filePath);
-                                await submitFormData(url, data);
-                            } else {
-                                errorMsg('Image upload failed');
+                    try {
+                        for (let i = 0; i < imageInputs.length; i++) {
+                            let imageFile = imageInputs[i].files[0]; // Get file from each input
+
+                            if (imageFile) {
+                                let response = await uploadImageInChunks(imageFile, i);
+                                if (response.success) {
+                                    data.append(`image[${i}]`, response.filePath);
+                                } else {
+                                    $.unblockUI();
+                                    errorMsg('Image upload failed');
+                                    return;
+                                }
                             }
-                        } catch (error) {
-                            errorMsg('An error occurred during the image upload');
                         }
-                    } else {
+
                         await submitFormData(url, data);
+                    } catch (error) {
+                        $.unblockUI();
+                        errorMsg('An error occurred during the image upload');
                     }
                 }
             });
 
-            async function uploadImageInChunks(file) {
+            async function uploadImageInChunks(file, index) {
                 var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
                 var totalChunks = Math.ceil(file.size / chunkSize);
                 var currentChunk = 0;
@@ -130,7 +189,7 @@
                     chunkData.append('chunkNumber', currentChunk + 1);
                     chunkData.append('totalChunks', totalChunks);
                     chunkData.append('fileName', file.name);
-                    chunkData.append('ImageUploadPath', imageColName);
+                    chunkData.append('ImageUploadPath', `image`);//`image[${index}]`
 
                     $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
 
@@ -165,7 +224,7 @@
                         color: '#fff'
                     }
                 });
-
+                $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
                 try {
                     let response = await $.ajax({
                         type: 'POST',

@@ -64,23 +64,24 @@
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
                                                 <div class="overlay-icon">
-                                                    <a href="#">
+                                                    <a href="{{route('aboutUsChildGalleries', $gallery->id)}}">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="#">
+                                                    <a href="{{route('about-us-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="#">
+                                                    <a href="#" data-url="{{ route('about-us-galleries.destroy', $gallery) }}" title="Delete"
+                                                       class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="img-title mt-3">
-                                                <p>Image Title</p>
+                                                <p>{{$gallery->title}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +219,6 @@
                     }
                 });
             });
-
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {

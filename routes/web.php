@@ -16,6 +16,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitorGalleryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
@@ -56,9 +57,14 @@ Route::prefix('admin')->group(function () {
         Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
+
+        Route::resource('visitor-galleries', VisitorGalleryController::class);
+
         Route::resource('about-us-galleries', AboutUsGalleryController::class);
+        Route::get('get-about-us-gallery/{aboutUsGallery}', [AboutUsGalleryController::class, 'getData']);
 
         Route::get('about-us-child-galleries/{aboutUsGallery}', [AboutUsChildGalleryController::class, 'index'])->name('aboutUsChildGalleries');
+        Route::resource('about-us-child-galleries', AboutUsChildGalleryController::class);
 
         Route::resource('animals', AnimalController::class);
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');

@@ -42,3 +42,6 @@ Route::apiResource('animals', App\Http\Controllers\AnimalController::class);
 
 
 Route::apiResource('animals', App\Http\Controllers\AnimalController::class);
+
+
+Route::apiResource('visitor-galleries', App\Http\Controllers\VisitorGalleryController::class);

@@ -54,4 +54,11 @@ class AboutUsGalleryController extends Controller
     {
         return $this->aboutUsGalleryService->destroy($aboutUsGallery);
     }
+
+    public function getData(AboutUsGallery $aboutUsGallery)
+    {
+        dd('sdfsdfsdf');
+        return $this->aboutUsGalleryService->getData($aboutUsGallery);
+    }
+
 }
