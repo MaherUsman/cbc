@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TopasGallery extends Model
+class TopasChildGallery extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,7 @@ class TopasGallery extends Model
      * @var array
      */
     protected $fillable = [
+        'topas_gallery_id',
         'title',
         'slug',
         'image',
@@ -29,11 +30,12 @@ class TopasGallery extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'topas_gallery_id' => 'integer',
         'status' => 'boolean',
     ];
 
-    public function topasChildGalleries(): HasMany
+    public function topasGallery(): BelongsTo
     {
-        return $this->hasMany(TopasChildGallery::class);
+        return $this->belongsTo(TopasGallery::class);
     }
 }

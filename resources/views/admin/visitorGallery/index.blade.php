@@ -29,9 +29,9 @@
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
-                {{--<li class="nav-item"><a href="{{route('about-us-galleries.index')}}#list-view" data-bs-toggle="tab"
+                {{--<li class="nav-item"><a href="{{route('visitor-galleries.index')}}#list-view" data-bs-toggle="tab"
                                         class="nav-link me-1 show active">{{ __('visitorGallery.list_view') }}</a></li>--}}
-                {{--<li class="nav-item"><a href="{{route('about-us-galleries.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}{{--
+                {{--<li class="nav-item"><a href="{{route('visitor-galleries.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}{{--
                     class="nav-link">{{ __('visitorGallery.grid_view') }}</a></li>--}}
             </ul>
         </div>
@@ -42,12 +42,12 @@
                         <div class="card-header">
                             <h4 class="card-title">{{ __('visitorGallery.list_visitorGallery') }}</h4>
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('visitorGallery.add_visitorGallery') }}</button>
-{{--                            <a href="{{ route('about-us-galleries.create') }}"--}}
+{{--                            <a href="{{ route('visitor-galleries.create') }}"--}}
 {{--                               class="btn btn-primary">{{ __('visitorGallery.add_visitorGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
-                                @foreach($aboutUsGalleries as $gallery)
+                                @foreach($visitorGalleries as $gallery)
                                 <div class="col-lg-3 col-md-6 mb-4">
                                     <div class="gallery-img-wrapper position-relative w-100 h-100">
                                         <a
@@ -64,17 +64,17 @@
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
                                                 <div class="overlay-icon">
-                                                    <a href="{{route('aboutUsChildGalleries', $gallery->id)}}">
+                                                    <a href="{{route('visitorChildGalleries', $gallery->id)}}">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="{{route('about-us-galleries.edit', $gallery)}}">
+                                                    <a href="{{route('visitor-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="#" data-url="{{ route('about-us-galleries.destroy', $gallery) }}" title="Delete"
+                                                    <a href="#" data-url="{{ route('visitor-galleries.destroy', $gallery) }}" title="Delete"
                                                        class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
@@ -100,7 +100,7 @@
     <div class="modal fade bd-example-modal-lg" id="basicModal">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form method="POST" id="formValidation" action="{{route('about-us-galleries.store')}}"
+                <form method="POST" id="formValidation" action="{{route('visitor-galleries.store')}}"
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
@@ -331,7 +331,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('about-us-galleries.index')}}";
+                        window.location.href = "{{route('visitor-galleries.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

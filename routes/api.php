@@ -48,3 +48,16 @@ Route::apiResource('visitor-galleries', App\Http\Controllers\VisitorGalleryContr
 
 
 Route::apiResource('topas-galleries', App\Http\Controllers\TopasGalleryController::class);
+
+
+Route::apiResource('topas-galleries', App\Http\Controllers\TopasGalleryController::class);
+
+Route::apiResource('topas-child-galleries', App\Http\Controllers\TopasChildGalleryController::class);
+
+
+Route::apiResource('topas-galleries', App\Http\Controllers\TopasGalleryController::class);
+
+Route::apiResource('topas-child-galleries', App\Http\Controllers\TopasChildGalleryController::class);
+
+
+Route::apiResource('visitor-child-galleries', App\Http\Controllers\VisitorChildGalleryController::class);

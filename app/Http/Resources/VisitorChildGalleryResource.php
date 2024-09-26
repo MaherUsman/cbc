@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TopasGalleryResource extends JsonResource
+class VisitorChildGalleryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,11 +14,12 @@ class TopasGalleryResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'visitor_gallery_id' => $this->visitor_gallery_id,
             'title' => $this->title,
             'slug' => $this->slug,
             'image' => $this->image,
             'status' => $this->status,
-            'topasChildGalleries' => TopasChildGalleryCollection::make($this->whenLoaded('topasChildGalleries')),
+            'visitorGallery' => VisitorGalleryResource::make($this->whenLoaded('visitorGallery')),
         ];
     }
 }
