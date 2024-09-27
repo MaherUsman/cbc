@@ -120,6 +120,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
         ->name('find.event');
     Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
     Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
+    Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
 

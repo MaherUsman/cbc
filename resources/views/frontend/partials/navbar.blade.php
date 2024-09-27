@@ -52,7 +52,7 @@
                             <li><a href="{{url('/')}}">Research & Articles</a></li>
                             <li><a href="{{route('frontend.contact.us')}}">Contact</a></li>
                             <li class=""><a href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
-                            <li class=""><a href="#">Acitivities</a></li>
+                            <li class=""><a href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
                             <li class=""><a href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class=""><a href="{{route('frontend.career.store')}}">Career</a></li>
                         </ul>
