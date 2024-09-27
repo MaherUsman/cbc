@@ -4,6 +4,7 @@ return [
     'list_visitorGallery' => 'Visitor Gallery',
     'add_visitorGallery' => 'Add Visitor Gallery',
     'name' => 'Visitor Gallery',
+    'page_content' => 'Visitor Gallery Page Content',
     'pageTitle' => 'Visitor Gallery',
     'reOrder' => 'Reorder Visitor Gallery',
     'admin' => [

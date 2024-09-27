@@ -14,6 +14,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\GalleriesContentController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
@@ -64,6 +65,8 @@ Route::prefix('admin')->group(function () {
         Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
+
+        Route::post('galleries-content-store', [GalleriesContentController::class, 'content_store'])->name('galleriesContent.store');
 
         Route::resource('activity-galleries', ActivityGalleryController::class);
         Route::resource('topas-galleries', TopasGalleryController::class);
