@@ -1,6 +1,6 @@
 @foreach($categories as $gallery)
     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-        <div class="gallery-block-two">
+        <div class="gallery-block-two position-relative">
             <div class="inner-box">
                 <figure class="image-box">
                     <img src="{{ asset($gallery->image) }}" alt="">
@@ -11,6 +11,9 @@
                         <span class="text-heading text-center">{{ $gallery->title }}</span>
                     </a>
                 </div> --}}
+            </div>
+            <div class="category-overlay">
+                <a href="#">Image Title</a>
             </div>
         </div>
     </div>

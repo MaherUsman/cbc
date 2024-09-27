@@ -5212,3 +5212,23 @@ div#mCSB_1_container{
     color: #7a7d83;
     transition: all 500ms ease;
 }
+
+.category-overlay{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 20px;
+}
+
+.category-overlay a{
+    color: #fff;
+}
+
+.gallery-block-two:hover .category-overlay a{
+    color: var(--primary) !important;
+}
