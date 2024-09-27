@@ -2,11 +2,15 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\AboutUs;
+use App\Models\AboutUsGallery;
 use App\Models\Animal;
 use App\Models\Blog;
 use App\Models\HomeCounter;
 use App\Models\Intro;
+use App\Models\Settings;
 use App\Models\Slider;
+use App\Models\Team;
 
 class HomeService
 {
@@ -19,7 +23,18 @@ class HomeService
         $data['events'] = Blog::orderBy('start_date' , 'desc')
             ->limit(3)
             ->get();
-        $data['homeCounter'] = HomeCounter::all();
+        $settings = Settings::first();
+
+        $homeCounter = json_decode($settings->home_counter, true);
+
+        $data['homeCounter'] = $homeCounter;
+        return $data;
+    }
+    public function aboutUs()
+    {
+        $data['aboutUs'] = AboutUs::first();
+        $data['teams'] = Team::all();
+        $data['galleries'] = AboutUsGallery::all();
         return $data;
     }
 }

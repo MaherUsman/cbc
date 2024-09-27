@@ -11,7 +11,7 @@
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('intros.admin.edit.edit')}}</h6>
+{{--                    <h6 class="card-title">{{__('intros.admin.edit.edit')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('intros.update',['intro'=>$intro])}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -142,7 +142,7 @@
                     try {
                         let response = await $.ajax({
                             type: 'POST',
-                            url: '/upload-chunk',
+                            url: '{{route("uploadImageChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,

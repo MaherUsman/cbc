@@ -59,27 +59,11 @@
 
 
     <!-- Chincara-section -->
-    @foreach($animals as $animal)
+    @foreach($animals as $key => $animal)
         <section class="about-section sec-pad ainmal-sec setformobilechin">
             <div class="auto-container">
                 <div class="row clearfix">
-
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
-                        <div class="content_block_one">
-                            <div class="content-box">
-                                <div class="sec-title">
-                                    <h2>{{$animal->title}}</h2>
-                                </div>
-                                <div class="text">
-                                    <!-- <h4>Help us to protect wildlife around the world.</h4> -->
-                                    <p>{!! $animal->details !!}</p>
-                                </div>
-                                <div class="btn-box">
-                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @if($key%2==0)
                     <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                         <div class="image_block_one">
                             <div class="image-box">
@@ -89,6 +73,48 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
+                        <div class="content_block_one">
+                            <div class="content-box">
+                                <div class="sec-title">
+                                    <h2>{{$animal->title}}</h2>
+                                </div>
+                                <div class="text">
+                                    <p>{!! $animal->details !!}</p>
+                                </div>
+                                <div class="btn-box">
+                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                        <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
+                            <div class="content_block_one">
+                                <div class="content-box">
+                                    <div class="sec-title">
+                                        <h2>{{$animal->title}}</h2>
+                                    </div>
+                                    <div class="text">
+                                        <p>{!! $animal->details !!}</p>
+                                    </div>
+                                    <div class="btn-box">
+                                        <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                            <div class="image_block_one">
+                                <div class="image-box">
+                                    <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
+                                    <figure class="image "><img src="{{asset($animal->image)}}" alt=""></figure>
+                                    <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
                 </div>
             </div>
         </section>
@@ -156,7 +182,7 @@
                                             <li><i class="far fa-clock"></i>{{\Carbon\Carbon::parse($event->time)->format('H:i a')}}</li>
                                             <li><i class="far fa-map"></i>{{$event->address}}</li>
                                         </ul>
-                                        <h3><a href="index.html">{{$event->title}}</a></h3>
+                                        <h3><a href="{{route('frontend.find.event' , $event->slug)}}">{{$event->title}}</a></h3>
                                         <p>{!! $event->details !!}</p>
                                     </div>
                                 </div>
@@ -178,19 +204,20 @@
         </div>
         <div class="auto-container">
             <div class="row clearfix">
-                @foreach($homeCounter as $counter)
+                @foreach($homeCounter['home_count'] as $index => $count)
                     <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
                         <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="{{$counter->icon}}"></i></div>
+                                <div class="icon-box"><i class="{{ $homeCounter['icon_class'][$index] }}"></i></div>
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="{{(int)$counter->count}}">{{$counter->count}}</span>
+                                    <span class="count-text" data-speed="1500" data-stop="{{ (int)$count }}">{{ $count }}</span>
                                 </div>
-                                <p>{{$counter->name}}</p>
+                                <p>{{ $homeCounter['home_counter_name'][$index] }}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </section>

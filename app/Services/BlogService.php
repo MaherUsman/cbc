@@ -80,6 +80,7 @@ class BlogService
     {
         DB::beginTransaction();
         try {
+//            dd($request->all());
             ($request->has('image') && $request->image != '' && $blog->image != null && $blog->image != '') ? unlink(public_path($blog->image)) : '';
             $blog->update(collect($request->validated())->except('role')->all());
             DB::commit();

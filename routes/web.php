@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
 
-//Route::get('/', function () {return view('welcome');});
-
 Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
@@ -42,10 +40,7 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [AdminController::class, 'dash'])->name('admin.dashboard');
         Route::get('profile',  [AdminController::class, 'edit'])->name('admin.profile');
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
-
         Route::get('career-listing',  [AdminController::class, 'career_application'])->name('admin.career-listing');
-
-
         Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
         Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
 
@@ -107,14 +102,17 @@ Route::get('/' , [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
 
-    Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])->name('animal.categories');
+    Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])
+        ->name('animal.categories');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
+    Route::get('animals/listing/{category}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimalCategory'])->name('listing.animal.category');
     Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
     Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
     Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
     Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
-    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])->name('find.event');
+    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])
+        ->name('find.event');
     Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
     Route::get('tobas' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
     Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');

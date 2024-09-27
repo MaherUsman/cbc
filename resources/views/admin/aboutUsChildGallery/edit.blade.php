@@ -32,7 +32,7 @@
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
                                     <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
-                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                     try {
                         let response = await $.ajax({
                             type: 'POST',
-                            url: '/upload-chunk',
+                            url: '{{route("uploadImageChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,

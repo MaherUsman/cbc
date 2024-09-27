@@ -3,7 +3,7 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url(assets/images/background/page-title.jpg);"></div>
+            <div class="parallax-inner back-img" style="background-image: url({{asset('assets/images/background/page-title.jpg')}});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -32,15 +32,13 @@
                                             </a>
                                         </figure>
                                         <div class="post-date">
-                                            <h6>{{ date('d', strtotime($event['start_date'])) }}
-                                                <span>{{ date('M', strtotime($event['start_date'])) }}</span>
-                                            </h6>
+                                            <h6>{{ \Carbon\Carbon::parse($event->start_date)->format('j M') }}</h6>
                                         </div>
                                     </div>
                                     <div class="lower-content">
                                         <ul class="post-info clearfix">
                                             <li><i class="far fa-user-circle"></i> Admin</li>
-                                            <li><i class="far fa-clock"></i> {{ $event['time'] }}</li>
+                                            <li><i class="far fa-clock"></i>  {{\Carbon\Carbon::parse($event->time)->format('H:i a')}}</li>
                                         </ul>
                                         <h2>
                                             <a href="{{ url('events/'.$event['slug']) }}">{{ $event['title'] }}</a>
@@ -63,7 +61,7 @@
                             <div class="post-inner">
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
-                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{$recentEvent->image}}" alt=""></a></figure>
+                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
                                         <h6><a href="{{url($event->slug)}}">{{$event->title}}</a></h6>
                                     </div>
                                 @endforeach
