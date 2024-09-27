@@ -208,9 +208,9 @@
         </ul>
 
 
-        <div class="copyright">
-            <p>{{config('app.name')}}</p>
-            <p class="fs-12"></p>
-        </div>
+{{--        <div class="copyright">--}}
+{{--            <p>{{config('app.name')}}</p>--}}
+{{--            <p class="fs-12"></p>--}}
+{{--        </div>--}}
     </div>
 </div>

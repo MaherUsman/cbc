@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list_topasGallery' => 'Topas Gallery',
-    'add_topasGallery' => 'Add Topas Gallery',
-    'name' => 'Topas Gallery',
-    'pageTitle' => 'Topas Gallery',
-    'reOrder' => 'Reorder Topas Gallery',
+    'list_topasGallery' => 'Tobas Gallery',
+    'add_topasGallery' => 'Add Tobas Gallery',
+    'name' => 'Tobas Gallery',
+    'pageTitle' => 'Tobas Gallery',
+    'reOrder' => 'Reorder Tobas Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Topas Gallery',
+            'create' => 'Add Tobas Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -18,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Topas Gallery',
+            'edit' => 'Edit Tobas Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -35,16 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'Topas Gallery',
-            'create' => 'Add Topas Gallery',
-            'edit' => 'Edit Topas Gallery',
-            'show' => 'Show Topas Gallery',
+            'name' => 'Tobas Gallery',
+            'create' => 'Add Tobas Gallery',
+            'edit' => 'Edit Tobas Gallery',
+            'show' => 'Show Tobas Gallery',
         ],
         'response_msg' => [
-            'success' => 'Topas Gallery Added successfully',
-            'update' => 'Topas Gallery Item Updated successfully',
-            'error' => 'Error in adding Topas Gallery',
-            'delete' => 'Topas Gallery Item Deleted Successfully'
+            'success' => 'Tobas Gallery Added successfully',
+            'update' => 'Tobas Gallery Item Updated successfully',
+            'error' => 'Error in adding Tobas Gallery',
+            'delete' => 'Tobas Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],
