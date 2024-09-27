@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('teams.admin.edit.image')}}</label>
+                                    <label class="form-label">{{__('teams.admin.edit.image')}}<span class="text-danger">(300 x 303)</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*">
                                 </div>

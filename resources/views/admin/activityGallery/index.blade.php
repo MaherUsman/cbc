@@ -40,8 +40,8 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('activityGallery.page_content') }}</h4>
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('activityGallery.add_activityGallery') }}</button>
+{{--                            <h4 class="card-title">{{ __('activityGallery.page_content') }}</h4>--}}
+{{--                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('activityGallery.add_activityGallery') }}</button>--}}
 {{--                            <a href="{{ route('activity-galleries.create') }}"--}}
 {{--                               class="btn btn-primary">{{ __('activityGallery.add_activityGallery') }}</a>--}}
                         </div>
@@ -55,8 +55,8 @@
                                         <div class="col-sm-12">
                                             <div class="mb-3">
                                                 <label class="form-label">{{__('blogs.admin.create.title')}}<span
-                                                        class="text-danger">*</span> </label>
-                                                <input type="text" data-rule-required="true"
+                                                        class="text-danger"></span> </label>
+                                                <input type="text" data-rule-required="false"
                                                        data-msg-required="{{__('blogs.admin.create.title_message')}}"
                                                        name="title" value="{{$topasGalleriesContent->data['title']??''}}" class="form-control"
                                                        placeholder="{{__('blogs.admin.create.title')}}">
@@ -67,7 +67,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                >{{__('blogs.admin.create.details')}}<span class="text-danger">*</span></label>
+                                                >{{__('blogs.admin.create.details')}}<span class="text-danger"></span></label>
                                                 <textarea name="details" id="ckeditor" data-rule-required="true"
                                                           data-msg-required="{{__('blogs.admin.create.address_message')}}">{{$topasGalleriesContent->data['details']??''}}</textarea>
                                             </div>
@@ -148,8 +148,8 @@
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{__('activityGallery.admin.create.title')}}<span
-                                                class="text-danger">*</span> </label>
-                                        <input type="text" data-rule-required="true"
+                                                class="text-danger"></span> </label>
+                                        <input type="text" data-rule-required="false"
                                                data-msg-required="{{__('activityGallery.admin.create.title_message')}}"
                                                name="title[]" class="form-control"
                                                placeholder="{{__('activityGallery.admin.create.title')}}">

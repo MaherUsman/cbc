@@ -4,14 +4,14 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'activity-galleries.index'],
-        ['name' => __('activityGallery.admin.breadcrumbs.create'), 'route' => 'activity-galleries.create']],
-        'pageTitle' => __('activityGallery.admin.breadcrumbs.create')
+        ['name' => __('activityGallery.admin.breadcrumbs.edit'), 'route' => 'activity-galleries.create']],
+        'pageTitle' => __('activityGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('activityGallery.admin.create.create')}}</h6>
+{{--                    <h6 class="card-title">{{__('activityGallery.admin.create.create')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('activity-galleries.update',$activityGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -19,10 +19,10 @@
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('activityGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('activityGallery.admin.create.title_message')}}"
+                                    <label class="form-label">{{__('activityGallery.admin.edit.title')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('activityGallery.admin.edit.title_message')}}"
                                            name="title" class="form-control" value="{{$activityGallery->title}}"
                                            placeholder="{{__('activityGallery.admin.create.title')}}">
                                 </div>
