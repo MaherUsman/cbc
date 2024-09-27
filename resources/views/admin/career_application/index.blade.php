@@ -16,9 +16,9 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => __('careerApplication.name') , 'route' => null]],
-'pageTitle' => __('careerApplication.pageTitle')
-])
+{{--    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => __('careerApplication.name') , 'route' => null]],--}}
+{{--'pageTitle' => __('careerApplication.pageTitle')--}}
+{{--])--}}
 
     <div class="row">
         <div class="col-lg-12">

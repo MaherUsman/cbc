@@ -88,7 +88,7 @@
                                 $homeCounter = json_decode($settings->home_counter, true);
                             @endphp
                             @foreach($homeCounter['home_counter_name'] as $count)
-                            <div class="mb-3 col-md-4">
+                            <div class="mb-3 col-md-3">
                                 <label for="email" class="form-label">{{__('setting.home_counter_name')}}</label>
                                 <input type="text" class="form-control" id="home_counter_name" name="home_counter_name[]"
                                        value="{{$count??''}}">
@@ -96,7 +96,7 @@
                             @endforeach
                             <!-- Email Field -->
                             @foreach($homeCounter['home_count'] as $count)
-                            <div class="mb-3 col-md-4">
+                            <div class="mb-3 col-md-3">
                                 <label for="text" class="form-label">{{__('setting.home_counter_value')}}</label>
                                 <input type="text" class="form-control" id="home_count" name="home_count[]"
                                        data-rule-required="true"
@@ -106,7 +106,7 @@
                             @endforeach
                             <!-- Email Field -->
                             @foreach($homeCounter['icon_class'] as $count)
-                            <div class="mb-3 col-md-4">
+                            <div class="mb-3 col-md-3">
                                 <label for="email" class="form-label">{{__('setting.home_counter_icon')}}</label>
                                 <input type="text" class="form-control" id="icon_class" name="icon_class[]"
                                        value="{{$count??''}}">
