@@ -143,7 +143,7 @@
                     try {
                         let response = await $.ajax({
                             type: 'POST',
-                            url: '/upload-chunk',
+                            url: '{{route("uploadImageChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,
