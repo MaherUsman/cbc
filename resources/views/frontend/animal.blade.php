@@ -114,42 +114,11 @@
                         </div>
                     </div>
                 @endforeach
-
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/resource/blue.jpg" alt=""></figure>
-                            <div class="content-box">
-                                <h3><a href="bluebull.html">Nilgai/ Blue Bull</a></h3>
-                            </div>
-                            <div class="overlay-content">
-                                <h3><a href="bluebull.html">Nilgai/ Blue Bull</a></h3>
-                                <!-- <p>There are many type of <br />variations pass not available</p> -->
-                                <div class="link"><a href="bluebull.html"><i class="flaticon-right-arrow"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/resource/Kingfisher.jpeg" alt=""></figure>
-                            <div class="content-box">
-                                <h3><a href="whitethroatedkingfisher.html">White-throated Kingfisher</a></h3>
-                            </div>
-                            <div class="overlay-content">
-                                <h3><a href="whitethroatedkingfisher.html">White-throated Kingfisher</a></h3>
-                                <!-- <p>There are many type of <br />variations pass not available</p> -->
-                                <div class="link"><a href="whitethroatedkingfisher.html"><i class="flaticon-right-arrow"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div class="btn-box d-flex justify-content-center align-items-center mt-5">
-            <a href="animals.html" class="theme-btn btn-one">discover more</a>
+            <a href="{{route('frontent.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
     <!-- animals-section end -->
