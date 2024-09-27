@@ -64,3 +64,6 @@ Route::apiResource('visitor-child-galleries', App\Http\Controllers\VisitorChildG
 
 
 Route::apiResource('teams', App\Http\Controllers\TeamController::class);
+
+
+Route::apiResource('activity-galleries', App\Http\Controllers\ActivityGalleryController::class);

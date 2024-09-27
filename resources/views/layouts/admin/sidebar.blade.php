@@ -127,7 +127,7 @@
 
             <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
-                    <i class="la fab la-evernote"></i>
+                    <i class="la la-cat"></i>
                     <span class="nav-text">{{__('sidebar.animals.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
@@ -163,6 +163,18 @@
                 <ul aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
                     <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
                         <a href="{{route('visitor-galleries.index')}}">{{__('sidebar.visitor.index')}}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
+                    <i class="la la-images"></i>
+                    <span class="nav-text">{{__('sidebar.activity.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('activity-galleries.index')}}">{{__('sidebar.activity.index')}}</a>
                     </li>
                 </ul>
             </li>
