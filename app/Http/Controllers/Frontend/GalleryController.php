@@ -40,6 +40,22 @@ class GalleryController extends Controller
 
         return view('frontend.gallery.visitors', $data);
     }
+    public function activitiesGallery(Request $request)
+    {
+        $page = $request->get('page', 1);
+        $data = $this->galleryService->visitors($page);
+
+        if ($request->ajax()) {
+
+            $morePages = $data['activitesGallery']->hasMorePages();
+            return response()->json([
+                'html' => view('frontend.gallery.partials.activities-gallery-items', ['activitesGallery' => $data['activitesGallery']])->render(),
+                'morePages' => $morePages,
+            ]);
+        }
+
+        return view('frontend.gallery.activities', $data);
+    }
     public function aboutUsGallery(Request $request , $slug)
     {
         $page = $request->get('page', 1);
