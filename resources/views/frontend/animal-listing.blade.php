@@ -50,7 +50,7 @@
             <!-- Load More Button -->
             @if ($animals->hasMorePages())
                 <div class="text-center" id="load-more-container">
-                    <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
+                    <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 </div>
             @endif
         </div>

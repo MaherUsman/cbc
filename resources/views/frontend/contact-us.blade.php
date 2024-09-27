@@ -84,11 +84,13 @@
                             <div class="row clearfix">
 
                                 <!-- Username -->
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="Full name" value="{{ old('username') }}" required>
-                                    @error('username')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group p-0">
+                                        <input type="text" name="username" placeholder="Full name" value="{{ old('username') }}" required>
+                                        @error('username')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <!-- Email -->

@@ -102,7 +102,7 @@
 
                                 <!-- Subject -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" placeholder="Subject" value="{{ old('subject') }}" required>
+                                    <input type="text" name="subject" placeholder="Job Title" value="{{ old('subject') }}" required>
                                     @error('subject')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -110,10 +110,12 @@
 
                                 <!-- File upload (PDF, DOC, DOCX) -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="file" name="upload" accept=".pdf,.doc,.docx" required>
-                                    @error('upload')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    {{-- <div class="file-input-wrapper text-left"> --}}
+                                        <input type="file" name="upload" accept=".pdf,.doc,.docx" required>
+                                        @error('upload')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    {{-- </div> --}}
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0">
