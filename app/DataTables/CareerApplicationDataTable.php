@@ -25,7 +25,7 @@ class CareerApplicationDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->editColumn('resume_path', function ($row) {
 //                $file = asset($row->resume_path ?: 'no_image.jpg');
-                $file = Storage::url('/houbarafund/'.$row->resume_path);
+                $file = Storage::url('houbarafund/'.$row->resume_path);
 
                 return '<a href="'.$file.'" title="Download Resume" target="_blank"
                        class="messageDetails" download data-bs-toggle="tooltip" data-bs-placement="top">
