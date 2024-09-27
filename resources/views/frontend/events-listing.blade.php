@@ -62,7 +62,7 @@
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
                                         <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
-                                        <h6><a href="{{url($event->slug)}}">{{$event->title}}</a></h6>
+                                        <h6><a href="{{ route('frontend.find.event',$event->slug) }}">{{$event->title}}</a></h6>
                                     </div>
                                 @endforeach
 
