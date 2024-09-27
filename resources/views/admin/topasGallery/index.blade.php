@@ -63,11 +63,6 @@
                                         </a>
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                <div class="overlay-icon">
-                                                    <a href="{{route('topasChildGalleries', $gallery->id)}}">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </a>
-                                                </div>
                                                 <div class="overlay-icon mt-2">
                                                     <a href="{{route('topas-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>

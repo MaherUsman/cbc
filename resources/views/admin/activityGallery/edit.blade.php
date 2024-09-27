@@ -1,0 +1,191 @@
+@extends('layouts.admin.index')
+@section('css')
+@endsection
+@section('content')
+    @include('layouts.admin.includes.breadcrumbs', [
+        'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'activity-galleries.index'],
+        ['name' => __('activityGallery.admin.breadcrumbs.create'), 'route' => 'activity-galleries.create']],
+        'pageTitle' => __('activityGallery.admin.breadcrumbs.create')
+    ])
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">{{__('activityGallery.admin.create.create')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('activity-galleries.update',$activityGallery)}}"
+                          enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="row rowTemplate">
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('activityGallery.admin.create.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('activityGallery.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$activityGallery->title}}"
+                                           placeholder="{{__('activityGallery.admin.create.title')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('activityGallery.admin.create.image')}}<span
+                                            class="text-danger"></span></label>
+                                    <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
+                                           data-rule-required="false" onchange="previewImage(this)"
+                                           data-msg-required="{{__('activityGallery.admin.create.image_message')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img src="{{asset($activityGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                         style="display:block; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{route('activity-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('activityGallery.admin.form.cancel')}}
+                        </a>
+                        <button type="submit" class="btn btn-primary submit">
+                            {{__('activityGallery.admin.create.submit')}}
+                        </button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+
+    <script>
+        // Function to preview the selected image
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Find the nearest image element in the same row and display it
+                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(input.files[0]); // Convert the file to a URL
+            }
+        }
+
+        $(document).ready(function () {
+            var imageColName = 'pic';
+
+            $('#formValidation').validate({
+                submitHandler: async function (form, event) {
+                    event.preventDefault();
+
+                    $.blockUI({
+                        css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff'
+                        }
+                    });
+
+                    var url = $(form).attr('action');
+                    var imageColName = $('#imageUpload').attr('name');
+                    var data = new FormData($(form)[0]);
+                    var imageFile = $('#imageUpload')[0].files[0];
+
+                    if (imageFile) {
+                        try {
+                            let response = await uploadImageInChunks(imageFile);
+                            if (response.success) {
+                                data.set(imageColName, response.filePath);
+                                await submitFormData(url, data);
+                            } else {
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            errorMsg('An error occurred during the image upload');
+                        }
+                    } else {
+                        await submitFormData(url, data);
+                    }
+                }
+            });
+
+            async function uploadImageInChunks(file) {
+                var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
+                var totalChunks = Math.ceil(file.size / chunkSize);
+                var currentChunk = 0;
+
+                while (currentChunk < totalChunks) {
+                    var start = currentChunk * chunkSize;
+                    var end = Math.min(start + chunkSize, file.size);
+                    var chunk = file.slice(start, end);
+                    var chunkData = new FormData();
+                    chunkData.append('chunk', chunk);
+                    chunkData.append('chunkNumber', currentChunk + 1);
+                    chunkData.append('totalChunks', totalChunks);
+                    chunkData.append('fileName', file.name);
+                    chunkData.append('ImageUploadPath', imageColName);
+
+                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
+
+                    try {
+                        let response = await $.ajax({
+                            type: 'POST',
+                            url: '/upload-chunk',
+                            data: chunkData,
+                            processData: false,
+                            contentType: false,
+                        });
+
+                        currentChunk++;
+                        if (currentChunk === totalChunks) {
+                            return {success: true, filePath: response.filePath};
+                        }
+                    } catch (error) {
+                        return {success: false, error: error};
+                    }
+                }
+            }
+
+            async function submitFormData(url, data) {
+                $.blockUI({
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }
+                });
+
+                try {
+                    let response = await $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                    });
+                    $.unblockUI();
+                    successMsg(response.message);
+                    setTimeout(function () {
+                        window.location.href = "{{route('activity-galleries.index')}}";
+                    }, 1000);
+                } catch (xhr) {
+                    $.unblockUI();
+                    errorMsg(xhr.responseJSON.message || 'An error occurred');
+                }
+            }
+        });
+
+
+    </script>
+@endsection

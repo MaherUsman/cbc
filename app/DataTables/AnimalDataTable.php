@@ -34,9 +34,9 @@ class AnimalDataTable extends DataTable
 //                $imageUrl = asset($row->image ?: 'no_image.jpg');
 //                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
 //            })
-            ->editColumn('details', function ($query) {
-                return view('admin.animal.message', ['animal' => $query]);
-            })
+//            ->editColumn('details', function ($query) {
+//                return view('admin.animal.message', ['animal' => $query]);
+//            })
             ->setRowId('id')->rawColumns(['image','action']);
     }
 
@@ -80,7 +80,7 @@ class AnimalDataTable extends DataTable
             Column::make('title'),
 //            Column::make('image'),
             Column::make('slug'),
-            Column::make('details'),
+//            Column::make('details'),
             Column::computed('gallery')
                 ->exportable(false)
                 ->printable(false)
