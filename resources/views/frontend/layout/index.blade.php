@@ -14,7 +14,7 @@
             <div id="handle-preloader" class="handle-preloader about-page-2">
                 <div class="animation-preloader">
                     <div class="spinner">
-                        <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" title="" width="300"></a></div>
+                        <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}" alt="" title="" width="300"></a></div>
                     </div>
                     <div class="txt-loading">
                             <span data-text-preloader="c" class="letters-loading">
@@ -117,12 +117,12 @@
 
 
         <nav class="menu-box">
-            <div class="nav-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}"  width="" title=""></a></div>
+            <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}"  width="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-            {{-- <div class="contact-info">
+            <div class="contact-info">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li>Chicago 12, Melborne City, USA</li>
+                    {{-- <li>Chicago 12, Melborne City, USA</li> --}}
                     <li><a href="tel:+8801682648101">+88 01682648101</a></li>
                     <li><a href="mailto:info@example.com">info@example.com</a></li>
                 </ul>
@@ -135,7 +135,7 @@
                     <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
                 </ul>
-            </div> --}}
+            </div>
         </nav>
     </div><!-- End Mobile Menu -->
 
@@ -149,7 +149,7 @@
                 <div class="row clearfix">
                     <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                         <div class="footer-widget logo-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="{{asset('assets/images/cbc.png')}}" alt="" width="100"></a></figure>
+                            <figure class="footer-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}" alt="" width="100"></a></figure>
                             @include('frontend.partials.social_links' , ['className' => 'footer-social'])
                         </div>
                     </div>
@@ -161,9 +161,9 @@
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
                                     <li><a href="about.html">About Us</a></li>
-                                    <li><a href="animals.html">Meet the Animals</a></li>
-                                    <li><a href="events.html">Survey</a></li>
-                                    <li><a href="gallery.html">Our Gallery</a></li>
+                                    <li><a href="animals.html">Animals</a></li>
+                                    <li><a href="events.html">Events</a></li>
+                                    <li><a href="gallery.html">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -217,44 +217,21 @@
 
 <!-- Include jQuery Validation Plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-
+<script src="{{asset('assets/js/map-script.js')}}"></script>
 
 
 <script>
     $(document).ready(function() {
 
 
-
-        $('#load-more-btn').on('click', function() {
-            var button = $(this);
-            var nextPageUrl = button.data('next-page');
-
-            // Disable the button to prevent multiple clicks
-            button.prop('disabled', true);
-
-            $.ajax({
-                url: nextPageUrl,
-                type: 'GET',
-                success: function(response) {
-                    // Append the new animals
-                    $('#animal-list').append(response);
-
-                    // Check if more pages exist
-                    var newNextPageUrl = $(response).find('#load-more-ajax').data('next-page');
-                    if (newNextPageUrl) {
-                        button.data('next-page', newNextPageUrl);
-                        button.prop('disabled', false); // Enable the button again
-                    } else {
-                        // No more pages, hide the load more button
-                        $('#load-more-container').remove();
-                    }
-                },
-                error: function() {
-                    button.prop('disabled', false); // Enable the button on error
-                }
-            });
+        $(".fa-search").click(function(){
+            $(".srch-wrap, .input").toggleClass("active");
+            $("input[type='text']").focus();
         });
+
     });
+
+
 </script>
 
 @stack('scripts')

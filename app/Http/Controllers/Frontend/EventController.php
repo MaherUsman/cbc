@@ -14,9 +14,16 @@ class EventController extends Controller
     {
         $this->service = $service;
     }
+    public function index()
+    {
+        $data = $this->service->allEvents();
+        return view('frontend.events-listing', $data);
+    }
     public function findEvent($slug)
     {
-        $data = $this->service->findEvent($slug);
+        $data = $this
+            ->service
+            ->findEvent($slug);
         return view('frontend.event' , $data);
     }
 }

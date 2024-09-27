@@ -44,7 +44,7 @@
                             <div class="col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUses.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger">(550 x 386)*</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.image_message')}}">

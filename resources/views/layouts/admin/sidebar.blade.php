@@ -1,7 +1,7 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
-            <li class="nav-label first">{{__('sidebar.main_menu')}}</li>
+            {{-- <li class="nav-label first">{{__('sidebar.main_menu')}}</li> --}}
             <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><a class="" href="{{route('admin.dashboard')}}">
                     <i class="la la-home"></i>
                     <span class="nav-text">{{__('sidebar.dashboard')}}</span>
@@ -103,7 +103,7 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.aboutUs_page')}}</li>
+            {{-- <li class="nav-label">{{__('sidebar.aboutUs_page')}}</li> --}}
             <li {{ request()->is('admin/about-uses*') ? 'active mm-active' : '' }}>
                 <a class="ai-icon" href="{{route('about-uses.COE')}}" aria-expanded="false">
                     <i class="la la-calendar"></i>
@@ -179,7 +179,7 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.setting_page')}}</li>
+            {{-- <li class="nav-label">{{__('sidebar.setting_page')}}</li> --}}
             <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
                     <i class="la la-sitemap"></i>
@@ -192,7 +192,7 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.career_listing_page')}}</li>
+            {{-- <li class="nav-label">{{__('sidebar.career_listing_page')}}</li> --}}
             <li class="{{ request()->is('admin/career-listing') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/career-listing') ? 'true' : 'false' }}">
                     <i class="la la-note"></i>

@@ -3,6 +3,7 @@
 namespace App\Services\Frontend;
 
 use App\Models\Animal;
+use App\Models\AnimalCategory;
 
 class AnimalService
 {
@@ -16,7 +17,12 @@ class AnimalService
     }
     public function listingAnimals()
     {
-        $data['animals'] = Animal::paginate(1);
+        $data['animals'] = Animal::paginate(3);
+        return $data;
+    }
+    public function animalCategories()
+    {
+        $data['categories'] = AnimalCategory::paginate(10);
         return $data;
     }
 }
