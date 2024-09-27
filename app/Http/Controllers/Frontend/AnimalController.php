@@ -34,6 +34,20 @@ class AnimalController extends Controller
 
         return view('frontend.animal-listing', $animals);
     }
+    public function listingAnimalCategory(Request $request , $slug)
+    {
+        $animals = $this->animalService->listingAnimalCategory($slug);
+        if ($request->ajax()) {
+
+            $morePages = $animals['animals']->hasMorePages();
+            return response()->json([
+                'html' => view('frontend.partials.animal-listings-items', ['animals' => $animals['animals']])->render(),
+                'morePages' => $morePages,
+            ]);
+        }
+
+        return view('frontend.animal-listing', $animals);
+    }
     public function searchAnimal()
     {
         return view('frontend.animal-search');

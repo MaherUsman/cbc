@@ -23,6 +23,11 @@
     <!-- animals-page-section -->
     <section class="animals-page-section">
         <div class="auto-container">
+            @isset($category)
+            <div class="row clearfix pb-5">
+                <h6 class="section-title">{{$category->name}}</h6>
+            </div>
+            @endisset
 
             <div class="row clearfix" id="animal-list">
                 @foreach($animals as $animal)

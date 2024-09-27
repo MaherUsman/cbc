@@ -6,7 +6,7 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{$event->banner_image}});"></div>
+            <div class="parallax-inner back-img" style="background-image: url({{asset($event->banner_image)}});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -28,7 +28,7 @@
                         <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><a href="#"><img src="{{$event->image}}" alt=""></a></figure>
+                                    <figure class="image"><a href="#"><img src="{{asset($event->image)}}" alt=""></a></figure>
                                     <div class="post-date"><h6>16<span>dec</span></h6></div>
                                 </div>
                                 <div class="lower-content">
@@ -43,14 +43,6 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                     <div class="blog-sidebar">
-                        <div class="search-widget">
-                            <form action="" method="post" class="search-form">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" placeholder="Search" required>
-                                    <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
-                                </div>
-                            </form>
-                        </div>
                         <div class="sidebar-widget post-widget">
                             <div class="widget-title">
                                 <h5>Recent Posts</h5>
@@ -58,7 +50,7 @@
                             <div class="post-inner">
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
-                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{$recentEvent->image}}" alt=""></a></figure>
+                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
                                         <h6><a href="{{url($event->slug)}}">{{$event->title}}</a></h6>
                                     </div>
                                 @endforeach

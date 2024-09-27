@@ -188,7 +188,7 @@
         <div class="footer-bottom centred">
             <div class="auto-container">
                 <div class="copyright">
-                    <p>{{$setting->copyright_text}} {{$setting->copyright_year}} by <a href="{{$setting->copyright_link}}">{{$setting->copyright_link_name}}</a></p>
+                    <p>{!! $setting->copyright_text !!} {{$setting->copyright_year}} by <a href="{{$setting->copyright_link}}">{{$setting->copyright_link_name}}</a></p>
                 </div>
             </div>
         </div>

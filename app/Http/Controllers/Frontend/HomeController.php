@@ -23,7 +23,8 @@ class HomeController extends Controller
 
     public function aboutUs()
     {
-        return view('frontend.about-us');
+        $data = $this->service->aboutUs();
+        return view('frontend.about-us' , $data);
     }
     public function contactUs()
     {

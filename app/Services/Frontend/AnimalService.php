@@ -19,7 +19,14 @@ class AnimalService
     }
     public function listingAnimals()
     {
-        $data['animals'] = Animal::paginate(3);
+        $data['animals'] = Animal::paginate(9);
+        return $data;
+    }
+    public function listingAnimalCategory($slug)
+    {
+        $category = AnimalCategory::where('slug' , $slug)->first();
+        $data['animals'] = Animal::where('category_id' , $category->id)->paginate(9);
+        $data['category'] = $category;
         return $data;
     }
     public function animalCategories()

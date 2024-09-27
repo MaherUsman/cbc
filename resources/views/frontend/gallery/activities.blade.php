@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Visitors</h1>
+                    <h1>Activities</h1>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
     <section class="gallery-page-section">
         <div class="auto-container">
             <div class="row clearfix" id="gallery-items">
-                @include('frontend.gallery.partials.visitors-gallery-items', ['visitorGallery' => $visitorGallery])
+                @include('frontend.gallery.partials.activites-gallery-items', ['activitesGallery' => $activitesGallery])
             </div>
             <div class="text-center">
-                @if ($visitorGallery->hasMorePages())
+                @if ($activitesGallery->hasMorePages())
                     <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
             </div>
@@ -40,7 +40,7 @@
             page += 1;
 
             $.ajax({
-                url: '{{ route("frontend.visitors.gallery") }}',
+                url: '{{ route("frontend.activities.gallery") }}',
                 type: 'GET',
                 data: {page: page},
                 success: function (response) {

@@ -34,14 +34,11 @@
                     <div class="content_block_three">
                         <div class="content-box">
                             <div class="sec-title">
-                                <h2> Conservation Breeding Centre – (CBC).  </h2>
+                                <h2>{{$aboutUs->title}}</h2>
                             </div>
-                            <!-- <div class="inner">
-                                <div class="icon-box"><i class="flaticon-zoo"></i></div>
-                                <h5>Dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur sed eiusmod simply free text tempor incidi dunt.</h5>
-                            </div> -->
                             <div class="text">
-                                <p>Passion of His Highness Sheikh Mohamed Bin Zayed Al Nahyan (The President of UAE and Ruler of Abu Dhabi) for conservation stemmed from his close association with nature especially the desert and its flora & fauna. His Highness has truly carried forward the legacy of his illustrious Father, Late His Highness Sheikh Zayed Bin Sultan Al-Nahyan (May his soul rest in peace). In the relentless pursuit of conservation objectives, CBC, a landmark project and the first of its kind in Pakistan, was sponsored by His Highness Sheikh Mohamed Bin Zayed Al Nahyan (The President of UAE and Ruler of Abu Dhabi) in Lal Sohanra, Cholistan Desert in 2014.
+                                <p>
+                                    {{$aboutUs->p1}}
                                 </p>
 
                             </div>
@@ -53,9 +50,7 @@
                 </div>
             </div>
             <div class="text">
-                <p>
-                    It is a highly guarded desert expanse spread across 165 sq. Km (40,772.4 acres), where Chinkaras, Black Bucks and Blue Bull along with other natural species thrive unencumbered with minimal human signature. A 5,000-acre Sheikh Zayed Bin Sultan Al-Nahyan Deer Breeding Centre (H.H Wildlife Park) where around 5,000 Chinkara Gazelles had been bred. Out of this stock 3400 Chinkara Gazelles have been translocated to various habitats and enclosures in Pakistan for breeding. .  Regular seeding of flora through conventional and aerial means is carried out to ensure feed for the fauna in abundance.  23x Existing Tobas (23) in the area are maintained/recharged watchfully through HWNCS water bowsers in all seasons. The flourishing projects which are actively improving the natural habitat to support wildlife are a vivid acknowledgment of H.H. Sheikh Mohamed Bin Zayed Al Nahyan’s (The President of UAE and Ruler of Abu Dhabi) manifest service to nature.
-                </p>
+                <p>{{$aboutUs->p2}}</p>
 
             </div>
         </div>
@@ -245,6 +240,37 @@
     <!-- clients-section end -->
 
 
+
+
+    <section class="gallery-page-section pt-0">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="sec-title">
+                        <h2>all images</h2>
+                    </div>
+                </div>
+                @foreach($galleries as $gallery)
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
+                        <div class="gallery-block-two">
+                            <div class="inner-box">
+                                <figure class="image-box"><img src="{{asset($gallery->image)}}" alt=""></figure>
+                                <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
+                                        <i class="flaticon-plus-symbol"></i>
+                                        <span class="text-heading text-center">
+                                            {{$gallery->title}}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <!-- team-section -->
     <section class="team-section sec-pad">
         <div class="auto-container">
@@ -253,54 +279,19 @@
             </div>
             <div class="inner-content">
                 <div class="row clearfix">
-                    <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset('assets/images/team/team-1.jpg')}}" alt=""></figure>
-                                <div class="lower-content">
-                                    <h3><a href="about.html">Aleesha</a> <span>Animal Doctor</span></h3>
-                                    <p>There are many of lorem ipsum available but the have in some form.</p>
-                                    <ul class="social-links clearfix">
-                                        <li><a href="about.html"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
+                    @foreach($teams as $team)
+                        <div class="col-lg-4 col-md-6 col-sm-12 team-block">
+                            <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                                <div class="inner-box">
+                                    <figure class="image-box"><img src="{{asset($team->image)}}" alt=""></figure>
+                                    <div class="lower-content">
+                                        <h3><a href="#">{{$team->name}}</a> <span>{{$team->designation}}</span></h3>
+                                        <p>{!! $team->details !!}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-one wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset('assets/images/team/team-2.jpg')}}" alt=""></figure>
-                                <div class="lower-content">
-                                    <h3><a href="about.html">michale</a> <span>Animal Doctor</span></h3>
-                                    <p>There are many of lorem ipsum available but the have in some form.</p>
-                                    <ul class="social-links clearfix">
-                                        <li><a href="about.html"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                        <div class="team-block-one wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset('assets/images/team/team-3.jpg')}}" alt=""></figure>
-                                <div class="lower-content">
-                                    <h3><a href="about.html">sarah</a> <span>Animal Doctor</span></h3>
-                                    <p>There are many of lorem ipsum available but the have in some form.</p>
-                                    <ul class="social-links clearfix">
-                                        <li><a href="about.html"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
