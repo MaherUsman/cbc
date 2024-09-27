@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\AboutUsChildGallery;
 use App\Models\TopasGallery;
 use App\Models\VisitorGallery;
 
@@ -15,6 +16,12 @@ class GalleryService
     public function visitors($page = 1)
     {
         $data['visitorGallery'] = VisitorGallery::paginate(9, ['*'], 'page', $page);
+        return $data;
+    }
+    public function aboutUsGallery($page = 1 , $id)
+    {
+        $data['aboutUsGalleries'] = AboutUsChildGallery::where('id' , $id)->paginate(9, ['*'], 'page', $page);
+        $data['id'] = $id;
         return $data;
     }
 }
