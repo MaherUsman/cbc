@@ -164,7 +164,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 title-column">
                     <div class="sec-title light">
                         <h2>Check zoo upcoming events</h2>
-                        <a href="index.html" class="theme-btn btn-one">view all</a>
+                        <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
