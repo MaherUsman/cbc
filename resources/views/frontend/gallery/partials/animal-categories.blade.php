@@ -1,6 +1,6 @@
 @foreach($categories as $gallery)
     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-        <a href="#">
+        <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}">
             <div class="gallery-block-two">
                 <div class="inner-box">
                     <figure class="image-box">
@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="category-overlay">
-            <a href="#">Image Title</a>
+            <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}">Image Title</a>
         </div>
     </div>
 @endforeach

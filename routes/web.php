@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
 
-//Route::get('/', function () {return view('welcome');});
-
 Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
@@ -107,6 +105,7 @@ Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
     Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])
         ->name('animal.categories');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
+    Route::get('animals/listing/{category}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimalCategory'])->name('listing.animal.category');
     Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
     Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
     Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
