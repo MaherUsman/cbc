@@ -43,7 +43,7 @@ class GalleryController extends Controller
     public function activitiesGallery(Request $request)
     {
         $page = $request->get('page', 1);
-        $data = $this->galleryService->visitors($page);
+        $data = $this->galleryService->activites($page);
 
         if ($request->ajax()) {
 
