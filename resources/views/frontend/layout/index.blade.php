@@ -160,10 +160,10 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="animals.html">Animals</a></li>
-                                    <li><a href="events.html">Events</a></li>
-                                    <li><a href="gallery.html">Contact Us</a></li>
+                                    <li><a href="{{route('frontend.about.us')}}">About Us</a></li>
+                                    <li><a href="{{route('frontend.listing.animal')}}">Animals</a></li>
+                                    <li><a href="{{route('frontend.events.index')}}">Events</a></li>
+                                    <li><a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                                 <ul class="info clearfix">
                                     <li><i class="flaticon-telephone"></i><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></li>
                                     <li><i class="flaticon-email"></i><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></li>
-                                    <li><i class="flaticon-pin"></i>{{$setting->address}}</li>
+
                                 </ul>
                             </div>
                         </div>
