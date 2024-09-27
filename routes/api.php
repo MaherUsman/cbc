@@ -61,3 +61,6 @@ Route::apiResource('topas-child-galleries', App\Http\Controllers\TopasChildGalle
 
 
 Route::apiResource('visitor-child-galleries', App\Http\Controllers\VisitorChildGalleryController::class);
+
+
+Route::apiResource('teams', App\Http\Controllers\TeamController::class);
