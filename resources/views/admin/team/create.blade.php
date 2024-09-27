@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('teams.admin.create.image')}}</label>
+                                    <label class="form-label">{{__('teams.admin.create.image')}}<span class="text-danger">(300 x 303)</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('teams.admin.create.image_message')}}">
