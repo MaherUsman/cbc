@@ -104,6 +104,7 @@
                                 <figure class="image-box"><img src="{{asset($relatedAnimal->image)}}" alt=""></figure>
                                 <div class="content-box">
                                     <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->slug)}}">{{asset($relatedAnimal->name)}}</a></h3>
+                                    
                                 </div>
                                 <div class="overlay-content">
                                     <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{asset($relatedAnimal->image)}}</a></h3>
