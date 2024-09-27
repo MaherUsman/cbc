@@ -40,13 +40,53 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('activityGallery.list_activityGallery') }}</h4>
+                            <h4 class="card-title">{{ __('activityGallery.page_content') }}</h4>
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('activityGallery.add_activityGallery') }}</button>
 {{--                            <a href="{{ route('activity-galleries.create') }}"--}}
 {{--                               class="btn btn-primary">{{ __('activityGallery.add_activityGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
+                            <div class="mb-3">
+                                <form method="POST" id="formValidationn" action="{{route('galleriesContent.store')}}"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="type" value="activity">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{__('blogs.admin.create.title')}}<span
+                                                        class="text-danger">*</span> </label>
+                                                <input type="text" data-rule-required="true"
+                                                       data-msg-required="{{__('blogs.admin.create.title_message')}}"
+                                                       name="title" value="{{$topasGalleriesContent->data['title']??''}}" class="form-control"
+                                                       placeholder="{{__('blogs.admin.create.title')}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                >{{__('blogs.admin.create.details')}}<span class="text-danger">*</span></label>
+                                                <textarea name="details" id="ckeditor" data-rule-required="true"
+                                                          data-msg-required="{{__('blogs.admin.create.address_message')}}">{{$topasGalleriesContent->data['details']??''}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                                        {{__('blogs.admin.form.cancel')}}
+                                    </a>
+                                    <button type="submit" class="btn btn-primary submit">
+                                        {{__('blogs.admin.create.submit')}}
+                                    </button>
+                                </form>
+                            </div>
+                            <hr>
                             <div id="lightgallery" class="row">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="card-title">{{ __('activityGallery.list_activityGallery') }}</h4>
+                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('activityGallery.add_activityGallery') }}</button>
+                                </div>
                                 @foreach($activityGalleries as $gallery)
                                 <div class="col-lg-3 col-md-6 mb-4">
                                     <div class="gallery-img-wrapper position-relative w-100 h-100">
@@ -213,6 +253,29 @@
                         }
                     }
                 });
+            });
+
+            $('#formValidationn').validate({
+                submitHandler: async function (form, event) {
+                    event.preventDefault();
+
+                    $.blockUI({
+                        css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff'
+                        }
+                    });
+
+                    var url = $(form).attr('action');
+                    var data = new FormData($(form)[0]);
+
+                    await submitFormData(url, data);
+                }
             });
 
             $('#formValidation').validate({

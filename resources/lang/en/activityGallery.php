@@ -5,6 +5,7 @@ return [
     'add_activityGallery' => 'Add Activiy Gallery',
     'name' => 'Activiy Gallery',
     'pageTitle' => 'Activiy Gallery',
+    'page_content' => 'Activiy Gallery Page Content',
     'reOrder' => 'Reorder Activiy Gallery',
     'admin' => [
         'create' => [

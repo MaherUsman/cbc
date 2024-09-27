@@ -10,6 +10,7 @@ use App\Http\Resources\AboutUsGalleryResource;
 use App\Http\Resources\TopasGalleryCollection;
 use App\Http\Resources\TopasGalleryResource;
 use App\Models\AboutUsGallery;
+use App\Models\GalleriesContent;
 use App\Models\TopasGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,7 +21,8 @@ class TopasGalleryService
     public function index()
     {
         $topasGalleries = TopasGallery::all();
-        return view('admin.topasGallery.index', compact('topasGalleries'));
+        $topasGalleriesContent = GalleriesContent::where('type', 'topas')->first();
+        return view('admin.topasGallery.index', compact('topasGalleries', 'topasGalleriesContent'));
     }
 
     public function getTopasGallery()
