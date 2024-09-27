@@ -107,9 +107,9 @@
                                     
                                 </div>
                                 <div class="overlay-content">
-                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{asset($relatedAnimal->image)}}</a></h3>
+                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->slug)}}">{{$relatedAnimal->name}}</a></h3>
                                     <!-- <p>There are many type of <br />variations pass not available</p> -->
-                                    <div class="link"><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}"><i class="flaticon-right-arrow"></i></a></div>
+                                    <div class="link"><a href="{{route('frontend.find.animal' , $relatedAnimal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
                                 </div>
                             </div>
                         </div>
