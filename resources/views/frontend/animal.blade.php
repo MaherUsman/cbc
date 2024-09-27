@@ -101,12 +101,12 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
                         <div class="gallery-block-one">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="{{$relatedAnimal->image}}" alt=""></figure>
+                                <figure class="image-box"><img src="{{asset($relatedAnimal->image)}}" alt=""></figure>
                                 <div class="content-box">
-                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{$relatedAnimal->image}}</a></h3>
+                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{asset($relatedAnimal->image)}}</a></h3>
                                 </div>
                                 <div class="overlay-content">
-                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{$relatedAnimal->image}}</a></h3>
+                                    <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}">{{asset($relatedAnimal->image)}}</a></h3>
                                     <!-- <p>There are many type of <br />variations pass not available</p> -->
                                     <div class="link"><a href="{{route('frontend.find.animal' , $relatedAnimal->image)}}"><i class="flaticon-right-arrow"></i></a></div>
                                 </div>
