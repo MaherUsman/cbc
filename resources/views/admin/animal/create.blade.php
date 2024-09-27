@@ -58,7 +58,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.image')}}<span
-                                            class="text-danger">* (200x200)</span></label>
+                                            class="text-danger">* (1170 x 877)</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.create.image_message')}}">
@@ -71,7 +71,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.home_image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger">*(252 x 452)</span></label>
                                     <input type="file" id="homeImageUpload" name="home_image" class="form-control imageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.create.home_image_message')}}">
@@ -84,7 +84,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.banner_image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger">*(1894 x 496)</span></label>
                                     <input type="file" name="banner_image" class="form-control imageUpload" id="bannerImageUpload"
                                            accept="image/*" data-rule-required="true"
                                            data-msg-required="{{__('animals.admin.create.banner_image_message')}}">
@@ -271,7 +271,7 @@
                             <div class="col-sm-3">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger">*(370 x 452)</span></label>
                                     <input type="file" name="gal_image[]" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
                                            data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">

@@ -5,12 +5,12 @@
                 <figure class="image-box">
                     <img src="{{ asset($gallery->image) }}" alt="">
                 </figure>
-                <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                {{-- <div class="view-box d-flex align-items-center flex-column justify-content-center">
                     <a href="{{ asset($gallery->image) }}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
                         <i class="flaticon-plus-symbol"></i>
                         <span class="text-heading text-center">{{ $gallery->title }}</span>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
