@@ -24,8 +24,8 @@
     <section class="animals-page-section">
         <div class="auto-container">
             @isset($category)
-            <div class="row clearfix">
-                <h6>{{$category->name}}</h6>
+            <div class="row clearfix pb-5">
+                <h6 class="section-title">{{$category->name}}</h6>
             </div>
             @endisset
 

@@ -1,8 +1,8 @@
 @foreach($categories as $gallery)
     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-        <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}">
+        <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}" style="text-decoration: none">
             <div class="gallery-block-two">
-                <div class="inner-box">
+                <div class="inner-box mb-0">
                     <figure class="image-box">
                         <img src="{{ asset($gallery->image) }}" alt="">
                     </figure>
