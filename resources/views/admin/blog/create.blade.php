@@ -89,7 +89,9 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('blogs.admin.create.image')}}</label>
+                                    <label class="form-label">{{__('blogs.admin.create.image')}}
+                                        <span class="text-danger">(770 x 417)</span>
+                                    </label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*">
                                 </div>
@@ -101,7 +103,9 @@
 
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('blogs.admin.create.banner_image')}}</label>
+                                    <label class="form-label">{{__('blogs.admin.create.banner_image')}}
+                                        <span class="text-danger">(1894 x 496)</span>
+                                    </label>
                                     <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
                                            accept="image/*">
                                 </div>

@@ -119,10 +119,10 @@
         <nav class="menu-box">
             <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}"  width="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-            {{-- <div class="contact-info">
+            <div class="contact-info">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li>Chicago 12, Melborne City, USA</li>
+                    {{-- <li>Chicago 12, Melborne City, USA</li> --}}
                     <li><a href="tel:+8801682648101">+88 01682648101</a></li>
                     <li><a href="mailto:info@example.com">info@example.com</a></li>
                 </ul>
@@ -135,7 +135,7 @@
                     <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
                 </ul>
-            </div> --}}
+            </div>
         </nav>
     </div><!-- End Mobile Menu -->
 
@@ -161,9 +161,9 @@
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
                                     <li><a href="about.html">About Us</a></li>
-                                    <li><a href="animals.html">Meet the Animals</a></li>
-                                    <li><a href="events.html">Survey</a></li>
-                                    <li><a href="gallery.html">Our Gallery</a></li>
+                                    <li><a href="animals.html">Animals</a></li>
+                                    <li><a href="events.html">Events</a></li>
+                                    <li><a href="gallery.html">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>

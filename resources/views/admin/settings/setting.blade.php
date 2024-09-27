@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Settings Update</h4>
+            <h4 class="mb-3 mb-md-3">Settings Update</h4>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
         <div class="col-12 col-xl-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Settings</h4>
+                    <h4 class="card-title"></h4>
                     <form
                         id="updateAdminProfile"
                         action="{{ route('admin.settings.update') }}"
@@ -64,42 +64,52 @@
 
 
                             <!-- Image Field -->
-                            <div class="mb-3 col-md-6">
-                                <label for="image" class="form-label">{{__('setting.logo')}}</label>
-                                <input type="file" class="form-control" id="logo" name="logo" accept="image/*"
-                                       onchange="previewImage(event)">
-                                <div class="mt-3">
-                                    <img id="image-preview"
-                                         src="{{asset($settings->logo?:'images/no-img-avatar.png')}}" alt=""
-                                         class="img-thumbnail"
-                                         style="max-width: 200px;">
-                                </div>
-                            </div>
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label for="image" class="form-label">{{__('setting.logo')}}</label>--}}
+{{--                                <input type="file" class="form-control" id="logo" name="logo" accept="image/*"--}}
+{{--                                       onchange="previewImage(event)">--}}
+{{--                                <div class="mt-3">--}}
+{{--                                    <img id="image-preview"--}}
+{{--                                         src="{{asset($settings->logo?:'images/no-img-avatar.png')}}" alt=""--}}
+{{--                                         class="img-thumbnail"--}}
+{{--                                         style="max-width: 200px;">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <hr>
-
+                        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+                            <div>
+                                <h4 class="mb-3 mb-md-3">Home Counter Data Update</h4>
+                            </div>
+                        </div>
                         <div class="row">
                             <!-- Email Field -->
-                            @foreach($homeCounter as $count)
-                            <div class="mb-3 col-md-4">
+                            @php
+                                $homeCounter = json_decode($settings->home_counter, true);
+                            @endphp
+                            @foreach($homeCounter['home_counter_name'] as $count)
+                            <div class="mb-3 col-md-3">
                                 <label for="email" class="form-label">{{__('setting.home_counter_name')}}</label>
-                                <input type="text" class="form-control" id="copyright_link" name="name"
-                                       value="{{$count->name??''}}" disabled>
+                                <input type="text" class="form-control" id="home_counter_name" name="home_counter_name[]"
+                                       value="{{$count??''}}">
                             </div>
+                            @endforeach
                             <!-- Email Field -->
-                            <div class="mb-3 col-md-4">
+                            @foreach($homeCounter['home_count'] as $count)
+                            <div class="mb-3 col-md-3">
                                 <label for="text" class="form-label">{{__('setting.home_counter_value')}}</label>
-                                <input type="text" class="form-control" id="copyright_link" name="home_count[]"
+                                <input type="text" class="form-control" id="home_count" name="home_count[]"
                                        data-rule-required="true"
                                        data-msg-required="sdfsdf"
-                                       value="{{$count->count??''}}">
+                                       value="{{$count??''}}">
                             </div>
+                            @endforeach
                             <!-- Email Field -->
-                            <div class="mb-3 col-md-4">
+                            @foreach($homeCounter['icon_class'] as $count)
+                            <div class="mb-3 col-md-3">
                                 <label for="email" class="form-label">{{__('setting.home_counter_icon')}}</label>
-                                <i class="{{ $count->icon ?? '' }}"></i>
-{{--                                <input type="text" class="form-control" id="copyright_link_name" name="icon"--}}
-{{--                                       value="{{$count->icon??''}}" disabled>--}}
+                                <input type="text" class="form-control" id="icon_class" name="icon_class[]"
+                                       value="{{$count??''}}">
                             </div>
                             @endforeach
                         </div>

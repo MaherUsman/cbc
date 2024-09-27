@@ -275,7 +275,7 @@
     <section class="team-section sec-pad">
         <div class="auto-container">
             <div class="sec-title centred">
-                <h2>the Team in <br />our zoo</h2>
+                <h2>Our Team </h2>
             </div>
             <div class="inner-content">
                 <div class="row clearfix">

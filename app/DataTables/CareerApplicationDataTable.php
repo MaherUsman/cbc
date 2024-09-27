@@ -80,7 +80,7 @@ class CareerApplicationDataTable extends DataTable
             Column::make('email'),
             Column::make('phone'),
             Column::make('subject'),
-            Column::make('resume_path'),
+            Column::make('resume_path')->title('Resume'),
         ];
     }
 

@@ -63,11 +63,6 @@
                                         </a>
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                <div class="overlay-icon">
-                                                    <a href="{{route('visitorChildGalleries', $gallery->id)}}">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </a>
-                                                </div>
                                                 <div class="overlay-icon mt-2">
                                                     <a href="{{route('visitor-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -123,7 +118,7 @@
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
-                                                class="text-danger">*</span></label>
+                                                class="text-danger">*(370 x 422)</span></label>
                                         <input type="file" name="image[]" class="form-control" accept="image/*"
                                                data-rule-required="true" onchange="previewImage(this)"
                                                data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">

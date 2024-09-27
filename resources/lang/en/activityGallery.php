@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list_topasGallery' => 'Tobas Gallery',
-    'add_topasGallery' => 'Add Tobas Gallery',
-    'name' => 'Tobas Gallery',
-    'pageTitle' => 'Tobas Gallery',
-    'reOrder' => 'Reorder Tobas Gallery',
+    'list_activityGallery' => 'Activiy Gallery',
+    'add_activityGallery' => 'Add Activiy Gallery',
+    'name' => 'Activiy Gallery',
+    'pageTitle' => 'Activiy Gallery',
+    'reOrder' => 'Reorder Activiy Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Tobas Gallery',
+            'create' => 'Add Activiy Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -18,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Tobas Gallery',
+            'edit' => 'Edit Activiy Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -35,16 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'Tobas Gallery',
-            'create' => 'Add Tobas Gallery',
-            'edit' => 'Edit Tobas Gallery',
-            'show' => 'Show Tobas Gallery',
+            'name' => 'Activiy Gallery',
+            'create' => 'Add Activiy Gallery',
+            'edit' => 'Edit Activiy Gallery',
+            'show' => 'Show Activiy Gallery',
         ],
         'response_msg' => [
-            'success' => 'Tobas Gallery Added successfully',
-            'update' => 'Tobas Gallery Item Updated successfully',
-            'error' => 'Error in adding Tobas Gallery',
-            'delete' => 'Tobas Gallery Item Deleted Successfully'
+            'success' => 'Activiy Gallery Added successfully',
+            'update' => 'Activiy Gallery Item Updated successfully',
+            'error' => 'Error in adding Activiy Gallery',
+            'delete' => 'Activiy Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsChildGalleryController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AboutUsGalleryController;
+use App\Http\Controllers\ActivityGalleryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnimalCategoryController;
 use App\Http\Controllers\AnimalController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\TopasGalleryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitorChildGalleryController;
 use App\Http\Controllers\VisitorGalleryController;
+use App\Http\Resources\ActivityGalleryCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
@@ -60,6 +62,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
 
+        Route::resource('activity-galleries', ActivityGalleryController::class);
         Route::resource('topas-galleries', TopasGalleryController::class);
         Route::get('topas-child-galleries/{topasGallery}', [TopasChildGalleryController::class, 'index'])->name('topasChildGalleries');
         Route::resource('topas-child-galleries', TopasChildGalleryController::class);

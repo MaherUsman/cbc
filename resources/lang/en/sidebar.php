@@ -56,14 +56,19 @@ return [
         'create' => 'Add Animal',
     ],
     'topas' => [
-        'name' => 'Topas Gallery',
-        'index' => 'All Topas Gallery',
-        'create' => 'Add Topas',
+        'name' => 'Tobas Gallery',
+        'index' => 'All Tobas Gallery',
+        'create' => 'Add Tobas',
     ],
     'visitor' => [
         'name' => 'Visitor Gallery',
         'index' => 'All Visitor Gallery',
         'create' => 'Add Visitor',
+    ],
+    'activity' => [
+        'name' => 'Activity Gallery',
+        'index' => 'All Activity Gallery',
+        'create' => 'Add Activity',
     ],
     'animalCategories' => [
         'index' => 'Animal Categories',

@@ -3,54 +3,52 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [
-            ['name' => __('animalGalleries.admin.breadcrumbs.name'), 'route' => 'animal-galleries.index', 'params' => $animalGallery->animal],
-            ['name' => __('animalGalleries.admin.breadcrumbs.create'), 'route' => 'animal-galleries.create', 'params' => $animalGallery->animal]
-        ],
-        'pageTitle' => __('animalGalleries.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'activity-galleries.index'],
+        ['name' => __('activityGallery.admin.breadcrumbs.create'), 'route' => 'activity-galleries.create']],
+        'pageTitle' => __('activityGallery.admin.breadcrumbs.create')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('animalGalleries.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('animal-galleries.update',$animalGallery)}}"
+                    <h6 class="card-title">{{__('activityGallery.admin.create.create')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('activity-galleries.update',$activityGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('animalGalleries.admin.create.title')}}<span
+                                    <label class="form-label">{{__('activityGallery.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('animalGalleries.admin.create.title_message')}}"
-                                           name="title" class="form-control" value="{{$animalGallery->title}}"
-                                           placeholder="{{__('animalGalleries.admin.create.title')}}">
+                                           data-msg-required="{{__('activityGallery.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$activityGallery->title}}"
+                                           placeholder="{{__('activityGallery.admin.create.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
-                                    <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
+                                    <label class="form-label">{{__('activityGallery.admin.create.image')}}<span
+                                            class="text-danger"></span></label>
+                                    <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
                                            data-rule-required="false" onchange="previewImage(this)"
-                                           data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
+                                           data-msg-required="{{__('activityGallery.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <img src="{{asset($animalGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                    <img src="{{asset($activityGallery->image)}}" alt="Image Preview" class="img-thumbnail"
                                          style="display:block; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{route('animal-galleries.index', $animalGallery->animal)}}" class="btn btn-danger light btn-sl-sm" type="button">
-                            {{__('animalGalleries.admin.form.cancel')}}
+                        <a href="{{route('activity-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('activityGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('animalGalleries.admin.create.submit')}}
+                            {{__('activityGallery.admin.create.submit')}}
                         </button>
                     </form>
 
@@ -179,7 +177,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('animal-galleries.index', $animalGallery->animal)}}";
+                        window.location.href = "{{route('activity-galleries.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

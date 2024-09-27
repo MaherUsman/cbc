@@ -70,6 +70,12 @@ class AdminController extends Controller
             $image = (ImageUploadHelper::checkUploadImage($request, 'logo', 'logo/', $settings)) ?: $settings->logo;
             $settingArray['logo'] = $image;
 
+            $homeCounterData = [
+              'home_counter_name' => $request->home_counter_name,
+              'home_count' => $request->home_count,
+              'icon_class' => $request->icon_class,
+            ];
+
             // Add other settings if they exist in the request
             ($request->has('address') && $request->address != '') ? $settingArray['address'] = $request->address : '';
             ($request->has('phone') && $request->phone != '') ? $settingArray['phone'] = $request->phone : '';
@@ -79,6 +85,7 @@ class AdminController extends Controller
             ($request->has('copyright_link') && $request->copyright_link != '') ? $settingArray['copyright_link'] = $request->copyright_link : '';
             ($request->has('copyright_link_name') && $request->copyright_link_name != '') ? $settingArray['copyright_link_name'] = $request->copyright_link_name : '';
 
+            $settingArray['home_counter'] = $homeCounterData;
             // Check if settings record exists
             if ($settings) {
                 // Update existing settings record
@@ -88,13 +95,6 @@ class AdminController extends Controller
                 Settings::create($settingArray);
             }
 
-            // Get the array of counts from the request
-            $homeCounts = $request->input('home_count');
-            foreach ($homeCounts as $index => $count) {
-                DB::table('home_counters')
-                    ->where('id', $index + 1)
-                    ->update(['count' => $count]);
-            }
             DB::commit();
             $data = $settings;
             return makeResponse('success', 'Settings Updated Successfully!', Response::HTTP_OK, $data);
