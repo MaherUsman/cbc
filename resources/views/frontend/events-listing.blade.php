@@ -41,7 +41,7 @@
                                             <li><i class="far fa-clock"></i>  {{\Carbon\Carbon::parse($event->time)->format('H:i a')}}</li>
                                         </ul>
                                         <h2>
-                                            <a href="{{ url('events/'.$event['slug']) }}">{{ $event['title'] }}</a>
+                                            <a href="{{ route('frontend.find.event',$event['slug']) }}">{{ $event['title'] }}</a>
                                         </h2>
                                         <p>{!! $event['details'] !!}</p>
 
