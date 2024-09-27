@@ -240,6 +240,37 @@
     <!-- clients-section end -->
 
 
+
+
+    <section class="gallery-page-section pt-0">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="sec-title">
+                        <h2>all images</h2>
+                    </div>
+                </div>
+                @foreach($galleries as $gallery)
+                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
+                        <div class="gallery-block-two">
+                            <div class="inner-box">
+                                <figure class="image-box"><img src="{{asset($gallery->image)}}" alt=""></figure>
+                                <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
+                                        <i class="flaticon-plus-symbol"></i>
+                                        <span class="text-heading text-center">
+                                            {{$gallery->title}}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <!-- team-section -->
     <section class="team-section sec-pad">
         <div class="auto-container">
@@ -266,98 +297,5 @@
         </div>
     </section>
     <!-- team-section end -->
-
-    <section class="gallery-page-section pt-0">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-md-12">
-                    <div class="sec-title">
-                        <h2>all images</h2>
-                    </div>
-                </div>
-                @foreach($galleries as $gallery)
-                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                        <div class="gallery-block-two">
-                            <div class="inner-box">
-                                <figure class="image-box"><img src="assets/images/about/1.jpg" alt=""></figure>
-                                <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                    <a href="assets/images/about/1.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
-                                        <i class="flaticon-plus-symbol"></i>
-                                        <span class="text-heading text-center">
-                                            Conservation Breeding Center
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/about/3.jpg" alt=""></figure>
-                            <div class="view-box"><a href="assets/images/about/3.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol"></i>
-                                    <span class="text-heading text-center">
-                                        Research Centre
-                                    </span>
-                                </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/about/4.jpg" alt=""></figure>
-                            <div class="view-box"><a href="assets/images/about/4.jpg" class="lightbox-image  d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol"></i>
-                                    <span class="text-heading text-center">
-                                        Research Laboratory
-                                    </span>
-                                </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/about/5.jpg" alt=""></figure>
-                            <div class="view-box"><a href="assets/images/about/5.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol"></i>
-                                    <span class="text-heading text-center">
-                                        Aerial View of Check Post in Conservation Breeding Centre
-                                    </span>
-                                </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/about/6.jpg" alt=""></figure>
-                            <div class="view-box"><a href="assets/images/about/6.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol"></i>
-                                    <span class="text-heading text-center">
-                                        A typical Gopa in Cholistan Desert
-                                    </span>
-                                </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                    <div class="gallery-block-two">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="assets/images/about/7.jpg" alt=""></figure>
-                            <div class="view-box">
-                                <a href="assets/images/about/7.jpg" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
-                                    <i class="flaticon-plus-symbol"></i>
-                                    <span class="text-heading text-center">
-                                            Solar System in Conservation Breeding Centre
-                                        </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 @endsection
