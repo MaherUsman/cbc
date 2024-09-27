@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
+
+
 
         Schema::create('visitor_child_galleries', function (Blueprint $table) {
             $table->id();

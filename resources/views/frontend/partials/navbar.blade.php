@@ -1,27 +1,16 @@
 <header class="main-header header-style-one">
-    <div class="header-top">
-        <div class="top-inner">
-            <div class="top-left">
-                <ul class="info clearfix">
-                    <li><i class="flaticon-pin"></i>66 broklyn golden street. New York</li>
-                    <li><i class="flaticon-email"></i><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
-                    <li><i class="flaticon-clock"></i>Mon - Sat 9:00 am to 6:00 pm</li>
-                </ul>
-            </div>
-            <div class="top-right">
-                <ul class="social-links clearfix">
-                    <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-                <!-- <ul class="other-links clearfix">
-                    <li><a href="index.html">Events</a></li>
-                    <li><a href="index.html">Zoo Map</a></li>
-                </ul> -->
-            </div>
-        </div>
-    </div>
+     <div class="header-top">
+       <div class="top-inner">
+           <div class="top-left">
+               <ul class="info clearfix">
+                   <li><i class="flaticon-email"></i><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></li>
+               </ul>
+           </div>
+           <div class="top-right">
+               @include('frontend.partials.social_links')
+           </div>
+       </div>
+   </div>
     <div class="header-lower">
         <div class="outer-box">
             <div class="logo-box">
@@ -44,15 +33,12 @@
 
                             </li>
 
-                            <li class="dropdown"><a href="animals.html">Our Animals</a>
+                            <li class="dropdown"><a href="#">Our Animals</a>
                                 <ul>
-                                    <li><a href="chinkara.html">Chinkara</a></li>
-                                    <li><a href="blackbucks.html">Black Buck</a></li>
-                                    <li><a href="bluebull.html">Blue Bull</a></li>
-                                    <li><a href="blackwingedKite.html">Black – winged Kite</a></li>
-                                    <li><a href="whitethroatedkingfisher.html">White-throated Kingfisher</a></li>
-                                    <li><a href="tawnyeagle.html">Tawny Eagle</a></li>
-                                    <li><a href="whiteearedbulbul.html">White-eared Bulbul</a></li>
+                                    @foreach($animals as $animal)
+                                        <li><a href="{{route('frontend.find.animal' , $animal->slug)}}">{{$animal->title}}</a></li>
+                                    @endforeach
+                                    <li><a href="{{route('frontend.animal.categories')}}">Other Species</a></li>
                                 </ul>
                             </li>
 

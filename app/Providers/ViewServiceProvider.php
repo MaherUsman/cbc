@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Animal;
 use App\Models\Settings;
 use App\Models\SocialLinks;
 use Illuminate\Support\Facades\View;
@@ -30,6 +31,14 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('frontend.layout.index', function ($view) {
             $setting = Settings::first();
             $view->with('setting', $setting);
+            $animals = Animal::where(function ($q){
+                $q->where('slug' , 'black-bucks')
+                    ->orWhere('slug' , 'houbara-bustard')
+                    ->orWhere('slug' , 'chinkara')
+                    ->orWhere('slug' , 'bluebull');
+            })
+                ->get();
+            $view->with('animals', $animals);
         });
     }
 }
