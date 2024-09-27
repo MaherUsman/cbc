@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="text-center mb-2">
                             <a href="{{route('admin.dashboard')}}">
-                                <img width="100" height="100" src="{{asset('images/logon.png')}}" fill="none">
+                                <img width="100" height="100" src="{{asset('assets/images/cbc.png')}}{{--{{asset('images/logon.png')}}--}}" fill="none">
                             </a>
                         </div>
                         <h4 class="text-center mb-4">Sign in your account</h4>

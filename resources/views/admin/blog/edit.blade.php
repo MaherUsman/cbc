@@ -104,8 +104,8 @@
                                            accept="image/*">
                                 </div>
                                 <div class="mb-3">
-                                    <img id="bannerImagePreview" src="#" alt="Image Preview" class="img-thumbnail"
-                                         style="display:none; max-width:200px; height:auto;">
+                                    <img id="bannerImagePreview" src="{{asset($blog->banner_image?:'no_image.jpg')}}" alt="Image Preview" class="img-thumbnail"
+                                         style="{{$blog->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row -->
@@ -191,15 +191,13 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
-                                await submitFormData(url, data);
+                                // await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
                             }
                         } catch (error) {
                             errorMsg('An error occurred during the image upload');
                         }
-                    } else {
-                        await submitFormData(url, data);
                     }
 
                     var bannerImageColName = $('#bannerImageUpload').attr('name');
