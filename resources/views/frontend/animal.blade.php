@@ -118,7 +118,7 @@
         </div>
 
         <div class="btn-box d-flex justify-content-center align-items-center mt-5">
-            <a href="{{route('frontent.listing.animal')}}" class="theme-btn btn-one">discover more</a>
+            <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
     <!-- animals-section end -->
