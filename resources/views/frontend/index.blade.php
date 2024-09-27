@@ -137,7 +137,7 @@
                             </div>
                             <div class="overlay-content">
                                 <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
-                                <div class="link"><a href="{{url($amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
+                                <div class="link"><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="btn-box d-flex justify-content-center align-items-center mt-5">
-            <a href="animals.html" class="theme-btn btn-one">discover more</a>
+            <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
     <!-- gallery-section end -->
