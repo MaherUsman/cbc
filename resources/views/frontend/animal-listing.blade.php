@@ -38,12 +38,12 @@
                                     <img src="{{ asset($animal->image) }}" alt="" />
                                 </figure>
                                 <div class="content-box">
-                                    <h3><a href="{{ route('frontend.listing.animal', $animal->slug) }}">{{ $animal->title }}</a></h3>
+                                    <h3><a href="{{ route('frontend.find.animal', $animal->slug) }}">{{ $animal->title }}</a></h3>
                                 </div>
                                 <div class="overlay-content">
-                                    <h3><a href="{{ route('frontend.listing.animal', $animal->slug) }}">{{ $animal->title }}</a></h3>
+                                    <h3><a href="{{ route('frontend.find.animal', $animal->slug) }}">{{ $animal->title }}</a></h3>
                                     <div class="link">
-                                        <a href="{{ route('frontend.listing.animal', $animal->slug) }}"><i class="flaticon-right-arrow"></i></a>
+                                        <a href="{{ route('frontend.find.animal', $animal->slug) }}"><i class="flaticon-right-arrow"></i></a>
                                     </div>
                                 </div>
                             </div>

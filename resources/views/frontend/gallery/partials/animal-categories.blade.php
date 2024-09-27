@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="category-overlay">
-            <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}">Image Title</a>
+            <a href="{{route('frontend.listing.animal.category' , $gallery->slug)}}">{{$gallery->name}}</a>
         </div>
     </div>
 @endforeach
