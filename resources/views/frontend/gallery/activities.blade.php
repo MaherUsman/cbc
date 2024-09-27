@@ -25,7 +25,7 @@
             </div>
             <div class="text-center">
                 @if ($activitesGallery->hasMorePages())
-                    <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
+                    <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
             </div>
         </div>
