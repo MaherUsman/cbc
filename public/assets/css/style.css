@@ -5214,21 +5214,20 @@ div#mCSB_1_container{
 }
 
 .category-overlay{
-    position: absolute;
     width: 100%;
-    left: 0;
-    bottom: 0;
     text-align: center;
     color: #fff;
     font-size: 22px;
     font-weight: 500;
-    padding: 20px;
+    padding: 0px 20px;
+    line-height: 3px;
 }
 
 .category-overlay a{
-    color: #fff;
+    color: #000;
 }
 
-.gallery-block-two:hover .category-overlay a{
-    color: var(--primary) !important;
+.category-overlay:hover a{
+    color: var(--primary);
 }
+
