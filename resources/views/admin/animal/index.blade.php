@@ -21,14 +21,14 @@
 ])
 
     <div class="row">
-        <div class="col-lg-12">
-            <ul class="nav nav-pills mb-3">
-                <li class="nav-item"><a href="{{route('animals.index')}}#list-view" data-bs-toggle="tab"
-                                        class="nav-link me-1 show active">{{ __('common.list_view') }}</a></li>
-                <li class="nav-item"><a href="{{route('animals.gridView')}}#grid-view" {{--data-bs-toggle="tab"--}}
-                                        class="nav-link">{{ __('common.grid_view') }}</a></li>
-            </ul>
-        </div>
+{{--        <div class="col-lg-12">--}}
+{{--            <ul class="nav nav-pills mb-3">--}}
+{{--                <li class="nav-item"><a href="{{route('animals.index')}}#list-view" data-bs-toggle="tab"--}}
+{{--                                        class="nav-link me-1 show active">{{ __('common.list_view') }}</a></li>--}}
+{{--                <li class="nav-item"><a href="{{route('animals.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}
+{{--                                        class="nav-link">{{ __('common.grid_view') }}</a></li>--}}
+{{--            </ul>--}}
+{{--        </div>--}}
         <div class="col-lg-12">
             <div class="row tab-content">
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
