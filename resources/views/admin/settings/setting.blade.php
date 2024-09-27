@@ -87,6 +87,7 @@
                             @php
                                 $homeCounter = json_decode($settings->home_counter, true);
                             @endphp
+
                             @foreach($homeCounter['home_counter_name'] as $count)
                             <div class="mb-3 col-md-3">
                                 <label for="email" class="form-label">{{__('setting.home_counter_name')}}</label>

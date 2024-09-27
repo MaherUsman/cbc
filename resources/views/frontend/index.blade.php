@@ -204,19 +204,20 @@
         </div>
         <div class="auto-container">
             <div class="row clearfix">
-                @foreach($homeCounter as $counter)
+                @foreach($homeCounter['home_count'] as $index => $count)
                     <div class="col-lg-3 col-md-6 col-sm-12 counter-block">
                         <div class="counter-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="{{$counter->icon}}"></i></div>
+                                <div class="icon-box"><i class="{{ $homeCounter['icon_class'][$index] }}"></i></div>
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="{{(int)$counter->count}}">{{$counter->count}}</span>
+                                    <span class="count-text" data-speed="1500" data-stop="{{ (int)$count }}">{{ $count }}</span>
                                 </div>
-                                <p>{{$counter->name}}</p>
+                                <p>{{ $homeCounter['home_counter_name'][$index] }}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </section>
