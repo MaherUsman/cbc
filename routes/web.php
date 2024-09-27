@@ -103,7 +103,7 @@ Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->n
 
 Route::get('/' , [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
+Route::group([ 'as' => 'frontend.'] , function (){
 
     Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])
         ->name('animal.categories');

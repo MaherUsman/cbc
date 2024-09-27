@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div class="animals-description">
-                                <p>{{$animal->details}}</p>
+                                <p>{!! $animal->details !!}</p>
                                 </div>
                             </div>
                         </div>
