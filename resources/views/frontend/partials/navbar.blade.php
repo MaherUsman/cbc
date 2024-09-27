@@ -1,4 +1,27 @@
 <header class="main-header header-style-one">
+    <div class="header-top">
+        <div class="top-inner">
+            <div class="top-left">
+                <ul class="info clearfix">
+                    <li><i class="flaticon-pin"></i>66 broklyn golden street. New York</li>
+                    <li><i class="flaticon-email"></i><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
+                    <li><i class="flaticon-clock"></i>Mon - Sat 9:00 am to 6:00 pm</li>
+                </ul>
+            </div>
+            <div class="top-right">
+                <ul class="social-links clearfix">
+                    <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
+                    <li><a href="index.html"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+                <!-- <ul class="other-links clearfix">
+                    <li><a href="index.html">Events</a></li>
+                    <li><a href="index.html">Zoo Map</a></li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
     <div class="header-lower">
         <div class="outer-box">
             <div class="logo-box">
