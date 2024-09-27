@@ -52,6 +52,7 @@ return [
             'image_message' => 'Please Enter Image',
             'home_image_message' => 'Please Select Home Image',
             'banner_image_message' => 'Please Select Banner Image',
+            'category_id_message' => 'Please Select Category',
             'details_message' => 'Please Enter Details',
             'show_on_top_bar_message' => 'Please Select',
             'title_required' => 'Title is Required',

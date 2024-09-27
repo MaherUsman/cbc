@@ -210,7 +210,7 @@
                             </div>
                         </div>
                         @endforeach
-                        <a href="" class="btn btn-primary">Update Gallery</a>
+                        <a href="{{route('animal-galleries.index', $animal)}}" class="btn btn-primary">Update Gallery</a>
                         <hr class="p-2">
                         <a href="{{route('animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('animals.admin.form.cancel')}}
