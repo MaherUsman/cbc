@@ -34,7 +34,7 @@
                                     <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
                                     <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
-                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
                                 </div>
                             </div>

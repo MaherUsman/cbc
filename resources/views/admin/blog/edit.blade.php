@@ -203,7 +203,7 @@
                     }
 
                     var bannerImageColName = $('#bannerImageUpload').attr('name');
-                    alert(bannerImageColName);
+                    // alert(bannerImageColName);
                     var bannerImageFile = $('#bannerImageUpload')[0].files[0];
 
                     if (bannerImageFile) {
