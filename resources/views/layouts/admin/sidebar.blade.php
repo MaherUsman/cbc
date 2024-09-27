@@ -2,29 +2,38 @@
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label first">{{__('sidebar.main_menu')}}</li>
-            <ul aria-expanded="false">
-                <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <a href="{{route('admin.dashboard')}}">{{__('sidebar.dashboard')}}</a>
-                </li>
-            </ul>
-
-            <li class="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'true' : 'false' }}">
-                    <i class="la la-user"></i>
-                    <span class="nav-text">{{__('sidebar.users.name')}}{{-- & Roles--}}</span>
+            <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><a class="" href="{{route('admin.dashboard')}}">
+                    <i class="la la-home"></i>
+                    <span class="nav-text">{{__('sidebar.dashboard')}}</span>
                 </a>
-                <ul aria-expanded="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/user*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('user.index')}}">{{__('sidebar.users.index')}}</a>
-                    </li>
-                    <li class="{{ request()->is('admin/user/create') ? 'active mm-active' : '' }}">
-                        <a href="{{route('user.create')}}">{{__('sidebar.users.create')}}</a>
-                    </li>
-                </ul>
             </li>
+{{--            <ul aria-expanded="false">--}}
+{{--                <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">--}}
+{{--                    <a href="{{route('admin.dashboard')}}">--}}
+{{--                        <i class="la la-home"></i>--}}
+{{--                        <span class="nav-text">{{__('sidebar.dashboard')}}</span></a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+
+{{--            <li class="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'active mm-active' : '' }}">--}}
+{{--                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'true' : 'false' }}">--}}
+{{--                    <i class="la la-user"></i>--}}
+{{--                    <span class="nav-text">{{__('sidebar.users.name')}} & Roles</span>--}}
+{{--                </a>--}}
+{{--                <ul aria-expanded="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'true' : 'false' }}">--}}
+{{--                    <li class="{{ request()->is('admin/user*') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('user.index')}}">{{__('sidebar.users.index')}}</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="{{ request()->is('admin/user/create') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('user.create')}}">{{__('sidebar.users.create')}}</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+
+
             <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-calendar"></i>
                     <span class="nav-text">{{__('sidebar.events.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
@@ -36,25 +45,32 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+
+{{--            <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">--}}
+{{--                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">--}}
+{{--                    <i class="la la-note"></i>--}}
+{{--                    <span class="nav-text">{{__('sidebar.contactUs.name')}}</span>--}}
+{{--                </a>--}}
+{{--                <ul aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">--}}
+{{--                    <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('contact-uses.index')}}">{{__('sidebar.contactUs.index')}}</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="{{ request()->is('admin/contact-uses/create') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('contact-uses.create')}}">{{__('sidebar.contactUs.create')}}</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+
+
+            <li class="{{ request()->routeIs('admin/contact-us') ? 'active' : '' }}"><a class="" href="{{route('contact-us.index')}}">
+                    <i class="la la-home"></i>
                     <span class="nav-text">{{__('sidebar.contactUs.name')}}</span>
                 </a>
-                <ul aria-expanded="{{ request()->is('admin/contact-uses*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/contact-uses*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('contact-uses.index')}}">{{__('sidebar.contactUs.index')}}</a>
-                    </li>
-                    <li class="{{ request()->is('admin/contact-uses/create') ? 'active mm-active' : '' }}">
-                        <a href="{{route('contact-uses.create')}}">{{__('sidebar.contactUs.create')}}</a>
-                    </li>
-                </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.home_page')}}</li>
             <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-sliders-h"></i>
                     <span class="nav-text">{{__('sidebar.sliders.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
@@ -74,7 +90,7 @@
             </li>
             <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-home"></i>
                     <span class="nav-text">{{__('sidebar.abouts.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
@@ -96,7 +112,7 @@
             </li>
             <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-pager"></i>
                     <span class="nav-text">{{__('sidebar.aboutUs.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/about-us-galleries*') ? 'true' : 'false' }}">
@@ -109,10 +125,9 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.animals_page')}}</li>
             <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la fab la-evernote"></i>
                     <span class="nav-text">{{__('sidebar.animals.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
@@ -128,10 +143,9 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.topas_page')}}</li>
             <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-images"></i>
                     <span class="nav-text">{{__('sidebar.topas.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
@@ -141,10 +155,9 @@
                 </ul>
             </li>
 
-            <li class="nav-label">{{__('sidebar.visitor_page')}}</li>
             <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-images"></i>
                     <span class="nav-text">{{__('sidebar.visitor.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
@@ -157,7 +170,7 @@
             <li class="nav-label">{{__('sidebar.setting_page')}}</li>
             <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
-                    <i class="la la-note"></i>
+                    <i class="la la-sitemap"></i>
                     <span class="nav-text">{{__('sidebar.setting.name')}}</span>
                 </a>
                 <ul aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">

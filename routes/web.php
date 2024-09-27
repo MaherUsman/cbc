@@ -15,6 +15,7 @@ use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TopasChildGalleryController;
 use App\Http\Controllers\TopasGalleryController;
 use App\Http\Controllers\UserController;
@@ -49,7 +50,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('user',UserController::class);
         Route::resource('animal-categories',AnimalCategoryController::class);
         Route::resource('blogs', BlogController::class);
-        Route::resource('contact-uses', ContactUsController::class);
+        Route::resource('teams', TeamController::class);
+        Route::resource('contact-us', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
         Route::get('reorder-sliders', [SliderController::class, 'gridView'])->name('sliders.gridView');
         Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
