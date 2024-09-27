@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\CareerApplication;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -23,7 +24,9 @@ class CareerApplicationDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('resume_path', function ($row) {
-                $file = asset($row->resume_path ?: 'no_image.jpg');
+//                $file = asset($row->resume_path ?: 'no_image.jpg');
+                $file = Storage::url($row->resume_path);
+
                 return '<a href="'.$file.'" title="Download Resume" target="_blank"
                        class="messageDetails" download data-bs-toggle="tooltip" data-bs-placement="top">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

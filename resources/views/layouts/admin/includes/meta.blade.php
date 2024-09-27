@@ -3,19 +3,19 @@
 <meta name="author" content="CAS">
 <meta name="robots" content="index, follow">
 
-<meta name="keywords" content="admin, dashboard, admin dashboard, admin template, template, admin panel, administration, analytics, bootstrap, modern, responsive, creative, retina ready, modern Dashboard responsive dashboard, responsive template, user experience, user interface, Bootstrap Dashboard, Analytics Dashboard, Customizable Admin Panel, EduMin template, ui kit, web app, EduMin, School Management,Dashboard Template, academy, course, courses, e-learning, education, learning, learning management system, lms, school, student, teacher">
+<meta name="keywords" content="admin, dashboard">
 
 <meta name="description" content="CAS">
 
-<meta property="og:title" content="EduMin - Education Admin Dashboard Template | dexignlabs">
-<meta property="og:description" content="EduMin - Empower your educational institution with the all-in-one Education Admin Dashboard Template. Streamline administrative tasks, manage courses, track student performance, and gain valuable insights with ease. Elevate your education management experience with a modern, responsive, and feature-packed solution. Explore EduMin now for a smarter, more efficient approach to education administration.">
+<meta property="og:title" content="HoubaraFund (CBC)">
+<meta property="og:description" content="HoubaraFund (CBC)">
 
-<meta property="og:image" content="https://edumin.dexignlab.com/xhtml/error-404.html">
+<meta property="og:image" content="">
 
 <meta name="format-detection" content="telephone=no">
 
-<meta name="twitter:title" content="EduMin - Education Admin Dashboard Template | dexignlabs">
-<meta name="twitter:description" content="EduMin - Empower your educational institution with the all-in-one Education Admin Dashboard Template. Streamline administrative tasks, manage courses, track student performance, and gain valuable insights with ease. Elevate your education management experience with a modern, responsive, and feature-packed solution. Explore EduMin now for a smarter, more efficient approach to education administration.">
+<meta name="twitter:title" content="HoubaraFund (CBC)">
+<meta name="twitter:description" content="HoubaraFund (CBC)">
 
 <meta name="twitter:image" content="https://edumin.dexignlab.com/xhtml/error-404.html">
 <meta name="twitter:card" content="summary_large_image">
