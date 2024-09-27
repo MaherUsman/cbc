@@ -4,14 +4,14 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => __('visitorGallery.admin.breadcrumbs.name'), 'route' => 'visitor-galleries.index'],
-        ['name' => __('visitorGallery.admin.breadcrumbs.create'), 'route' => 'visitor-galleries.create']],
-        'pageTitle' => __('visitorGallery.admin.breadcrumbs.create')
+        ['name' => __('visitorGallery.admin.breadcrumbs.edit'), 'route' => 'visitor-galleries.create']],
+        'pageTitle' => __('visitorGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('visitorGallery.admin.create.create')}}</h6>
+{{--                    <h6 class="card-title">{{__('visitorGallery.admin.create.create')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('visitor-galleries.update',$visitorGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -19,10 +19,10 @@
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
+                                    <label class="form-label">{{__('visitorGallery.admin.edit.title')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('visitorGallery.admin.edit.title_message')}}"
                                            name="title" class="form-control" value="{{$visitorGallery->title}}"
                                            placeholder="{{__('visitorGallery.admin.create.title')}}">
                                 </div>
@@ -30,9 +30,9 @@
                             <div class="col-sm-3">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
+                                            class="text-danger"></span></label>
                                     <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
-                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
                                 </div>
                             </div>

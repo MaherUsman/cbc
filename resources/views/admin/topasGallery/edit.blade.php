@@ -4,14 +4,14 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => __('topasGallery.admin.breadcrumbs.name'), 'route' => 'topas-galleries.index'],
-        ['name' => __('topasGallery.admin.breadcrumbs.create'), 'route' => 'topas-galleries.create']],
-        'pageTitle' => __('topasGallery.admin.breadcrumbs.create')
+        ['name' => __('topasGallery.admin.breadcrumbs.edit'), 'route' => 'topas-galleries.create']],
+        'pageTitle' => __('topasGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('topasGallery.admin.create.create')}}</h6>
+{{--                    <h6 class="card-title">{{__('topasGallery.admin.edit.edit')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('topas-galleries.update',$topasGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -19,9 +19,9 @@
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('topasGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
+                                    <label class="form-label">{{__('topasGallery.admin.edit.title')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text" data-rule-required="false"
                                            data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
                                            name="title" class="form-control" value="{{$topasGallery->title}}"
                                            placeholder="{{__('topasGallery.admin.create.title')}}">
@@ -29,10 +29,10 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('topasGallery.admin.create.image')}}<span
-                                            class="text-danger">*</span></label>
+                                    <label class="form-label">{{__('topasGallery.admin.edit.image')}}<span
+                                            class="text-danger"></span></label>
                                     <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
-                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('topasGallery.admin.create.image_message')}}">
                                 </div>
                             </div>

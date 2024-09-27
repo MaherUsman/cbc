@@ -56,8 +56,8 @@
                                         <div class="col-sm-12">
                                             <div class="mb-3">
                                                 <label class="form-label">{{__('blogs.admin.create.title')}}<span
-                                                        class="text-danger">*</span> </label>
-                                                <input type="text" data-rule-required="true"
+                                                        class="text-danger"></span> </label>
+                                                <input type="text" data-rule-required="false"
                                                        data-msg-required="{{__('blogs.admin.create.title_message')}}"
                                                        name="title" value="{{$topasGalleriesContent->data['title']??''}}" class="form-control"
                                                        placeholder="{{__('blogs.admin.create.title')}}">
@@ -68,7 +68,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                >{{__('blogs.admin.create.details')}}<span class="text-danger">*</span></label>
+                                                >{{__('blogs.admin.create.details')}}<span class="text-danger"></span></label>
                                                 <textarea name="details" id="ckeditor" data-rule-required="true"
                                                           data-msg-required="{{__('blogs.admin.create.address_message')}}">{{$topasGalleriesContent->data['details']??''}}</textarea>
                                             </div>
@@ -151,7 +151,7 @@
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{__('topasGallery.admin.create.title')}}<span
-                                                class="text-danger">*</span> </label>
+                                                class="text-danger"></span> </label>
                                         <input type="text" data-rule-required="false"
                                                data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
                                                name="title[]" class="form-control"
