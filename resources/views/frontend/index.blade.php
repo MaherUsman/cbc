@@ -133,10 +133,10 @@
                         <div class="inner-box">
                             <figure class="image-box"><img src="{{asset($amazing_animal->image)}}" alt=""></figure>
                             <div class="content-box">
-                                <h3><a href="{{$amazing_animal->slug}}">{{$amazing_animal->title}}</a></h3>
+                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
                             </div>
                             <div class="overlay-content">
-                                <h3><a href="{{url($amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
+                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
                                 <div class="link"><a href="{{url($amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
                             </div>
                         </div>
