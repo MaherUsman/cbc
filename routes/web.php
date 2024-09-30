@@ -133,5 +133,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
 });
 
-Route::get('{any?}', function () {view('welcome');})->where('any', '.*');
+Route::get('{any?}', function () {
+    return view('welcome');
+})->where('any', '.*');
 

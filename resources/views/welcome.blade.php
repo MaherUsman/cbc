@@ -8,7 +8,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{url('/')}}">Home</a></li>
                     <li>404</li>
                 </ul>
                 <div class="title">
