@@ -228,7 +228,7 @@
 
 
     <!-- news-section -->
-    <section class="news-section centred">
+    <!-- <section class="news-section centred">
         <div class="auto-container">
             <div class="sec-title centred">
                 <h2>Latest news & <br />Articles</h2>
@@ -290,7 +290,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- news-section end -->
 
 @endsection

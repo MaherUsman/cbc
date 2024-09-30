@@ -20,7 +20,7 @@
 }
 
 .header-top .info li a:hover{
-  color: var(--tertiary);
+  color: #000;
 }
 
 .header-top .top-right .social-links li a:hover{

@@ -161,7 +161,7 @@
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
                                     <li><a href="about.html">About Us</a></li>
-                                    <li><a href="animals.html">Animals</a></li>
+                                    <li><a href="animals.html">Our Animals</a></li>
                                     <li><a href="events.html">Events</a></li>
                                     <li><a href="gallery.html">Contact Us</a></li>
                                 </ul>

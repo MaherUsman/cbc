@@ -167,7 +167,7 @@ textarea:focus{
 p{
   position: relative;
   font-family: 'Rubik', sans-serif ;
-  color: #71747a;
+  /* color: #71747a; */
   margin: 0px;
   transition: all 500ms ease;
 }
@@ -4321,7 +4321,7 @@ div#mCSB_1_container{
 }
 
 .team-section .team-block:nth-child(2){
-  padding-top: 50px;
+  /* padding-top: 50px; */
 }
 
 .team-section .sec-title{
@@ -5244,4 +5244,11 @@ div#mCSB_1_container{
     color: #000;
     font-weight: 600;
     line-height: 28px;
+}
+
+
+
+
+.navigation li:active a{
+  color: red !important;
 }
