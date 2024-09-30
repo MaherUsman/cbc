@@ -23,18 +23,19 @@
     <!-- animals-page-section -->
     <section class="animals-page-section">
         <div class="auto-container">
-            <div class="row clearfix justify-content-end pb-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="srch-wrap">
-                            <form>
-                                <input type="text" class="input" placeholder="search...">
-                            </form>
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="row clearfix justify-content-end pb-5">--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <div class="d-flex justify-content-end">--}}
+{{--                        <div class="srch-wrap">--}}
+{{--                            <form >--}}
+{{--                                <input type="search" name="search-field" class="input" placeholder="search...">--}}
+{{--                                <i class="fa fa-search" aria-hidden="true"></i>--}}
+{{--                            </form>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="row clearfix" id="animal-list">
                 @foreach($animals as $animal)
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
