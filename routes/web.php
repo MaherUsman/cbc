@@ -32,6 +32,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
         Route::view('login', 'auth.login')->name('adminLogin');
+//        Route::get('login', function () {
+//            if (auth()->check()) {
+//                return redirect()->route('admin.dashboard');
+//            }
+//            return view('auth.login');
+//        })->name('adminLogin');
         Route::post('login', [AuthenticationController::class, 'login'])->name('login');
     });
 
