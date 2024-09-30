@@ -1919,7 +1919,9 @@ div#mCSB_1_container{
 .image_block_one .image-box .image{
   position: relative;
   display: block;
-  overflow: hidden;
+  /* overflow: hidden; */
+  margin-right: 50px;
+  margin-left: -50px;
 
 }
 
