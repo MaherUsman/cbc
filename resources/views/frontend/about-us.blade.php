@@ -11,7 +11,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{url('/')}}">Home</a></li>
                     <li>About Us</li>
                 </ul>
                 <div class="title">
@@ -241,7 +241,7 @@
 
 
 
-
+    @if($galleries->isNotEmpty())
     <section class="gallery-page-section pt-0">
         <div class="auto-container">
             <div class="row clearfix">
@@ -275,7 +275,7 @@
             </div>
         </div>
     </section>
-
+    @endif
     <!-- team-section -->
     <section class="team-section sec-pad">
         <div class="auto-container">
