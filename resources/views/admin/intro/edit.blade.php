@@ -50,7 +50,7 @@
                                 </div>
 
 
-                            <a href="{{route('intros.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm" type="button">
                                 {{__('intros.admin.form.cancel')}}
                             </a>
                             <button type="submit" class="btn btn-primary submit">

@@ -22,11 +22,11 @@
 
                         <!-- Name Field -->
                         <div class="mb-3 row">
-                            <div class="mb-3 col-md-12">
-                                <label for="name" class="form-label">{{__('setting.address')}}</label>
-                                <input type="name" class="form-control" id="address" name="address"
-                                       value="{{$settings->address}}" required>
-                            </div>
+{{--                            <div class="mb-3 col-md-12">--}}
+{{--                                <label for="name" class="form-label">{{__('setting.address')}}</label>--}}
+{{--                                <input type="name" class="form-control" id="address" name="address"--}}
+{{--                                       value="{{$settings->address}}" required>--}}
+{{--                            </div>--}}
                             <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">{{__('setting.phone')}}</label>
                                 <input type="text" class="form-control" id="phone" name="phone"

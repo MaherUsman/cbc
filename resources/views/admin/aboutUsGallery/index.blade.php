@@ -122,7 +122,7 @@
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
-                                                class="text-danger">*</span></label>
+                                                class="text-danger">(368 × 422)*</span></label>
                                         <input type="file" name="image[]" class="form-control" accept="image/*"
                                                data-rule-required="true" onchange="previewImage(this)"
                                                data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">

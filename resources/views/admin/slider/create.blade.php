@@ -11,7 +11,7 @@
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('sliders.admin.create.create')}}</h6>
+{{--                    <h6 class="card-title">{{__('sliders.admin.create.create')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('sliders.store')}}"
                           enctype="multipart/form-data">
                         @csrf

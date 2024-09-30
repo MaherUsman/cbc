@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
                             </div>
                         </div>
                         <div class="row rowTemplateProps">
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
                             </div>
                         </div>
                         <div class="row rowTemplateProps">
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
                             </div>
                         </div>
                         <div class="row rowTemplateProps">
@@ -252,7 +252,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRowProps">+</button>
+                                <button type="button" class="btn btn-primary addRowProps mt-4">+</button>
                             </div>
                         </div>
                         <hr class="p-2">
@@ -284,7 +284,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRow">+</button>
+                                <button type="button" class="btn btn-primary addRow mt-4">+</button>
                             </div>
                         </div>
                         <a href="{{route('animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
