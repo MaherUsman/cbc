@@ -59,6 +59,9 @@
 
 
     <!-- Chincara-section -->
+     <div class="set-direction-wrapper">
+
+
     @foreach($animals as $key => $animal)
         <section class="about-section sec-pad ainmal-sec setformobilechin">
             <div class="auto-container">
@@ -119,6 +122,7 @@
             </div>
         </section>
     @endforeach
+    </div>
     <!-- gallery-section -->
     <section class="gallery-section">
         <div class="auto-container">
