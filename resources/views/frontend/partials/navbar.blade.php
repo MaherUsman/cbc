@@ -25,37 +25,37 @@
                 </div>
                 <nav class="main-menu navbar-expand-md navbar-light">
                     <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                        <ul class="navigation clearfix">
-                            <li class=""><a href="{{url('/')}}">Home</a></li>
+                        <ul id="navbar" class="navigation clearfix">
+                            <li class="{{ Request::routeIs('home') ? 'active' : '' }}" ><a href="{{url('/')}}">Home</a></li>
 
 
-                            <li class=""><a href="{{route('frontend.about.us')}}">About Us</a>
+                            <li class="{{ Request::routeIs('frontend.about.us') ? 'active' : '' }}"><a href="{{route('frontend.about.us')}}">About Us</a>
 
                             </li>
 
-                            <li class="dropdown"><a href="#">Our Animals</a>
+                            <li class="dropdown "><a href="#">Our Animals</a>
                                 <ul>
                                     @foreach($animals as $animal)
-                                        <li><a href="{{route('frontend.find.animal' , $animal->slug)}}">{{$animal->title}}</a></li>
+                                        <li class="{{ Request::routeIs('animal*'  , $animal->slug) ? 'active' : '' }}"><a href="{{route('frontend.find.animal' , $animal->slug)}}">{{$animal->title}}</a></li>
                                     @endforeach
-                                    <li><a href="{{route('frontend.animal.categories')}}">Other Species</a></li>
+                                    <li class="{{ Request::routeIs('frontend.animal.categories' ) ? 'active' : '' }}"><a href="{{route('frontend.animal.categories')}}">Other Species</a></li>
                                 </ul>
                             </li>
 
-                            <li class=""><a href="{{route('frontend.events.index')}}">Events</a>
+                            <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }}"><a href="{{route('frontend.events.index')}}">Events</a>
 
                                 <!-- <ul>
                                     <li><a href="events.html">Our Blog</a></li>
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <li><a href="{{url('/')}}">Research & Articles</a></li>
+                            <!-- <li><a href="{{url('/')}}">Research & Articles</a></li> -->
                   
-                            <li class=""><a href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
+                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
                             <li class=""><a href="#">Acitivities</a></li>
-                            <li class=""><a href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
-                            <li class=""><a href="{{route('frontend.career.store')}}">Career</a></li>
-                            <li><a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
+                            <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
+                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a href="{{route('frontend.career.store')}}">Career</a></li>
+                            <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -124,3 +124,4 @@
         </div>
     </div>
 </header>
+

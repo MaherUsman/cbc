@@ -5249,6 +5249,6 @@ div#mCSB_1_container{
 
 
 
-.navigation li:active a{
+.navigation li.active a {
   color: red !important;
 }
