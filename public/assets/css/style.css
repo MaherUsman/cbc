@@ -1916,10 +1916,17 @@ div#mCSB_1_container{
   display: block;
 }
 
+
+.image-column:nth-child(1) .image_block_one .image-box .image, .image-column:nth-child(3) .image_block_one .image-box .image{
+  margin-right: 50px;
+  margin-left: -50px;
+
+}
 .image_block_one .image-box .image{
   position: relative;
   display: block;
-  overflow: hidden;
+  /* overflow: hidden; */
+
 
 }
 
@@ -2590,6 +2597,8 @@ div#mCSB_1_container{
 .events-block-one .inner-box .image-box .image img{
   width: 100%;
   transition: all 500ms ease;
+  height: 100%;
+  object-fit: contain;
 }
 
 .events-block-one .inner-box:hover .image-box .image img{
@@ -5249,6 +5258,6 @@ div#mCSB_1_container{
 
 
 
-.navigation li:active a{
-  color: red !important;
+.navigation li.active a {
+  color: #ECAC20 !important;
 }

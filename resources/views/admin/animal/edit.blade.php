@@ -135,7 +135,7 @@
                         <hr class="p-2">
                         <div class="row"><h1>Properties</h1></div>
                         @foreach($animal->animalProps as $animalprops)
-                        <div class="row rowTemplateProps">
+                        <div class="row rowTemplateProps align-items-center">
                             <div class="col-sm-5">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.edit.title')}}<span
@@ -156,13 +156,18 @@
                                            placeholder="{{__('animals.admin.edit.details')}}">
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
+=======
+                            <div class="col-sm-1 mt-2">
+                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+>>>>>>> origin/rk-branch
                             </div>
                         </div>
                         @endforeach
 
-                        <div class="row rowTemplateProps">
+                        <div class="row rowTemplateProps align-items-center">
                             <div class="col-sm-5">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.title')}}<span
@@ -183,8 +188,13 @@
                                            placeholder="{{__('animals.admin.create.details')}}">
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-sm-1">
                                 <button type="button" class="btn btn-primary addRowProps mt-4">+</button>
+=======
+                            <div class="col-sm-1 mt-2">
+                                <button type="button" class="btn btn-primary addRowProps">+</button>
+>>>>>>> origin/rk-branch
                             </div>
                         </div>
                         <hr class="p-2">
