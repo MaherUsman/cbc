@@ -50,13 +50,13 @@
                     <ul class="info clearfix">
                         <li><i class="flaticon-telephone"></i><a href="tel:926668880000">92 666 888 0000</a></li>
                         <li><i class="flaticon-email"></i><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
-                        <li><i class="flaticon-pin"></i>60 broklyn street, new york</li>
+                        <!-- <li><i class="flaticon-pin"></i>60 broklyn street, new york</li> -->
                     </ul>
-                    <div class="inner">
+                    <!-- <div class="inner">
                         <div class="icon-box"><i class="flaticon-clock-1"></i></div>
                         <p>Monday - Sunday</p>
                         <h4>9:00am to 6:00pm</h4>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
