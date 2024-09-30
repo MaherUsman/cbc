@@ -162,10 +162,10 @@
                                 <ul class="links-list clearfix">
 
                                
-                                    <li><a href="{{route('frontend.about.us')}}">About Us</a></li>
-                                    <li><a href="{{route('frontend.listing.animal')}}">Animals</a></li>
-                                    <li><a href="{{route('frontend.events.index')}}">Events</a></li>
-                                    <li><a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
+                                    <li class="{{ Request::routeIs('frontend.about.us' ) ? 'active' : '' }}"><a href="{{route('frontend.about.us')}}">About Us</a></li>
+                                    <li class="{{ Request::routeIs('frontend.listing.animal' ) ? 'active' : '' }}"><a href="{{route('frontend.listing.animal')}}">Animals</a></li>
+                                    <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }} "><a href="{{route('frontend.events.index')}}">Events</a></li>
+                                    <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }} "> <a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
 
                                 </ul>
                             </div>
