@@ -40,7 +40,7 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('aboutUsChildGallery.list_aboutUsChildGallery') }}</h4>
+{{--                            <h4 class="card-title">{{ __('aboutUsChildGallery.list_aboutUsChildGallery') }}</h4>--}}
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('aboutUsGallery.add_aboutUsGallery') }}</button>
 {{--                            <a href="{{ route('about-us-galleries.create') }}"--}}
 {{--                               class="btn btn-primary">{{ __('aboutUsGallery.add_aboutUsGallery') }}</a>--}}

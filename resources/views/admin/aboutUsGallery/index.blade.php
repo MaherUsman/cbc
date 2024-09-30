@@ -40,7 +40,7 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('aboutUsGallery.list_aboutUsGallery') }}</h4>
+{{--                            <h4 class="card-title">{{ __('aboutUsGallery.list_aboutUsGallery') }}</h4>--}}
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('aboutUsGallery.add_aboutUsGallery') }}</button>
 {{--                            <a href="{{ route('about-us-galleries.create') }}"--}}
 {{--                               class="btn btn-primary">{{ __('aboutUsGallery.add_aboutUsGallery') }}</a>--}}
@@ -64,12 +64,12 @@
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
                                                 <div class="overlay-icon">
-                                                    <a href="{{route('aboutUsChildGalleries', $gallery->id)}}">
+                                                    <a href="{{route('aboutUsChildGalleries', $gallery->id)}}" title="Add Child Gallery Images" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="{{route('about-us-galleries.edit', $gallery)}}">
+                                                    <a href="{{route('about-us-galleries.edit', $gallery)}}" title="Edit Gallery Image" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
