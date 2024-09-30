@@ -1916,12 +1916,17 @@ div#mCSB_1_container{
   display: block;
 }
 
+
+.image-column:nth-child(1) .image_block_one .image-box .image, .image-column:nth-child(3) .image_block_one .image-box .image{
+  margin-right: 50px;
+  margin-left: -50px;
+
+}
 .image_block_one .image-box .image{
   position: relative;
   display: block;
   /* overflow: hidden; */
-  margin-right: 50px;
-  margin-left: -50px;
+
 
 }
 
