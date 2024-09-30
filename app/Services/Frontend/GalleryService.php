@@ -26,7 +26,9 @@ class GalleryService
     }
     public function aboutUsGallery($page = 1 , $id)
     {
-        $data['aboutUsGalleries'] = AboutUsChildGallery::where('about_us_gallery_id ' , $id)->paginate(9, ['*'], 'page', $page);
+        $data['aboutUsGalleries'] = AboutUsChildGallery::
+        where('about_us_gallery_id' , $id)
+        ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
         return $data;
     }
