@@ -17,6 +17,7 @@ class AboutUsGallery extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
         'image',
         'status',
     ];
@@ -38,7 +39,7 @@ class AboutUsGallery extends Model
         if ($value) {
             $this->attributes['slug'] = Str::slug($value, '-');
         } else {
-            $this->attributes['slug'] = Str::slug($this->attributes['title'], '-');
+            $this->attributes['slug'] = Str::slug($this->attributes['title'][0], '-');
         }
     }
 }

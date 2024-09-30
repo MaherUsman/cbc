@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <a href="{{route('about-uses.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                        <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('aboutUses.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
