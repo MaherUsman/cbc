@@ -28,7 +28,18 @@
                 <h6 class="section-title">{{$category->name}}</h6>
             </div>
             @endisset
-
+                <div class="row clearfix justify-content-end pb-5">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <div class="srch-wrap">
+                                <form>
+                                    <input type="text" class="input" placeholder="search...">
+                                </form>
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div class="row clearfix" id="animal-list">
                 @foreach($animals as $animal)
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
@@ -50,6 +61,11 @@
                         </div>
                     </div>
                 @endforeach
+                @if(count($animals) == 0)
+                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
+                            <h6>Animal Not Found</h6>
+                        </div>
+                    @endif
             </div>
 
             <!-- Load More Button -->
