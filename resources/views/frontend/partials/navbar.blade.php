@@ -86,9 +86,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu3">
                         <div class="form-container">
-                            <form method="post" action="">
+                            <form method="get" action="{{url('animals/listing')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}" placeholder="Search...."
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>
@@ -129,9 +129,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu4">
                         <div class="form-container">
-                            <form method="post" action="#">
+                            <form method="get" action="{{url('animals/listing')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}"
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>

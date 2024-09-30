@@ -22,7 +22,8 @@ class AnimalController extends Controller
     }
     public function listingAnimal(Request $request)
     {
-        $animals = $this->animalService->listingAnimals();
+        $search = $request->input('search-field'); // Capture the search parameter
+        $animals = $this->animalService->listingAnimals($search);
         if ($request->ajax()) {
 
             $morePages = $animals['animals']->hasMorePages();
