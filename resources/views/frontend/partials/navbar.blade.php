@@ -59,11 +59,12 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <!-- <li><a href="{{url('/')}}">Research & Articles</a></li> -->
+                            <li><a href="{{url('rearchArticle')}}">Research & Articles</a></li>
 
                             <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
-                            <li class=""><a href="#">Acitivities</a></li>
+                            <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
+                                    href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a
@@ -86,9 +87,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu3">
                         <div class="form-container">
-                            <form method="post" action="">
+                            <form method="get" action="{{url('animals/listing')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}" placeholder="Search...."
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>
@@ -129,9 +130,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu4">
                         <div class="form-container">
-                            <form method="post" action="#">
+                            <form method="get" action="{{url('animals/listing')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}"
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>

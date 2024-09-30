@@ -17,9 +17,16 @@ class AnimalService
             ->get();
         return $data;
     }
-    public function listingAnimals()
+    public function listingAnimals($search = null)
     {
-        $data['animals'] = Animal::paginate(9);
+        $query = Animal::query(); // Assuming Animal is your model
+
+        if (!empty($search)) {
+            $query->where('title', 'LIKE', '%' . $search . '%'); // Adjust field name if different
+        }
+
+        $data['animals'] = $query->paginate(10);
+//        $data['animals'] = Animal::paginate(9);
         return $data;
     }
     public function listingAnimalCategory($slug)
