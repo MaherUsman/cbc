@@ -2597,6 +2597,8 @@ div#mCSB_1_container{
 .events-block-one .inner-box .image-box .image img{
   width: 100%;
   transition: all 500ms ease;
+  height: 100%;
+  object-fit: contain;
 }
 
 .events-block-one .inner-box:hover .image-box .image img{
