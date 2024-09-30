@@ -26,6 +26,13 @@ class HomeController extends Controller
         $data = $this->service->aboutUs();
         return view('frontend.about-us' , $data);
     }
+
+    public function rearchArticle()
+    {
+        $data = $this->service->rearchArticle();
+        return view('frontend.rearch_article' , $data);
+    }
+
     public function contactUs()
     {
         return view('frontend.contact-us');

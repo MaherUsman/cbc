@@ -59,11 +59,12 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <!-- <li><a href="{{url('/')}}">Research & Articles</a></li> -->
+                            <li><a href="{{url('rearchArticle')}}">Research & Articles</a></li>
 
                             <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
-                            <li class=""><a href="#">Acitivities</a></li>
+                            <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
+                                    href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a

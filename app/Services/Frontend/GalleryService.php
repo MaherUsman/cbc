@@ -4,6 +4,7 @@ namespace App\Services\Frontend;
 
 use App\Models\AboutUsChildGallery;
 use App\Models\ActivityGallery;
+use App\Models\GalleriesContent;
 use App\Models\TopasGallery;
 use App\Models\VisitorGallery;
 
@@ -12,16 +13,19 @@ class GalleryService
     public function topas($page = 1)
     {
         $data['topasGallery'] = TopasGallery::paginate(9, ['*'], 'page', $page);
+        $data['topasGalleryContent'] = GalleriesContent::where('type', 'topas')->first();
         return $data;
     }
     public function visitors($page = 1)
     {
         $data['visitorGallery'] = VisitorGallery::paginate(9, ['*'], 'page', $page);
+        $data['visitorGalleryContent'] = GalleriesContent::where('type', 'visitor')->first();
         return $data;
     }
     public function activites($page = 1)
     {
         $data['activitesGallery'] = ActivityGallery::paginate(9, ['*'], 'page', $page);
+        $data['activityGalleryContent'] = GalleriesContent::where('type', 'activity')->first();
         return $data;
     }
     public function aboutUsGallery($page = 1 , $id)

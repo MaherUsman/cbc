@@ -16,7 +16,15 @@
         </div>
     </section>
     <!-- End Page Title -->
+    <section class="pt-5">
+        <div class="auto-container">
+            <div class="">
+                <h1 class="pb-3">{{$visitorGalleryContent->data['title']??''}}</h1>
+                {!! $visitorGalleryContent->data['details']??'' !!}
+            </div>
 
+        </div>
+    </section>
     <!-- gallery-page-section -->
     <section class="gallery-page-section">
         <div class="auto-container">
