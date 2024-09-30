@@ -156,13 +156,8 @@
                                            placeholder="{{__('animals.admin.edit.details')}}">
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <div class="col-sm-1 mt-2">
                                 <button type="button" class="btn btn-danger removeRowProps">-</button>
-=======
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
->>>>>>> origin/adil
                             </div>
                         </div>
                         @endforeach
@@ -188,13 +183,8 @@
                                            placeholder="{{__('animals.admin.create.details')}}">
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <div class="col-sm-1 mt-2">
                                 <button type="button" class="btn btn-primary addRowProps">+</button>
-=======
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRowProps mt-4">+</button>
->>>>>>> origin/adil
                             </div>
                         </div>
                         <hr class="p-2">
