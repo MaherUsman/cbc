@@ -66,20 +66,20 @@
                     <span class="nav-text">Site Introduction</span>
                 </a>
             </li>
-            <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
-                    <i class="la la-home"></i>
-                    <span class="nav-text">{{__('sidebar.abouts.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('abouts.index')}}">{{__('sidebar.abouts.index')}}</a>
-                    </li>
-                    <li class="{{ request()->is('admin/abouts/create') ? 'active mm-active' : '' }}">
-                        <a href="{{route('abouts.create')}}">{{__('sidebar.abouts.create')}}</a>
-                    </li>
-                </ul>
-            </li>
+{{--            <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">--}}
+{{--                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">--}}
+{{--                    <i class="la la-home"></i>--}}
+{{--                    <span class="nav-text">{{__('sidebar.abouts.name')}}</span>--}}
+{{--                </a>--}}
+{{--                <ul aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">--}}
+{{--                    <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('abouts.index')}}">{{__('sidebar.abouts.index')}}</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="{{ request()->is('admin/abouts/create') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('abouts.create')}}">{{__('sidebar.abouts.create')}}</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 
             {{-- <li class="nav-label">{{__('sidebar.aboutUs_page')}}</li> --}}
             <li {{ request()->is('admin/about-uses*') ? 'active mm-active' : '' }}>
@@ -97,9 +97,9 @@
                     <li class="{{ request()->is('admin/about-us-galleries*') ? 'active mm-active' : '' }}">
                         <a href="{{route('about-us-galleries.index')}}">{{__('sidebar.aboutUs.index')}}</a>
                     </li>
-                    <li class="{{ request()->is('admin/about-us-galleries/create') ? 'active mm-active' : '' }}">
-                        <a href="{{route('about-us-galleries.create')}}">{{__('sidebar.aboutUs.create')}}</a>
-                    </li>
+{{--                    <li class="{{ request()->is('admin/about-us-galleries/create') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('about-us-galleries.create')}}">{{__('sidebar.aboutUs.create')}}</a>--}}
+{{--                    </li>--}}
                 </ul>
             </li>
 

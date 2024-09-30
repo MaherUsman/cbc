@@ -11,7 +11,7 @@
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('animals.admin.edit.edit')}}</h6>
+{{--                    <h6 class="card-title">{{__('animals.admin.edit.edit')}}</h6>--}}
                     <form method="POST" id="formValidation" action="{{route('animals.update',['animal'=>$animal])}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps">-</button>
+                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
                             </div>
                         </div>
                         @endforeach
@@ -184,7 +184,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRowProps">+</button>
+                                <button type="button" class="btn btn-primary addRowProps mt-4">+</button>
                             </div>
                         </div>
                         <hr class="p-2">
