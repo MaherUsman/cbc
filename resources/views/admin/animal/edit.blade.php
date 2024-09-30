@@ -156,13 +156,8 @@
                                            placeholder="{{__('animals.admin.edit.details')}}">
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-danger removeRowProps mt-4">-</button>
-=======
                             <div class="col-sm-1 mt-2">
                                 <button type="button" class="btn btn-danger removeRowProps">-</button>
->>>>>>> origin/rk-branch
                             </div>
                         </div>
                         @endforeach
