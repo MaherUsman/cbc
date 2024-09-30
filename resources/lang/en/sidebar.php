@@ -70,6 +70,11 @@ return [
         'index' => 'All Activity Gallery',
         'create' => 'Add Activity',
     ],
+    'team' => [
+        'name' => 'Team',
+        'index' => 'All Team',
+        'create' => 'Add Team',
+    ],
     'animalCategories' => [
         'index' => 'Animal Categories',
     ],

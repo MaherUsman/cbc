@@ -14,6 +14,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\GalleriesContentController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
@@ -31,6 +32,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
         Route::view('login', 'auth.login')->name('adminLogin');
+//        Route::get('login', function () {
+//            if (auth()->check()) {
+//                return redirect()->route('admin.dashboard');
+//            }
+//            return view('auth.login');
+//        })->name('adminLogin');
         Route::post('login', [AuthenticationController::class, 'login'])->name('login');
     });
 
@@ -59,6 +66,8 @@ Route::prefix('admin')->group(function () {
         Route::post('update-abouts-order', [AboutController::class, 'updateOrder'])->name('abouts.updateOrder');
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
+
+        Route::post('galleries-content-store', [GalleriesContentController::class, 'content_store'])->name('galleriesContent.store');
 
         Route::resource('activity-galleries', ActivityGalleryController::class);
         Route::resource('topas-galleries', TopasGalleryController::class);
@@ -100,13 +109,16 @@ Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->n
 
 Route::get('/' , [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
+Route::group([ 'as' => 'frontend.'] , function (){
 
     Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])
         ->name('animal.categories');
     Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
     Route::get('animals/listing/{category}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimalCategory'])->name('listing.animal.category');
     Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
+    Route::get('about-us/gallery/{slug}' , [\App\Http\Controllers\Frontend\GalleryController::class , 'aboutUsGallery'])
+        ->name('aboutus.gallery');
+    Route::get('tobas/gallery' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
     Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
     Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
@@ -114,11 +126,10 @@ Route::group(['prefix' => 'frontend'  , 'as' => 'frontend.'] , function (){
     Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])
         ->name('find.event');
     Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
-    Route::get('tobas' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
     Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
+    Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
-
 });
 
 Route::get('{any?}', function () {view('welcome');})->where('any', '.*');

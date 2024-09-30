@@ -32,7 +32,7 @@
                                     <div class="post-date"><h6>16<span>dec</span></h6></div>
                                 </div>
                                 <div class="lower-content">
-                                    <h2><a href="{{url($event->slug)}}">{{$event->title}}</a></h2>
+                                    <h2><a href="{{ route('frontend.find.event',$event->slug) }}">{{$event->title}}</a></h2>
                                     <p>{!! $event->details !!}</p>
 {{--                                    <div class="btn-box"><a href="{{url($event->slug)}}" class="theme-btn">view more</a></div>--}}
                                 </div>

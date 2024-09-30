@@ -9,7 +9,7 @@ class ContactUsService
     public function submitContactUsForm($request)
     {
         ContactUs::create([
-           'name' => $request->name,
+           'full_name' => $request->username,
            'email' => $request->email,
            'subject' => $request->subject,
            'message' => $request->message,

@@ -12,7 +12,9 @@ class AnimalService
         $data['animal'] = Animal::where('slug' , $slug)
             ->with('animalProps' , 'animalGalleries')
             ->first();
-        $data['relatedAnimals'] = Animal::limit(3);
+        $data['relatedAnimals'] = Animal::inRandomOrder()
+            ->limit(3)
+            ->get();
         return $data;
     }
     public function listingAnimals()

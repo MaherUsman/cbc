@@ -11,6 +11,7 @@ use App\Http\Resources\ActivityGalleryCollection;
 use App\Http\Resources\ActivityGalleryResource;
 use App\Models\AboutUsGallery;
 use App\Models\ActivityGallery;
+use App\Models\GalleriesContent;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class ActivityGalleryService
     public function index()
     {
         $activityGalleries = ActivityGallery::all();
-        return view('admin.activityGallery.index', compact('activityGalleries'));
+        $topasGalleriesContent = GalleriesContent::where('type', 'activity')->first();
+        return view('admin.activityGallery.index', compact('activityGalleries', 'topasGalleriesContent'));
     }
 
     public function getActivityGallery()

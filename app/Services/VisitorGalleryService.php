@@ -10,6 +10,7 @@ use App\Http\Resources\AboutUsGalleryResource;
 use App\Http\Resources\VisitorGalleryCollection;
 use App\Http\Resources\VisitorGalleryResource;
 use App\Models\AboutUsGallery;
+use App\Models\GalleriesContent;
 use App\Models\VisitorGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,7 +21,8 @@ class VisitorGalleryService
     public function index()
     {
         $visitorGalleries = VisitorGallery::all();
-        return view('admin.visitorGallery.index', compact('visitorGalleries'));
+        $topasGalleriesContent = GalleriesContent::where('type', 'visitor')->first();
+        return view('admin.visitorGallery.index', compact('visitorGalleries', 'topasGalleriesContent'));
     }
 
     public function getVisitorGallery()

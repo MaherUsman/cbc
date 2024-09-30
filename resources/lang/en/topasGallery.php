@@ -4,6 +4,7 @@ return [
     'list_topasGallery' => 'Tobas Gallery',
     'add_topasGallery' => 'Add Tobas Gallery',
     'name' => 'Tobas Gallery',
+    'page_content' => 'Tobas Gallery Page Content',
     'pageTitle' => 'Tobas Gallery',
     'reOrder' => 'Reorder Tobas Gallery',
     'admin' => [

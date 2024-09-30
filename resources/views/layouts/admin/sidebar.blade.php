@@ -157,6 +157,20 @@
                 </ul>
             </li>
 
+            <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
+                    <i class="la la-user-times"></i>
+                    <span class="nav-text">{{__('sidebar.team.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('teams.index')}}">{{__('sidebar.team.index')}}</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
             {{-- <li class="nav-label">{{__('sidebar.setting_page')}}</li> --}}
             <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">

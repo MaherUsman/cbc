@@ -133,11 +133,11 @@
                         <div class="inner-box">
                             <figure class="image-box"><img src="{{asset($amazing_animal->image)}}" alt=""></figure>
                             <div class="content-box">
-                                <h3><a href="{{$amazing_animal->slug}}">{{$amazing_animal->title}}</a></h3>
+                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
                             </div>
                             <div class="overlay-content">
-                                <h3><a href="{{url($amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
-                                <div class="link"><a href="{{url($amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
+                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
+                                <div class="link"><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="btn-box d-flex justify-content-center align-items-center mt-5">
-            <a href="animals.html" class="theme-btn btn-one">discover more</a>
+            <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
     <!-- gallery-section end -->
@@ -164,7 +164,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 title-column">
                     <div class="sec-title light">
                         <h2>Check zoo upcoming events</h2>
-                        <a href="index.html" class="theme-btn btn-one">view all</a>
+                        <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 inner-column">

@@ -18,7 +18,9 @@ class HomeService
     {
         $data['sliders'] = Slider::all();
         $data['intro'] = Intro::first();
-        $data['animals'] = Animal::where('is_homepage' , 'yes')->get();
+        $data['animals'] = Animal::where('show_on_top_bar' , '1')
+            ->orderBy('display_order' , 'ASC')
+            ->get();
         $data['amazing_animals'] = Animal::where('is_amazing' , 'yes')->get();
         $data['events'] = Blog::orderBy('start_date' , 'desc')
             ->limit(3)

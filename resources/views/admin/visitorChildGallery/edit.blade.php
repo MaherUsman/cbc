@@ -19,9 +19,9 @@
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('visitorChildGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
+                                    <label class="form-label">{{__('visitorChildGallery.admin.create.title')}}{{--<span
+                                            class="text-danger">*</span> --}}</label>
+                                    <input type="text" data-rule-required="false"
                                            data-msg-required="{{__('visitorChildGallery.admin.create.title_message')}}"
                                            name="title" class="form-control" value="{{$visitorChildGallery->title}}"
                                            placeholder="{{__('visitorChildGallery.admin.create.title')}}">
