@@ -508,6 +508,8 @@ img {
     height: 8em;
     width: 8em;
   }
+  
+
 }
 @media screen and (max-width: 500px) {
   .handle-preloader .animation-preloader .spinner {
