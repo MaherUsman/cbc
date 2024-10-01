@@ -28,7 +28,9 @@
                         <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><a href="#"><img src="{{asset($event->image)}}" alt=""></a></figure>
+                                    <figure class="image"><a href="#"><img src="{{asset($event->image ?? 'assets/images/available.png')}}" alt=""></a></figure>
+
+
                                     <div class="post-date"><h6>16<span>dec</span></h6></div>
                                 </div>
                                 <div class="lower-content">
@@ -50,8 +52,8 @@
                             <div class="post-inner">
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
-                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
-                                        <h6><a href="{{url($event->slug)}}">{{$event->title}}</a></h6>
+                                        <figure class="post-thumb"><a href="{{ route('frontend.find.event',$recentEvent->slug) }}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
+                                        <h6><a href="{{ route('frontend.find.event',$recentEvent->slug) }}">{{$recentEvent->title}}</a></h6>
                                     </div>
                                 @endforeach
                             </div>

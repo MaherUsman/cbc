@@ -32,7 +32,8 @@
                                         <div class="form-group">
                                             <label class="form-label"
                                             >{{__('intros.admin.edit.details')}}</label>
-                                            <textarea name="details" id="ckeditor">{{$intro->details}}</textarea>
+                                            <textarea name="details" id="ckeditor" data-rule-required="true"
+                                                      data-msg-required="Detail field is required">{{$intro->details}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -83,6 +84,17 @@
             var imageColName = 'pic';
 
             $('#formValidation').validate({
+                ignore: [],
+                rules: {
+                    details: {
+                        required: true
+                    }
+                },
+                messages: {
+                    details: {
+                        required: "Detail Field is required"
+                    }
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 

@@ -48,6 +48,7 @@
 
                     // Update the page count
                     $('#load-more').data('page', page);
+                  
 
                     // Check if there are more pages
                     if (!response.morePages) {

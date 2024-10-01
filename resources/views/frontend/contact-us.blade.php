@@ -48,8 +48,8 @@
                 <div class="content-box">
                     <h2>get in touch with us</h2>
                     <ul class="info clearfix">
-                        <li><i class="flaticon-telephone"></i><a href="tel:926668880000">92 666 888 0000</a></li>
-                        <li><i class="flaticon-email"></i><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
+                        <li><i class="flaticon-telephone"></i><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></li>
+                        <li><i class="flaticon-email"></i><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></li>
                         <!-- <li><i class="flaticon-pin"></i>60 broklyn street, new york</li> -->
                     </ul>
                     <!-- <div class="inner">
@@ -72,8 +72,17 @@
                         <h2>have question? <br />drop a line</h2>
                     </div>
 
+                    @if($errors->any())
+                        {{--                        @dd($errors)--}}
+                        <div id="error-message" class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
                     @if(session('success'))
-                        <div class="alert alert-success">
+                        <div id="success-message" class="alert alert-success">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -142,6 +151,29 @@
 
 @push('scripts')
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var errorDiv = document.getElementById('error-message');
+            var successDiv = document.getElementById('success-message');
+            var offset = 135; // Change this value to adjust how much higher you want to scroll
+
+            function scrollToElement(element) {
+                var elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                var offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            if (errorDiv) {
+                scrollToElement(errorDiv);
+            } else if (successDiv) {
+                scrollToElement(successDiv);
+            }
+        });
+
+
         $(document).ready(function() {
             var input = document.querySelector("#phone");
             var iti = window.intlTelInput(input, {

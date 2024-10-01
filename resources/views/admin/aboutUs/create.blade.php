@@ -30,14 +30,14 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('aboutUses.admin.create.p1')}}</label>
-                                    <textarea name="p1" rows="4" class="form-control" data-rule-required="true"
+                                    <textarea name="p1" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.p1_message')}}"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('aboutUses.admin.create.p2')}}</label>
-                                    <textarea name="p2" rows="4" class="form-control" data-rule-required="true"
+                                    <textarea name="p2" id="para2" rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.p2_message')}}"></textarea>
                                 </div>
                             </div>

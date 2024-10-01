@@ -36,7 +36,7 @@
 
                             </li>
 
-                            <li class="dropdown "><a href="#">Our Animals</a>
+                            <li class="dropdown {{ Request::is('animal/*') || Request::routeIs('frontend.animal.categories') ? 'active' : '' }}"><a href="#">Our Animals</a>
                                 <ul>
                                     @foreach($animals as $animal)
                                     <li class="{{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
@@ -59,17 +59,19 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <!-- <li><a href="{{url('/')}}">Research & Articles</a></li> -->
+                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a
+                                    href="{{url('research-article')}}">Research & Articles</a></li>
 
                             <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
-                            <li class=""><a href="#">Acitivities</a></li>
+                            <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
+                                    href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
-                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.career.store')}}">Career</a></li>
                             <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.contact.us')}}">Contact Us</a></li>
+                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a
+                                    href="{{route('frontend.career.store')}}">Career</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -86,9 +88,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu3">
                         <div class="form-container">
-                            <form method="post" action="">
+                            <form method="get" action="{{url('search/animals')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}" placeholder="Search...."
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>
@@ -129,9 +131,9 @@
                         aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
                     <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu4">
                         <div class="form-container">
-                            <form method="post" action="#">
+                            <form method="get" action="{{url('search/animals')}}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search...."
+                                    <input type="search" name="search-field" value="{{ request('search-field') }}"
                                         required="">
                                     <button type="submit" class="search-btn"><span
                                             class="fas fa-search"></span></button>

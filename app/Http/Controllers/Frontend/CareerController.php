@@ -20,18 +20,17 @@ class CareerController extends Controller
     }
     public function submitApplication(Request $request)
     {
+
+        // Validate the form data
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|email|unique:career_applications,email',
+            'phone' => 'required|string|max:20|unique:career_applications,phone',
+            'subject' => 'required|string|max:255',
+            'upload' => 'required|file|mimes:pdf,doc,docx|max:2048',
+        ]);
+
         try {
-            // Validate the form data
-            $validated = $request->validate([
-                'username' => 'required|string|max:255',
-                'email' => 'required|email|unique:career_applications,email',
-                'phone' => 'required|string|max:20|unique:career_applications,phone',
-                'subject' => 'required|string|max:255',
-                'upload' => 'required|file|mimes:pdf,doc,docx|max:2048',
-            ]);
-
-
-
             // Process the application through the service
             $this->careerService->processApplication($validated, $request->file('upload'));
 
@@ -45,7 +44,7 @@ class CareerController extends Controller
             \Log::error('Application Submission Error: ' . $e->getMessage());
 
             // Redirect back with the error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred while submitting your application. Please try again later.'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred while submitting your application. Please try again later.'.$e->getMessage()])->withInput();
         }
     }
 

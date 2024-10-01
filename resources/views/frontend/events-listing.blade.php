@@ -21,14 +21,15 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 content-side">
-                    <div class="blog-classic-content">
+                    <div class="blog-classic-content event-listing">
                         @foreach($events as $event)
                             <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
-                                            <a href="{{ url('events/'.$event['slug']) }}">
-                                                <img src="{{ asset($event['image']) }}" alt="{{ $event['title'] }}">
+                                            <a href="{{ route('frontend.find.event',$event['slug']) }}">
+                                                <!-- <img src="{{ asset($event['image']) }}" alt="{{ $event['title'] }}"> -->
+                                                <img src="{{ asset($event['image'] ?? 'assets/images/available.png')}}" alt="{{ $event['title'] }}">
                                             </a>
                                         </figure>
                                         <div class="post-date">
@@ -43,7 +44,8 @@
                                         <h2>
                                             <a href="{{ route('frontend.find.event',$event['slug']) }}">{{ $event['title'] }}</a>
                                         </h2>
-                                        <p>{!! $event['details'] !!}</p>
+                                        <a href="{{ route('frontend.find.event',$event['slug']) }}">
+                                        <p>{!! $event['details'] !!}</p></a>
 
                                     </div>
                                 </div>
@@ -61,8 +63,8 @@
                             <div class="post-inner">
                                 @foreach($recentEvents as $recentEvent)
                                     <div class="post">
-                                        <figure class="post-thumb"><a href="{{url($event->slug)}}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
-                                        <h6><a href="{{ route('frontend.find.event',$event->slug) }}">{{$event->title}}</a></h6>
+                                        <figure class="post-thumb"><a href="{{ route('frontend.find.event',$recentEvent->slug) }}"><img src="{{asset($recentEvent->image)}}" alt=""></a></figure>
+                                        <h6><a href="{{ route('frontend.find.event',$recentEvent->slug) }}">{{$recentEvent->title}}</a></h6>
                                     </div>
                                 @endforeach
 

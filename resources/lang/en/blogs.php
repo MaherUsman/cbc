@@ -39,6 +39,7 @@ return [
             'image_message' => 'Please Select Image',
             'start_date_message' => 'Please Enter Start Date',
             'details_message' => 'Please Enter Details',
+            'address_message' => 'Please Enter Address',
             'title_required' => 'Title is Required',
             'details_required' => 'Details are Required',
             'banner_image' => 'Banner Image',

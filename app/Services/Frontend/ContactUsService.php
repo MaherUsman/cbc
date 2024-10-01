@@ -12,7 +12,7 @@ class ContactUsService
            'full_name' => $request->username,
            'email' => $request->email,
            'subject' => $request->subject,
-           'message' => $request->message,
+           'details' => $request->message,
            'phone_number' => $request->phone,
         ]);
     }

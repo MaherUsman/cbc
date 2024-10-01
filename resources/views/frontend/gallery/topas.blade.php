@@ -19,14 +19,11 @@
 
     <section class="pt-5">
         <div class="auto-container">
-            <div class="row clearfix">
-                <h1 class="pb-3">Tobas</h1>
-                <p>
-                lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-           
+            <div class="">
+                <h1 class="pb-3">{{$topasGalleryContent->data['title']??''}}</h1>
+                {!! $topasGalleryContent->data['details']??'' !!}
             </div>
-          
+
         </div>
     </section>
 
@@ -58,17 +55,18 @@
                 url: '{{ route("frontend.topas.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (data) {
-                    $('#gallery-items').append(data);
+                success: function (response) {
+                    $('#gallery-items').append(response.html);
                     $('#load-more').data('page', page);
+                    Fancybox.bind("[data-fancybox='gallery']", {});
 
-                    // If no more pages, hide the Load More button
-                    if (data.trim() === '') {
-                        $('#load-more').hide();
+
+                    if (!response.morePages) {
+                        $('#load-more').hide();  // Hide the button when there are no more pages
                     }
                 }
             });
         });
     </script>
-   
+
 @endpush

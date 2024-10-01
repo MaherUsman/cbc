@@ -33,6 +33,7 @@
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('sliders.admin.create.slink_message')}}"
                                            name="slink" value="{{old('slink')}}" class="form-control"
+                                           data-rule-max="255"
                                            placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -41,8 +42,10 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                    >{{__('sliders.admin.create.details')}}</label>
-                                    <textarea name="details" id="ckeditor"></textarea>
+                                    >{{__('sliders.admin.create.details')}}<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="details" data-rule-required="true"
+                                              data-msg-required="Detail is Required"  id="ckeditor"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -96,6 +99,17 @@
             var imageColName = 'image';
 
             $('#formValidation').validate({
+                ignore: [],
+                rules: {
+                    details: {
+                        required: true
+                    }
+                },
+                messages: {
+                    details: {
+                        required: "Detail is Required"
+                    }
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 

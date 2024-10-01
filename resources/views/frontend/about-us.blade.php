@@ -38,7 +38,7 @@
                             </div>
                             <div class="text">
                                 <p>
-                                    {{$aboutUs->p1}}
+                                    {!! $aboutUs->p1 !!}
                                 </p>
 
                             </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="text">
-                <p>{{$aboutUs->p2}}</p>
+                <p>{!! $aboutUs->p2 !!}</p>
 
             </div>
         </div>

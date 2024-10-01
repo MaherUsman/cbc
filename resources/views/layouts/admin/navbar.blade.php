@@ -14,7 +14,7 @@
                     $logo = $user->admin->logo ?: '';
                 }
             @endphp--}}
-            <img src="{{ asset(Auth::user()->pic?:"images/avatar/1.jpg") }}" width="20" alt="User Profile">
+            <img src="{{ asset(Auth::user()->pic?:"images/no-img-avatar.png") }}" width="20" alt="User Profile">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             <a href="{{ route('admin.profile') }}" class="dropdown-item ai-icon">

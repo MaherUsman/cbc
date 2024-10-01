@@ -39,4 +39,10 @@ class HomeService
         $data['galleries'] = AboutUsGallery::all();
         return $data;
     }
+
+    public function rearchArticle()
+    {
+        $data = [];
+        return $data;
+    }
 }

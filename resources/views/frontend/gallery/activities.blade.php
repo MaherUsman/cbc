@@ -16,7 +16,15 @@
         </div>
     </section>
     <!-- End Page Title -->
+    <section class="pt-5">
+        <div class="auto-container">
+            <div class="">
+                <h1 class="pb-3">{{$activityGalleryContent->data['title']??''}}</h1>
+                {!! $activityGalleryContent->data['details']??'' !!}
+            </div>
 
+        </div>
+    </section>
     <!-- gallery-page-section -->
     <section class="gallery-page-section">
         <div class="auto-container">
@@ -27,6 +35,8 @@
                 @if ($activitesGallery->hasMorePages())
                     <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
+
+              
             </div>
         </div>
     </section>
@@ -34,6 +44,7 @@
 @endsection
 
 @push('scripts')
+
     <script>
         $(document).on('click', '#load-more', function () {
             let page = $(this).data('page');
@@ -48,6 +59,7 @@
 
                     // Update the page count
                     $('#load-more').data('page', page);
+                    Fancybox.bind("[data-fancybox='gallery']", {});
 
                     // Check if there are more pages
                     if (!response.morePages) {

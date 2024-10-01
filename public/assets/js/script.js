@@ -155,31 +155,29 @@
 	// 		}
 	// 	});
 	// }
-	if ($('.lightbox-image').length) {
-		$('.lightbox-image').fancybox({
-			openEffect: 'fade',
-			closeEffect: 'fade',
-			toolbar: true,
-			buttons: [
-		        "zoom",
-				"slideShow",
-				"thumbs",
-				"share"  ,
-				"download",
-				"close"  ,
+
+    Fancybox.bind("[data-fancybox]", {
+
+    });
 
 
-			],
-			helpers: {
-				media: {}
-			},
-			// zoom: true
-		});
-	}
+    Fancybox.bind("[data-fancybox='gallery']", {
+        Image: {
+            zoom: true,
+        },
+        Share: {
+            tpl: '<ul>' +
+                '<li><a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" class="btn btn-facebook"><i class="fa fa-facebook"></i></a></li>' +
+                '<li><a href="https://twitter.com/share?url={{url}}" class="btn btn-twitter"><i class="fa fa-twitter"></i></a></li>' +
+                '<li><a href="mailto:?subject=I wanted you to see this site&amp;body={{url}}" class="btn btn-email"><i class="fa fa-envelope"></i></a></li>' +
+                '</ul>'
+        }
+    });
 
 
 
-	//Accordion Box
+
+    //Accordion Box
 	if($('.accordion-box').length){
 		$(".accordion-box").on('click', '.acc-btn', function() {
 
