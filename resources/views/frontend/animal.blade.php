@@ -68,8 +68,7 @@
                             <div class="inner-box">
                                 <figure class="image-box"><img src="{{asset($animalGalleries->image)}}" alt=""></figure>
                                 <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                    <a href="{{asset($animalGalleries->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery"><i class="flaticon-plus-symbol">
-
+                                    <a href="{{asset($animalGalleries->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">         <i class="fa fa-eye"></i>
 
                                         </i>
 
