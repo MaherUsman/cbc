@@ -56,6 +56,7 @@
 
                     // Update the page count
                     $('#load-more').data('page', page);
+                    Fancybox.bind("[data-fancybox='gallery']", {});
 
                     // Check if there are more pages
                     if (!response.morePages) {

@@ -5309,9 +5309,6 @@ div#mCSB_1_container{
 .navigation li.active a {
   color: #ECAC20 !important;
 }
-.fancybox-button--fullscreen{
-  display: none !important;
-}
 
 /* .intro-details p {
   display: -webkit-box;

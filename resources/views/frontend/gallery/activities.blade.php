@@ -44,24 +44,26 @@
 @endsection
 
 @push('scripts')
+
     <script>
-
-
         $(document).on('click', '#load-more', function () {
             let page = $(this).data('page');
             page += 1;
 
             $.ajax({
-                url: '{{ route("frontend.topas.gallery") }}',
+                url: '{{ route("frontend.activities.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (data) {
-                    $('#gallery-items').append(data);
-                    $('#load-more').data('page', page);
+                success: function (response) {
+                    $('#gallery-items').append(response.html);
 
-                    // If no more pages, hide the Load More button
-                    if (data.trim() === '') {
-                        $('#load-more').hide();
+                    // Update the page count
+                    $('#load-more').data('page', page);
+                    Fancybox.bind("[data-fancybox='gallery']", {});
+
+                    // Check if there are more pages
+                    if (!response.morePages) {
+                        $('#load-more').hide();  // Hide the button when there are no more pages
                     }
                 }
             });
