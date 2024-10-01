@@ -59,7 +59,8 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <li><a href="{{url('rearchArticle')}}">Research & Articles</a></li>
+                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a
+                                    href="{{url('research-article')}}">Research & Articles</a></li>
 
                             <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
