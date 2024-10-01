@@ -160,8 +160,8 @@
 			openEffect: 'fade',
 			closeEffect: 'fade',
 			toolbar: true, 
+			zoom: true ,
 			buttons: [
-		        "zoom",
 				"slideShow", 
 				"thumbs",   
 				"share"  , 
@@ -173,7 +173,7 @@
 			helpers: {
 				media: {}
 			},
-			zoom: true 
+		
 		});
 	}
 	
