@@ -163,8 +163,12 @@
 			buttons: [
 				"zoom",      
 				"slideShow", 
-				"thumbs",    
-				"close"    
+				"thumbs",   
+				"share"  , 
+				"download",
+				"close"  ,
+
+			
 			],
 			helpers: {
 				media: {}
