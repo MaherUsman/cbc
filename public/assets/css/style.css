@@ -5174,7 +5174,9 @@ div#mCSB_1_container{
 }
 
 
-
+.show-more:focus{
+  box-shadow: none !important;
+}
 
 .highness-img img{
   height: 400px;
@@ -5184,10 +5186,11 @@ div#mCSB_1_container{
 
 }
 
-.highness-text {
-  color: #000;
+.highness-text p{
+  color: #71747a;
   text-align: justify;
-  line-height: 25px;
+  line-height: 35px;
+  font-size: 16px;
 }
 
 /*/--- search animals styles start here ---/*/

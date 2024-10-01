@@ -35,22 +35,22 @@
                             <img src="{{ asset($intro->image) }}" />
                         </div>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 highness-text">
                         <div class="sec-title mb-2">
                             <h2>{{ $intro->title }}</h2>
                         </div>
 
                         <?php
                         // Set the character limit
-                        $charLimit = 1389;
+                        $charLimit = 1000;
 
                         // Check if the content length exceeds the character limit
                         $introDetails = strip_tags($intro->details); // Remove HTML tags for accurate character counting
                         if (strlen($introDetails) > $charLimit) {
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
-                            $shortDetails = substr($introDetails, 0, $charLimit) . '...';
+                            $shortDetails = substr($introDetails, 0, $charLimit) . '... <span><a href="#full-text-modal" data-fancybox class="btn p-0 show-more">Show More</a></span>';
                             echo '<p class="highness-text">' . $shortDetails . '</p>';
-                            echo '<a href="#full-text-modal" data-fancybox class="btn btn-primary">Show More</a>';
+                           
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
