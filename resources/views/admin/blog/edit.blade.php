@@ -35,14 +35,15 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('blogs.admin.create.slug')}}<span
                                             class="text-danger"></span> </label>
-                                    <input type="text" data-msg-required="{{__('blogs.admin.edit.title_message')}}"
+                                    <input type="text" data-rule-required="true" data-msg-required="{{__('blogs.admin.edit.title_message')}}"
                                            name="slug" value="{{ $blog->slug }}" class="form-control"
                                            placeholder="{{__('blogs.admin.create.slug')}}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="form-label">{{__('blogs.admin.create.start_time')}}</label>
+                                    <label class="form-label">{{__('blogs.admin.create.start_time')}}<span
+                                            class="text-danger">*</span></label>
                                     <div class="input-group clockpicker">
                                         <input name="time" value="{{ $blog->time }}" type="text" class="form-control" data-rule-required="false" autocomplete="off"
                                                data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
@@ -54,7 +55,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="datepicker">{{__('blogs.admin.edit.start_date')}}</label>
+                                           for="datepicker">{{__('blogs.admin.edit.start_date')}}<span
+                                            class="text-danger">*</span></label>
                                     <div class="input-hasicon mb-xl-0 mb-3">
                                         <input name="start_date"
                                                class="datepicker-default form-control"
@@ -71,7 +73,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                    >{{__('blogs.admin.edit.details')}}</label>
+                                    >{{__('blogs.admin.edit.details')}}<span
+                                            class="text-danger">*</span></label>
                                     <textarea name="details" id="ckeditor">{{$blog->details}}</textarea>
                                 </div>
                             </div>
@@ -87,7 +90,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('blogs.admin.edit.image')}}</label>
+                                    <label class="form-label">{{__('blogs.admin.edit.image')}}<span class="text-danger">(770 x 417)</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*">
                                 </div>
@@ -99,7 +102,7 @@
                             </div><!-- Col -->
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('blogs.admin.edit.banner_image')}}</label>
+                                    <label class="form-label">{{__('blogs.admin.edit.banner_image')}}<span class="text-danger">(1894 x 496)</span></label>
                                     <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
                                            accept="image/*">
                                 </div>
@@ -166,6 +169,17 @@
             var imageColName = 'pic';
 
             $('#formValidation').validate({
+                ignore: [], // Don't ignore hidden fields (CKEditor hides the actual textarea)
+                rules: {
+                    details: {
+                        required: true
+                    }
+                },
+                messages: {
+                    details: {
+                        required: "{{__('blogs.admin.create.details_message')}}"
+                    }
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 

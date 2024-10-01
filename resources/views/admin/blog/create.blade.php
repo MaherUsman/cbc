@@ -4,7 +4,15 @@
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/pickadate/themes/default.date.css')}}">
     <link href="{{asset('vendor/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
+
+    <style>
+        .lable-postion-handler label{
+            position: absolute !important;
+            bottom: -18px !important;
+        }
+    </style>
 @endsection
+
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => __('blogs.admin.breadcrumbs.name'), 'route' => 'blogs.index'],
@@ -43,7 +51,7 @@
                                 <div class="form-group">
                                         <label class="form-label">{{__('blogs.admin.create.start_time')}}<span
                                                 class="text-danger">*</span></label>
-                                        <div class="input-group clockpicker">
+                                        <div class="input-group clockpicker lable-postion-handler">
                                             <input name="time" type="text" class="form-control" data-rule-required="true" autocomplete="off"
                                                    data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
                                                    placeholder="{{__('blogs.admin.create.start_time')}}">
@@ -173,6 +181,17 @@
             var imageColName = 'image';
 
             $('#formValidation').validate({
+                ignore: [], // Don't ignore hidden fields (CKEditor hides the actual textarea)
+                rules: {
+                    details: {
+                        required: true
+                    }
+                },
+                messages: {
+                    details: {
+                        required: "{{__('blogs.admin.create.details_message')}}"
+                    }
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 
