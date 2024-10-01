@@ -48,8 +48,8 @@
                 <div class="content-box">
                     <h2>get in touch with us</h2>
                     <ul class="info clearfix">
-                        <li><i class="flaticon-telephone"></i><a href="tel:926668880000">92 666 888 0000</a></li>
-                        <li><i class="flaticon-email"></i><a href="mailto:needhelp@company.com">needhelp@company.com</a></li>
+                        <li><i class="flaticon-telephone"></i><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></li>
+                        <li><i class="flaticon-email"></i><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></li>
                         <!-- <li><i class="flaticon-pin"></i>60 broklyn street, new york</li> -->
                     </ul>
                     <!-- <div class="inner">
