@@ -19,7 +19,11 @@ class GalleryController extends Controller
         $data = $this->galleryService->topas($page);
 
         if ($request->ajax()) {
-            return view('frontend.gallery.partials.tobas-gallery-items', ['topasGallery' => $data['topasGallery']])->render();
+            $morePages = $data['topasGallery']->hasMorePages();
+            return response()->json([
+                'html' => view('frontend.gallery.partials.tobas-gallery-items', ['topasGallery' => $data['topasGallery']])->render(),
+                'morePages' => $morePages,
+            ]);
         }
 
         return view('frontend.gallery.topas', $data);

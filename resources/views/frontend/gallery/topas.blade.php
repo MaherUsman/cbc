@@ -55,17 +55,19 @@
                 url: '{{ route("frontend.topas.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (data) {
-                    $('#gallery-items').append(data);
+                success: function (response) {
+                    $('#gallery-items').append(response.html);
                     $('#load-more').data('page', page);
+                    Fancybox.bind("[data-fancybox='gallery']", {});
 
-                    // If no more pages, hide the Load More button
-                    if (data.trim() === '') {
-                        $('#load-more').hide();
+
+
+                    if (!response.morePages) {
+                        $('#load-more').hide();  // Hide the button when there are no more pages
                     }
                 }
             });
         });
     </script>
-   
+
 @endpush
