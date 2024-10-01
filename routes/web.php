@@ -126,11 +126,14 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])
         ->name('find.event');
     Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
+    Route::get('research-article' , [\App\Http\Controllers\Frontend\HomeController::class , 'rearchArticle'])->name('rearchArticle');
     Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
     Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
 });
 
-Route::get('{any?}', function () {view('welcome');})->where('any', '.*');
+Route::get('{any?}', function () {
+    return view('welcome');
+})->where('any', '.*');
 
