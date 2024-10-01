@@ -27,8 +27,9 @@
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
-                                            <a href="{{ url('events/'.$event['slug']) }}">
-                                                <img src="{{ asset($event['image']) }}" alt="{{ $event['title'] }}">
+                                            <a href="{{ route('frontend.find.event',$event['slug']) }}">
+                                                <!-- <img src="{{ asset($event['image']) }}" alt="{{ $event['title'] }}"> -->
+                                                <img src="{{ asset($event['image'] ?? 'assets/images/available.png')}}" alt="{{ $event['title'] }}">
                                             </a>
                                         </figure>
                                         <div class="post-date">
@@ -43,7 +44,8 @@
                                         <h2>
                                             <a href="{{ route('frontend.find.event',$event['slug']) }}">{{ $event['title'] }}</a>
                                         </h2>
-                                        <p>{!! $event['details'] !!}</p>
+                                        <a href="{{ route('frontend.find.event',$event['slug']) }}">
+                                        <p>{!! $event['details'] !!}</p></a>
 
                                     </div>
                                 </div>

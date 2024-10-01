@@ -28,7 +28,9 @@
                         <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><a href="#"><img src="{{asset($event->image)}}" alt=""></a></figure>
+                                    <figure class="image"><a href="#"><img src="{{asset($event->image ?? 'assets/images/available.png')}}" alt=""></a></figure>
+
+                                  
                                     <div class="post-date"><h6>16<span>dec</span></h6></div>
                                 </div>
                                 <div class="lower-content">

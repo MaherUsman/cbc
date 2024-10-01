@@ -2790,7 +2790,11 @@ div#mCSB_1_container{
 .news-block-one .inner-box .image-box .image img{
   width: 100%;
   transition: all 500ms ease;
+  height: 500px !important;
+  object-fit: cover !important;
 }
+
+
 
 .news-block-one .inner-box:hover .image-box .image img{
   transform: scale(1.05);
@@ -4541,6 +4545,7 @@ div#mCSB_1_container{
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
   overflow: hidden;
+
 }
 
 .news-block-one .inner-box .lower-content h2 a:hover{
@@ -4558,6 +4563,7 @@ div#mCSB_1_container{
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;  
   overflow: hidden;
+  color: #000000;
 
 }
 
