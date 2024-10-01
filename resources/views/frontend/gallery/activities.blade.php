@@ -35,6 +35,8 @@
                 @if ($activitesGallery->hasMorePages())
                     <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
+
+              
             </div>
         </div>
     </section>
@@ -43,23 +45,23 @@
 
 @push('scripts')
     <script>
+
+
         $(document).on('click', '#load-more', function () {
             let page = $(this).data('page');
             page += 1;
 
             $.ajax({
-                url: '{{ route("frontend.activities.gallery") }}',
+                url: '{{ route("frontend.topas.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (response) {
-                    $('#gallery-items').append(response.html);
-
-                    // Update the page count
+                success: function (data) {
+                    $('#gallery-items').append(data);
                     $('#load-more').data('page', page);
 
-                    // Check if there are more pages
-                    if (!response.morePages) {
-                        $('#load-more').hide();  // Hide the button when there are no more pages
+                    // If no more pages, hide the Load More button
+                    if (data.trim() === '') {
+                        $('#load-more').hide();
                     }
                 }
             });
