@@ -166,8 +166,7 @@
 				"thumbs",   
 				"share"  , 
 				"download",
-				"close"  ,
-
+				"close" 
 			
 			],
 			helpers: {
