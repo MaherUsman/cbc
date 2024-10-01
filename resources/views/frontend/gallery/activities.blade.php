@@ -36,7 +36,7 @@
                     <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
 
-              
+
             </div>
         </div>
     </section>
@@ -52,15 +52,17 @@
             page += 1;
 
             $.ajax({
-                url: '{{ route("frontend.topas.gallery") }}',
+                url: '{{ route("frontend.activities.gallery") }}',
                 type: 'GET',
                 data: {page: page},
-                success: function (data) {
-                    $('#gallery-items').append(data);
+                success: function (response) {
+                    $('#gallery-items').append(response.html);
                     $('#load-more').data('page', page);
 
-                    // If no more pages, hide the Load More button
-                    if (data.trim() === '') {
+                    Fancybox.bind("[data-fancybox='gallery']", {});
+
+
+                    if (!response.morePages) {
                         $('#load-more').hide();
                     }
                 }
