@@ -61,7 +61,6 @@
                     Fancybox.bind("[data-fancybox='gallery']", {});
 
 
-
                     if (!response.morePages) {
                         $('#load-more').hide();  // Hide the button when there are no more pages
                     }

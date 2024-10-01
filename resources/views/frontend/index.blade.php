@@ -32,25 +32,43 @@
                 <div class="row clearfix">
                     <div class="col-lg-3">
                         <div class="highness-img">
-                            <img src="{{asset($intro->image)}}" />
+                            <img src="{{ asset($intro->image) }}" />
                         </div>
-
                     </div>
                     <div class="col-lg-9">
                         <div class="sec-title mb-2">
-                            <h2>{{$intro->title}}</h2>
+                            <h2>{{ $intro->title }}</h2>
                         </div>
 
-                        <p class="highness-text">
-                            {!! $intro->details !!}
-                        </p>
+                        <?php
+                        // Set the character limit
+                        $charLimit = 1389;
+
+                        // Check if the content length exceeds the character limit
+                        $introDetails = strip_tags($intro->details); // Remove HTML tags for accurate character counting
+                        if (strlen($introDetails) > $charLimit) {
+                            // If the content exceeds the limit, display a truncated version with a "Show More" button
+                            $shortDetails = substr($introDetails, 0, $charLimit) . '...';
+                            echo '<p class="highness-text">' . $shortDetails . '</p>';
+                            echo '<a href="#full-text-modal" data-fancybox class="btn btn-primary">Show More</a>';
+                        } else {
+                            // If the content is within the limit, display the full content
+                            echo '<p class="highness-text">' . $intro->details . '</p>';
+                        }
+                        ?>
 
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Full Text Modal -->
+    <div style="display:none" id="full-text-modal">
+        <p>{!! $intro->details !!}</p>
+    </div>
+
+
     <!-- info-section end -->
 
 
@@ -100,6 +118,11 @@
                                     </div>
                                     <div class="text">
                                         <p>{!! $animal->details !!}</p>
+                                    </div>
+                                    <div style="display: none;" id="full-text-modal">
+                                        <div class="full-text-content">
+                                            {!! $intro->details !!}
+                                        </div>
                                     </div>
                                     <div class="btn-box">
                                         <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
