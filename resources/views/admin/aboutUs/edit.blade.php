@@ -32,7 +32,7 @@
                                         <div class="form-group">
                                             <label class="form-label"
                                             >{{__('aboutUses.admin.edit.p1')}}</label>
-                                            <textarea name="p1" rows="4" class="form-control" data-rule-required="true"
+                                            <textarea name="p1" id="ckeditor" rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.p1_message')}}">{{$aboutUs->p1}}</textarea>
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@
                                         <div class="form-group">
                                             <label class="form-label"
                                             >{{__('aboutUses.admin.edit.p2')}}</label>
-                                            <textarea name="p2" rows="4" class="form-control" data-rule-required="true"
+                                            <textarea name="p2" id="ckeditor2" rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.p2_message')}}">{{$aboutUs->p2}}</textarea>
                                         </div>
                                     </div>

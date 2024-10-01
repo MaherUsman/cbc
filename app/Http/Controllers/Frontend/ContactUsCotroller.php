@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Settings;
 use App\Services\Frontend\ContactUsService;
 use Illuminate\Http\Request;
 
@@ -18,15 +19,16 @@ class ContactUsCotroller extends Controller
 
     public function contactUs()
     {
-        return view('frontend.contact-us');
+        $setting = Settings::first();
+        return view('frontend.contact-us' , compact('setting'));
     }
     public function submit(Request $request)
     {
         // Validate the form data
         $request->validate([
             'username' => 'required|string|min:3|max:255',
-            'email'    => 'required|email|max:255|unique:contact_us,email',
-            'phone'    => 'required|min:10|max:15|unique:contact_us,phone_number',
+            'email'    => 'required|email|max:255',
+            'phone'    => 'required|min:10|max:15',
             'subject'  => 'required|string|min:3|max:255',
             'message'  => 'required|string|min:10',
         ]);

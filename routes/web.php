@@ -105,6 +105,10 @@ Route::view('gal','admin/gallery/AboutUsGallery');
 
 });
 
+
+Route::post('/ckeditor/upload', [HomeController::class, 'uploadImage'])->name('ckeditor.upload');
+
+
 Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->name('uploadImageChunk');
 
 Route::get('/' , [HomeController::class, 'index'])->name('home');
