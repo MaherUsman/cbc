@@ -183,13 +183,8 @@
                                            placeholder="{{__('animals.admin.create.details')}}">
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-primary addRowProps mt-4">+</button>
-=======
                             <div class="col-sm-1 mt-2">
                                 <button type="button" class="btn btn-primary addRowProps">+</button>
->>>>>>> origin/rk-branch
                             </div>
                         </div>
                         <hr class="p-2">
