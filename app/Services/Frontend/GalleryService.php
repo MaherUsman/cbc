@@ -24,7 +24,7 @@ class GalleryService
     }
     public function activites($page = 1)
     {
-        $data['activitesGallery'] = ActivityGallery::paginate(9, ['*'], 'page', $page);
+        $data['activitesGallery'] = ActivityGallery::paginate(2, ['*'], 'page', $page);
         $data['activityGalleryContent'] = GalleriesContent::where('type', 'activity')->first();
         return $data;
     }
