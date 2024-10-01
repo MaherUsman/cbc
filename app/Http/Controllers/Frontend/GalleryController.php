@@ -53,7 +53,7 @@ class GalleryController extends Controller
 
             $morePages = $data['activitesGallery']->hasMorePages();
             return response()->json([
-                'html' => view('frontend.gallery.partials.activities-gallery-items', ['activitesGallery' => $data['activitesGallery']])->render(),
+                'html' => view('frontend.gallery.partials.activites-gallery-items', ['activitesGallery' => $data['activitesGallery']])->render(),
                 'morePages' => $morePages,
             ]);
         }

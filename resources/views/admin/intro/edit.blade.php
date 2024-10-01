@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('intros.admin.breadcrumbs.name'), 'route' =>'intros.index'],
+        'breadcrumbs' => [['name' => '', 'route' =>null],
         ['name' => __('intros.admin.breadcrumbs.edit'), 'route' => null]],
         'pageTitle' => __('intros.admin.breadcrumbs.edit')
     ])

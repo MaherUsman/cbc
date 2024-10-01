@@ -36,7 +36,7 @@
                     <button id="load-more" data-page="1" class="theme-btn btn-one">Load More</button>
                 @endif
 
-              
+
             </div>
         </div>
     </section>
@@ -56,14 +56,13 @@
                 data: {page: page},
                 success: function (response) {
                     $('#gallery-items').append(response.html);
-
-                    // Update the page count
                     $('#load-more').data('page', page);
+
                     Fancybox.bind("[data-fancybox='gallery']", {});
 
-                    // Check if there are more pages
+
                     if (!response.morePages) {
-                        $('#load-more').hide();  // Hide the button when there are no more pages
+                        $('#load-more').hide();
                     }
                 }
             });
