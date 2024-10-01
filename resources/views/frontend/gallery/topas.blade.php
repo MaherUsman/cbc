@@ -27,6 +27,8 @@
         </div>
     </section>
 
+
+
     <!-- gallery-page-section -->
     <section class="gallery-page-section">
         <div class="auto-container">
@@ -65,4 +67,5 @@
             });
         });
     </script>
+   
 @endpush

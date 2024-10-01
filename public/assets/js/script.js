@@ -146,16 +146,33 @@
 
 
 	//LightBox / Fancybox
-	if($('.lightbox-image').length) {
+	// if($('.lightbox-image').length) {
+	// 	$('.lightbox-image').fancybox({
+	// 		openEffect  : 'fade',
+	// 		closeEffect : 'fade',
+	// 		helpers : {
+	// 			media : {}
+	// 		}
+	// 	});
+	// }
+	if ($('.lightbox-image').length) {
 		$('.lightbox-image').fancybox({
-			openEffect  : 'fade',
-			closeEffect : 'fade',
-			helpers : {
-				media : {}
-			}
+			openEffect: 'fade',
+			closeEffect: 'fade',
+			toolbar: true, 
+			buttons: [
+				"zoom",      
+				"slideShow", 
+				"thumbs",    
+				"close"    
+			],
+			helpers: {
+				media: {}
+			},
+			zoom: true 
 		});
 	}
-
+	
 
 
 	//Accordion Box
