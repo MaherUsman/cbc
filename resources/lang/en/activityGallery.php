@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'list_activityGallery' => 'Activiy Gallery',
-    'add_activityGallery' => 'Add Activiy Gallery',
-    'name' => 'Activiy Gallery',
-    'pageTitle' => 'Activiy Gallery',
-    'page_content' => 'Activiy Gallery Page Content',
-    'reOrder' => 'Reorder Activiy Gallery',
+    'list_activityGallery' => 'Activity Gallery',
+    'add_activityGallery' => 'Add Activity Gallery',
+    'name' => 'Activity Gallery',
+    'pageTitle' => 'Activity Gallery',
+    'page_content' => 'Activity Gallery Page Content',
+    'reOrder' => 'Reorder Activity Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Activiy Gallery',
+            'create' => 'Add Activity Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -19,7 +19,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Activiy Gallery',
+            'edit' => 'Edit Activity Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -36,16 +36,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'Activiy Gallery',
-            'create' => 'Add Activiy Gallery',
-            'edit' => 'Edit Activiy Gallery',
-            'show' => 'Show Activiy Gallery',
+            'name' => 'Activity Gallery',
+            'create' => 'Add Activity Gallery',
+            'edit' => 'Edit Activity Gallery',
+            'show' => 'Show Activity Gallery',
         ],
         'response_msg' => [
-            'success' => 'Activiy Gallery Added successfully',
-            'update' => 'Activiy Gallery Item Updated successfully',
-            'error' => 'Error in adding Activiy Gallery',
-            'delete' => 'Activiy Gallery Item Deleted Successfully'
+            'success' => 'Activity Gallery Added successfully',
+            'update' => 'Activity Gallery Item Updated successfully',
+            'error' => 'Error in adding Activity Gallery',
+            'delete' => 'Activity Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

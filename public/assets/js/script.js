@@ -160,20 +160,19 @@
 			openEffect: 'fade',
 			closeEffect: 'fade',
 			toolbar: true, 
+			zoom: true ,
 			buttons: [
-		  
 				"slideShow", 
 				"thumbs",   
 				"share"  , 
 				"download",
-				"close"  ,
-
+				"close" 
 			
 			],
 			helpers: {
 				media: {}
 			},
-			zoom: true 
+		
 		});
 	}
 	

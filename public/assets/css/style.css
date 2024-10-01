@@ -619,7 +619,8 @@ img {
   color: #fff;
 }
 
-.header-top .info li a:hover{
+.header-top .info li a:hover, .header-top .info li a:visited{
+  color: #000 !important;
 
 }
 
@@ -2053,6 +2054,11 @@ div#mCSB_1_container{
   font-size: 16px;
   line-height: 36px;
   margin-bottom: 32px;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+
 }
 
 
@@ -2666,15 +2672,21 @@ div#mCSB_1_container{
 .events-block-one .inner-box h3 a{
   display: inline-block;
   color: var(--primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
-.events-block-one .inner-box h3 a:hover{
 
-}
 
 .events-block-one .inner-box p{
   font-size: 16px;
   line-height: 30px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 
@@ -2778,7 +2790,11 @@ div#mCSB_1_container{
 .news-block-one .inner-box .image-box .image img{
   width: 100%;
   transition: all 500ms ease;
+  height: 500px !important;
+  object-fit: cover !important;
 }
+
+
 
 .news-block-one .inner-box:hover .image-box .image img{
   transform: scale(1.05);
@@ -4519,6 +4535,17 @@ div#mCSB_1_container{
 .news-block-one .inner-box .lower-content h2 a{
   display: inline-block;
   color: #151c2c;
+ 
+}
+
+.event-listing .news-block-one .inner-box .lower-content h2 a{
+  display: inline-block;
+  color: #151c2c;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+
 }
 
 .news-block-one .inner-box .lower-content h2 a:hover{
@@ -4529,6 +4556,15 @@ div#mCSB_1_container{
   font-size: 16px;
   line-height: 32px;
   margin-bottom: 19px;
+
+}
+.event-listing .news-block-one .inner-box .lower-content p{
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  color: #000000;
+
 }
 
 .news-block-one .inner-box .lower-content .theme-btn{
@@ -4688,6 +4724,10 @@ div#mCSB_1_container{
 .blog-sidebar .post-widget .post-inner .post h6 a{
   display: inline-block;
   color: #151c2c;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .blog-sidebar .post-widget .post-inner .post h6 a:hover{
@@ -5268,3 +5308,17 @@ div#mCSB_1_container{
 .fancybox-button--fullscreen{
   display: none !important;
 }
+
+/* .intro-details p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+
+}
+
+.intro-details p.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+} */

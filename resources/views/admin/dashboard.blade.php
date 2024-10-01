@@ -1,6 +1,6 @@
 @extends('layouts.admin.index')
 @section('content')
-    <h4>Welcom To Dashboard</h4>
+    <h4>Welcome To Dashboard</h4>
 {{--    <div class="row">--}}
 {{--        <div class="col-xl-3 col-xxl-3 col-sm-6">--}}
 {{--            <div class="widget-stat card bg-primary">--}}

@@ -20,15 +20,15 @@
 }
 
 .header-top .info li a:hover{
-  color: #000;
+  color: #000 !important;
 }
 
 .header-top .top-right .social-links li a:hover{
-  color: var(--tertiary);
+	color: #000 !important;
 }
 
 .header-top .top-right .other-links li a:hover{
-  color: var(--tertiary);
+	color: #000 !important;
 }
 
 .main-header .menu-right-content .btn-box a{
