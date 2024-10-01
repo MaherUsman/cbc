@@ -161,7 +161,7 @@
 			closeEffect: 'fade',
 			toolbar: true, 
 			buttons: [
-		  
+		        "zoom",
 				"slideShow", 
 				"thumbs",   
 				"share"  , 
