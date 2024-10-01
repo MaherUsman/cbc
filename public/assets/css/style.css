@@ -5308,3 +5308,17 @@ div#mCSB_1_container{
 .fancybox-button--fullscreen{
   display: none !important;
 }
+
+/* .intro-details p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+
+}
+
+.intro-details p.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+} */
