@@ -1,5 +1,5 @@
 (function($) {
-	
+
 	"use strict";
 
 
@@ -15,7 +15,7 @@
             $('.loader-wrap').delay(200).fadeOut(500);
         })
     }
-	
+
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
 		if($('.main-header').length){
@@ -31,25 +31,25 @@
 			}
 		}
 	}
-	
+
 	headerStyle();
 
 
 	//Submenu Dropdown Toggle
 	if($('.main-header li.dropdown ul').length){
 		$('.main-header .navigation li.dropdown').append('<div class="dropdown-btn"><span class="fas fa-angle-down"></span></div>');
-		
+
 	}
 
 	//Mobile Nav Hide Show
 	if($('.mobile-menu').length){
-		
+
 		$('.mobile-menu .menu-box').mCustomScrollbar();
-		
+
 		var mobileMenuContent = $('.main-header .menu-area .main-menu').html();
 		$('.mobile-menu .menu-box .menu-outer').append(mobileMenuContent);
 		$('.sticky-header .main-menu').append(mobileMenuContent);
-		
+
 		//Dropdown Button
 		$('.mobile-menu li.dropdown .dropdown-btn').on('click', function() {
 			$(this).toggleClass('open');
@@ -79,7 +79,7 @@
 		   $('html, body').animate({
 			   scrollTop: $(target).offset().top
 			 }, 1000);
-	
+
 		});
 	}
 
@@ -118,11 +118,11 @@
 	//Fact Counter + Text Count
 	if($('.count-box').length){
 		$('.count-box').appear(function(){
-	
+
 			var $t = $(this),
 				n = $t.find(".count-text").attr("data-stop"),
 				r = parseInt($t.find(".count-text").attr("data-speed"), 10);
-				
+
 			if (!$t.hasClass("counted")) {
 				$t.addClass("counted");
 				$({
@@ -140,7 +140,7 @@
 					}
 				});
 			}
-			
+
 		},{accY: 0});
 	}
 
@@ -159,37 +159,37 @@
 		$('.lightbox-image').fancybox({
 			openEffect: 'fade',
 			closeEffect: 'fade',
-			toolbar: true, 
+			toolbar: true,
 			buttons: [
 		        "zoom",
-				"slideShow", 
-				"thumbs",   
-				"share"  , 
+				"slideShow",
+				"thumbs",
+				"share"  ,
 				"download",
 				"close"  ,
 
-			
+
 			],
 			helpers: {
 				media: {}
 			},
-			zoom: true 
+			// zoom: true
 		});
 	}
-	
+
 
 
 	//Accordion Box
 	if($('.accordion-box').length){
 		$(".accordion-box").on('click', '.acc-btn', function() {
-			
+
 			var outerBox = $(this).parents('.accordion-box');
 			var target = $(this).parents('.accordion');
-			
+
 			if($(this).hasClass('active')!==true){
 				$(outerBox).find('.accordion .acc-btn').removeClass('active');
 			}
-			
+
 			if ($(this).next('.acc-content').is(':visible')){
 				return false;
 			}else{
@@ -197,9 +197,9 @@
 				$(outerBox).children('.accordion').removeClass('active-block');
 				$(outerBox).find('.accordion').children('.acc-content').slideUp(300);
 				target.addClass('active-block');
-				$(this).next('.acc-content').slideDown(300);	
+				$(this).next('.acc-content').slideDown(300);
 			}
-		});	
+		});
 	}
 
 
@@ -259,7 +259,7 @@
 					items:3
 				}
 			}
-		});    		
+		});
 	}
 
 
@@ -289,7 +289,7 @@
 					items:4
 				}
 			}
-		});    		
+		});
 	}
 
 	// Five Item Carousel
@@ -318,7 +318,7 @@
 					items:5
 				}
 			}
-		});    		
+		});
 	}
 
 
@@ -343,13 +343,13 @@
 				},
 				800:{
 					items:1
-				},			
+				},
 				1200:{
 					items:1
 				}
 
 			}
-		});    		
+		});
 	}
 
 
@@ -374,13 +374,13 @@
 				},
 				800:{
 					items:2
-				},			
+				},
 				1200:{
 					items:2
 				}
 
 			}
-		});    		
+		});
 	}
 
 
@@ -405,13 +405,13 @@
 				},
 				800:{
 					items:3
-				},			
+				},
 				1200:{
 					items:5
 				}
 
 			}
-		});    		
+		});
 	}
 
 
@@ -439,7 +439,7 @@
 		$('.tabs-box .tab-buttons .tab-btn').on('click', function(e) {
 			e.preventDefault();
 			var target = $($(this).attr('data-tab'));
-			
+
 			if ($(target).is(':visible')){
 				return false;
 			}else{
@@ -472,21 +472,21 @@
 	/* ==========================================================================
    When document is Scrollig, do
    ========================================================================== */
-	
+
 	$(window).on('scroll', function() {
 		headerStyle();
 	});
 
-	
-	
+
+
 	/* ==========================================================================
    When document is loaded, do
    ========================================================================== */
-	
+
 	$(window).on('load', function() {
 		handlePreloader();
 	});
 
-	
+
 
 })(window.jQuery);

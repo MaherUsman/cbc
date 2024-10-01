@@ -12,3 +12,4 @@
 
 <!-- main-js -->
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
