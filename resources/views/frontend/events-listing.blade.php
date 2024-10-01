@@ -21,7 +21,7 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 content-side">
-                    <div class="blog-classic-content">
+                    <div class="blog-classic-content event-listing">
                         @foreach($events as $event)
                             <div class="news-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                 <div class="inner-box">
