@@ -998,6 +998,7 @@ img {
   width:100%;
   padding: 5px 30px;
   border-bottom: 1px solid #eeeeee;
+  color:#71747a !important;
 }
 
 .main-menu .navigation > li > ul > li:last-child{
@@ -5322,3 +5323,15 @@ div#mCSB_1_container{
   display: block;
   -webkit-line-clamp: unset;
 } */
+
+
+.main-menu .navigation > li.active > ul > li a{
+  color:#71747a !important;
+
+}
+
+
+.main-menu .navigation > li.active > ul > li.active a{
+  color: #ECAC20 !important;
+
+}
