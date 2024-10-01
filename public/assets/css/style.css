@@ -619,7 +619,8 @@ img {
   color: #fff;
 }
 
-.header-top .info li a:hover{
+.header-top .info li a:hover, .header-top .info li a:visited{
+  color: #000 !important;
 
 }
 
