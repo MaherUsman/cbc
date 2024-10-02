@@ -39,6 +39,10 @@ class CareerApplicationDataTable extends DataTable
                         </svg>
                     </a>';
                 })
+                ->addColumn('id', function($row) {
+                    static $index = 0;
+                    return ++$index;
+                })
                 ->setRowId('id')
                 ->rawColumns(['resume_path']);
     }
