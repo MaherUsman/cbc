@@ -5,8 +5,8 @@
 
 <!-- Page Title -->
 <section class="page-title">
-    <div class="img-wrap ">
-        <div class="back-img chinkara-img"
+    <div class="img-wrap parallax-demo-1">
+        <div class="parallax-inner back-img chinkara-img"
             style="background-image: url({{asset($animal->banner_image)}});">
 
         </div>
