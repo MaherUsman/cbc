@@ -48,16 +48,17 @@
                         $introDetails = strip_tags($intro->details); // Remove HTML tags for accurate character counting
                         if (strlen($introDetails) > $charLimit) {
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
-                            $shortDetails = substr($introDetails, 0, $charLimit) . '... <span><a href="#full-text-modal" data-fancybox class="btn p-0 show-more">Show More</a></span>';
-                            echo '<p class="highness-text">' . $shortDetails . '</p>';
-                           
+                            $shortDetails = substr($introDetails, 0, $charLimit) . '...';
+                            echo '<p class="highness-text short-text">' . $shortDetails . ' <span><a href="javascript:void(0)" class="btn p-0 show-more">Show More</a></span></p>';
+                            echo '<p class="highness-text full-text" style="display:none;">' . $intro->details . ' <span><a href="javascript:void(0)" class="btn p-0 show-less">Show Less</a></span></p>';
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
                         }
                         ?>
-
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -321,3 +322,29 @@
     <!-- news-section end -->
 
 @endsection
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Ensure full content is hidden initially
+        const fullText = document.querySelector('.full-text');
+        const shortText = document.querySelector('.short-text');
+
+        // Only attach event listeners if full content exists
+        if (fullText && shortText) {
+            fullText.style.display = 'none'; // Hide full content initially
+
+            // Show more link functionality
+            document.querySelector('.show-more').addEventListener('click', function() {
+                shortText.style.display = 'none';  // Hide short text
+                fullText.style.display = 'block';  // Show full text
+            });
+
+            // Show less link functionality
+            document.querySelector('.show-less').addEventListener('click', function() {
+                fullText.style.display = 'none';   // Hide full text
+                shortText.style.display = 'block'; // Show short text
+            });
+        }
+    });
+</script>
+@endpush
