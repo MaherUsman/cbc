@@ -239,7 +239,7 @@
                         <div class="inner-box">
                             <div class="icon-box"><i class="{{ $homeCounter['icon_class'][$index] }}"></i></div>
                             <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int)$count }}">{{ $count }}</span>
+                                <span class="count-text" >{{ $count }}</span>
                             </div>
                             <p>{{ $homeCounter['home_counter_name'][$index] }}</p>
                         </div>

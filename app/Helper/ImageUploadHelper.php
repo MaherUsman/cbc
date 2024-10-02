@@ -35,7 +35,8 @@ class ImageUploadHelper
     {
         $audioFile = $uploadFile;
         $fileName = time() . '_' . $audioFile->getClientOriginalName();
-        $fileName = preg_replace('/\s+/', ' ', trim($fileName));
+        $fileName = preg_replace('/[^A-Za-z0-9.\s]/', '', trim($fileName));
+//        $fileName = preg_replace('/\s+/', ' ', trim($fileName));
         $fileName = str_replace(' ', '_', $fileName);
         $drive = $path;
         $path = public_path($drive);
