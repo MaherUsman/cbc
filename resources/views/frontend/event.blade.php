@@ -31,7 +31,7 @@
                                     <figure class="image"><a href="#"><img src="{{asset($event->image ?? 'assets/images/available.png')}}" alt=""></a></figure>
 
 
-                                    <div class="post-date"><h6>16<span>dec</span></h6></div>
+                                    <div class="post-date"><h6>{{ \Carbon\Carbon::parse($event->start_date)->format('j M') }}</h6></div>
                                 </div>
                                 <div class="lower-content">
                                     <h2><a href="{{ route('frontend.find.event',$event->slug) }}">{{$event->title}}</a></h2>
