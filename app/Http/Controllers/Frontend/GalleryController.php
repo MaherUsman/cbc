@@ -73,7 +73,6 @@ class GalleryController extends Controller
                 'morePages' => $morePages,
             ]);
         }
-
         return view('frontend.gallery.aboutus', $data);
     }
 }
