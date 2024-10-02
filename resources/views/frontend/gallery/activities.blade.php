@@ -56,12 +56,7 @@
                 data: {page: page},
                 success: function (response) {
                     $('#gallery-items').append(response.html);
-                success: function (response) {
-                    $('#gallery-items').append(response.html);
-
-                    // Update the page count
                     $('#load-more').data('page', page);
-                    Fancybox.bind("[data-fancybox='gallery']", {});
 
                     Fancybox.bind("[data-fancybox='gallery']", {});
 
