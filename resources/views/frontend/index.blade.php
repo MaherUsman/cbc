@@ -50,7 +50,7 @@
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
                             $shortDetails = substr($introDetails, 0, $charLimit) . '... <span><a href="#full-text-modal" data-fancybox class="btn p-0 show-more">Show More</a></span>';
                             echo '<p class="highness-text">' . $shortDetails . '</p>';
-                           
+
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
-                        <div class="content_block_one">
+                        <div class="content_block_one home-page-content">
                             <div class="content-box">
                                 <div class="sec-title">
                                     <h2>{{$animal->title}}</h2>

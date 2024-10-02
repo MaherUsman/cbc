@@ -814,7 +814,7 @@
     object-fit: cover;
   }
   .sec-pad {
-    padding-bottom: 0px !important;
+    /* padding-bottom: 0px !important; */
   }
 
   .set-direction-wrapper section:nth-child(1) .row,
@@ -887,7 +887,7 @@
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
-  
+
   .ainmal-sec .image img,
   .img-style .image img {
     height: 450px !important;
