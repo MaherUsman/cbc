@@ -31,6 +31,10 @@ class TeamDataTable extends DataTable
                 $imageUrl = asset($row->image ?: 'no_image.jpg');
                 return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
             })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')
             ->rawColumns(['image','action']);
     }

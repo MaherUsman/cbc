@@ -33,6 +33,10 @@ class BlogDataTable extends DataTable
             ->editColumn('start_date', function ($query) {
                 return Carbon::parse($query->start_date)->format('d F, Y');
             })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')
             ->rawColumns(['image','action']);
     }

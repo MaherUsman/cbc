@@ -32,6 +32,10 @@ class AboutDataTable extends DataTable
             ->editColumn('details', function ($query) {
                 return view('admin.about.message', ['about' => $query]);
             })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')->rawColumns(['image','details','action']);
     }
 

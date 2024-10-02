@@ -37,6 +37,10 @@ class AnimalDataTable extends DataTable
 //            ->editColumn('details', function ($query) {
 //                return view('admin.animal.message', ['animal' => $query]);
 //            })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')->rawColumns(['image','action']);
     }
 
