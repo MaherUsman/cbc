@@ -101,7 +101,7 @@
                                     <h2>{{$animal->title}}</h2>
                                 </div>
                                 <div class="text">
-                                    <p>{!! Str::words($animal->details, 200, '...') !!}</p>
+                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
                                 </div>
                                 <div class="btn-box">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
@@ -117,7 +117,7 @@
                                         <h2>{{$animal->title}}</h2>
                                     </div>
                                     <div class="text">
-                                        <p>{!! Str::words($animal->details, 200, '...') !!}</p>
+                                        <p>{!! Str::words($animal->details, 100, '...') !!}</p>
                                     </div>
                                     <div style="display: none;" id="full-text-modal">
                                         <div class="full-text-content">
