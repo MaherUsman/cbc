@@ -33,7 +33,7 @@
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('sliders.admin.create.slink_message')}}"
                                            name="slink" value="{{old('slink')}}" class="form-control"
-                                           data-rule-max="255"
+                                           data-rule-maxlength="255"
                                            placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>

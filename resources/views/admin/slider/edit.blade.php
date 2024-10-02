@@ -32,6 +32,7 @@
                                     <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
+                                           data-rule-maxlength="255"
                                            data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
                                            name="slink" value="{{$slider->slink}}" class="form-control"
                                            placeholder="{{__('sliders.admin.edit.slink')}}">
