@@ -14,7 +14,8 @@ class ChunkUploadService
             $chunkNumber = $request->input('chunkNumber');
             $totalChunks = $request->input('totalChunks');
             $fileName = $request->input('fileName');
-            $fileName = str_replace(' ','_',$fileName);
+//            $fileName = str_replace(' ','_',$fileName);
+            $fileName = preg_replace('/[^A-Za-z0-9.\s]/', '', trim($fileName));
             $FinalPath = $request->input('ImageUploadPath');
             $uploadDir = public_path('upload').DIRECTORY_SEPARATOR;
             $chunkUploadDir = $uploadDir.'chunks'.DIRECTORY_SEPARATOR;

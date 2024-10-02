@@ -11,6 +11,7 @@ class ImageUploadHelper
 {
     public static function saveImage($image, $fileNameUpload, $path, $drive)
     {
+//        dd($fileNameUpload);
         $image = ImageManager::gd()->read($image);
         $image->save($path . $fileNameUpload);
         return $drive . $fileNameUpload;
