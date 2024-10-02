@@ -50,7 +50,10 @@
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
                             $shortDetails = substr($introDetails, 0, $charLimit) . '...';
                             echo '<p class="highness-text short-text">' . $shortDetails . ' <span><a href="javascript:void(0)" class="btn p-0 show-more">Show More</a></span></p>';
-                            echo '<p class="highness-text full-text" style="display:none;">' . $intro->details . ' <span><a href="javascript:void(0)" class="btn p-0 show-less">Show Less</a></span></p>';
+
+                            echo '<div style="display:none" class="highness-text full-text" id="full-text-modal">
+        <p>'.$intro->details.' <span><a href="javascript:void(0)" class="btn p-0 show-less">Show Less</a></span></p>
+    </div>';
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
@@ -323,28 +326,35 @@
 
 @endsection
 @push('scripts')
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Ensure full content is hidden initially
-        const fullText = document.querySelector('.full-text');
-        const shortText = document.querySelector('.short-text');
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ensure full content is hidden initially
+            const fullText = document.querySelector('.full-text');
+            const shortText = document.querySelector('.short-text');
+            const sectionStart = document.querySelector('.auto-container'); // Section to scroll to
 
-        // Only attach event listeners if full content exists
-        if (fullText && shortText) {
-            fullText.style.display = 'none'; // Hide full content initially
+            // Only attach event listeners if full content exists
+            if (fullText && shortText) {
+                fullText.style.display = 'none'; // Hide full content initially
 
-            // Show more link functionality
-            document.querySelector('.show-more').addEventListener('click', function() {
-                shortText.style.display = 'none';  // Hide short text
-                fullText.style.display = 'block';  // Show full text
-            });
+                // Show more link functionality
+                document.querySelector('.show-more').addEventListener('click', function() {
+                    shortText.style.display = 'none';  // Hide short text
+                    fullText.style.display = 'block';  // Show full text
+                });
 
-            // Show less link functionality
-            document.querySelector('.show-less').addEventListener('click', function() {
-                fullText.style.display = 'none';   // Hide full text
-                shortText.style.display = 'block'; // Show short text
-            });
-        }
-    });
-</script>
+                // Show less link functionality
+                document.querySelector('.show-less').addEventListener('click', function() {
+                    fullText.style.display = 'none';   // Hide full text
+                    shortText.style.display = 'block'; // Show short text
+
+                    // Scroll back to the top of the section
+                    sectionStart.scrollIntoView({
+                        behavior: 'smooth' // Smooth scroll back to the start of the section
+                    });
+                });
+            }
+        });
+    </script>
+
 @endpush
