@@ -28,7 +28,7 @@
         <div class="bg-layer"></div>
         <span class="rotate-text">wild animal zoo</span>
         <div class="auto-container">
-            <div class="inner-container">
+            <div class="inner-container introtext">
                 <div class="row clearfix">
                     <div class="col-lg-3">
                         <div class="highness-img">
@@ -331,7 +331,7 @@
             // Ensure full content is hidden initially
             const fullText = document.querySelector('.full-text');
             const shortText = document.querySelector('.short-text');
-            const sectionStart = document.querySelector('.auto-container'); // Section to scroll to
+            const scrollTarget = document.querySelector('.introtext'); // The class you want to scroll to
 
             // Only attach event listeners if full content exists
             if (fullText && shortText) {
@@ -348,13 +348,14 @@
                     fullText.style.display = 'none';   // Hide full text
                     shortText.style.display = 'block'; // Show short text
 
-                    // Scroll back to the top of the section
-                    sectionStart.scrollIntoView({
-                        behavior: 'smooth' // Smooth scroll back to the start of the section
+                    // Scroll back to the top of the highness-text section
+                    scrollTarget.scrollIntoView({
+                        behavior: 'smooth' // Smooth scroll back to the highness-text class
                     });
                 });
             }
         });
     </script>
+
 
 @endpush
