@@ -87,7 +87,19 @@ class VisitorGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $visitorGallery->image != null && $visitorGallery->image != '') ? unlink(public_path($visitorGallery->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $visitorGallery->image != null &&
+                $visitorGallery->image != ''
+            ) {
+                $imagePath = public_path($visitorGallery->image);
+
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
             $visitorGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $visitorGallery);
