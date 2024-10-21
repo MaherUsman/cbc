@@ -87,19 +87,7 @@ class TopasGalleryService
     {
         DB::beginTransaction();
         try {
-            if (
-                $request->has('image') &&
-                $request->image != '' &&
-                $topasGallery->image != null &&
-                $topasGallery->image != ''
-            ) {
-                $imagePath = public_path($topasGallery->image);
-
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
-                }
-            }
-
+            ($request->has('image') && $request->image != '' && $topasGallery->image != null && $topasGallery->image != '') ? unlink(public_path($topasGallery->image)) : '';
             $topasGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $topasGallery);

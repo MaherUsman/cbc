@@ -87,7 +87,20 @@ class ActivityGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $activityGallery->image != null && $activityGallery->image != '') ? unlink(public_path($activityGallery->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $activityGallery->image != null &&
+                $activityGallery->image != ''
+            ) {
+                $imagePath = public_path($activityGallery->image);
+
+                // Check if the file exists before attempting to delete it
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
             $activityGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $activityGallery);
