@@ -277,6 +277,7 @@
     </section>
     @endif
     <!-- team-section -->
+    @if(count($teams)>0)
     <section class="team-section sec-pad">
         <div class="auto-container">
             <div class="sec-title centred">
@@ -301,6 +302,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- team-section end -->
 
 @endsection
