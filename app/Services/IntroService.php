@@ -51,7 +51,19 @@ class IntroService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $intro->image != null && $intro->image != '') ? unlink(public_path($intro->image)) : '';
+            if (
+                $request->has('image') &&
+                !empty($request->image) &&
+                !empty($intro->image) &&
+                file_exists(public_path($intro->image))
+            ) {
+                try {
+                    unlink(public_path($intro->image));
+                } catch (\Exception $e) {
+                    // Log the exception or handle the error
+                    Log::error('Error deleting image: ' . $e->getMessage());
+                }
+            }
             $intro->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $intro);
