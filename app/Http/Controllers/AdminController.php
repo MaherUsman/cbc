@@ -77,6 +77,7 @@ class AdminController extends Controller
             ];
 
             // Add other settings if they exist in the request
+            ($request->has('Loading_page_text') && $request->Loading_page_text != '') ? $settingArray['Loading_page_text'] = $request->Loading_page_text : '';
             ($request->has('address') && $request->address != '') ? $settingArray['address'] = $request->address : '';
             ($request->has('phone') && $request->phone != '') ? $settingArray['phone'] = $request->phone : '';
             ($request->has('email') && $request->email != '') ? $settingArray['email'] = $request->email : '';

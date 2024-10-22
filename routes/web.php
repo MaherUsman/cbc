@@ -16,6 +16,7 @@ use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GalleriesContentController;
 use App\Http\Controllers\IntroController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TopasChildGalleryController;
@@ -99,6 +100,7 @@ Route::prefix('admin')->group(function () {
             //Route::post('/animal-galleries/update-order', 'updateOrder')->name('animal-galleries.updateOrder');
             Route::post('/update-animal-galleries-order', 'updateOrder')->name('animal-galleries.updateOrder');
         });
+        Route::resource('jobs', JobController::class);
     });
 
 Route::view('gal','admin/gallery/AboutUsGallery');

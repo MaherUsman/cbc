@@ -17,7 +17,7 @@ return [
     'jobs' => [
         'name' => 'Jobs',
         'index' => 'All Jobs',
-        'create' => 'Create Jobs',
+        'create' => 'Create Job',
     ],
     'users' => [
         'name' => 'Users',

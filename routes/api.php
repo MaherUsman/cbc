@@ -67,3 +67,6 @@ Route::apiResource('teams', App\Http\Controllers\TeamController::class);
 
 
 Route::apiResource('activity-galleries', App\Http\Controllers\ActivityGalleryController::class);
+
+
+Route::apiResource('jobs', App\Http\Controllers\JobController::class);

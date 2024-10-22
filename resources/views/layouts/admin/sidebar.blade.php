@@ -184,6 +184,21 @@
                 </ul>
             </li>
 
+            <li class="{{ request()->is('admin/jobs*') ? 'active mm-active' : '' }}">
+                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/jobs*') ? 'true' : 'false' }}">
+                    <i class="la la-sitemap"></i>
+                    <span class="nav-text">{{__('sidebar.jobs.name')}}</span>
+                </a>
+                <ul aria-expanded="{{ request()->is('admin/jobs*') ? 'true' : 'false' }}">
+                    <li class="{{ request()->is('admin/jobs*') ? 'active mm-active' : '' }}">
+                        <a href="{{route('jobs.index')}}">{{__('sidebar.jobs.index')}}</a>
+                    </li>
+                    <li class="{{ request()->is('admin/jobs/create') ? 'active mm-active' : '' }}">
+                        <a href="{{route('jobs.create')}}">{{__('sidebar.jobs.create')}}</a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- <li class="nav-label">{{__('sidebar.career_listing_page')}}</li> --}}
 {{--            <li class="{{ request()->is('admin/career-listing') ? 'active mm-active' : '' }}">--}}
 {{--                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/career-listing') ? 'true' : 'false' }}">--}}

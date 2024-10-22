@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Slider extends Model
+class Job extends Model
 {
     use HasFactory;
 
@@ -14,14 +14,11 @@ class Slider extends Model
      *
      * @var array
      */
+    protected $table = "career_jobs";
     protected $fillable = [
         'title',
-        'slink',
         'details',
-        'image',
-        'is_image',
-        'display_order',
-        'status',
+        'closing_date',
     ];
 
     /**
@@ -31,7 +28,6 @@ class Slider extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'status' => 'boolean',
-        'is_image' => 'boolean',
+        'closing_date' => 'date',
     ];
 }
