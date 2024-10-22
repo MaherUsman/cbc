@@ -54,7 +54,7 @@
                                     <label class="form-label">{{__('sliders.admin.edit.image')}}</label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
                                            accept="image/*,video/*">
-                                    <input type="hidden" name="is_image" value="{{$slider->is_image}}" id="is_image">
+                                    <input type="hidden" name="is_image" value="{{$slider->is_image?1:0}}" id="is_image">
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview" src="{{asset($slider->image?:'no_image.jpg')}}"

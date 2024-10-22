@@ -106,8 +106,11 @@ class AdminController extends Controller
     }
 
 
-    public function career_application(CareerApplicationDataTable $dataTable)
+    public function career_application(CareerApplicationDataTable $dataTable, $job_id=null)
     {
+        if ($job_id) {
+            $dataTable->setParameters($job_id);
+        }
         return $dataTable->render('admin.career_application.index');
     }
 

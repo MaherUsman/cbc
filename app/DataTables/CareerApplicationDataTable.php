@@ -15,13 +15,24 @@ use Yajra\DataTables\Services\DataTable;
 
 class CareerApplicationDataTable extends DataTable
 {
+    protected $job_id;
+
+    public function setParameters($job_id)
+    {
+        $this->job_id = $job_id;
+    }
+
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): EloquentDataTable
+    public function dataTable(QueryBuilder $query)
     {
+        if ($this->job_id) {
+            $query->where('job_id',$this->job_id);
+        }
+
         return (new EloquentDataTable($query))
             ->editColumn('resume_path', function ($row) {
 //                $file = asset($row->resume_path ?: 'no_image.jpg');
@@ -50,7 +61,7 @@ class CareerApplicationDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(CareerApplication $model): QueryBuilder
+    public function query(CareerApplication $model)
     {
         return $model->newQuery();
     }
@@ -58,7 +69,7 @@ class CareerApplicationDataTable extends DataTable
     /**
      * Optional method if you want to use the html builder.
      */
-    public function html(): HtmlBuilder
+    public function html()
     {
         return $this->builder()
                     ->setTableId('careerapplication-table')

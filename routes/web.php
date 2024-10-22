@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function () {
         Route::get('profile',  [AdminController::class, 'edit'])->name('admin.profile');
         Route::post('profile',  [AdminController::class, 'update'])->name('admin.profile.update');
         Route::get('career-listing',  [AdminController::class, 'career_application'])->name('admin.career-listing');
+        Route::get('career-listing/{job_id}',  [AdminController::class, 'career_application'])->name('admin.job-career-listing');
         Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
         Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
 
@@ -101,6 +102,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/update-animal-galleries-order', 'updateOrder')->name('animal-galleries.updateOrder');
         });
         Route::resource('jobs', JobController::class);
+        Route::get('job-applications/{job}',[JobController::class,'jobsApplications'])->name('jobs.application');
     });
 
 Route::view('gal','admin/gallery/AboutUsGallery');
@@ -128,6 +130,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
     Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
+    Route::get('specific-career/{job}' , [\App\Http\Controllers\Frontend\CareerController::class , 'specificCareer'])->name('career.specific');
     Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
     Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])
         ->name('find.event');

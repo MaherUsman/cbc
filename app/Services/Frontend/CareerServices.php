@@ -15,6 +15,7 @@ class CareerServices
         // Save form data into the database
         CareerApplication::create([
             'username' => $validatedData['username'],
+            'job_id' => isset($validatedData['job_id'])?$validatedData['job_id']:null,
             'email' => $validatedData['email'],
             'phone' => $validatedData['phone'],
             'subject' => $validatedData['subject'],

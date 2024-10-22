@@ -78,7 +78,13 @@ class SliderService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $slider->image != null && $slider->image != '') ? unlink(public_path($slider->image)) : '';
+            if ($request->has('image') &&
+                $request->image != '' &&
+                $slider->image != null &&
+                $slider->image != '' &&
+                file_exists(public_path($slider->image))) {
+                unlink(public_path($slider->image));
+            }
             $slider->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $slider);

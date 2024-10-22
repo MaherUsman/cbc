@@ -62,4 +62,9 @@ class JobController extends Controller
     {
         return $this->jobService->destroy($job);
     }
+
+    public function jobsApplications(Job $job)
+    {
+        return redirect()->route("admin.job-career-listing",$job->id);
+    }
 }

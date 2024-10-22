@@ -28,8 +28,11 @@ class JobDataTable extends DataTable
             ->editColumn('details', function ($query) {
                 return view('admin.job.message', ['job' => $query]);
             })
-            ->editColumn('closing_date',function ($query){
+            ->editColumn('closing_date', function ($query) {
                 return $query->closing_date->format('D, d M, Y');
+            })
+            ->editColumn('applications', function ($query) {
+                return view('admin.job.applicationsLink', ['job' => $query]);
             })
             ->setRowId('id');
     }
@@ -48,20 +51,20 @@ class JobDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('job-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
+            ->setTableId('job-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
 //                        Button::make('reset'),
 //                        Button::make('reload')
-                    ]);
+            ]);
     }
 
     /**
@@ -77,6 +80,7 @@ class JobDataTable extends DataTable
                 ->orderable(false),
 //            Column::make('created_at'),
 //            Column::make('updated_at'),
+            Column::make('applications'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
