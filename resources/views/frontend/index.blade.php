@@ -1,23 +1,60 @@
 @extends('frontend.layout.index')
 
 @section('content')
+    <style>
+        .video-layer {
+            width: 100%;
+            height: auto;
+            background-color: black; /* or any fallback color */
+        }
+
+        .video-layer video {
+            /*width: 100%;*/
+            width: auto;
+            height: 400px;
+            display: block;
+        }
+
+    </style>
 
     <!-- banner-section -->
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
             @foreach($sliders as $slider)
-                <div class="slide-item">
-                    <div class="image-layer" style="background-image:url({{$slider->image}})"></div>
-                    <div class="auto-container">
-                        <div class="content-box">
-                            <h3>{{$slider->title}}</h3>
-                            <h2>{!! $slider->details !!}</h2>
-                            <div class="btn-box">
-                                <a target="_blank" href="{{$slider->slink}}" class="theme-btn btn-one">Discover More</a>
+
+                @if(!$slider->is_image)
+                    <!-- If video exists, add video tag -->
+
+{{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
+                        <div class="item-video" data-merge="1">
+                            <video autoplay muted loop controls>
+                                <source src="{{ $slider->image }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+{{--                        <div class="video-layer">--}}
+{{--                            <video autoplay muted loop controls>--}}
+{{--                                <source src="{{ $slider->image }}" --}}{{--type="video/mp4"--}}{{-->--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                        </div>--}}
+                @else
+                        <div class="slide-item">
+                    <!-- If no video, fallback to image -->
+                        <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
+                            <div class="auto-container">
+                                <div class="content-box">
+                                    <h3>{{ $slider->title }}</h3>
+                                    <h2>{!! $slider->details !!}</h2>
+                                    <div class="btn-box">
+                                        <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+
+
             @endforeach
         </div>
     </section>
@@ -328,6 +365,18 @@
 @push('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            $('.banner-carousel').on('translated.owl.carousel', function(event) {
+                $('video').each(function(){
+                    $(this).get(0).pause();
+                });
+                var currentSlide = $('.owl-item.active').find('video');
+                if(currentSlide.length){
+                    currentSlide.get(0).play();
+                }
+            });
+
+
+
             // Ensure full content is hidden initially
             const fullText = document.querySelector('.full-text');
             const shortText = document.querySelector('.short-text');

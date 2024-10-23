@@ -18,6 +18,22 @@ function TrimWord($text, $length, $startPoint = 0, $allowedTags = "")
     }
 }
 
+function SplitWords($text,$length=10,$startPoint=0) {
+    // Split the text into words
+    $words = preg_split('/\s+/', $text);
+
+    // Check if the number of words is greater than 30
+    if (count($words) > $length) {
+        // Take the first $length words and concatenate "..."
+        $truncatedText = implode(' ', array_slice($words, $startPoint, $length)) . '...';
+    } else {
+        // If 30 words or less, return the original text
+        $truncatedText = $text;
+    }
+
+    return $truncatedText;
+}
+
 /*
  * THIS FUNCTION WILL MAKE A ENCRYPTED KEY
  * DYNAMIC LENGTH OPTION IS AVAILABLE DEFAULT LENGTH IS 10

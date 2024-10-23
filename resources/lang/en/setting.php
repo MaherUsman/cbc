@@ -4,6 +4,7 @@ return [
     'update' => 'Setting Update',
     'edit' => 'Edit Setting',
     'setting' => 'Setting',
+    'Loading_page_text' => 'Loading Page Text',
     'address' => 'Address',
     'phone' => 'Phone',
     'email' => 'Email',

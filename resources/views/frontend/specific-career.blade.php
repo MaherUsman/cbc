@@ -36,7 +36,8 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{asset('assets/images/background/page-title.jpg')}});"></div>
+            <div class="parallax-inner back-img"
+                 style="background-image: url({{asset('assets/images/background/page-title.jpg')}});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -48,42 +49,19 @@
     </section>
     <!-- End Page Title -->
 
-    <style>
-        .career-card{
-            background: #faf7f3;
-            padding: 20px;
-            text-align: left;
-            position: relative;
-            height: 100%;
-        }
-        .career-card a{
-            color: var(--seconadry);
-            font-weight: 600;
-        }
-    </style>
-
     <section class="contact-section centred mt-5 pt-5">
         <div class="auto-container">
-            <div class="row ">
-                <div class="col-lg-12">
+            <div class="row clearfix">
+                <div class="col-xl-8 col-lg-12 offset-xl-2 big-column">
                     <div class="sec-title centred">
-                        <h2>Opened Jobs List</h2>
+                        <h2>{{$job->title}}</h2>
                     </div>
 
 
                     <div class="form-inner">
-                        <div class="row">
-                            @foreach($jobs as $job)
-                                <div class="col-lg-4 mb-3">
-                                    <div class="career-card">
-                                        <h4>{{$job->title}}</h4>
-                                        <p>{!! SplitWords($job->details,10)  !!}</p>
-                                        <a href="{{route("frontend.career.specific",$job)}}">Read more</a>
-                                    </div>
-                                </div>
 
-                            @endforeach
-                        </div>
+                        {!! $job->details  !!}
+
                     </div>
                 </div>
             </div>
@@ -95,10 +73,10 @@
             <div class="row clearfix">
                 <div class="col-xl-8 col-lg-12 offset-xl-2 big-column">
                     <div class="sec-title centred">
-                        <h2>Apply for Future Jobs</h2>
+                        <h2>Apply on current Job</h2>
                     </div>
                     @if($errors->any())
-{{--                        @dd($errors)--}}
+                        {{--                        @dd($errors)--}}
                         <div id="error-message" class="alert alert-danger">
                             @foreach($errors->all() as $error)
                                 <p>{{ $error }}</p>
@@ -114,13 +92,16 @@
 
 
                     <div class="form-inner">
-                        <form method="post" id="career-application-form" action="{{ route('frontend.career.apply') }}" enctype="multipart/form-data" class="default-form">
+                        <form method="post" id="career-application-form" action="{{ route('frontend.career.apply') }}"
+                              enctype="multipart/form-data" class="default-form">
                             @csrf
                             <div class="row clearfix">
 
                                 <!-- Username -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="Full name" value="{{ old('username') }}" required>
+                                    <input type="text" name="username" placeholder="Full name"
+                                           value="{{ old('username') }}" required>
+                                    <input type="hidden" name="job_id" value="{{$job->id}}">
                                     @error('username')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -128,7 +109,8 @@
 
                                 <!-- Email -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
+                                    <input type="email" name="email" placeholder="Email address"
+                                           value="{{ old('email') }}" required>
                                     @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -136,7 +118,8 @@
 
                                 <!-- Phone -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                    <input type="text" id="phone" name="phone" placeholder="Phone number" value="{{ old('phone') }}" required style="padding: 10px 10px 10px 45px">
+                                    <input type="text" id="phone" name="phone" placeholder="Phone number"
+                                           value="{{ old('phone') }}" required style="padding: 10px 10px 10px 45px">
                                     @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -144,7 +127,8 @@
 
                                 <!-- Subject -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" placeholder="Job Title" value="{{ old('subject') }}" required>
+                                    <input type="text" name="subject" placeholder="Job Title"
+                                           value="{{ old('subject') }}" required>
                                     @error('subject')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -153,15 +137,16 @@
                                 <!-- File upload (PDF, DOC, DOCX) -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     {{-- <div class="file-input-wrapper text-left"> --}}
-                                        <input type="file" name="upload" accept=".pdf,.doc,.docx" required>
-                                        @error('upload')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    <input type="file" name="upload" accept=".pdf,.doc,.docx" required>
+                                    @error('upload')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     {{-- </div> --}}
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mr-0">
-                                    <button class="theme-btn btn-one" type="submit" name="submit-form"><span>Submit</span></button>
+                                    <button class="theme-btn btn-one" type="submit" name="submit-form">
+                                        <span>Submit</span></button>
                                 </div>
                             </div>
                         </form>
@@ -175,7 +160,7 @@
 
     @push('scripts')
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 var errorDiv = document.getElementById('error-message');
                 var successDiv = document.getElementById('success-message');
                 var offset = 135; // Change this value to adjust how much higher you want to scroll
@@ -197,12 +182,13 @@
                 }
             });
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var input = document.querySelector("#phone");
                 var iti = window.intlTelInput(input, {
                     initialCountry: "auto",
-                    geoIpLookup: function(callback) {
-                        $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    geoIpLookup: function (callback) {
+                        $.get("https://ipinfo.io", function () {
+                        }, "jsonp").always(function (resp) {
                             var countryCode = (resp && resp.country) ? resp.country : "us";
                             callback(countryCode);
                         });
@@ -217,13 +203,13 @@
                 }
 
                 // When the form is submitted, get the full phone number with the country code
-                $('#career-application-form').on('submit', function() {
+                $('#career-application-form').on('submit', function () {
                     var fullPhoneNumber = iti.getNumber();
                     $("#phone").val(fullPhoneNumber); // Replace the input value with the full phone number
                 });
 
 
-                $.validator.addMethod("strictEmail", function(value, element) {
+                $.validator.addMethod("strictEmail", function (value, element) {
                     // Regular expression to ensure email has a valid domain and TLD (e.g., mmr@mmr.com)
                     return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value);
                 }, "Please enter a valid email address with a proper domain.");
@@ -285,13 +271,13 @@
                             filesize: "Your file must be smaller than 2MB"
                         }
                     },
-                    submitHandler: function(form) {
+                    submitHandler: function (form) {
                         form.submit();
                     }
                 });
 
                 // Custom rule for file size
-                $.validator.addMethod('filesize', function(value, element, param) {
+                $.validator.addMethod('filesize', function (value, element, param) {
                     return this.optional(element) || (element.files[0].size <= param * 1024);
                 });
             });

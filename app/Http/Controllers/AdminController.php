@@ -77,6 +77,7 @@ class AdminController extends Controller
             ];
 
             // Add other settings if they exist in the request
+            ($request->has('Loading_page_text') && $request->Loading_page_text != '') ? $settingArray['Loading_page_text'] = $request->Loading_page_text : '';
             ($request->has('address') && $request->address != '') ? $settingArray['address'] = $request->address : '';
             ($request->has('phone') && $request->phone != '') ? $settingArray['phone'] = $request->phone : '';
             ($request->has('email') && $request->email != '') ? $settingArray['email'] = $request->email : '';
@@ -105,8 +106,11 @@ class AdminController extends Controller
     }
 
 
-    public function career_application(CareerApplicationDataTable $dataTable)
+    public function career_application(CareerApplicationDataTable $dataTable, $job_id=null)
     {
+        if ($job_id) {
+            $dataTable->setParameters($job_id);
+        }
         return $dataTable->render('admin.career_application.index');
     }
 
