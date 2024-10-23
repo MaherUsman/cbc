@@ -9,8 +9,9 @@
         }
 
         .video-layer video {
-            width: 100%;
-            height: auto;
+            /*width: 100%;*/
+            width: auto;
+            height: 400px;
             display: block;
         }
 
@@ -20,29 +21,40 @@
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
             @foreach($sliders as $slider)
-                <div class="slide-item">
+
                 @if(!$slider->is_image)
                     <!-- If video exists, add video tag -->
-                        <div class="video-layer">
+
+{{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
+                        <div class="item-video" data-merge="1">
                             <video autoplay muted loop controls>
-                                <source src="{{ $slider->image }}" {{--type="video/mp4"--}}>
+                                <source src="{{ $slider->image }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
+{{--                        <div class="video-layer">--}}
+{{--                            <video autoplay muted loop controls>--}}
+{{--                                <source src="{{ $slider->image }}" --}}{{--type="video/mp4"--}}{{-->--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                        </div>--}}
                 @else
+                        <div class="slide-item">
                     <!-- If no video, fallback to image -->
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
-                    @endif
-                    <div class="auto-container">
-                        <div class="content-box">
-                            <h3>{{ $slider->title }}</h3>
-                            <h2>{!! $slider->details !!}</h2>
-                            <div class="btn-box">
-                                <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
+                            <div class="auto-container">
+                                <div class="content-box">
+                                    <h3>{{ $slider->title }}</h3>
+                                    <h2>{!! $slider->details !!}</h2>
+                                    <div class="btn-box">
+                                        <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+
+
             @endforeach
         </div>
     </section>
