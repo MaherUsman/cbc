@@ -38,9 +38,9 @@
                             <a href="{{route('blogs.index')}}">{{__('sidebar.events.index')}}</a>
                         </li>
                         @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-event']))
-                        <li class="{{ request()->is('admin/blogs/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('blogs.create')}}">{{__('sidebar.events.create')}}</a>
-                        </li>
+                            <li class="{{ request()->is('admin/blogs/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('blogs.create')}}">{{__('sidebar.events.create')}}</a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -57,9 +57,9 @@
                             <a href="{{route('sliders.index')}}">{{__('sidebar.sliders.index')}}</a>
                         </li>
                         @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-slider']))
-                        <li class="{{ request()->is('admin/sliders/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('sliders.create')}}">{{__('sidebar.sliders.create')}}</a>
-                        </li>
+                            <li class="{{ request()->is('admin/sliders/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('sliders.create')}}">{{__('sidebar.sliders.create')}}</a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -105,16 +105,18 @@
                         <span class="nav-text">{{__('sidebar.animals.name')}}</span>
                     </a>
                     <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
-                        <li class="{{ request()->is('admin/animal-categories*') ? 'active mm-active' : '' }}">
-                            <a href="{{route('animal-categories.index')}}">{{__('sidebar.animalCategories.index')}}</a>
-                        </li>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal-category']))
+                            <li class="{{ request()->is('admin/animal-categories*') ? 'active mm-active' : '' }}">
+                                <a href="{{route('animal-categories.index')}}">{{__('sidebar.animalCategories.index')}}</a>
+                            </li>
+                        @endif
                         <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
                             <a href="{{route('animals.index')}}">{{__('sidebar.animals.index')}}</a>
                         </li>
                         @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-animal']))
-                        <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
-                        </li>
+                            <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -202,9 +204,9 @@
                             <a href="{{route('jobs.index')}}">{{__('sidebar.jobs.index')}}</a>
                         </li>
                         @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-job']))
-                        <li class="{{ request()->is('admin/jobs/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('jobs.create')}}">{{__('sidebar.jobs.create')}}</a>
-                        </li>
+                            <li class="{{ request()->is('admin/jobs/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('jobs.create')}}">{{__('sidebar.jobs.create')}}</a>
+                            </li>
                         @endif
                     </ul>
                 </li>
@@ -233,7 +235,7 @@
             @endif
             @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-career-listing']))
                 <li class="{{ request()->is('admin/career-listing') ? 'active mm-active' : '' }}">
-                    <a class=""href="{{route('admin.career-listing')}}">
+                    <a class="" href="{{route('admin.career-listing')}}">
                         <i class="la la-th-list"></i>
                         <span class="nav-text">{{__('sidebar.career-listing.name')}}</span>
                     </a>
