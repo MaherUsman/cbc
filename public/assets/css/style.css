@@ -3712,7 +3712,7 @@ div#mCSB_1_container{
   width: 100%;
   transition: all 500ms ease;
   height: 422px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .gallery-block-two .inner-box:hover .image-box img{
