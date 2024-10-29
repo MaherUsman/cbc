@@ -212,7 +212,9 @@
     		animateIn: 'fadeIn',
     		active: true,
 			smartSpeed: 1000,
-			autoplay: 12000,
+			autoplay: true,
+			autoplayTimeout:12000,
+			autoplayHoverPause:true,
             navText: [ '<span class="flaticon-left-arrow"></span>', '<span class="flaticon-right-arrow"></span>' ],
             responsive:{
                 0:{

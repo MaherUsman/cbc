@@ -1943,6 +1943,11 @@ div#mCSB_1_container{
 
 }
 
+.image-column:nth-child(1) .image_block_one .image-box .image img{
+  height: 550px !important;
+  object-fit: fill;
+}
+
 .image_block_one .image-box .image img{
   width: 100%;
   border-radius: 50%;
