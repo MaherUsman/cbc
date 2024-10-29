@@ -10,6 +10,7 @@ use App\Models\AboutUsGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class AboutUsGalleryService
 {
@@ -44,7 +45,11 @@ class AboutUsGalleryService
         try {
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $aboutUsGallery = AboutUsGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
+                $aboutUsGallery = AboutUsGallery::create(['title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,
+                ]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $aboutUsGallery);
@@ -81,7 +86,12 @@ class AboutUsGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $aboutUsGallery->image != null && $aboutUsGallery->image != '') ? unlink(public_path($aboutUsGallery->image)) : '';
+            if ($request->has('image') && $request->image != '' && $aboutUsGallery->image != null && $aboutUsGallery->image != '') {
+                $filePath = public_path($aboutUsGallery->image);
+                if (File::exists($filePath)) {
+                    unlink($filePath);
+                }
+            }
             $aboutUsGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $aboutUsGallery);
