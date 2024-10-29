@@ -4,6 +4,8 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Laravel\Facades\Image;
+
 
 class ChunkUploadService
 {
@@ -13,22 +15,26 @@ class ChunkUploadService
             $chunk = $request->file('chunk');
             $chunkNumber = $request->input('chunkNumber');
             $totalChunks = $request->input('totalChunks');
-            $fileName = $request->input('fileName');
-//            $fileName = str_replace(' ','_',$fileName);
-            $fileName = preg_replace('/\s+/', '_', preg_replace('/[^A-Za-z0-9. ]/', '', trim($fileName)));
+            $fileName = preg_replace('/\s+/', '_', preg_replace('/[^A-Za-z0-9. ]/', '', trim($request->input('fileName'))));
             $FinalPath = $request->input('ImageUploadPath');
-            $uploadDir = public_path('upload').DIRECTORY_SEPARATOR;
-            $chunkUploadDir = $uploadDir.'chunks'.DIRECTORY_SEPARATOR;
+            $uploadDir = public_path('upload') . DIRECTORY_SEPARATOR;
+            $chunkUploadDir = $uploadDir . 'chunks' . DIRECTORY_SEPARATOR;
+
             if (!File::exists($chunkUploadDir)) {
                 File::makeDirectory($chunkUploadDir, 0755, true);
             }
+
             $chunk->move($chunkUploadDir, $fileName . '.part' . $chunkNumber);
+
             if ($chunkNumber == $totalChunks) {
                 $FinalImageName = time() . '-' . $fileName;
                 $finalFile = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . $FinalImageName;
+
                 if (!File::exists($uploadDir . $FinalPath)) {
                     File::makeDirectory($uploadDir . $FinalPath, 0755, true);
                 }
+
+                // Combine the chunks
                 $out = fopen($finalFile, 'w');
                 for ($i = 1; $i <= $totalChunks; $i++) {
                     $in = fopen($chunkUploadDir . $fileName . '.part' . $i, 'r');
@@ -39,11 +45,32 @@ class ChunkUploadService
                     unlink($chunkUploadDir . $fileName . '.part' . $i);
                 }
                 fclose($out);
-                return response()->json(['message' => 'Upload complete', 'filePath' => 'upload/' . $FinalPath . '/' . $FinalImageName]);
+
+                $image = Image::read($finalFile);
+
+
+                // Save compressed main image
+                $compressedImagePath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'compressed-' . $FinalImageName;
+                $image->save($compressedImagePath, 75); // Compressing the image quality to 75%
+
+                // Create and save thumbnail
+                $thumbnailPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'thumb-' . $FinalImageName;
+                $image->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($thumbnailPath);
+
+                return response()->json([
+                    'message' => 'Upload complete',
+                    'filePath' => 'upload/' . $FinalPath . '/' . $FinalImageName,
+                    'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalImageName,
+                    'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalImageName,
+                ]);
             }
+
             return response()->json(['message' => 'Chunk uploaded']);
-        }catch (\Exception $exception){
-            return makeResponse('error',$exception->getMessage());
+        } catch (\Exception $exception) {
+            return makeResponse('error', $exception->getMessage());
         }
+
     }
 }
