@@ -1,4 +1,15 @@
 <?php return array (
+  'intervention/image-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\Laravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Laravel\\Facades\\Image',
+    ),
+  ),
   'jasonmccreary/laravel-test-assertions' => 
   array (
     'providers' => 

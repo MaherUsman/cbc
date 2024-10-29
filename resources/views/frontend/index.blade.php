@@ -130,14 +130,14 @@
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                <figure class="image "><img src="{{asset($animal->image)}}" alt=""></figure>
+                                <figure class="image "><img src="{{asset($animal->image)}}" alt="" class="img-fluid"></figure>
                                 <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
                         <div class="content_block_one">
-                            <div class="content-box">
+                            <div class="content-box ss">
                                 <div class="sec-title">
                                     <h2>{{$animal->title}}</h2>
                                 </div>
