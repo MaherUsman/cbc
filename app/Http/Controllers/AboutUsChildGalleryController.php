@@ -45,7 +45,6 @@ class AboutUsChildGalleryController extends Controller
 
     public function update(AboutUsChildGalleryUpdateRequest $request, AboutUsChildGallery $aboutUsChildGallery)
     {
-//        dd($request);
         return $this->aboutUsChildGalleryService->update($request , $aboutUsChildGallery);
     }
 
