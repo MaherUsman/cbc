@@ -48,7 +48,7 @@ class AnimalGalleryController extends Controller
         return $this->animalGalleryService->edit($animalGallery);
     }
 
-    public function update(AnimalGalleryUpdateRequest $request, AnimalGallery $animalGallery)
+    public function update(Request $request, AnimalGallery $animalGallery)
     {
         return $this->animalGalleryService->update($request, $animalGallery);
     }

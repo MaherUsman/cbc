@@ -65,12 +65,15 @@ class AnimalGalleryService
         }
     }
 
-    public function update(AnimalGalleryUpdateRequest $request, AnimalGallery $animalGallery)
+    public function update(Request $request, AnimalGallery $animalGallery)
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $animalGallery->image != null && $animalGallery->image != '') ? unlink(public_path($animalGallery->image)) : '';
-            $animalGallery->update(collect($request->validated())->all());
+            if ($request->has('image') && $request->image != '' && !empty($animalGallery->image) && file_exists(public_path($animalGallery->image))) {
+                unlink(public_path($animalGallery->image));
+            }
+
+            $animalGallery->update(collect($request->all())->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animalGallery);
         } catch (\Exception $exception) {
