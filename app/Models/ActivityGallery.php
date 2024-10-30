@@ -14,12 +14,13 @@ class ActivityGallery extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $guarded = [];
+    /*protected $fillable = [
         'title',
         'slug',
         'image',
         'status',
-    ];
+    ];*/
 
     /**
      * The attributes that should be cast to native types.

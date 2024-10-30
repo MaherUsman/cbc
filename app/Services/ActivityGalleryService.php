@@ -50,7 +50,11 @@ class ActivityGalleryService
         try {
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $activityGallery = ActivityGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
+                $activityGallery = ActivityGallery::create(['title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,
+                    ]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $activityGallery);
