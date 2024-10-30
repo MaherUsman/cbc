@@ -41,7 +41,12 @@ class AboutUsChildGalleryService
         DB::beginTransaction();
         try {
             foreach ($request->title as $key=>$value){
-                $aboutUsChildGallery = AboutUsChildGallery::create(['about_us_gallery_id'=>$request->about_us_gallery_id,'title'=>$value,'image'=>$request->image[$key]]);
+                $aboutUsChildGallery = AboutUsChildGallery::create(['about_us_gallery_id'=>$request->about_us_gallery_id,
+                    'title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,
+                ]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $aboutUsChildGallery);
