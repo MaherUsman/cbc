@@ -210,7 +210,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true, filePath: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
