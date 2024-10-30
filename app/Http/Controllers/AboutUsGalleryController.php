@@ -32,6 +32,7 @@ class AboutUsGalleryController extends Controller
 
     public function store(/*AboutUsGalleryStore*/Request $request)
     {
+//        dd($request->all());
         return $this->aboutUsGalleryService->store($request);
     }
 

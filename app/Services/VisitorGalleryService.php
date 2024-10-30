@@ -50,7 +50,10 @@ class VisitorGalleryService
         try {
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $visitorGallery = VisitorGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
+                $visitorGallery = VisitorGallery::create(['title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $visitorGallery);

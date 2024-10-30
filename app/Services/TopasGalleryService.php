@@ -15,6 +15,7 @@ use App\Models\TopasGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class TopasGalleryService
 {
@@ -50,7 +51,10 @@ class TopasGalleryService
         try {
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $topasGallery = TopasGallery::create(['title'=>$value,'image'=>$request->image[$key]]);
+                $topasGallery = TopasGallery::create(['title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $topasGallery);
@@ -87,7 +91,13 @@ class TopasGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $topasGallery->image != null && $topasGallery->image != '') ? unlink(public_path($topasGallery->image)) : '';
+
+            if ($request->has('image') && $request->image != '' && $topasGallery->image != null && $topasGallery->image != '') {
+                $filePath = public_path($topasGallery->image);
+                if (File::exists($filePath)) {
+                    unlink($filePath);
+                }
+            }
             $topasGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $topasGallery);
