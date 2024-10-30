@@ -83,7 +83,13 @@ class AboutUsChildGalleryService
         DB::beginTransaction();
         try {
 //            dd($request->all());
-            ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') ? unlink(public_path($aboutUsChildGallery->image)) : '';
+            if ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') {
+                $filePath = public_path($aboutUsChildGallery->image);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+            }
+
             $aboutUsChildGallery->update(collect($request->all())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $aboutUsChildGallery);
