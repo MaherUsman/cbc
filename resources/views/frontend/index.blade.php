@@ -221,8 +221,7 @@
     </section>
     <!-- gallery-section end -->
 
-
-
+    @if($events->count() > 0)
     <!-- events-section -->
     <section class="events-section sec-pad mt-5">
         <div class="bg-layer"></div>
@@ -262,6 +261,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- events-section end -->
 
 
