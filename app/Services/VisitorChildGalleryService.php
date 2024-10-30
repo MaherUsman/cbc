@@ -89,7 +89,18 @@ class VisitorChildGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $visitorChildGallery->image != null && $visitorChildGallery->image != '') ? unlink(public_path($visitorChildGallery->image)) : '';
+            //($request->has('image') && $request->image != '' && $visitorChildGallery->image != null && $visitorChildGallery->image != '') ? unlink(public_path($visitorChildGallery->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $visitorChildGallery->image != null &&
+                $visitorChildGallery->image != ''
+            ) {
+                $imagePath = public_path($visitorChildGallery->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $visitorChildGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $visitorChildGallery);

@@ -78,7 +78,20 @@ class JobService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $job->image != null && $job->image != '') ? unlink(public_path($job->image)) : '';
+            //($request->has('image') && $request->image != '' && $job->image != null && $job->image != '') ? unlink(public_path($job->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $job->image != null &&
+                $job->image != ''
+            ) {
+                $imagePath = public_path($job->image);
+
+                // Check if the file exists before attempting to delete it
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $job->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $job);

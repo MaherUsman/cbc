@@ -80,7 +80,18 @@ class AnimalCategoryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $animalCategory->image != null && $animalCategory->image != '') ? unlink(public_path($animalCategory->image)) : '';
+            //($request->has('image') && $request->image != '' && $animalCategory->image != null && $animalCategory->image != '') ? unlink(public_path($animalCategory->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $animalCategory->image != null &&
+                $animalCategory->image != ''
+            ) {
+                $imagePath = public_path($animalCategory->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $animalCategory->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animalCategory);

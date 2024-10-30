@@ -78,7 +78,20 @@ class TeamService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $team->image != null && $team->image != '') ? unlink(public_path($team->image)) : '';
+            //($request->has('image') && $request->image != '' && $team->image != null && $team->image != '') ? unlink(public_path($team->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $team->image != null &&
+                $team->image != ''
+            ) {
+                $imagePath = public_path($team->image);
+
+                // Check if the file exists before attempting to delete it
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $team->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $team);
