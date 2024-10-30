@@ -78,7 +78,7 @@ class AboutUsChildGalleryService
         }
     }
 
-    public function update(AboutUsChildGalleryUpdateRequest $request, AboutUsChildGallery $aboutUsChildGallery)
+    public function update(Request $request, AboutUsChildGallery $aboutUsChildGallery)
     {
         DB::beginTransaction();
         try {
