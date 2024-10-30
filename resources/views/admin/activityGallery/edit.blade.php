@@ -150,8 +150,10 @@
                     } catch (error) {
                         return {success: false, error: error};
                     }
+
                 }
             }
+
 
             async function submitFormData(url, data) {
                 $.blockUI({

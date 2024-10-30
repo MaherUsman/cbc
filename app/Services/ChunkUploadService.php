@@ -55,7 +55,7 @@ class ChunkUploadService
 
                 // Create and save thumbnail
                 $thumbnailPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'thumb-' . $FinalImageName;
-                $image->resize(1803, 3375, function ($constraint) {
+                $image->resize(452, 422, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($thumbnailPath);
 

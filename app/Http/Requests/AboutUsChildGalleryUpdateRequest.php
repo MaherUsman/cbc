@@ -23,7 +23,9 @@ class AboutUsChildGalleryUpdateRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
-            //'image' => ['nullable', 'string', 'max:255'],
+            'image' => ['nullable', 'string', 'max:255'],
+            'thumb' => ['nullable', 'string', 'max:255'],
+            'compressed' => ['nullable', 'string', 'max:255'],
             //'status' => ['required'],
         ];
     }

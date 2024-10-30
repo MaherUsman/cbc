@@ -159,6 +159,8 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     data.append(`image[${i}]`, response.filePath);
+                                    data.append(`thumb`, response.thumbnailPath);
+                                    data.append(`compressed`, response.compressedPath);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');

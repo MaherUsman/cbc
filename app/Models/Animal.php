@@ -16,20 +16,7 @@ class Animal extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'title',
-        'slug',
-        'image',
-        'details',
-        'show_on_top_bar',
-        'status',
-        'display_order',
-        'is_homepage',
-        'is_amazing',
-        'home_image',
-        'banner_image',
-        'category_id'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast to native types.

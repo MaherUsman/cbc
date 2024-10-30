@@ -323,7 +323,8 @@
                         try {
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
-                                formData.set(imageColName, response.filePath);
+                                formData.set(imageColName, response.compressedPath);
+                                formData.set(imageColName+"_thumbnail", response.thumbnailPath);
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -341,7 +342,8 @@
                         try {
                             let response = await uploadImageInChunks(homeImageFile);
                             if (response.success) {
-                                formData.set(homeImageColName, response.filePath);
+                                formData.set(homeImageColName, response.compressedPath);
+                                formData.set(homeImageColName+"_thumbnail", response.thumbnailPath);
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -359,7 +361,9 @@
                         try {
                             let response = await uploadImageInChunks(bannerImageFile);
                             if (response.success) {
-                                formData.set(bannerImageColName, response.filePath);
+                                formData.set(bannerImageColName, response.compressedPath);
+                                formData.set(bannerImageColName+"_thumbnail", response.thumbnailPath);
+                                console.log(bannerImageColName+"_thumbnail" , 'dsfdsfd')
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -426,7 +430,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true, filePath: response.filePath , compressedPath: response.compressedPath , thumbnailPath: response.thumbnailPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
