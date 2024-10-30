@@ -51,7 +51,6 @@ class AboutUsService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $aboutUs->image != null && $aboutUs->image != '') ? unlink(public_path($aboutUs->image)) : '';
             if (
                 $request->has('image') &&
                 $request->image != '' &&
