@@ -312,6 +312,8 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     data.append(`image[${i}]`, response.filePath);
+                                    data.append(`thumb`, response.thumb);
+                                    data.append(`compressed`, response.compressed);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -357,7 +359,10 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
