@@ -84,7 +84,7 @@ class AboutUsChildGalleryService
         try {
 //            dd($request->all());
             ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') ? unlink(public_path($aboutUsChildGallery->image)) : '';
-            $aboutUsChildGallery->update(collect($request->validated())->except('role')->all());
+            $aboutUsChildGallery->update(collect($request->all())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $aboutUsChildGallery);
         } catch (\Exception $exception) {
