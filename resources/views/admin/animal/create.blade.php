@@ -400,6 +400,7 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 formData.set(imageColName, response.filePath);
+                                formData.set(imageColName+'_thumbnail', response.thumbnailPath);
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -418,6 +419,8 @@
                             let response = await uploadImageInChunks(homeImageFile);
                             if (response.success) {
                                 formData.set(homeImageColName, response.filePath);
+                                formData.set(homeImageColName+'_thumbnail', response.thumbnailPath);
+
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -435,7 +438,11 @@
                         try {
                             let response = await uploadImageInChunks(bannerImageFile);
                             if (response.success) {
+                                // console.log('adil here', response);
+                                // console.log('adil here yesss', response.thumbnailPath);
                                 formData.set(bannerImageColName, response.filePath);
+                                // alert(response.thumbnailPath);
+                                formData.set(bannerImageColName+'_thumbnail', response.thumbnailPath);
                             } else {
                                 $.unblockUI();
                                 errorMsg('Image upload failed');
@@ -456,6 +463,7 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     formData.append(`gal_image[${i}]`, response.filePath);
+                                    formData.append(`gal_image[${i}]_thumbnail`, response.thumbnailPath);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -502,7 +510,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true, filePath: response.filePath, thumbnailPath: response.thumbnailPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
