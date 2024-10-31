@@ -1,6 +1,13 @@
 @extends('frontend.layout.index')
 
 @section('content')
+
+
+<style type="text/css">
+    .gallery-block-two .inner-box .image-box img{
+        height: 100%;
+    }
+</style>
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">

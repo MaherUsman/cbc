@@ -93,6 +93,12 @@
 </section>
 <!-- gallery-page-section end -->
 
+<style type="text/css">
+    .gallery-block-two .inner-box .image-box img{
+        height: 100%;
+    }
+</style>
+
 
 <!-- animals-section -->
 <section class="animals-section sec-pad">
