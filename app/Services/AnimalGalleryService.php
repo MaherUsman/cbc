@@ -69,10 +69,18 @@ class AnimalGalleryService
     {
         DB::beginTransaction();
         try {
-            if ($request->has('image') && $request->image != '' && !empty($animalGallery->image) && file_exists(public_path($animalGallery->image))) {
-                unlink(public_path($animalGallery->image));
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $animalGallery->image != null &&
+                $animalGallery->image != ''
+            ) {
+                $imagePath = public_path($animalGallery->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
-
+//            dd($request->all());
             $animalGallery->update(collect($request->all())->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animalGallery);

@@ -33,7 +33,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
-                                    <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
+                                    <input type="file" name="image" id="imageUpload" class="form-control" accept="image/*"
                                            data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
                                 </div>
@@ -105,6 +105,8 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
+                                data.set(`thumb`, response.thumb);
+                                data.set(`compressed`, response.compressed);
                                 await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
@@ -144,10 +146,12 @@
                             processData: false,
                             contentType: false,
                         });
-
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};

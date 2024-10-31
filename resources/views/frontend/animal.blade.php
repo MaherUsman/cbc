@@ -69,7 +69,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
                 <div class="gallery-block-two">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="{{asset($animalGalleries->image)}}" alt=""></figure>
+                        <figure class="image-box"><img src="{{asset($animalGalleries->thumb)}}" alt=""></figure>
                         <div class="view-box d-flex align-items-center flex-column justify-content-center">
                             <a href="{{asset($animalGalleries->image)}}"
                                 class="lightbox-image d-flex justify-content-center align-items-center flex-column"
