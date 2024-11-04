@@ -17,7 +17,8 @@ class AnimalGalleryService
     public function index(Animal $animal)
     {
         //$animalGalleries = $animal->animalGalleries; //AnimalGallery::orderBy('display_order', 'asc')->get();
-        return view('admin.animalGallery.index',compact('animal'));
+        $animalGalleries = $animal->animalGalleries()->orderBy('display_order', 'asc')->paginate(10);
+        return view('admin.animalGallery.index',compact('animal','animalGalleries'));
     }
 
     public function create(Animal $animal)
