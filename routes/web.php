@@ -140,6 +140,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
+    Route::get('loadmore/{slug}/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'loadMoreAnimalGalleries'])->name('find.animal');
 });
 
 Route::get('{any?}', function () {
