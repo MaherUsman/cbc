@@ -140,10 +140,10 @@
                             <div class="gallery-block-two">
                                 <div class="inner-box">
                                     <figure class="image-box">
-                                        <img src="${gallery.thumb}" alt="">
+                                        <img src="${assetPath}/${gallery.thumb}" alt="">
                                     </figure>
                                     <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                        <a href="${assetPath}/${gallery.image}"
+                                        <a href="${gallery.image}"
                                             class="lightbox-image d-flex justify-content-center align-items-center flex-column"
                                             data-fancybox="gallery">
                                             <i class="fa fa-eye"></i>
