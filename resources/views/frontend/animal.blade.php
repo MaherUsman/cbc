@@ -134,6 +134,7 @@
                     if (data.data.length > 0) {
                         const galleryContainer = document.getElementById('gallery-container');
                         data.data.forEach(gallery => {
+                            console.log(gallery , 'gallery name')
                             const galleryBlock = document.createElement('div');
                             galleryBlock.classList.add('col-lg-4', 'col-md-6', 'col-sm-12', 'gallery-block');
                             galleryBlock.innerHTML = `
