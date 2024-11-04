@@ -141,7 +141,7 @@
                             <div class="gallery-block-two">
                                 <div class="inner-box">
                                     <figure class="image-box">
-                                        <img src="${assetPath}/${gallery.thumb}" alt="">
+                                        <img src="${assetPath}/${gallery.compressed}" alt="">
                                     </figure>
                                     <div class="view-box d-flex align-items-center flex-column justify-content-center">
                                         <a href="${assetPath}/${gallery.image}"
