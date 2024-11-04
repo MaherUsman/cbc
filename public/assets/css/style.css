@@ -592,7 +592,8 @@ img {
   position: absolute;
   top: 0px;
   right: 0px;
-  width: calc(100% - 260px);
+  /*width: calc(100% - 260px);*/
+    width: 100%;
   background: #fff;
 }
 
@@ -1886,14 +1887,15 @@ div#mCSB_1_container{
 
 .info-section .bg-layer{
   position: absolute;
-  left: 260px;
+  left: 0px;
   top: 0px;
-  width: calc(100% - 260px);
+  /*width: calc(100% - 260px);*/
+    width: 100%;
   height: 100%;
   background: #E7E0CF;
 }
 
-.info-section .bg-layer:before{
+/*.info-section .bg-layer:before{
   position: absolute;
   content: '';
   background: #0e131f;
@@ -1901,7 +1903,7 @@ div#mCSB_1_container{
   height: 100%;
   left: 0px;
   top: 0px;
-}
+}*/
 
 .info-section .rotate-text{
   position: absolute;

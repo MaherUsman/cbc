@@ -63,7 +63,6 @@
     <!-- info-section -->
     <section class="info-section">
         <div class="bg-layer"></div>
-        <span class="rotate-text">wild animal zoo</span>
         <div class="auto-container">
             <div class="inner-container introtext">
                 <div class="row clearfix">
