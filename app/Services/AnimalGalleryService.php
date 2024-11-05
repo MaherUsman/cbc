@@ -14,12 +14,20 @@ use Illuminate\Support\Facades\DB;
 
 class AnimalGalleryService
 {
-    public function index(Animal $animal)
+    public function index(Request $request, Animal $animal)
     {
-        //$animalGalleries = $animal->animalGalleries; //AnimalGallery::orderBy('display_order', 'asc')->get();
-        $animalGalleries = $animal->animalGalleries()->orderBy('display_order', 'asc')->paginate(10);
-        return view('admin.animalGallery.index',compact('animal','animalGalleries'));
+        $animalGalleries = $animal->animalGalleries()->orderBy('display_order', 'asc')->paginate(9); // Adjust items per page as needed
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('admin.animalGallery.gallery_items', compact('animalGalleries'))->render(),
+                'nextPageUrl' => $animalGalleries->nextPageUrl()
+            ]);
+        }
+
+        return view('admin.animalGallery.index', compact('animal', 'animalGalleries'));
     }
+
 
     public function create(Animal $animal)
     {

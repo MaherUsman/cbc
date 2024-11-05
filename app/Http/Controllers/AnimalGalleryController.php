@@ -18,9 +18,9 @@ class AnimalGalleryController extends Controller
         $this->animalGalleryService = $animalGalleryService;
     }
 
-    public function index(Animal $animal)
+    public function index(Request $request, Animal $animal)
     {
-        return $this->animalGalleryService->index($animal);
+        return $this->animalGalleryService->index($request, $animal);
     }
 
     public function gridView(Animal $animal)
