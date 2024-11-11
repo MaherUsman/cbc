@@ -29,13 +29,16 @@
             margin-left: 4px; /* Slight adjustment to the arrow */
             vertical-align: middle; /* Ensures it stays aligned with the flag */
         }
+        .map-inner iframe{
+            width: 100%;
+        }
 
     </style>
     <!-- google-map-section -->
     <section class="google-map-section">
         <div class="auto-container">
             <div class="map-inner">
-                <div class="map-canvas"
+                <!-- <div class="map-canvas"
                      data-zoom="12"
                      data-lat="-37.817085"
                      data-lng="144.955631"
@@ -44,7 +47,8 @@
                      data-title="Envato"
                      data-icon-path="assets/images/icons/map-marker.png"
                      data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                </div>
+                </div> -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1574.4138450616574!2d72.041171!3d29.2950139!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b8b464ba8f583%3A0xee4fbde50e2c9475!2sSHEIKH%20MOHAMMAD%20BIN%20ZAYED%20AL%20NAHYAN%20CONSERVATION%20BREEDING%20CENTRE!5e1!3m2!1sen!2s!4v1731305585633!5m2!1sen!2s" width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="content-box">
                     <h2>get in touch with us</h2>
                     <ul class="info clearfix">
