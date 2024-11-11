@@ -37,9 +37,16 @@
                                 <h2>{{$aboutUs->title}}</h2>
                             </div>
                             <div class="text">
-                                <p>
+                                <!-- <p>
                                     {!! $aboutUs->p1 !!}
-                                </p>
+                                </p> -->
+                                <p id="limited-text">
+                                {{ Str::words($aboutUs->p1, 100, '...') }}
+                            </p>
+                            <p id="full-text" style="display: none;">
+                                {!! $aboutUs->p1 !!}
+                            </p>
+                            <button id="read-more-btn" class="theme-btn btn-one" onclick="toggleReadMore()">Read More</button>
 
                             </div>
                             <!-- <div class="btn-box">
@@ -255,7 +262,8 @@
                         <a>
                         <div class="gallery-block-two">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset($gallery->image)}}" alt=""></figure>
+                                <figure class="image-box">
+                                <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}"><img src="{{asset($gallery->image)}}" alt=""></a></figure>
 {{--                                <div class="view-box d-flex align-items-center flex-column justify-content-center">--}}
 {{--                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">--}}
 {{--                                        <i class="flaticon-plus-symbol"></i>--}}
@@ -306,3 +314,23 @@
     <!-- team-section end -->
 
 @endsection
+
+<script>
+    function toggleReadMore() {
+        const limitedText = document.getElementById('limited-text');
+        const fullText = document.getElementById('full-text');
+        const readMoreBtn = document.getElementById('read-more-btn');
+
+        if (fullText.style.display === 'none') {
+            // Show full text and hide limited text
+            fullText.style.display = 'block';
+            limitedText.style.display = 'none';
+            readMoreBtn.innerText = 'Show Less';
+        } else {
+            // Show limited text and hide full text
+            fullText.style.display = 'none';
+            limitedText.style.display = 'block';
+            readMoreBtn.innerText = 'Read More';
+        }
+    }
+</script>

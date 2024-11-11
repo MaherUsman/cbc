@@ -3740,8 +3740,9 @@ div#mCSB_1_container{
 }
 
 .gallery-block-two .inner-box:hover .image-box img{
-  opacity: 0.1;
+  /* opacity: 0.1; */
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .gallery-block-two .inner-box .view-box{
