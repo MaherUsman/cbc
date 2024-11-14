@@ -2,6 +2,7 @@
 
 @section('content')
     <style>
+
         /* Make sure the phone input container stays in line */
         .iti {
             width: 100%; /* Ensures the phone input takes up full width */

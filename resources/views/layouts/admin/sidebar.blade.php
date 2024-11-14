@@ -10,6 +10,7 @@
                     </a>
                 </li>
             @endif
+            <li class="nav-label">Pages</li>
 
             {{--            <li class="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'active mm-active' : '' }}">--}}
             {{--                <a class="has-arrow" href="javascript:void(0);" aria-expanded="{{ request()->is('admin/user*') || request()->is('admin/roles*') ? 'true' : 'false' }}">--}}
