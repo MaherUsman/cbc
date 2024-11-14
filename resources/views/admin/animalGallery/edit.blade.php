@@ -4,16 +4,15 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [
-            ['name' => __('animalGalleries.admin.breadcrumbs.name'), 'route' => 'animal-galleries.index', 'params' => $animalGallery->animal],
-            ['name' => __('animalGalleries.admin.breadcrumbs.create'), 'route' => 'animal-galleries.create', 'params' => $animalGallery->animal]
+            ['name' => __('animalGalleries.admin.breadcrumbs.edit'), 'route' => 'animal-galleries.edit', 'params' => $animalGallery->animal]
         ],
-        'pageTitle' => __('animalGalleries.admin.breadcrumbs.create')
+        'pageTitle' => __('animalGalleries.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('animalGalleries.admin.create.create')}}</h6>
+                    <h6 class="card-title">{{__('animalGalleries.admin.edit.edit')}}</h6>
                     <form method="POST" id="formValidation" action="{{route('animal-galleries.update',$animalGallery)}}"
                           enctype="multipart/form-data">
                         @csrf

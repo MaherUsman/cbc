@@ -46,7 +46,7 @@ class AnimalService
         DB::beginTransaction();
         try {
             $data = $this->record($request);
-            dd($data);
+//            dd($data);
             $animal = Animal::create($data['animal']);
             count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
             count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';

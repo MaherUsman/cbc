@@ -12,6 +12,11 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                     </div>
+{{--                    <div class="overlay-icon mt-2">--}}
+{{--                        <a href="#" class="editImage" data-id="{{ $gallery->id }}" data-image="{{ asset($gallery->image) }}">--}}
+{{--                            <i class="fa-solid fa-pen-to-square"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                     <div class="overlay-icon mt-2">
                         <a href="#" data-url="{{ route('animal-galleries.destroy', $gallery) }}" title="Delete"
                            class="deleteRecord" data-bs-toggle="tooltip" data-bs-placement="top">

@@ -28,6 +28,10 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <div class="text-end">
+            <a href="{{ route('animal-galleries.create', $animal->id) }}"
+               class="btn btn-primary mb-4">{{ __('animalGalleries.admin.create.create') }}</a>
+            </div>
             <div class="row tab-content" id="galleryContainer">
                 @include('admin.animalGallery.gallery_items', ['animalGalleries' => $animalGalleries])
             </div>
@@ -41,6 +45,7 @@
             @endif
         </div>
     </div>
+    @include('admin.animalGallery.edit_modal')
     @include('layouts.admin.modal.delete_modal')
     @include('layouts.admin.modal.message_modal')
     <div id="loader" style="display: none;">
@@ -56,6 +61,17 @@
 
     <script>
         $(document).ready(function () {
+            $(document).on('click', '.editImage', function () {
+                var galleryId = $(this).data('id');
+                var imageUrl = $(this).data('image');
+
+                // Set the action URL for the form dynamically
+                $('#editImageForm').attr('action', '/admin/animal-galleries/' + galleryId);
+
+                // Show the modal
+                $('#editImageModal').modal('show');
+            });
+
             $(document).on('click', '.messageDetails', function () {
                 var details = $(this).data('details');
                 $('#messageText').html(details);
