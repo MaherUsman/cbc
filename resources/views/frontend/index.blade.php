@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <div class="btn-box d-flex justify-content-center align-items-center mt-5">
+        <div class="btn-box d-flex justify-content-center align-items-center mt-5 mb-4">
             <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
@@ -265,7 +265,7 @@
 
 
     <!-- funfact-section -->
-    <section class="funfact-section">
+    <section class="funfact-section mt-5">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img" style="background-image: url(assets/images/background/funfact-bg.jpg);"></div>
         </div>
