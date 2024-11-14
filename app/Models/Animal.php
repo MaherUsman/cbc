@@ -39,6 +39,11 @@ class Animal extends Model
         return $this->hasMany(AnimalGallery::class);
     }
 
+    public function animalSliders()
+    {
+        return $this->hasMany(AnimalSlider::class);
+    }
+
     // Mutator for slug
     public function setSlugAttribute($value)
     {

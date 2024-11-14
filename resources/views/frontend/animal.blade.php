@@ -5,30 +5,15 @@
  <!-- banner-section -->
  <section class="banner-section">
     <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
+        @foreach($animal->animalSliders as $slider)
         <div class="slide-item">
-            <div class="image-layer" style="background-image:url({{asset('images/big/img1.jpg')}})"></div>
+            <div class="image-layer" style="background-image:url({{asset($slider->image)}})"></div>
             <div class="auto-container">
                 <div class="content-box">
-                    <h3>asdasd</h3>
-                    <h2>asdasd</h2>
-                    <div class="btn-box">
-                        <a target="_blank" href="#" class="theme-btn btn-one">Discover More</a>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="slide-item">
-            <div class="image-layer" style="background-image:url({{asset('images/big/img1.jpg')}})"></div>
-            <div class="auto-container">
-                <div class="content-box">
-                    <h3>asdasd</h3>
-                    <h2>asdasd</h2>
-                    <div class="btn-box">
-                        <a target="_blank" href="#" class="theme-btn btn-one">Discover More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
     <!-- banner-section end -->

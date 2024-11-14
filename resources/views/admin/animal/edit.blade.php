@@ -56,20 +56,20 @@
                                               data-msg-required="{{__('animals.admin.edit.details_message')}}">{{$animal->details}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('animals.admin.edit.image')}}<span
-                                            class="text-danger">*</span></label>
-                                    <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*"
-                                           data-msg-required="{{__('animals.admin.edit.image_message')}}">
-                                </div>
-                                <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($animal->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$animal->image?'':'display:none;'}} max-width:200px; height:auto;">
-                                </div>
-                            </div>
+{{--                            <div class="col-sm-6">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="form-label">{{__('animals.admin.edit.image')}}<span--}}
+{{--                                            class="text-danger">*</span></label>--}}
+{{--                                    <input type="file" name="image" class="form-control" id="imageUpload"--}}
+{{--                                           accept="image/*"--}}
+{{--                                           data-msg-required="{{__('animals.admin.edit.image_message')}}">--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <img id="imagePreview" src="{{asset($animal->image?:'no_image.jpg')}}"--}}
+{{--                                         alt="Image Preview" class="img-thumbnail"--}}
+{{--                                         style="{{$animal->image?'':'display:none;'}} max-width:200px; height:auto;">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animals.admin.create.home_image')}}<span
@@ -83,19 +83,19 @@
                                          style="{{$animal->home_image?'':'display:none;'}} max-width:200px; height:auto;">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span
-                                            class="text-danger">*</span></label>
-                                    <input type="file" name="banner_image" id="bannerImageUpload" class="form-control imageUpload"
-                                           accept="image/*"
-                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">
-                                </div>
-                                <div class="mb-3">
-                                    <img src="{{asset($animal->banner_image?:'no_image.jpg')}}" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
-                                         style="{{$animal->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
-                                </div>
-                            </div>
+{{--                            <div class="col-sm-6">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span--}}
+{{--                                            class="text-danger">*</span></label>--}}
+{{--                                    <input type="file" name="banner_image" id="bannerImageUpload" class="form-control imageUpload"--}}
+{{--                                           accept="image/*"--}}
+{{--                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <img src="{{asset($animal->banner_image?:'no_image.jpg')}}" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"--}}
+{{--                                         style="{{$animal->banner_image?'':'display:none;'}} max-width:200px; height:auto;">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label">Show In Top Bar Animal List<span
@@ -188,29 +188,29 @@
                             </div>
                         </div>
                         <hr class="p-2">
-                        <div class="row"><h1>Gallery</h1></div>
-                        @foreach($animal->animalGalleries as $animalgallery)
-                        <div class="row rowTemplate">
-                            <div class="col-sm-5">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('aboutUsGallery.admin.edit.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('aboutUsGallery.admin.edit.title_message')}}"
-                                           name="gal_title[]" disabled class="form-control" value="{{$animalgallery->title}}"
-                                           placeholder="{{__('aboutUsGallery.admin.edit.title')}}">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($animalgallery->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$animalgallery->image?'':'display:none;'}} max-width:200px; height:auto;">
-                                </div>
-                            </div>
+                        <div class="row">
+                            <h1>Sliders</h1>
                         </div>
-                        @endforeach
-                        <a href="{{route('animal-galleries.index', $animal)}}" class="btn btn-primary">Update Gallery</a>
+                        <div class="row">
+                            @foreach($animal->animalSliders as $animalslider)
+                                <div class="col-sm-3 image-container">
+                                    <div class="mb-3 position-relative">
+                                        <img id="imagePreview" src="{{ asset($animalslider->image ?: 'no_image.jpg') }}"
+                                             alt="Image Preview" class="img-thumbnail"
+                                             style="{{ $animalslider->image ? '' : 'display:none;' }} max-width:200px; height:auto;">
+                                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 delete-image"
+                                                data-id="{{ $animalslider->id }}" style="margin: 5px;">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="row rowTemplate"></div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary addRow mt-4">+</button>
+                        </div>
+{{--                        <a href="{{route('animal-galleries.index', $animal)}}" class="btn btn-primary">Update Gallery</a>--}}
                         <hr class="p-2">
                         <a href="{{route('animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('animals.admin.form.cancel')}}
@@ -229,33 +229,33 @@
 @section('script')
 
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById('imagePreview').style.display = 'none';
-            }
-        });
-
-        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('bannerImagePreview').style.display = 'block';
-                    document.getElementById('bannerImagePreview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById('bannerImagePreview').style.display = 'none';
-            }
-        });
+        // document.getElementById('imageUpload').addEventListener('change', function (event) {
+        //     const [file] = event.target.files;
+        //     if (file) {
+        //         const reader = new FileReader();
+        //         reader.onload = function (e) {
+        //             document.getElementById('imagePreview').style.display = 'block';
+        //             document.getElementById('imagePreview').src = e.target.result;
+        //         };
+        //         reader.readAsDataURL(file);
+        //     } else {
+        //         document.getElementById('imagePreview').style.display = 'none';
+        //     }
+        // });
+        //
+        // document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+        //     const [file] = event.target.files;
+        //     if (file) {
+        //         const reader = new FileReader();
+        //         reader.onload = function (e) {
+        //             document.getElementById('bannerImagePreview').style.display = 'block';
+        //             document.getElementById('bannerImagePreview').src = e.target.result;
+        //         };
+        //         reader.readAsDataURL(file);
+        //     } else {
+        //         document.getElementById('bannerImagePreview').style.display = 'none';
+        //     }
+        // });
 
         document.getElementById('homeImageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -315,25 +315,25 @@
                     });
 
                     var url = $(form).attr('action');
-                    var imageColName = $('#imageUpload').attr('name');
+                    // var imageColName = $('#imageUpload').attr('name');
                     var formData = new FormData($(form)[0]);
-                    var imageFile = $('#imageUpload')[0].files[0];
+                    // var imageFile = $('#imageUpload')[0].files[0];
 
-                    if (imageFile) {
-                        try {
-                            let response = await uploadImageInChunks(imageFile);
-                            if (response.success) {
-                                formData.set(imageColName, response.compressedPath);
-                                formData.set(imageColName+"_thumbnail", response.thumbnailPath);
-                            } else {
-                                $.unblockUI();
-                                errorMsg('Image upload failed');
-                            }
-                        } catch (error) {
-                            $.unblockUI();
-                            errorMsg('An error occurred during the image upload');
-                        }
-                    }
+                    // if (imageFile) {
+                    //     try {
+                    //         let response = await uploadImageInChunks(imageFile);
+                    //         if (response.success) {
+                    //             formData.set(imageColName, response.compressedPath);
+                    //             formData.set(imageColName+"_thumbnail", response.thumbnailPath);
+                    //         } else {
+                    //             $.unblockUI();
+                    //             errorMsg('Image upload failed');
+                    //         }
+                    //     } catch (error) {
+                    //         $.unblockUI();
+                    //         errorMsg('An error occurred during the image upload');
+                    //     }
+                    // }
 
                     var homeImageColName = $('#homeImageUpload').attr('name');
                     var homeImageFile = $('#homeImageUpload')[0].files[0];
@@ -354,28 +354,28 @@
                         }
                     }
 
-                    var bannerImageColName = $('#bannerImageUpload').attr('name');
-                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+                    // var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    // var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+                    //
+                    // if (bannerImageFile) {
+                    //     try {
+                    //         let response = await uploadImageInChunks(bannerImageFile);
+                    //         if (response.success) {
+                    //             formData.set(bannerImageColName, response.compressedPath);
+                    //             formData.set(bannerImageColName+"_thumbnail", response.thumbnailPath);
+                    //             console.log(bannerImageColName+"_thumbnail" , 'dsfdsfd')
+                    //         } else {
+                    //             $.unblockUI();
+                    //             errorMsg('Image upload failed');
+                    //         }
+                    //     } catch (error) {
+                    //         $.unblockUI();
+                    //         errorMsg('An error occurred during the banner Image upload');
+                    //     }
+                    // }
 
-                    if (bannerImageFile) {
-                        try {
-                            let response = await uploadImageInChunks(bannerImageFile);
-                            if (response.success) {
-                                formData.set(bannerImageColName, response.compressedPath);
-                                formData.set(bannerImageColName+"_thumbnail", response.thumbnailPath);
-                                console.log(bannerImageColName+"_thumbnail" , 'dsfdsfd')
-                            } else {
-                                $.unblockUI();
-                                errorMsg('Image upload failed');
-                            }
-                        } catch (error) {
-                            $.unblockUI();
-                            errorMsg('An error occurred during the banner Image upload');
-                        }
-                    }
-
-                    formData.delete('gal_image[]');
-                    var imageInputs = $('input[name="gal_image[]"]');
+                    formData.delete('slider_image[]');
+                    var imageInputs = $('input[name="slider_image[]"]');
                     try {
                         for (let i = 0; i < imageInputs.length; i++) {
                             let imageFile = imageInputs[i].files[0]; // Get file from each input
@@ -383,7 +383,7 @@
                             if (imageFile) {
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
-                                    formData.append(`gal_image[${i}]`, response.filePath);
+                                    formData.append(`slider_image[${i}]`, response.filePath);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -515,53 +515,133 @@
             });
         });
 
+        // $(document).ready(function () {
+        //     // Function to validate if the current row has the image field filled
+        //     function validateRow($row) {
+        //         return $row.find('input[name="slider_image[]"]').val() !== '';
+        //     }
+        //
+        //     // Add Row functionality
+        //     function addRow() {
+        //         // Define the new row structure
+        //         let $newRow = $(
+        //             `<div class="col-sm-3">
+        //             <div class="mb-3">
+        //                 <label class="form-label">Image <span class="text-danger">*(370 x 452)</span></label>
+        //                 <input type="file" name="slider_image[]" class="form-control" accept="image/*" data-rule-required="true"
+        //                        onchange="previewImage(this)" data-msg-required="Please upload an image.">
+        //             </div>
+        //         </div>
+        //         <div class="col-sm-3">
+        //             <div class="mb-3">
+        //                 <img src="#" alt="Image Preview" class="img-thumbnail" style="display:none; max-width:200px; height:auto;">
+        //             </div>
+        //         </div>
+        //         <div class="col-sm-1">
+        //             <button type="button" class="btn btn-danger removeRow mt-4">-</button>
+        //         </div>`
+        //         );
+        //
+        //         // Append the new row after the last rowTemplate
+        //         $('.rowTemplate').last().after($newRow);
+        //     }
+        //
+        //     // Handle Add Row Button Click
+        //     $(document).on('click', '.addRow', function () {
+        //         let $currentRow = $(this).closest('.rowTemplate');
+        //
+        //         // Validate current row before adding a new one
+        //         if (validateRow($currentRow)) {
+        //             // Change current "Add Row" button to "Remove"
+        //             // $(this).removeClass('btn-primary addRow').addClass('btn-danger removeRow').text('-');
+        //
+        //             // Add the new row
+        //             addRow();
+        //         } else {
+        //             alert('Please fill the image field before adding a new row.');
+        //         }
+        //     });
+        //
+        //     // Handle Remove Row Button Click
+        //     $(document).on('click', '.removeRow', function () {
+        //         $(this).closest('.rowTemplate').remove();
+        //     });
+        //
+        //     // Preview Image Function
+        //     function previewImage(input) {
+        //         if (input.files && input.files[0]) {
+        //             const reader = new FileReader();
+        //             reader.onload = function (e) {
+        //                 $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+        //             };
+        //             reader.readAsDataURL(input.files[0]);
+        //         }
+        //     }
+        //
+        //     // Dynamically bind preview image function
+        //     $(document).on('change', 'input[name="slider_image[]"]', function () {
+        //         previewImage(this);
+        //     });
+        // });
+
         $(document).ready(function () {
-            // Function to validate if current row has both title and image filled
-            function validateRow($row) {
-                // let titleFilled = $row.find('input[name="gal_title[]"]').val().trim() !== '';
-                let imageFilled = $row.find('input[name="gal_image[]"]').val() !== '';
-                // return titleFilled && imageFilled;
+            // Function to validate if the last row has the image field filled
+            function validateLastRow() {
+                let lastRow = $('.rowTemplate .image-input-row').last();
+                let imageFilled = lastRow.find('input[name="slider_image[]"]').val() !== '';
                 return imageFilled;
             }
 
-            // Add Row functionality
+            // Function to add a new row
             function addRow() {
-                // Clone the first row, remove its content
-                let $newRow = $('.rowTemplate').first().clone();
-                $newRow.find('input').val('');
-                $newRow.find('input[type="file"]').val('');
-                $newRow.find('img').hide();
+                let newRowHtml = `
+            <div class="row image-input-row align-items-center">
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <label class="form-label">Image <span class="text-danger">*(370 x 452)</span></label>
+                        <input type="file" name="slider_image[]" class="form-control" accept="image/*" data-rule-required="true"
+                               onchange="previewImage(this)" data-msg-required="Please upload an image.">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="mb-3">
+                        <img src="#" alt="Image Preview" class="img-thumbnail" style="display:none; max-width:200px; height:auto;">
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-danger removeRow mt-4">-</button>
+                </div>
+            </div>`;
 
-                // Add "Add Row" button to new row
-                $newRow.find('.removeRow').removeClass('btn-danger removeRow').addClass('btn-primary addRow').text('+');
-
-                // Append new row after the last one
-                $('.rowTemplate').last().after($newRow);
-
-                return $newRow;
+                // Append the new row to the rowTemplate container
+                $('.rowTemplate').append(newRowHtml);
             }
 
-            // Handle Add Row Button Click
+            // Handle Add Row button click
             $(document).on('click', '.addRow', function () {
-                let $currentRow = $(this).closest('.rowTemplate');
-
-                // Validate current row before adding new one
-                if (validateRow($currentRow)) {
-                    // Change current "Add Row" button to "Remove"
-                    $(this).removeClass('btn-primary addRow').addClass('btn-danger removeRow').text('-');
-
-                    // Add the new row
-                    addRow();
-                } else {
-                    alert('Please fill image field before adding a new row.');
+                // Check if the last row's image input is filled
+                if (!validateLastRow()) {
+                    alert('Please upload an image before adding a new row.');
+                    return;
                 }
+
+                // Add the new row if validation passed
+                addRow();
             });
 
-            // Handle Remove Row Button Click
+            // Handle Remove Row button click
             $(document).on('click', '.removeRow', function () {
-                $(this).closest('.rowTemplate').remove();
+                $(this).closest('.image-input-row').remove();
+            });
+
+            // Dynamically bind preview image function
+            $(document).on('change', 'input[name="slider_image[]"]', function () {
+                previewImage(this);
             });
         });
+
+
+
 
         // Function to preview the selected image
         function previewImage(input) {
@@ -569,11 +649,46 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Find the nearest image element in the same row and display it
-                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                    $(input).closest('.image-input-row').find('img').attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(input.files[0]); // Convert the file to a URL
             }
         }
+
+        $(document).ready(function() {
+            // Handle Delete Image Button Click
+            $(document).on('click', '.delete-image', function() {
+                let imageId = $(this).data('id'); // Get the image ID from data attribute
+                let imageContainer = $(this).closest('.image-container'); // Select the image container to remove if deletion is successful
+
+                // Confirm deletion with the user
+                if (!confirm('Are you sure you want to delete this image?')) {
+                    return;
+                }
+
+                // Perform AJAX request to delete image
+                $.ajax({
+                    url: "{{route('delete.animal.slider.image')}}", // URL of the route that handles deletion
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}', // Add CSRF token for security
+                        id: imageId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            imageContainer.remove(); // Remove image from DOM
+                            alert('Image deleted successfully.');
+                        } else {
+                            alert('Failed to delete image.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while deleting the image.');
+                    }
+                });
+            });
+        });
+
 
     </script>
 @endsection
