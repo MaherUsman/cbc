@@ -19,7 +19,7 @@
                     </div>
 
                     @php
-                        $text = "Conservation breeding text"; // Input text
+                        $text = "Conservation Breeding Center"; // Input text
                         $characters = str_split($text); // Split the text into individual characters
                     @endphp
 
