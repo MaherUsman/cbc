@@ -18,20 +18,38 @@
                                                                           alt="" title="" width="300"></a></div>
                     </div>
 
-                    @php
-                        $text = "Conservation Breeding Center"; // Input text
-                        $characters = str_split($text); // Split the text into individual characters
-                    @endphp
-
-                    @foreach ($characters as $char)
-                        <div class="txt-loading">
-                            @if ($char === '!')
-                                <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
-                            @else
-                                <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>
-                            @endif
-                        </div>
-                    @endforeach
+                    <div class="txt-loading">
+                        <span data-text-preloader="c" class="letters-loading">c</span>
+                        <span data-text-preloader="o" class="letters-loading">o</span>
+                        <span data-text-preloader="n" class="letters-loading">n</span>
+                        <span data-text-preloader="s" class="letters-loading">s</span>
+                        <span data-text-preloader="e" class="letters-loading">e</span>
+                        <span data-text-preloader="r" class="letters-loading">r</span>
+                        <span data-text-preloader="v" class="letters-loading">v</span>
+                        <span data-text-preloader="a" class="letters-loading">a</span>
+                        <span data-text-preloader="t" class="letters-loading">t</span>
+                        <span data-text-preloader="i" class="letters-loading">i</span>
+                        <span data-text-preloader="o" class="letters-loading">o</span>
+                        <span data-text-preloader="n" class="letters-loading">n</span>
+                        {{--<span data-text-preloader=" " class="letters-loading">&nbsp;</span>--}}
+                    </div>
+                    <div class="txt-loading">
+                        <span data-text-preloader="b" class="letters-loading">b</span>
+                        <span data-text-preloader="r" class="letters-loading">r</span>
+                        <span data-text-preloader="e" class="letters-loading">e</span>
+                        <span data-text-preloader="e" class="letters-loading">e</span>
+                        <span data-text-preloader="d" class="letters-loading">d</span>
+                        <span data-text-preloader="i" class="letters-loading">i</span>
+                        <span data-text-preloader="n" class="letters-loading">n</span>
+                        <span data-text-preloader="g" class="letters-loading">g</span>
+                        <span data-text-preloader="" class="letters-loading">&nbsp;</span>
+                        <span data-text-preloader="c" class="letters-loading">c</span>
+                        <span data-text-preloader="e" class="letters-loading">e</span>
+                        <span data-text-preloader="n" class="letters-loading">n</span>
+                        <span data-text-preloader="t" class="letters-loading">t</span>
+                        <span data-text-preloader="e" class="letters-loading">e</span>
+                        <span data-text-preloader="r" class="letters-loading">r</span>
+                    </div>
                 </div>
             </div>
         </div>
