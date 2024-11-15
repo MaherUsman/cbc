@@ -2,6 +2,16 @@
 
 @section('content')
 
+    <style>
+        .banner-carousel .slide-item:before{
+            content: unset;
+        }
+        .banner-carousel .slide-item{
+            padding: unset;
+            height: 700px;
+        }
+    </style>
+
  <!-- banner-section -->
  <section class="banner-section">
     <div class="banner-carousel owl-theme owl-carousel owl-dots-none">

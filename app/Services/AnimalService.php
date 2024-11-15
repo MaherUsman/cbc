@@ -104,13 +104,15 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-//            dd($request->all());
-//            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
-            $data = $this->record($request);
-            // Ensure each slider item is an associative array
-            $data['slider'] = array_map(function ($imagePath) {
-                return ['image' => $imagePath];
-            }, $data['slider']);
+              $data = $this->record($request);
+
+            // Check if $data is not null
+            if ($data !== null && isset($data['slider'])) {
+                // Ensure each slider item is an associative array
+                $data['slider'] = array_map(function ($imagePath) {
+                    return ['image' => $imagePath];
+                }, $data['slider']);
+            }
 
             $animal->update(collect($request->validated())->except('role')->all());
 
@@ -121,8 +123,11 @@ class AnimalService
             if (count($data['props']) > 0) {
                 $animal->animalProps()->createMany($data['props']);
             }
-            if (count($data['slider']) > 0) {
-                $animal->animalSliders()->createMany($data['slider']);
+
+            if ($data !== null && isset($data['slider'])) {
+                if (count($data['slider']) > 0) {
+                    $animal->animalSliders()->createMany($data['slider']);
+                }
             }
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animal);

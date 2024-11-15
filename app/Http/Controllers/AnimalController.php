@@ -67,11 +67,11 @@ class AnimalController extends Controller
         return $this->animalService->updateOrder($request);
     }
 
-    public function deleteAnimalSliderImage(Request $request)
+    public function deleteAnimalSliderImage($id)
     {
         try {
             // Find the image by ID
-            $animalSlider = AnimalSlider::findOrFail($request->id);
+            $animalSlider = AnimalSlider::findOrFail($id);
 
             // Get the path to the image in the public directory
             $imagePath = public_path($animalSlider->image);
@@ -84,9 +84,11 @@ class AnimalController extends Controller
             // Delete the record from the database
             $animalSlider->delete();
 
-            return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
+            return makeResponse('success', 'Deleted Successfully!', Response::HTTP_NO_CONTENT);
+//            return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to delete image.']);
+            return makeResponse('error', 'error: ' . $e, Response::HTTP_INTERNAL_SERVER_ERROR);
+//            return response()->json(['success' => false, 'message' => 'Failed to delete image.']);
         }
     }
 }
