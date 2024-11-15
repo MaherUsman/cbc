@@ -27,11 +27,11 @@
 {{--                                <input type="name" class="form-control" id="address" name="address"--}}
 {{--                                       value="{{$settings->address}}" required>--}}
 {{--                            </div>--}}
-                            <div class="mb-3 col-md-6">
-                                <label for="name" class="form-label">{{__('setting.Loading_page_text')}}</label>
-                                <input type="text" class="form-control" id="Loading_page_text" name="Loading_page_text"
-                                       value="{{$settings->Loading_page_text}}" required>
-                            </div>
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label for="name" class="form-label">{{__('setting.Loading_page_text')}}</label>--}}
+{{--                                <input type="text" class="form-control" id="Loading_page_text" name="Loading_page_text"--}}
+{{--                                       value="{{$settings->Loading_page_text}}" required>--}}
+{{--                            </div>--}}
                             <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">{{__('setting.phone')}}</label>
                                 <input type="text" class="form-control" id="phone" name="phone"

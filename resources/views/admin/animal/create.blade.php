@@ -261,7 +261,7 @@
                             <div class="col-sm-3">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
-                                            class="text-danger">*(370 x 452)</span></label>
+                                            class="text-danger">*</span></label>
                                     <input type="file" name="slider_image[]" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
                                            data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">
@@ -575,7 +575,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and details fields before adding a new row.');
+                    errorMsg('Please fill both title and details fields before adding a new row.');
+                    // alert('Please fill both title and details fields before adding a new row.');
                 }
             });
 
@@ -621,7 +622,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill image field before adding a new row.');
+                    errorMsg('Please fill Slider image field before adding a new row.');
+                    // alert('Please fill image field before adding a new row.');
                 }
             });
 

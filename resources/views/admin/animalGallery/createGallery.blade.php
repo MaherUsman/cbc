@@ -69,9 +69,9 @@
         $(document).ready(function () {
             // Function to validate if current row has both title and image filled
             function validateRow($row) {
-                let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
+                // let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
                 let imageFilled = $row.find('input[name="image[]"]').val() !== '';
-                return titleFilled && imageFilled;
+                return imageFilled;
             }
 
             // Add Row functionality
@@ -103,7 +103,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and image fields before adding a new row.');
+                    errorMsg('Please fill image field before adding a new row.')
+                    // alert('Please fill both title and image fields before adding a new row.');
                 }
             });
 

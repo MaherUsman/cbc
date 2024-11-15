@@ -216,8 +216,8 @@
                                         <img id="imagePreview" src="{{ asset($animalslider->image ?: 'no_image.jpg') }}"
                                              alt="Image Preview" class="img-thumbnail"
                                              style="{{ $animalslider->image ? '' : 'display:none;' }} max-width:200px;"></a>
-                                        <button type="button" class="btn btn-danger btn-sm position-absolute img-del-btn delete-image"
-                                                data-id="{{ $animalslider->id }}" style="margin: 5px;">
+                                        <button type="button" class="btn btn-danger btn-sm position-absolute img-del-btn delete-image deleteRecord"
+                                                data-id="{{ $animalslider->id }}" data-url="{{ route('delete.animal.slider.image', $animalslider->id) }}" style="margin: 5px;">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -242,6 +242,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.admin.modal.delete_modal')
 @endsection
 
 @section('script')
@@ -523,7 +524,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and details fields before adding a new row.');
+                    errorMsg('Please fill both title and details fields before adding a new row.');
+                    // alert('Please fill both title and details fields before adding a new row.');
                 }
             });
 
@@ -616,7 +618,7 @@
             <div class="row image-input-row align-items-center">
                 <div class="col-sm-3">
                     <div class="mb-3">
-                        <label class="form-label">Image <span class="text-danger">*(370 x 452)</span></label>
+                        <label class="form-label">Image <span class="text-danger">*</span></label>
                         <input type="file" name="slider_image[]" class="form-control" accept="image/*" data-rule-required="true"
                                onchange="previewImage(this)" data-msg-required="Please upload an image.">
                     </div>
@@ -639,7 +641,8 @@
             $(document).on('click', '.addRow', function () {
                 // Check if the last row's image input is filled
                 if (!validateLastRow()) {
-                    alert('Please upload an image before adding a new row.');
+                    errorMsg('Please upload slider image before adding a new row.');
+                    // alert('Please upload an image before adding a new row.');
                     return;
                 }
 
@@ -674,37 +677,98 @@
         }
 
         $(document).ready(function() {
-            // Handle Delete Image Button Click
-            $(document).on('click', '.delete-image', function() {
-                let imageId = $(this).data('id'); // Get the image ID from data attribute
-                let imageContainer = $(this).closest('.image-container'); // Select the image container to remove if deletion is successful
 
-                // Confirm deletion with the user
-                if (!confirm('Are you sure you want to delete this image?')) {
-                    return;
-                }
-
-                // Perform AJAX request to delete image
+            // $('#deleteRecordBtn').click(function () {
+            $(document).on('click', '.deleteRecord', function () {
+                var url = $(this).data('url');
+                $('#delete_form').attr('action', url);
+                $('#delete_modal').modal('show');
+                $('#deleteRecordBtn').data('image-container', $(this).closest('.image-container'));
+            });
+            $('#deleteRecordBtn').click(function () {
+                var url = $('#delete_form').attr('action');
+                var data = $('#delete_form').serialize();
+                var imageContainer = $(this).data('image-container'); // Get the image container reference
+                $.blockUI({
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }
+                });
                 $.ajax({
-                    url: "{{route('delete.animal.slider.image')}}", // URL of the route that handles deletion
                     type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}', // Add CSRF token for security
-                        id: imageId
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            imageContainer.remove(); // Remove image from DOM
-                            alert('Image deleted successfully.');
-                        } else {
-                            alert('Failed to delete image.');
+                    url: url,
+                    data: data,
+                    success: function (response, status, xhr) {
+                        if (xhr.status == 204) {
+                            $.unblockUI();
+                            successMsg('Deleted Successfully!');
+                            if (imageContainer) {
+                                imageContainer.remove();
+                            }
+                            $('#delete_modal').modal('hide');
+                        } else if (response.result == 'success') {
+                            $.unblockUI();
+                            successMsg(response.message);
+                            if (imageContainer) {
+                                imageContainer.remove();
+                            }
+                            $('#delete_modal').modal('hide');
+                        } else if (response.result == 'error') {
+                            $.unblockUI();
+                            errorMsg(response.message);
                         }
                     },
-                    error: function() {
-                        alert('An error occurred while deleting the image.');
+                    error: function (data, status) {
+                        if (data.status == 422) {
+                            $.unblockUI();
+                            errorMsg(data.responseJSON.message);
+                        } else {
+                            $.unblockUI();
+                            errorMsg(data.responseJSON.message);
+                        }
                     }
                 });
             });
+            // Handle Delete Image Button Click
+            {{--$(document).on('click', '.delete-image', function() {--}}
+            {{--    let imageId = $(this).data('id'); // Get the image ID from data attribute--}}
+            {{--    let imageContainer = $(this).closest('.image-container'); // Select the image container to remove if deletion is successful--}}
+
+            {{--    // Confirm deletion with the user--}}
+            {{--    if (!confirm('Are you sure you want to delete this image?')) {--}}
+            {{--        return;--}}
+            {{--    }--}}
+
+            {{--    // Perform AJAX request to delete image--}}
+            {{--    $.ajax({--}}
+            {{--        url: "{{route('delete.animal.slider.image')}}", // URL of the route that handles deletion--}}
+            {{--        type: 'POST',--}}
+            {{--        data: {--}}
+            {{--            _token: '{{ csrf_token() }}', // Add CSRF token for security--}}
+            {{--            id: imageId--}}
+            {{--        },--}}
+            {{--        success: function(response) {--}}
+            {{--            if (response.success) {--}}
+            {{--                imageContainer.remove(); // Remove image from DOM--}}
+            {{--                successMsg('Image deleted successfully.');--}}
+            {{--                // alert('Image deleted successfully.');--}}
+            {{--            } else {--}}
+            {{--                errorMsg('Failed to delete image.');--}}
+            {{--                // alert('Failed to delete image.');--}}
+            {{--            }--}}
+            {{--        },--}}
+            {{--        error: function() {--}}
+            {{--            errorMsg('An error occurred while deleting the image.');--}}
+            {{--            // alert('An error occurred while deleting the image.');--}}
+            {{--        }--}}
+            {{--    });--}}
+            {{--});--}}
         });
 
 

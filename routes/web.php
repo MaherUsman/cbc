@@ -86,7 +86,7 @@ Route::prefix('admin')->group(function () {
         Route::get('about-us-child-galleries/{aboutUsGallery}', [AboutUsChildGalleryController::class, 'index'])->name('aboutUsChildGalleries');
         Route::resource('about-us-child-galleries', AboutUsChildGalleryController::class);
 
-        Route::post('delete-animal-slider-image', [AnimalController::class, 'deleteAnimalSliderImage'])->name('delete.animal.slider.image');
+        Route::delete('delete-animal-slider-image/{id}', [AnimalController::class, 'deleteAnimalSliderImage'])->name('delete.animal.slider.image');
 
         Route::resource('animals', AnimalController::class);
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
