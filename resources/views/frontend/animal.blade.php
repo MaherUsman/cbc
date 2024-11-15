@@ -8,7 +8,10 @@
         }
         .banner-carousel .slide-item{
             padding: unset;
-            height: 700px;
+            height: 650px;
+        }
+        .banner-section{
+            margin-top: 168px;
         }
     </style>
 
