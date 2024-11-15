@@ -10,7 +10,7 @@
     <!-- preloader -->
     <?php
         $setting = \App\Models\Settings::first();
-    $loaderText = $setting->loading_page_text;
+    $loaderText = "Test";
     $loaderHTML = '<div class="loader-wrap">
     <div class="preloader">
         <div class="preloader-close">x</div>
