@@ -8,51 +8,32 @@
 
 
     <!-- preloader -->
-    <div class="loader-wrap">
-        <div class="preloader">
-            <div class="preloader-close">x</div>
-            <div id="handle-preloader" class="handle-preloader about-page-2">
-                <div class="animation-preloader">
-                    <div class="spinner">
-                        <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}"
-                                                                          alt="" title="" width="300"></a></div>
-                    </div>
-                    <div class="txt-loading">
-                        <span data-text-preloader="c" class="letters-loading">c</span>
-                        <span data-text-preloader="o" class="letters-loading">o</span>
-                        <span data-text-preloader="n" class="letters-loading">n</span>
-                        <span data-text-preloader="s" class="letters-loading">s</span>
-                        <span data-text-preloader="e" class="letters-loading">e</span>
-                        <span data-text-preloader="r" class="letters-loading">r</span>
-                        <span data-text-preloader="v" class="letters-loading">v</span>
-                        <span data-text-preloader="a" class="letters-loading">a</span>
-                        <span data-text-preloader="t" class="letters-loading">t</span>
-                        <span data-text-preloader="i" class="letters-loading">i</span>
-                        <span data-text-preloader="o" class="letters-loading">o</span>
-                        <span data-text-preloader="n" class="letters-loading">n</span>
-                        {{--<span data-text-preloader=" " class="letters-loading">&nbsp;</span>--}}
-                    </div>
-                    <div class="txt-loading">
-                        <span data-text-preloader="b" class="letters-loading">b</span>
-                        <span data-text-preloader="r" class="letters-loading">r</span>
-                        <span data-text-preloader="e" class="letters-loading">e</span>
-                        <span data-text-preloader="e" class="letters-loading">e</span>
-                        <span data-text-preloader="d" class="letters-loading">d</span>
-                        <span data-text-preloader="i" class="letters-loading">i</span>
-                        <span data-text-preloader="n" class="letters-loading">n</span>
-                        <span data-text-preloader="g" class="letters-loading">g</span>
-                        <span data-text-preloader="" class="letters-loading">&nbsp;</span>
-                        <span data-text-preloader="c" class="letters-loading">c</span>
-                        <span data-text-preloader="e" class="letters-loading">e</span>
-                        <span data-text-preloader="n" class="letters-loading">n</span>
-                        <span data-text-preloader="t" class="letters-loading">t</span>
-                        <span data-text-preloader="e" class="letters-loading">e</span>
-                        <span data-text-preloader="r" class="letters-loading">r</span>
-                    </div>
+    <?php
+        $setting = \App\Models\Settings::first();
+    $loaderText = $setting->loading_page_text;
+    $loaderHTML = '<div class="loader-wrap">
+    <div class="preloader">
+        <div class="preloader-close">x</div>
+        <div id="handle-preloader" class="handle-preloader about-page-2">
+            <div class="animation-preloader">
+                <div class="spinner">
+                    <div class="nav-logo"><a href="{{url("/")}}"><img src="{{asset("assets/images/cbc.png")}}" alt="" title="" width="300"></a></div>
                 </div>
+                <div class="txt-loading">';
+
+    foreach (str_split($loaderText) as $char) {
+        $dataTextPreloader = $char === ' ' ? '&nbsp;' : $char;
+        $loaderHTML .= '<span data-text-preloader="' . $dataTextPreloader . '" class="letters-loading">' . $dataTextPreloader . '</span>';
+    }
+
+    $loaderHTML .= '</div>
             </div>
         </div>
     </div>
+</div>';
+
+    echo $loaderHTML;
+?>
     <!-- preloader end -->
 
 
