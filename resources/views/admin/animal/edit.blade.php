@@ -7,6 +7,23 @@
         ['name' => __('animals.admin.breadcrumbs.edit'), 'route' => null]],
         'pageTitle' => __('animals.admin.breadcrumbs.edit')
     ])
+
+    <style>
+        .preview-img-wrapper{
+            width: 200px;
+            height: 200px;
+        }
+
+        .preview-img-wrapper img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .img-del-btn{
+            top: 5px;
+            right: 5px;
+        }
+    </style>
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
@@ -194,11 +211,12 @@
                         <div class="row">
                             @foreach($animal->animalSliders as $animalslider)
                                 <div class="col-sm-3 image-container">
-                                    <div class="mb-3 position-relative">
+                                    <div class="mb-3 position-relative preview-img-wrapper">
+                                        <a href="{{ asset($animalslider->image ?: 'no_image.jpg') }}" target="_blank">
                                         <img id="imagePreview" src="{{ asset($animalslider->image ?: 'no_image.jpg') }}"
                                              alt="Image Preview" class="img-thumbnail"
-                                             style="{{ $animalslider->image ? '' : 'display:none;' }} max-width:200px; height:auto;">
-                                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 delete-image"
+                                             style="{{ $animalslider->image ? '' : 'display:none;' }} max-width:200px;"></a>
+                                        <button type="button" class="btn btn-danger btn-sm position-absolute img-del-btn delete-image"
                                                 data-id="{{ $animalslider->id }}" style="margin: 5px;">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
