@@ -25,7 +25,7 @@
 
                     @foreach ($characters as $char)
                         <div class="txt-loading">
-                            @if ($char === ' ')
+                            @if ($char === '!')
                                 <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
                             @else
                                 <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>
