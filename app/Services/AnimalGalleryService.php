@@ -143,8 +143,6 @@ class AnimalGalleryService
                 'image' => $request->image[$key],
                 'thumb' => $request->thumb[$key],
                 'compressed' => $request->compressed[$key],
-                //'status' => $request->status?:1,
-                //'display_order' => $request->display_order?:1,
             ];
         }
         return $gallery;
