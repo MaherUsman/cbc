@@ -51,7 +51,7 @@
                            type="button">
                             {{__('animalGalleries.admin.form.cancel')}}
                         </a>
-                        <button type="submit" class="btn btn-primary submit">
+                        <button {{--type="submit"--}} class="btn btn-primary submit">
                             {{__('animalGalleries.admin.create.submit')}}
                         </button>
                     </form>
@@ -161,8 +161,8 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     data.append(`image[${i}]`, response.filePath);
-                                    data.append(`thumb`, response.thumb);
-                                    data.append(`compressed`, response.compressed);
+                                    data.append(`thumb[${i}]`, response.thumb);
+                                    data.append(`compressed[${i}]`, response.compressed);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
