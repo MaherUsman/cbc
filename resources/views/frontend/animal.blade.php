@@ -15,7 +15,7 @@
         }
     </style>
 
- <!-- banner-section -->
+{{-- <!-- banner-section -->
  <section class="banner-section">
     <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
         @foreach($animal->animalSliders as $slider)
@@ -29,10 +29,10 @@
         @endforeach
     </div>
 </section>
-    <!-- banner-section end -->
+    <!-- banner-section end -->--}}
 
     <!-- Page Title -->
-   <!--  <section class="page-title">
+   <section class="page-title">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img chinkara-img" style="background-image: url({{asset($animal->banner_image)}});">
             </div>
@@ -44,14 +44,14 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
     <!-- End Page Title -->
 
     <!-- animals-details -->
     <section class="animals-details">
         <div class="auto-container">
             <div class="animals-details-content">
-                <!-- <figure class="image-box"><img src="{{asset($animal->image)}}" alt=""></figure> -->
+                {{--<figure class="image-box"><img src="{{asset($animal->image)}}" alt=""></figure>--}}
                 <div class="content-box">
                     <div class="row clearfix">
                         <div class="col-lg-8 col-md-12 col-sm-12 content-side">

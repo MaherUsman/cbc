@@ -81,19 +81,19 @@
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
-{{--                            <div class="col-sm-6">--}}
-{{--                                <div class="mb-3">--}}
-{{--                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span--}}
-{{--                                            class="text-danger">*(1894 x 496)</span></label>--}}
-{{--                                    <input type="file" name="banner_image" class="form-control imageUpload" id="bannerImageUpload"--}}
-{{--                                           accept="image/*" data-rule-required="true"--}}
-{{--                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">--}}
-{{--                                </div>--}}
-{{--                                <div class="mb-3">--}}
-{{--                                    <img src="#" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"--}}
-{{--                                         style="display:none; max-width:200px; height:auto;">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('animals.admin.create.banner_image')}}<span
+                                            class="text-danger">*(1894 x 496)</span></label>
+                                    <input type="file" name="banner_image" class="form-control imageUpload" id="bannerImageUpload"
+                                           accept="image/*" data-rule-required="true"
+                                           data-msg-required="{{__('animals.admin.create.banner_image_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img src="#" id="bannerImagePreview" alt="Image Preview" class="img-thumbnail imagePreview"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label">{{__('animals.admin.create.show_on_top_bar')}}<span
@@ -308,19 +308,19 @@
         //     }
         // });
         //
-        // document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
-        //     const [file] = event.target.files;
-        //     if (file) {
-        //         const reader = new FileReader();
-        //         reader.onload = function (e) {
-        //             document.getElementById('bannerImagePreview').style.display = 'block';
-        //             document.getElementById('bannerImagePreview').src = e.target.result;
-        //         };
-        //         reader.readAsDataURL(file);
-        //     } else {
-        //         document.getElementById('bannerImagePreview').style.display = 'none';
-        //     }
-        // });
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('bannerImagePreview').style.display = 'none';
+            }
+        });
 
         document.getElementById('homeImageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -421,27 +421,27 @@
                         }
                     }
 
-                    // var bannerImageColName = $('#bannerImageUpload').attr('name');
-                    // var bannerImageFile = $('#bannerImageUpload')[0].files[0];
-                    //
-                    // if (bannerImageFile) {
-                    //     try {
-                    //         let response = await uploadImageInChunks(bannerImageFile);
-                    //         if (response.success) {
-                    //             // console.log('adil here', response);
-                    //             // console.log('adil here yesss', response.thumbnailPath);
-                    //             formData.set(bannerImageColName, response.filePath);
-                    //             // alert(response.thumbnailPath);
-                    //             formData.set(bannerImageColName+'_thumbnail', response.thumbnailPath);
-                    //         } else {
-                    //             $.unblockUI();
-                    //             errorMsg('Image upload failed');
-                    //         }
-                    //     } catch (error) {
-                    //         $.unblockUI();
-                    //         errorMsg('An error occurred during the banner Image upload');
-                    //     }
-                    // }
+                    var bannerImageColName = $('#bannerImageUpload').attr('name');
+                    var bannerImageFile = $('#bannerImageUpload')[0].files[0];
+
+                    if (bannerImageFile) {
+                        try {
+                            let response = await uploadImageInChunks(bannerImageFile);
+                            if (response.success) {
+                                // console.log('adil here', response);
+                                // console.log('adil here yesss', response.thumbnailPath);
+                                formData.set(bannerImageColName, response.filePath);
+                                // alert(response.thumbnailPath);
+                                formData.set(bannerImageColName+'_thumbnail', response.thumbnailPath);
+                            } else {
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
+                            }
+                        } catch (error) {
+                            $.unblockUI();
+                            errorMsg('An error occurred during the banner Image upload');
+                        }
+                    }
 
                     formData.delete('slider_image[]');
                     var imageInputs = $('input[name="slider_image[]"]');
