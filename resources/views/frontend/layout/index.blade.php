@@ -21,7 +21,7 @@
                     @php
                         $preloaderText = "Conservation Breeding Centre";
                             // Dynamically split the text into two parts
-                            $textParts = explode(' ', $preloaderText, 2);
+                            $textParts = explode(' ', $setting->Loading_page_text??$preloaderText, 2);
                             $part1 = $textParts[0] ?? '';
                             $part2 = $textParts[1] ?? '';
                     @endphp
