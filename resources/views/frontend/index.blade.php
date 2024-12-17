@@ -15,6 +15,29 @@
             display: block;
         }
 
+        .customSlider-wrapper:first-child h2{
+            display: none;
+        }
+        .banner-carousel .customSlider-wrapper .content-box{
+            max-width: 85%;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h2{
+            font-size: 44px;
+            line-height: 54px;
+            margin-bottom: 0px;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h3{
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h4{
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 24px;
+        }
+
     </style>
 
     <!-- banner-section -->
@@ -42,9 +65,9 @@
                         <div class="slide-item">
                     <!-- If no video, fallback to image -->
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
-                            <div class="auto-container">
+                            <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
-                                    <h3>{{ $slider->title }}</h3>
+                                    <h3 class="mb-4">{{ $slider->title }}</h3>
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
                                         <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
@@ -129,7 +152,7 @@
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                <figure class="image "><img src="{{asset($animal->image)}}" alt="" class="img-fluid"></figure>
+                                <figure class="image "><img src="{{asset($animal->home_image)}}" alt="" class="img-fluid"></figure>
                                 <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                             </div>
                         </div>

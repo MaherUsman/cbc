@@ -45,7 +45,7 @@
                                     </li>
                                     @endforeach
                                     <li class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
-                                        <a href="{{ route('frontend.animal.categories') }}">Other Species</a>
+                                        <a href="{{ url('/animals/listing/animals') }}">Other Species</a>
                                     </li>
                                 </ul>
                             </li>
