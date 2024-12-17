@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Animal;
+use App\Models\AnimalCategory;
 use App\Models\Settings;
 use App\Models\SocialLinks;
 use Illuminate\Support\Facades\View;
@@ -39,7 +40,9 @@ class ViewServiceProvider extends ServiceProvider
             })
                 ->orderBy('display_order' , 'ASC')
                 ->get();
+            $category = AnimalCategory::first();
             $view->with('animals', $animals);
+            $view->with('category', $category);
         });
     }
 }
