@@ -9,10 +9,11 @@ class AboutUsChildGallery extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $guarded = [];
+    /*protected $fillable = [
         'about_us_gallery_id',
         'title',
         'image',
         'status',
-    ];
+    ];*/
 }

@@ -14,11 +14,20 @@ use Illuminate\Support\Facades\DB;
 
 class AnimalGalleryService
 {
-    public function index(Animal $animal)
+    public function index(Request $request, Animal $animal)
     {
-        //$animalGalleries = $animal->animalGalleries; //AnimalGallery::orderBy('display_order', 'asc')->get();
-        return view('admin.animalGallery.index',compact('animal'));
+        $animalGalleries = $animal->animalGalleries()->orderBy('display_order', 'asc')->paginate(9); // Adjust items per page as needed
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('admin.animalGallery.gallery_items', compact('animalGalleries'))->render(),
+                'nextPageUrl' => $animalGalleries->nextPageUrl()
+            ]);
+        }
+
+        return view('admin.animalGallery.index', compact('animal', 'animalGalleries'));
     }
+
 
     public function create(Animal $animal)
     {
@@ -65,12 +74,23 @@ class AnimalGalleryService
         }
     }
 
-    public function update(AnimalGalleryUpdateRequest $request, AnimalGallery $animalGallery)
+    public function update(Request $request, AnimalGallery $animalGallery)
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $animalGallery->image != null && $animalGallery->image != '') ? unlink(public_path($animalGallery->image)) : '';
-            $animalGallery->update(collect($request->validated())->all());
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $animalGallery->image != null &&
+                $animalGallery->image != ''
+            ) {
+                $imagePath = public_path($animalGallery->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+//            dd($request->all());
+            $animalGallery->update(collect($request->all())->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animalGallery);
         } catch (\Exception $exception) {
@@ -116,12 +136,13 @@ class AnimalGalleryService
     private function record(Request $request)
     {
         $gallery = [];
+//        dd($request->all());
         foreach ($request->title as $key => $value) {
             $gallery[] = [
                 'title' => $request->title[$key],
                 'image' => $request->image[$key],
-                //'status' => $request->status?:1,
-                //'display_order' => $request->display_order?:1,
+                'thumb' => $request->thumb[$key],
+                'compressed' => $request->compressed[$key],
             ];
         }
         return $gallery;

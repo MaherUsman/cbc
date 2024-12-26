@@ -24,6 +24,7 @@ class SliderStoreRequest extends FormRequest
             'slink' => ['string', 'max:255'],
             'details' => ['string', 'max:255'],
             'image' => ['string', 'max:255'],
+            'is_image' => ['boolean'],
 //            'display_order' => ['nullable', 'required', 'integer'],
 //            'status' => ['nullable', 'required'],
         ];

@@ -19,6 +19,7 @@ class Slider extends Model
         'slink',
         'details',
         'image',
+        'is_image',
         'display_order',
         'status',
     ];
@@ -31,5 +32,6 @@ class Slider extends Model
     protected $casts = [
         'id' => 'integer',
         'status' => 'boolean',
+        'is_image' => 'boolean',
     ];
 }

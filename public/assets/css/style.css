@@ -593,7 +593,8 @@ img {
   position: absolute;
   top: 0px;
   right: 0px;
-  width: calc(100% - 260px);
+  /*width: calc(100% - 260px);*/
+    width: 100%;
   background: #fff;
 }
 
@@ -1586,7 +1587,16 @@ div#mCSB_1_container{
 .banner-carousel .slide-item{
   position: relative;
   overflow: hidden;
-  padding: 342px 0px 180px 0px;
+  padding: 342px 0px 250px 0px;
+}
+/*.banner-carousel .item-video{*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*    padding: 342px 0px 250px 0px;*/
+/*}*/
+.item-video video{
+    width: 100%;
+    height: 812px;
 }
 
 .banner-carousel .slide-item:before{
@@ -1878,14 +1888,15 @@ div#mCSB_1_container{
 
 .info-section .bg-layer{
   position: absolute;
-  left: 260px;
+  left: 0px;
   top: 0px;
-  width: calc(100% - 260px);
+  /*width: calc(100% - 260px);*/
+    width: 100%;
   height: 100%;
   background: #E7E0CF;
 }
 
-.info-section .bg-layer:before{
+/*.info-section .bg-layer:before{
   position: absolute;
   content: '';
   background: #0e131f;
@@ -1893,7 +1904,7 @@ div#mCSB_1_container{
   height: 100%;
   left: 0px;
   top: 0px;
-}
+}*/
 
 .info-section .rotate-text{
   position: absolute;
@@ -1933,6 +1944,12 @@ div#mCSB_1_container{
   /* overflow: hidden; */
 
 
+}
+
+.image-column:nth-child(1) .image_block_one .image-box .image img{
+  height: 520px;
+  width: 520px;
+  object-fit: cover;
 }
 
 .image_block_one .image-box .image img{
@@ -2011,8 +2028,9 @@ div#mCSB_1_container{
   background-repeat: no-repeat;
 }
 .ainmal-sec .image img, .img-style .image img{
-  height: 570px !important;
+  height: 520px !important;
   object-fit: cover;
+  width: 520px  !important;
 
 
 }
@@ -2057,12 +2075,31 @@ div#mCSB_1_container{
   line-height: 36px;
   margin-bottom: 32px;
   display: -webkit-box;
+<<<<<<< HEAD
   -webkit-line-clamp: 10;
+=======
+  -webkit-line-clamp: 7;
+>>>>>>> 942a4c41dbedad1338782e3bcd06089a2122d5ec
   -webkit-box-orient: vertical;
   overflow: hidden;
 
+
 }
 
+.set-direction-wrapper section:nth-child(2) img, .set-direction-wrapper section:nth-child(4) img{
+
+  margin-top: 35px  !important;
+}
+.content_block_one .content-box {
+  height: 520px !important;
+
+}
+
+.content_block_one .content-box .btn-box  {
+  position: absolute;
+  bottom: 15px !important;
+
+}
 
 
 .list-style-one li{
@@ -3706,12 +3743,13 @@ div#mCSB_1_container{
   width: 100%;
   transition: all 500ms ease;
   height: 422px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .gallery-block-two .inner-box:hover .image-box img{
-  opacity: 0.1;
+   opacity: 0.1;
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .gallery-block-two .inner-box .view-box{
@@ -5039,7 +5077,7 @@ div#mCSB_1_container{
 
 .google-map-section{
   position: relative;
-  padding: 120px 0px 160px 0px;
+  padding: 200px 0px 160px 0px;
 }
 
 .google-map-section .map-inner{

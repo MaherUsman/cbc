@@ -4,16 +4,15 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [
-            ['name' => __('animalGalleries.admin.breadcrumbs.name'), 'route' => 'animal-galleries.index', 'params' => $animalGallery->animal],
-            ['name' => __('animalGalleries.admin.breadcrumbs.create'), 'route' => 'animal-galleries.create', 'params' => $animalGallery->animal]
+            ['name' => __('animalGalleries.admin.breadcrumbs.edit'), 'route' => 'animal-galleries.edit', 'params' => $animalGallery->animal]
         ],
-        'pageTitle' => __('animalGalleries.admin.breadcrumbs.create')
+        'pageTitle' => __('animalGalleries.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('animalGalleries.admin.create.create')}}</h6>
+                    <h6 class="card-title">{{__('animalGalleries.admin.edit.edit')}}</h6>
                     <form method="POST" id="formValidation" action="{{route('animal-galleries.update',$animalGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -33,7 +32,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
-                                    <input type="file" name="image[]" id="imageUpload" class="form-control" accept="image/*"
+                                    <input type="file" name="image" id="imageUpload" class="form-control" accept="image/*"
                                            data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
                                 </div>
@@ -105,6 +104,8 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
+                                data.set(`thumb`, response.thumb);
+                                data.set(`compressed`, response.compressed);
                                 await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
@@ -144,10 +145,12 @@
                             processData: false,
                             contentType: false,
                         });
-
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};

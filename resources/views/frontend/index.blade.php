@@ -1,23 +1,60 @@
 @extends('frontend.layout.index')
 
 @section('content')
+    <style>
+        .video-layer {
+            width: 100%;
+            height: auto;
+            background-color: black; /* or any fallback color */
+        }
+
+        .video-layer video {
+            /*width: 100%;*/
+            width: auto;
+            height: 400px;
+            display: block;
+        }
+
+    </style>
 
     <!-- banner-section -->
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
             @foreach($sliders as $slider)
-                <div class="slide-item">
-                    <div class="image-layer" style="background-image:url({{$slider->image}})"></div>
-                    <div class="auto-container">
-                        <div class="content-box">
-                            <h3>{{$slider->title}}</h3>
-                            <h2>{!! $slider->details !!}</h2>
-                            <div class="btn-box">
-                                <a target="_blank" href="{{$slider->slink}}" class="theme-btn btn-one">Discover More</a>
+
+                @if(!$slider->is_image)
+                    <!-- If video exists, add video tag -->
+
+{{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
+                        <div class="item-video" data-merge="1">
+                            <video autoplay muted loop controls>
+                                <source src="{{ $slider->image }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+{{--                        <div class="video-layer">--}}
+{{--                            <video autoplay muted loop controls>--}}
+{{--                                <source src="{{ $slider->image }}" --}}{{--type="video/mp4"--}}{{-->--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                        </div>--}}
+                @else
+                        <div class="slide-item">
+                    <!-- If no video, fallback to image -->
+                        <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
+                            <div class="auto-container">
+                                <div class="content-box">
+                                    <h3>{{ $slider->title }}</h3>
+                                    <h2>{!! $slider->details !!}</h2>
+                                    <div class="btn-box">
+                                        <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+
+
             @endforeach
         </div>
     </section>
@@ -26,9 +63,8 @@
     <!-- info-section -->
     <section class="info-section">
         <div class="bg-layer"></div>
-        <span class="rotate-text">wild animal zoo</span>
         <div class="auto-container">
-            <div class="inner-container">
+            <div class="inner-container introtext">
                 <div class="row clearfix">
                     <div class="col-lg-3">
                         <div class="highness-img">
@@ -48,16 +84,26 @@
                         $introDetails = strip_tags($intro->details); // Remove HTML tags for accurate character counting
                         if (strlen($introDetails) > $charLimit) {
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
+<<<<<<< HEAD
                             $shortDetails = substr($introDetails, 0, $charLimit) . '... <span><a href="#full-text-modal" data-fancybox class="btn p-0 show-more">Show More</a></span>';
                             echo '<p class="highness-text">' . $shortDetails . '</p>';
 
+=======
+                            $shortDetails = substr($introDetails, 0, $charLimit) . '...';
+                            echo '<p class="highness-text short-text">' . $shortDetails . ' <span><a href="javascript:void(0)" class="btn p-0 show-more">Show More</a></span></p>';
+
+                            echo '<div style="display:none" class="highness-text full-text" id="full-text-modal">
+        <p>'.$intro->details.' <span><a href="javascript:void(0)" class="btn p-0 show-less">Show Less</a></span></p>
+    </div>';
+>>>>>>> 942a4c41dbedad1338782e3bcd06089a2122d5ec
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
                         }
                         ?>
-
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -89,19 +135,24 @@
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                <figure class="image "><img src="{{asset($animal->image)}}" alt=""></figure>
+                                <figure class="image "><img src="{{asset($animal->image)}}" alt="" class="img-fluid"></figure>
                                 <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
+<<<<<<< HEAD
                         <div class="content_block_one home-page-content">
                             <div class="content-box">
+=======
+                        <div class="content_block_one">
+                            <div class="content-box ss">
+>>>>>>> 942a4c41dbedad1338782e3bcd06089a2122d5ec
                                 <div class="sec-title">
                                     <h2>{{$animal->title}}</h2>
                                 </div>
                                 <div class="text">
-                                    <p>{!! $animal->details !!}</p>
+                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
                                 </div>
                                 <div class="btn-box">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
@@ -117,7 +168,7 @@
                                         <h2>{{$animal->title}}</h2>
                                     </div>
                                     <div class="text">
-                                        <p>{!! $animal->details !!}</p>
+                                        <p>{!! Str::words($animal->details, 100, '...') !!}</p>
                                     </div>
                                     <div style="display: none;" id="full-text-modal">
                                         <div class="full-text-content">
@@ -174,14 +225,13 @@
             </div>
         </div>
 
-        <div class="btn-box d-flex justify-content-center align-items-center mt-5">
+        <div class="btn-box d-flex justify-content-center align-items-center mt-5 mb-4">
             <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
         </div>
     </section>
     <!-- gallery-section end -->
 
-
-
+    @if($events->count() > 0)
     <!-- events-section -->
     <section class="events-section sec-pad mt-5">
         <div class="bg-layer"></div>
@@ -221,11 +271,12 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- events-section end -->
 
 
     <!-- funfact-section -->
-    <section class="funfact-section">
+    <section class="funfact-section mt-5">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img" style="background-image: url(assets/images/background/funfact-bg.jpg);"></div>
         </div>
@@ -239,7 +290,7 @@
                         <div class="inner-box">
                             <div class="icon-box"><i class="{{ $homeCounter['icon_class'][$index] }}"></i></div>
                             <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int)$count }}">{{ $count }}</span>
+                                <span class="count-text" >{{ $count }}</span>
                             </div>
                             <p>{{ $homeCounter['home_counter_name'][$index] }}</p>
                         </div>
@@ -321,3 +372,49 @@
     <!-- news-section end -->
 
 @endsection
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $('.banner-carousel').on('translated.owl.carousel', function(event) {
+                $('video').each(function(){
+                    $(this).get(0).pause();
+                });
+                var currentSlide = $('.owl-item.active').find('video');
+                if(currentSlide.length){
+                    currentSlide.get(0).play();
+                }
+            });
+
+
+
+            // Ensure full content is hidden initially
+            const fullText = document.querySelector('.full-text');
+            const shortText = document.querySelector('.short-text');
+            const scrollTarget = document.querySelector('.introtext'); // The class you want to scroll to
+
+            // Only attach event listeners if full content exists
+            if (fullText && shortText) {
+                fullText.style.display = 'none'; // Hide full content initially
+
+                // Show more link functionality
+                document.querySelector('.show-more').addEventListener('click', function() {
+                    shortText.style.display = 'none';  // Hide short text
+                    fullText.style.display = 'block';  // Show full text
+                });
+
+                // Show less link functionality
+                document.querySelector('.show-less').addEventListener('click', function() {
+                    fullText.style.display = 'none';   // Hide full text
+                    shortText.style.display = 'block'; // Show short text
+
+                    // Scroll back to the top of the highness-text section
+                    scrollTarget.scrollIntoView({
+                        behavior: 'smooth' // Smooth scroll back to the highness-text class
+                    });
+                });
+            }
+        });
+    </script>
+
+
+@endpush

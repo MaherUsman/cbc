@@ -29,6 +29,10 @@ class ContactUsDataTable extends DataTable
             ->editColumn('details', function ($query) {
                 return view('admin.contactUs.message', ['contactUs' => $query]);
             })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')->rawColumns(['details', 'action']);
     }
 

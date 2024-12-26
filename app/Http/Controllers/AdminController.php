@@ -7,9 +7,14 @@ use App\Helper\ImageUploadHelper;
 use App\Http\Requests\AdminProfileUpdate;
 use App\Http\Requests\AdminSettingUpdate;
 use App\Http\Resources\CareerApplicationCollection;
+use App\Models\ActivityGallery;
+use App\Models\Animal;
+use App\Models\Blog;
 use App\Models\CareerApplication;
 use App\Models\HomeCounter;
 use App\Models\Settings;
+use App\Models\Team;
+use App\Models\VisitorGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +24,12 @@ class AdminController extends Controller
 {
     public function dash()
     {
-        return view('admin.dashboard');
+        $animals = Animal::count();
+        $events = Blog::count();
+        $activities = ActivityGallery::count();
+        $visitors = VisitorGallery::count();
+        $teams = Team::count();
+        return view('admin.dashboard', compact('animals','events','activities','visitors','teams'));
     }
 
     public function edit()
@@ -77,6 +87,7 @@ class AdminController extends Controller
             ];
 
             // Add other settings if they exist in the request
+            ($request->has('Loading_page_text') && $request->Loading_page_text != '') ? $settingArray['Loading_page_text'] = $request->Loading_page_text : '';
             ($request->has('address') && $request->address != '') ? $settingArray['address'] = $request->address : '';
             ($request->has('phone') && $request->phone != '') ? $settingArray['phone'] = $request->phone : '';
             ($request->has('email') && $request->email != '') ? $settingArray['email'] = $request->email : '';
@@ -105,8 +116,11 @@ class AdminController extends Controller
     }
 
 
-    public function career_application(CareerApplicationDataTable $dataTable)
+    public function career_application(CareerApplicationDataTable $dataTable, $job_id=null)
     {
+        if ($job_id) {
+            $dataTable->setParameters($job_id);
+        }
         return $dataTable->render('admin.career_application.index');
     }
 

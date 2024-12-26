@@ -77,7 +77,19 @@ class AboutService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $about->image != null && $about->image != '') ? unlink(public_path($about->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $about->image != null &&
+                $about->image != ''
+            ) {
+                $imagePath = public_path($about->image);
+
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
             $about->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $about);

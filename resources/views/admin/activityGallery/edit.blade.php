@@ -103,6 +103,8 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
+                                data.set(`thumb`, response.thumb);
+                                data.set(`compressed`, response.compressed);
                                 await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
@@ -145,13 +147,18 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
                     }
+
                 }
             }
+
 
             async function submitFormData(url, data) {
                 $.blockUI({

@@ -81,7 +81,18 @@ class BlogService
         DB::beginTransaction();
         try {
 //            dd($request->all());
-            ($request->has('image') && $request->image != '' && $blog->image != null && $blog->image != '') ? unlink(public_path($blog->image)) : '';
+            //($request->has('image') && $request->image != '' && $blog->image != null && $blog->image != '') ? unlink(public_path($blog->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $blog->image != null &&
+                $blog->image != ''
+            ) {
+                $imagePath = public_path($blog->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $blog->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $blog);

@@ -15,13 +15,14 @@ class AnimalGallery extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $guarded = [];
+    /*protected $fillable = [
         'animal_id',
         'title',
         'image',
         'status',
         'display_order',
-    ];
+    ];*/
 
     /**
      * The attributes that should be cast to native types.

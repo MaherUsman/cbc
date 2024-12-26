@@ -11,6 +11,7 @@ class ImageUploadHelper
 {
     public static function saveImage($image, $fileNameUpload, $path, $drive)
     {
+//        dd($fileNameUpload);
         $image = ImageManager::gd()->read($image);
         $image->save($path . $fileNameUpload);
         return $drive . $fileNameUpload;
@@ -35,7 +36,8 @@ class ImageUploadHelper
     {
         $audioFile = $uploadFile;
         $fileName = time() . '_' . $audioFile->getClientOriginalName();
-        $fileName = preg_replace('/\s+/', ' ', trim($fileName));
+        $fileName = preg_replace('/[^A-Za-z0-9.\s]/', '', trim($fileName));
+//        $fileName = preg_replace('/\s+/', ' ', trim($fileName));
         $fileName = str_replace(' ', '_', $fileName);
         $drive = $path;
         $path = public_path($drive);

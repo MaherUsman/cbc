@@ -15,12 +15,13 @@ class AboutUsGallery extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $guarded = [];
+    /*protected $fillable = [
         'title',
         'slug',
         'image',
         'status',
-    ];
+    ];*/
 
     /**
      * The attributes that should be cast to native types.
@@ -32,14 +33,35 @@ class AboutUsGallery extends Model
         'status' => 'boolean',
     ];
 
-    // Mutator for slug
+    /**
+     * Set the slug attribute dynamically based on the title or provided slug.
+     *
+     * @param string|null $value
+     * @return void
+     */
     public function setSlugAttribute($value)
     {
-        // Check if a slug is provided
-        if ($value) {
-            $this->attributes['slug'] = Str::slug($value, '-');
-        } else {
-            $this->attributes['slug'] = Str::slug($this->attributes['title'][0], '-');
-        }
+        // If a slug is explicitly provided, use it; otherwise, generate from the title
+        $this->attributes['slug'] = $value
+            ? Str::slug($value, '-')
+            : Str::slug($this->attributes['title'], '-');
+    }
+
+    /**
+     * Automatically generate slug if not set during model creation or update.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (empty($model->slug)) {
+                $model->slug = Str::slug($model->title, '-');
+            }
+        });
+
+        static::updating(function ($model) {
+            if (empty($model->slug)) {
+                $model->slug = Str::slug($model->title, '-');
+            }
+        });
     }
 }

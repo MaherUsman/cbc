@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
+use Laratrust\Models\Role;
 
 class RoleSeeds extends Seeder
 {
@@ -18,7 +18,11 @@ class RoleSeeds extends Seeder
         Role::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
+        $roles = [
+            ['name'=>'admin','display_name'=>'Admin'],
+            ['name'=>'manager','display_name'=>'Manager'],
+            ['name'=>'user','display_name'=>'User'],
+        ];
+        Role::insert($roles);
     }
 }

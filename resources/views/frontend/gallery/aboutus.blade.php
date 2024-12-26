@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>About Us Categories</h1>
+                    <h1>{{ $parentGallery->title??'' }} Gallery</h1>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
                     // Update the page count
                     $('#load-more').data('page', page);
-                  
+
 
                     // Check if there are more pages
                     if (!response.morePages) {

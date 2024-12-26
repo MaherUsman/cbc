@@ -37,9 +37,15 @@
                                 <h2>{{$aboutUs->title}}</h2>
                             </div>
                             <div class="text">
-                                <p>
+                                <div id="limited-text">
+                                    {!!   Str::words($aboutUs->p1, 100, '...') !!}
+                                </div>
+                                <div id="full-text" style="display: none;">
                                     {!! $aboutUs->p1 !!}
-                                </p>
+                                </div>
+                                <button id="read-more-btn" class="theme-btn btn-one" onclick="toggleReadMore()">Read
+                                    More
+                                </button>
 
                             </div>
                             <!-- <div class="btn-box">
@@ -242,65 +248,90 @@
 
 
     @if($galleries->isNotEmpty())
-    <section class="gallery-page-section pt-0">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-md-12">
-                    <div class="sec-title">
-                        <h2>all images</h2>
-                    </div>
-                </div>
-                @foreach($galleries as $gallery)
-                    <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                        <a>
-                        <div class="gallery-block-two">
-                            <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset($gallery->image)}}" alt=""></figure>
-{{--                                <div class="view-box d-flex align-items-center flex-column justify-content-center">--}}
-{{--                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">--}}
-{{--                                        <i class="flaticon-plus-symbol"></i>--}}
-{{--                                        <span class="text-heading text-center">--}}
-{{--                                            {{$gallery->title}}--}}
-{{--                                        </span>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-                            </div>
-                        </div>
-                        </a>
-                        <div class="category-overlay">
-                            <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}">{{$gallery->title}}</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
-    <!-- team-section -->
-    <section class="team-section sec-pad">
-        <div class="auto-container">
-            <div class="sec-title centred">
-                <h2>Our Team </h2>
-            </div>
-            <div class="inner-content">
+        <section class="gallery-page-section pt-0">
+            <div class="auto-container">
                 <div class="row clearfix">
-                    @foreach($teams as $team)
-                        <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                            <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                <div class="inner-box">
-                                    <figure class="image-box"><img src="{{asset($team->image)}}" alt=""></figure>
-                                    <div class="lower-content">
-                                        <h3><a href="#">{{$team->name}}</a> <span>{{$team->designation}}</span></h3>
-                                        <p>{!! $team->details !!}</p>
+                    <div class="col-md-12">
+                        <div class="sec-title">
+                            <h2>all images</h2>
+                        </div>
+                    </div>
+                    @foreach($galleries as $gallery)
+                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
+                            <a>
+                                <div class="gallery-block-two">
+                                    <div class="inner-box">
+                                        <figure class="image-box">
+                                            <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}"><img
+                                                    src="{{asset($gallery->image)}}" alt=""></a></figure>
+                                        {{--                                <div class="view-box d-flex align-items-center flex-column justify-content-center">--}}
+                                        {{--                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">--}}
+                                        {{--                                        <i class="flaticon-plus-symbol"></i>--}}
+                                        {{--                                        <span class="text-heading text-center">--}}
+                                        {{--                                            {{$gallery->title}}--}}
+                                        {{--                                        </span>--}}
+                                        {{--                                    </a>--}}
+                                        {{--                                </div>--}}
                                     </div>
                                 </div>
+                            </a>
+                            <div class="category-overlay">
+                                <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}">{{$gallery->title}}</a>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+    <!-- team-section -->
+    @if(count($teams)>0)
+        <section class="team-section sec-pad">
+            <div class="auto-container">
+                <div class="sec-title centred">
+                    <h2>Our Team </h2>
+                </div>
+                <div class="inner-content">
+                    <div class="row clearfix">
+                        @foreach($teams as $team)
+                            <div class="col-lg-4 col-md-6 col-sm-12 team-block">
+                                <div class="team-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                                     data-wow-duration="1500ms">
+                                    <div class="inner-box">
+                                        <figure class="image-box"><img src="{{asset($team->image)}}" alt=""></figure>
+                                        <div class="lower-content">
+                                            <h3><a href="#">{{$team->name}}</a> <span>{{$team->designation}}</span></h3>
+                                            <p>{!! $team->details !!}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
     <!-- team-section end -->
 
 @endsection
+
+<script>
+    function toggleReadMore() {
+        const limitedText = document.getElementById('limited-text');
+        const fullText = document.getElementById('full-text');
+        const readMoreBtn = document.getElementById('read-more-btn');
+
+        if (fullText.style.display === 'none') {
+            // Show full text and hide limited text
+            fullText.style.display = 'block';
+            limitedText.style.display = 'none';
+            readMoreBtn.innerText = 'Show Less';
+        } else {
+            // Show limited text and hide full text
+            fullText.style.display = 'none';
+            limitedText.style.display = 'block';
+            readMoreBtn.innerText = 'Read More';
+        }
+    }
+</script>

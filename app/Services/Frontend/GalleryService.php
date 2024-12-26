@@ -3,6 +3,7 @@
 namespace App\Services\Frontend;
 
 use App\Models\AboutUsChildGallery;
+use App\Models\AboutUsGallery;
 use App\Models\ActivityGallery;
 use App\Models\GalleriesContent;
 use App\Models\TopasGallery;
@@ -34,6 +35,7 @@ class GalleryService
         where('about_us_gallery_id' , $id)
         ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
+        $data['parentGallery'] = AboutUsGallery::where('id', $id)->first();
         return $data;
     }
 }

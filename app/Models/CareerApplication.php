@@ -9,5 +9,5 @@ class CareerApplication extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['username', 'email', 'phone', 'subject', 'resume_path'];
+    protected $fillable = ['username', 'email', 'phone', 'subject', 'resume_path', 'job_id'];
 }

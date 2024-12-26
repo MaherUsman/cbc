@@ -48,13 +48,54 @@
     </section>
     <!-- End Page Title -->
 
+    <style>
+        .career-card{
+            background: #faf7f3;
+            padding: 20px;
+            text-align: left;
+            position: relative;
+            height: 100%;
+        }
+        .career-card a{
+            color: var(--seconadry);
+            font-weight: 600;
+        }
+    </style>
+
+    <section class="contact-section centred mt-5 pt-5">
+        <div class="auto-container">
+            <div class="row ">
+                <div class="col-lg-12">
+                    <div class="sec-title centred">
+                        <h2>Opened Jobs List</h2>
+                    </div>
+
+
+                    <div class="form-inner">
+                        <div class="row">
+                            @foreach($jobs as $job)
+                                <div class="col-lg-4 mb-3">
+                                    <div class="career-card">
+                                        <h4>{{$job->title}}</h4>
+                                        <p>{!! SplitWords($job->details,10)  !!}</p>
+                                        <a href="{{route("frontend.career.specific",$job)}}">Read more</a>
+                                    </div>
+                                </div>
+
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- contact-section -->
     <section class="contact-section centred mt-5 pt-5">
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-xl-8 col-lg-12 offset-xl-2 big-column">
                     <div class="sec-title centred">
-                        <h2>Apply</h2>
+                        <h2>Apply for Future Jobs</h2>
                     </div>
                     @if($errors->any())
 {{--                        @dd($errors)--}}

@@ -42,16 +42,16 @@
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
-{{--                            <div class="col-sm-1">--}}
-{{--                                <button type="button" class="btn btn-primary addRow">+</button>--}}
-{{--                            </div>--}}
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-primary addRow">+</button>
+                            </div>
                         </div>
 
                         <a href="{{route('animal-galleries.index',$animal)}}" class="btn btn-danger light btn-sl-sm"
                            type="button">
                             {{__('animalGalleries.admin.form.cancel')}}
                         </a>
-                        <button type="submit" class="btn btn-primary submit">
+                        <button {{--type="submit"--}} class="btn btn-primary submit">
                             {{__('animalGalleries.admin.create.submit')}}
                         </button>
                     </form>
@@ -69,9 +69,9 @@
         $(document).ready(function () {
             // Function to validate if current row has both title and image filled
             function validateRow($row) {
-                let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
+                // let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
                 let imageFilled = $row.find('input[name="image[]"]').val() !== '';
-                return titleFilled && imageFilled;
+                return imageFilled;
             }
 
             // Add Row functionality
@@ -103,7 +103,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and image fields before adding a new row.');
+                    errorMsg('Please fill image field before adding a new row.')
+                    // alert('Please fill both title and image fields before adding a new row.');
                 }
             });
 
@@ -160,6 +161,8 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     data.append(`image[${i}]`, response.filePath);
+                                    data.append(`thumb[${i}]`, response.thumb);
+                                    data.append(`compressed[${i}]`, response.compressed);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -205,7 +208,10 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};

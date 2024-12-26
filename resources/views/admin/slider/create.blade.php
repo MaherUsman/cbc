@@ -33,7 +33,7 @@
                                     <input type="text" data-rule-required="true"
                                            data-msg-required="{{__('sliders.admin.create.slink_message')}}"
                                            name="slink" value="{{old('slink')}}" class="form-control"
-                                           data-rule-max="255"
+                                           data-rule-maxlength="255"
                                            placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -52,6 +52,23 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
+                                    <label class="form-label">{{__('sliders.admin.create.imageOrVideo')}}<span
+                                            class="text-danger">(1894 x 906)*</span></label>
+                                    <input type="file" name="image" class="form-control" id="imageUpload"
+                                           accept="image/*,video/*" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.imageOrVideo_message')}}">
+                                    <input type="hidden" name="is_image" value="1" id="is_image">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
+                                    <video id="videoPreview" controls style="display:none; max-width:200px; height:auto;"></video>
+                                </div>
+                            </div>
+                        </div>
+                        {{--<div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
                                     <label class="form-label">{{__('sliders.admin.create.image')}}<span
                                             class="text-danger">(1894 x 906)*</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
@@ -63,7 +80,7 @@
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <a href="{{route('sliders.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('sliders.admin.form.cancel')}}
                         </a>
@@ -83,15 +100,29 @@
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
+            const imagePreview = document.getElementById('imagePreview');
+            const videoPreview = document.getElementById('videoPreview');
+            const is_image = document.getElementById('is_image');
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
+                    if (file.type.startsWith('image/')) {
+                        imagePreview.style.display = 'block';
+                        videoPreview.style.display = 'none';
+                        imagePreview.src = e.target.result;
+                        is_image.value=1;
+                    } else if (file.type.startsWith('video/')) {
+                        videoPreview.style.display = 'block';
+                        imagePreview.style.display = 'none';
+                        videoPreview.src = e.target.result;
+                        is_image.value=0;
+                    }
                 };
                 reader.readAsDataURL(file);
             } else {
-                document.getElementById('imagePreview').style.display = 'none';
+                imagePreview.style.display = 'none';
+                videoPreview.style.display = 'none';
+                is_image.value='';
             }
         });
 
@@ -179,7 +210,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true, filePath: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};

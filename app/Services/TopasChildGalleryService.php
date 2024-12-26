@@ -80,7 +80,18 @@ class TopasChildGalleryService
     {
         DB::beginTransaction();
         try {
-            ($request->has('image') && $request->image != '' && $topasChildGallery->image != null && $topasChildGallery->image != '') ? unlink(public_path($topasChildGallery->image)) : '';
+            //($request->has('image') && $request->image != '' && $topasChildGallery->image != null && $topasChildGallery->image != '') ? unlink(public_path($topasChildGallery->image)) : '';
+            if (
+                $request->has('image') &&
+                $request->image != '' &&
+                $topasChildGallery->image != null &&
+                $topasChildGallery->image != ''
+            ) {
+                $imagePath = public_path($topasChildGallery->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $topasChildGallery->update(collect($request->validated())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $topasChildGallery);

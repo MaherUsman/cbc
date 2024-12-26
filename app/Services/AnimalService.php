@@ -45,10 +45,30 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
+//            $data = $this->record($request);
+////            dd($data);
+//            $animal = Animal::create($data['animal']);
+//            count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
+////            count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';
+//            count($data['slider']) > 0 ? $animal->animalSliders()->createMany($data['slider']) : '';
+//            DB::commit();
+//            return makeResponse('success', 'Added Successfully!', Response::HTTP_CREATED, $animal);
+
             $data = $this->record($request);
+
+            // Ensure each slider item is an associative array
+            $data['slider'] = array_map(function ($imagePath) {
+                return ['image' => $imagePath];
+            }, $data['slider']);
+
             $animal = Animal::create($data['animal']);
-            count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
-            count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';
+            if (count($data['props']) > 0) {
+                $animal->animalProps()->createMany($data['props']);
+            }
+            if (count($data['slider']) > 0) {
+                $animal->animalSliders()->createMany($data['slider']);
+            }
+
             DB::commit();
             return makeResponse('success', 'Added Successfully!', Response::HTTP_CREATED, $animal);
         } catch (\Exception $exception) {
@@ -84,9 +104,16 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-//            dd($request->all());
-//            ($request->has('image') && $request->image != '' && $animal->image != null && $animal->image != '') ? unlink(public_path($animal->image)) : '';
-            $data = $this->record($request);
+              $data = $this->record($request);
+
+            // Check if $data is not null
+            if ($data !== null && isset($data['slider'])) {
+                // Ensure each slider item is an associative array
+                $data['slider'] = array_map(function ($imagePath) {
+                    return ['image' => $imagePath];
+                }, $data['slider']);
+            }
+
             $animal->update(collect($request->validated())->except('role')->all());
 
             // Remove previous props associated with the animal
@@ -95,6 +122,12 @@ class AnimalService
             // Insert new props if they exist
             if (count($data['props']) > 0) {
                 $animal->animalProps()->createMany($data['props']);
+            }
+
+            if ($data !== null && isset($data['slider'])) {
+                if (count($data['slider']) > 0) {
+                    $animal->animalSliders()->createMany($data['slider']);
+                }
             }
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $animal);
@@ -118,12 +151,15 @@ class AnimalService
             'title' => $request->title,
             'slug' => $request->slug?:Str::slug($request->title, '-'),
             'category_id' => $request->category_id,
-            'image' => $request->image,
+//            'image' => $request->image,
+//            'image_thumbnail' => $request->image_thumbnail,
             'details' => $request->details,
             'show_on_top_bar' => $request->show_on_top_bar ?: 0,
             'is_amazing' => $request->is_amazing ?: 'no',
             'home_image' => $request->home_image,
-            'banner_image' => $request->banner_image,
+            'home_image_thumbnail' => $request->home_image_thumbnail,
+//            'banner_image' => $request->banner_image,
+//            'banner_image_thumbnail' => $request->banner_image_thumbnail,
             //'status' => $request->status?:1,
             //'display_order' => $request->display_order?:1,
         ];
@@ -138,20 +174,21 @@ class AnimalService
             }
         }
         $data['props'] = $props;
-//        dd($request->gal_title);
-        if (isset($request->gal_title)){
-            foreach ($request->gal_title as $key => $value) {
+//        dd($request->slider_image);
+//        if (isset($request->slider_title)){
+//            foreach ($request->gal_title as $key => $value) {
+//
+//                $gallery[] = [
+//                    'title' => $request->gal_title[$key],
+//                    'image' => $request->gal_image[$key],
+//                    //'status' => $request->status?:1,
+//                    //'display_order' => $request->display_order?:1,
+//                ];
+//            }
+//        }
 
-                $gallery[] = [
-                    'title' => $request->gal_title[$key],
-                    'image' => $request->gal_image[$key],
-                    //'status' => $request->status?:1,
-                    //'display_order' => $request->display_order?:1,
-                ];
-            }
-        }
-
-        $data['gallery'] = $gallery;
+//        $data['gallery'] = $gallery;
+        $data['slider'] = $request->slider_image;
 
         return $data;
     }

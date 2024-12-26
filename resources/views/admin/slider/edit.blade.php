@@ -32,6 +32,7 @@
                                     <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
+                                           data-rule-maxlength="255"
                                            data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
                                            name="slink" value="{{$slider->slink}}" class="form-control"
                                            placeholder="{{__('sliders.admin.edit.slink')}}">
@@ -52,12 +53,14 @@
                                 <div class="mb-3">
                                     <label class="form-label">{{__('sliders.admin.edit.image')}}</label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*">
+                                           accept="image/*,video/*">
+                                    <input type="hidden" name="is_image" value="{{$slider->is_image?1:0}}" id="is_image">
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview" src="{{asset($slider->image?:'no_image.jpg')}}"
                                          alt="Image Preview" class="img-thumbnail"
-                                         style="{{$slider->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                         style="{{$slider->is_image?'':'display:none;'}} max-width:200px; height:auto;">
+                                    <video id="videoPreview" src="{{asset($slider->image?:'no_image.jpg')}}" controls style="{{$slider->is_image?'display:none;':''}} max-width:200px; height:auto;"></video>
                                 </div>
                             </div><!-- Col -->
                         </div><!-- Row -->
@@ -78,15 +81,29 @@
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
+            const imagePreview = document.getElementById('imagePreview');
+            const videoPreview = document.getElementById('videoPreview');
+            const is_image = document.getElementById('is_image');
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
+                    if (file.type.startsWith('image/')) {
+                        imagePreview.style.display = 'block';
+                        videoPreview.style.display = 'none';
+                        imagePreview.src = e.target.result;
+                        is_image.value=1;
+                    } else if (file.type.startsWith('video/')) {
+                        videoPreview.style.display = 'block';
+                        imagePreview.style.display = 'none';
+                        videoPreview.src = e.target.result;
+                        is_image.value=0;
+                    }
                 };
                 reader.readAsDataURL(file);
             } else {
-                document.getElementById('imagePreview').style.display = 'none';
+                imagePreview.style.display = 'none';
+                videoPreview.style.display = 'none';
+                is_image.value='';
             }
         });
 
@@ -161,7 +178,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true, filePath: response.compressedPath };
                         }
                     } catch (error) {
                         return {success: false, error: error};

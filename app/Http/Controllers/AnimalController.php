@@ -8,6 +8,7 @@ use App\Http\Requests\AnimalUpdateRequest;
 use App\Http\Resources\AnimalCollection;
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
+use App\Models\AnimalSlider;
 use App\Services\AnimalService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -64,5 +65,30 @@ class AnimalController extends Controller
     public function updateOrder(Request $request)
     {
         return $this->animalService->updateOrder($request);
+    }
+
+    public function deleteAnimalSliderImage($id)
+    {
+        try {
+            // Find the image by ID
+            $animalSlider = AnimalSlider::findOrFail($id);
+
+            // Get the path to the image in the public directory
+            $imagePath = public_path($animalSlider->image);
+
+            // Delete the image file if it exists in the public directory
+            if (file_exists($imagePath)) {
+                unlink($imagePath); // Delete the file from public directory
+            }
+
+            // Delete the record from the database
+            $animalSlider->delete();
+
+            return makeResponse('success', 'Deleted Successfully!', Response::HTTP_NO_CONTENT);
+//            return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
+        } catch (\Exception $e) {
+            return makeResponse('error', 'error: ' . $e, Response::HTTP_INTERNAL_SERVER_ERROR);
+//            return response()->json(['success' => false, 'message' => 'Failed to delete image.']);
+        }
     }
 }

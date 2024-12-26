@@ -32,6 +32,10 @@ class SliderDataTable extends DataTable
             ->editColumn('details', function ($query) {
                 return view('admin.slider.message', ['slider' => $query]);
             })
+            ->addColumn('id', function($row) {
+                static $index = 0;
+                return ++$index;
+            })
             ->setRowId('id')->rawColumns(['image','action']);
     }
 

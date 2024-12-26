@@ -41,7 +41,12 @@ class AboutUsChildGalleryService
         DB::beginTransaction();
         try {
             foreach ($request->title as $key=>$value){
-                $aboutUsChildGallery = AboutUsChildGallery::create(['about_us_gallery_id'=>$request->about_us_gallery_id,'title'=>$value,'image'=>$request->image[$key]]);
+                $aboutUsChildGallery = AboutUsChildGallery::create(['about_us_gallery_id'=>$request->about_us_gallery_id,
+                    'title'=>$value,
+                    'image'=>$request->image[$key],
+                    'thumb'=>$request->thumb,
+                    'compressed'=>$request->compressed,
+                ]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $aboutUsChildGallery);
@@ -73,13 +78,19 @@ class AboutUsChildGalleryService
         }
     }
 
-    public function update(AboutUsChildGalleryUpdateRequest $request, AboutUsChildGallery $aboutUsChildGallery)
+    public function update(Request $request, AboutUsChildGallery $aboutUsChildGallery)
     {
         DB::beginTransaction();
         try {
 //            dd($request->all());
-            ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') ? unlink(public_path($aboutUsChildGallery->image)) : '';
-            $aboutUsChildGallery->update(collect($request->validated())->except('role')->all());
+            if ($request->has('image') && $request->image != '' && $aboutUsChildGallery->image != null && $aboutUsChildGallery->image != '') {
+                $filePath = public_path($aboutUsChildGallery->image);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+            }
+
+            $aboutUsChildGallery->update(collect($request->all())->except('role')->all());
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $aboutUsChildGallery);
         } catch (\Exception $exception) {

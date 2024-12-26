@@ -20,6 +20,11 @@ class AnimalController extends Controller
         $animal = $this->animalService->findAnimal($slug);
         return view('frontend.animal', $animal);
     }
+    public function loadMoreAnimalGalleries($slug)
+    {
+        $galleries  = $this->animalService->loadMoreAnimalGalleries($slug);
+        return response()->json($galleries);
+    }
     public function listingAnimal(Request $request)
     {
         $search = $request->input('search-field'); // Capture the search parameter

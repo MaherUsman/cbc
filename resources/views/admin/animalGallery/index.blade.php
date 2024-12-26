@@ -27,74 +27,25 @@
 ])
 
     <div class="row">
-{{--        <div class="col-lg-12">--}}
-{{--            <ul class="nav nav-pills mb-3">--}}
-{{--                <li class="nav-item"><a href="{{route('animal-galleries.index',$animal)}}#list-view" data-bs-toggle="tab"--}}
-{{--                                        class="nav-link me-1 show active">{{ __('animalGalleries.list_view') }}</a></li>--}}
-{{--                <li class="nav-item"><a href="{{route('animal-galleries.gridView',$animal)}}#grid-view" --}}{{--data-bs-toggle="tab"--}}
-{{--                    class="nav-link">{{ __('animalGalleries.grid_view') }}</a></li>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
         <div class="col-lg-12">
-            <div class="row tab-content">
-                <div id="list-view" class="tab-pane fade active show col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">{{ $animal->title.' '.__('animalGalleries.pageTitle') }}</h4>
-                            <a href="{{ route('animal-galleries.create',$animal) }}"
-                               class="btn btn-primary">{{ __('animalGalleries.add').$animal->title.__('animalGalleries.gallery') }}</a>
-                        </div>
-                        <div class="card-body pb-1">
-                            <div id="lightgallery" class="row">
-                                @foreach($animal->animalGalleries()->orderBy('display_order','asc')->get() as $gallery)
-                                    <div class="col-lg-3 col-md-6 mb-4">
-                                        <div class="gallery-img-wrapper position-relative w-100 h-100">
-                                            <a
-                                                href="{{asset($gallery->image)}}"
-                                                data-src="{{asset($gallery->image)}}"
-                                                class="lg-item"
-                                            >
-                                                <img
-                                                    src="{{asset($gallery->image)}}"
-                                                    class="rounded" alt=""
-                                                    style="width:100%;"
-                                                >
-                                            </a>
-                                            <div class="gallery-overlay rounded">
-                                                <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                    <div class="overlay-icon mt-2">
-                                                        <a href="{{route('animal-galleries.edit', $gallery)}}">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="overlay-icon mt-2">
-                                                        <a href="#" data-url="{{ route('animal-galleries.destroy', $gallery) }}" title="Delete"
-                                                           class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="img-title mt-3">
-                                                    <p>{{$gallery->title}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-{{--                                    <a href="{{asset($gallery->image)}}" data-src="{{asset($gallery->image)}}"--}}
-{{--                                       class="lg-item col-lg-3 col-md-6 mb-4">--}}
-{{--                                        <img src="{{asset($gallery->image)}}" class="rounded" alt=""--}}
-{{--                                             style="width:100%;">--}}
-{{--                                    </a>--}}
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="text-end">
+            <a href="{{ route('animal-galleries.create', $animal->id) }}"
+               class="btn btn-primary mb-4">{{ __('animalGalleries.admin.create.create') }}</a>
             </div>
+            <div class="row tab-content" id="galleryContainer">
+                @include('admin.animalGallery.gallery_items', ['animalGalleries' => $animalGalleries])
+            </div>
+            <!-- Load More Button -->
+            @if($animalGalleries->hasMorePages())
+                <div class="d-flex justify-content-center mt-3">
+                    <button id="loadMore" class="btn btn-primary" data-url="{{ $animalGalleries->nextPageUrl() }}">
+                        Load More
+                    </button>
+                </div>
+            @endif
         </div>
     </div>
+    @include('admin.animalGallery.edit_modal')
     @include('layouts.admin.modal.delete_modal')
     @include('layouts.admin.modal.message_modal')
     <div id="loader" style="display: none;">
@@ -110,6 +61,17 @@
 
     <script>
         $(document).ready(function () {
+            $(document).on('click', '.editImage', function () {
+                var galleryId = $(this).data('id');
+                var imageUrl = $(this).data('image');
+
+                // Set the action URL for the form dynamically
+                $('#editImageForm').attr('action', '/admin/animal-galleries/' + galleryId);
+
+                // Show the modal
+                $('#editImageModal').modal('show');
+            });
+
             $(document).on('click', '.messageDetails', function () {
                 var details = $(this).data('details');
                 $('#messageText').html(details);
@@ -167,6 +129,34 @@
                         }
                     }
                 });
+            });
+
+            $('#loadMore').on('click', function() {
+                let url = $(this).data('url');
+                if (url) {
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        beforeSend: function() {
+                            $('#loadMore').prop('disabled', true).text('Loading...');
+                        },
+                        success: function(response) {
+                            if (response.html) {
+                                $('#galleryContainer').append(response.html);
+                                $('#loadMore').data('url', response.nextPageUrl).prop('disabled', false).text('Load More');
+
+                                // Hide the button if no more pages
+                                if (!response.nextPageUrl) {
+                                    $('#loadMore').remove();
+                                }
+                            }
+                        },
+                        error: function() {
+                            alert('Could not load more items.');
+                            $('#loadMore').prop('disabled', false).text('Load More');
+                        }
+                    });
+                }
             });
         });
     </script>

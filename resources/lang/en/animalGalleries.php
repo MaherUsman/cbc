@@ -39,9 +39,9 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'List Animals Gallery',
+            'create' => 'Add Animal Gallery',
+            'edit' => 'Edit Animal Gallery',
         ],
         'response_msg' => [
             'success' => 'Animal Gallery Added successfully',

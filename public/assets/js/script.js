@@ -207,11 +207,14 @@
             loop:true,
 			margin:0,
 			nav:true,
+            video:true,
 			animateOut: 'fadeOut',
     		animateIn: 'fadeIn',
     		active: true,
 			smartSpeed: 1000,
-			autoplay: 6000,
+			autoplay: true,
+			autoplayTimeout:12000,
+			autoplayHoverPause:true,
             navText: [ '<span class="flaticon-left-arrow"></span>', '<span class="flaticon-right-arrow"></span>' ],
             responsive:{
                 0:{
@@ -381,36 +384,38 @@
 		});
 	}
 
-
-	// gallery-carousel
-	if ($('.gallery-carousel').length) {
-		$('.gallery-carousel').owlCarousel({
-			loop:true,
-			margin:0,
-			nav:false,
-			smartSpeed: 500,
-			autoplay: 1000,
-			navText: [ '<span class="fal fa-angle-left"></span>', '<span class="fal fa-angle-right"></span>' ],
-			responsive:{
-				0:{
-					items:1
-				},
-				480:{
-					items:2
-				},
-				600:{
-					items:2
-				},
-				800:{
-					items:3
-				},
-				1200:{
-					items:5
-				}
-
-			}
-		});
-	}
+// gallery-carousel
+if ($('.gallery-carousel').length) {
+    $('.gallery-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        smartSpeed: 500,
+        autoplay: 1000,
+        autoplayHoverPause: true, // Add this line to stop autoplay on hover
+        navText: [
+            '<span class="fal fa-angle-left"></span>',
+            '<span class="fal fa-angle-right"></span>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 2
+            },
+            600: {
+                items: 2
+            },
+            800: {
+                items: 3
+            },
+            1200: {
+                items: 5
+            }
+        }
+    });
+}
 
 
 	//Add One Page nav

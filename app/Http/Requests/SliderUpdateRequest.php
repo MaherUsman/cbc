@@ -24,6 +24,7 @@ class SliderUpdateRequest extends FormRequest
             'slink' => ['required', 'string', 'max:255'],
             'details' => ['required', 'string', 'max:255'],
             'image' => [$this->route('slider')->image ? 'nullable' : 'required', 'string', 'max:255'],
+            'is_image'=>['boolean']
 //            'display_order' => ['required', 'integer'],
 //            'status' => ['required'],
         ];

@@ -9,13 +9,22 @@ class AnimalService
 {
     public function findAnimal($slug)
     {
-        $data['animal'] = Animal::where('slug' , $slug)
-            ->with('animalProps' , 'animalGalleries')
+        $data['animal'] = Animal::where('slug', $slug)
+            ->with(['animalProps', 'animalGalleries' => function ($query) {
+                $query->paginate(9); // Load only 10 images initially
+            }])
             ->first();
         $data['relatedAnimals'] = Animal::inRandomOrder()
             ->limit(3)
             ->get();
         return $data;
+    }
+    public function loadMoreAnimalGalleries($slug)
+    {
+        $animal = Animal::where('slug', $slug)->first();
+        $galleries = $animal->animalGalleries()->paginate(9); // Paginate by 10 images
+
+        return $galleries;
     }
     public function listingAnimals($search = null)
     {

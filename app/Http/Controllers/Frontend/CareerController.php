@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Services\Frontend\CareerServices;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,18 @@ class CareerController extends Controller
     {
         $this->careerService = $careerService;
     }
+
     public function careerPage()
     {
-        return view('frontend.career');
+        $jobs = Job::all();
+        return view('frontend.career',compact('jobs'));
     }
+
+    public function specificCareer(Job $job)
+    {
+        return view('frontend.specific-career',compact('job'));
+    }
+
     public function submitApplication(Request $request)
     {
 
@@ -28,6 +37,7 @@ class CareerController extends Controller
             'phone' => 'required|string|max:20|unique:career_applications,phone',
             'subject' => 'required|string|max:255',
             'upload' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'job_id' => 'sometimes|exists:career_jobs,id',
         ]);
 
         try {
