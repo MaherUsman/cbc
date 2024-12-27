@@ -67,7 +67,7 @@
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
                             <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
-                                    <h3 class="mb-4">{{ $slider->title }}</h3>
+{{--                                    <h3 class="mb-4">{{ $slider->title }}</h3>--}}
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
                                         <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
