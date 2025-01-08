@@ -67,7 +67,6 @@
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
                             <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
-<<<<<<< HEAD
                                     <h3></h3>
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
