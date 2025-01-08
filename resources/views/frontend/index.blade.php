@@ -67,6 +67,7 @@
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
                             <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
+<<<<<<< HEAD
                                     <h3></h3>
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
@@ -173,31 +174,31 @@
                         </div>
                     </div>
                     @else
-                        <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
-                            <div class="content_block_one">
-                                <div class="content-box">
-                                    <div class="sec-title">
-                                        <h2>{{$animal->title}}</h2>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
+                        <div class="content_block_one">
+                            <div class="content-box">
+                                <div class="sec-title">
+                                    <h2>{{$animal->title}}</h2>
+                                </div>
+                                <div class="text">
+                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
+                                </div>
+                                <div style="display: none;" id="full-text-modal">
+                                    <div class="full-text-content">
+                                        {!! $intro->details !!}
                                     </div>
-                                    <div class="text">
-                                        <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                    </div>
-                                    <div style="display: none;" id="full-text-modal">
-                                        <div class="full-text-content">
-                                            {!! $intro->details !!}
-                                        </div>
-                                    </div>
-                                    <div class="btn-box">
-                                        <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
-                                    </div>
+                                </div>
+                                <div class="btn-box">
+                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                             <div class="image_block_one">
                                 <div class="image-box">
-                                    <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                    <figure class="image "><img src="{{asset($animal->image)}}" alt=""></figure>
+                                    <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>
+                                    <figure class="image {{$animal->title}}"><img src="{{asset($animal->home_image)}}" alt=""></figure>
                                     <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                                 </div>
                             </div>
