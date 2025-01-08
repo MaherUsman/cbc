@@ -72,10 +72,16 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="text-center mt-3">
-                                <button id="load-more-btn" class="theme-btn btn-one">Load More</button>
-                                <div id="loading-message" style="display: none;">Loading more images...</div>
-                            </div>
+                            @if($event->blogGalleries->count() > 0)
+                                <div class="text-center mt-3">
+                                    <button id="load-more-btn" class="theme-btn btn-one">Load More</button>
+                                    <div id="loading-message" style="display: none;">Loading more images...</div>
+                                </div>
+                            @endif
+{{--                            <div class="text-center mt-3">--}}
+{{--                                <button id="load-more-btn" class="theme-btn btn-one">Load More</button>--}}
+{{--                                <div id="loading-message" style="display: none;">Loading more images...</div>--}}
+{{--                            </div>--}}
                         </div>
                     </section>
                     <!-- gallery-page-section end -->
