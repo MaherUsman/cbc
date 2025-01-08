@@ -12,6 +12,7 @@ use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\AnimalGalleryController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogGalleryController;
 use App\Http\Controllers\ChunkUploadController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GalleriesContentController;
@@ -103,6 +104,19 @@ Route::prefix('admin')->group(function () {
             //Route::post('/animal-galleries/update-order', 'updateOrder')->name('animal-galleries.updateOrder');
             Route::post('/update-animal-galleries-order', 'updateOrder')->name('animal-galleries.updateOrder');
         });
+
+        Route::controller(BlogGalleryController::class)->group(function () {
+            Route::get('/blog-galleries/{blog}', 'index')->name('blog-galleries.index');
+            Route::get('/blog-galleries/create/{blog}', 'create')->name('blog-galleries.create');
+            Route::post('/blog-galleries/{blog}', 'store')->name('blog-galleries.store');
+            Route::get('/blog-galleries/{blog_gallery}', 'show')->name('blog-galleries.show');
+            Route::get('/blog-galleries/{blog_gallery}/edit', 'edit')->name('blog-galleries.edit');
+            Route::put('/blog-galleries/{blog_gallery}', 'update')->name('blog-galleries.update');
+            Route::delete('/blog-galleries/{blog_gallery}', 'destroy')->name('blog-galleries.destroy');
+            Route::get('/blog-galleries/reorder/{blog}', 'gridView')->name('blog-galleries.gridView');
+            //Route::post('/blog-galleries/update-order', 'updateOrder')->name('blog-galleries.updateOrder');
+            Route::post('/update-blog-galleries-order', 'updateOrder')->name('blog-galleries.updateOrder');
+        });
         Route::resource('jobs', JobController::class);
         Route::get('job-applications/{job}',[JobController::class,'jobsApplications'])->name('jobs.application');
     });
@@ -143,6 +157,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'loadMoreAnimalGalleries'])->name('load.more.animal');
+    Route::get('loadmore/{slug}/events' , [\App\Http\Controllers\Frontend\EventController::class , 'loadMoreEventGalleries'])->name('load.more.event');
 });
 
 Route::get('{any?}', function () {
