@@ -26,4 +26,12 @@ class EventController extends Controller
             ->findEvent($slug);
         return view('frontend.event' , $data);
     }
+
+    public function loadMoreEventGalleries($slug)
+    {
+        $galleries  = $this->service->loadMoreEventGalleries($slug);
+        return response()->json($galleries);
+    }
+
+
 }
