@@ -221,7 +221,7 @@
                 @foreach($amazing_animals as $amazing_animal)
                     <div class="gallery-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="{{asset($amazing_animal->image)}}" alt=""></figure>
+                            <figure class="image-box"><img src="{{asset($amazing_animal->home_image)}}" alt=""></figure>
                             <div class="content-box">
                                 <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
                             </div>
