@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('topas_galleries', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 255)->nullable();
-            $table->string('slug', 255)->nullable();
-            $table->string('image', 255)->nullable();
-            $table->boolean('status')->default(1);
-            $table->timestamps();
-        });
+//        Schema::create('topas_galleries', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('title', 255)->nullable();
+//            $table->string('slug', 255)->nullable();
+//            $table->string('image', 255)->nullable();
+//            $table->boolean('status')->default(1);
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('topas_galleries');
+//        Schema::dropIfExists('topas_galleries');
     }
 };

@@ -12,7 +12,8 @@ class TobaSubGalleryService
     public function index($tobaGallery)
     {
         $tobaSubGalleries = TobaSubGallery::where('toba_gallery_id', $tobaGallery->id)->get();
-        return view('admin.tobaSubGallery.index', compact('tobaSubGalleries','tobaGallery'));
+
+        return view('admin.topasChildGallery.index', compact('tobaSubGalleries','tobaGallery'));
     }
 
     public function getTobaSubGallery()
@@ -67,12 +68,12 @@ class TobaSubGalleryService
         }
     }
 
-    public function edit(TobaSubGallery $tobaSubGallery)
+    public function edit(TobaSubGallery $visitorChildGallery)
     {
         if (request()->is('api/*')) {
             return makeResponse('success', 'TobaSubGallery Details', Response::HTTP_OK, new TobaSubGalleryResource($tobaSubGallery));
         } else {
-            return view('admin.tobaSubGallery.edit', compact('tobaSubGallery'));
+            return view('admin.topasChildGallery.edit', compact('visitorChildGallery'));
         }
     }
 

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\TopasChildGalleryUpdateRequest;
 use App\Http\Resources\TopasChildGalleryCollection;
 use App\Http\Resources\TopasChildGalleryResource;
+use App\Models\TobaSubGallery;
 use App\Models\TopasChildGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,13 +15,13 @@ class TopasChildGalleryService
 {
     public function index($topasGallery)
     {
-        $topasChildGalleries = TopasChildGallery::where('topas_gallery_id', $topasGallery->id)->get();
+        $topasChildGalleries = TobaSubGallery::where('topas_gallery_id', $topasGallery->id)->get();
         return view('admin.topasChildGallery.index', compact('topasChildGalleries', 'topasGallery'));
     }
 
     public function getTopasChildGallery()
     {
-        $topasChildGalleries = TopasChildGallery::all();
+        $topasChildGalleries = TobaSubGallery::all();
         if (request()->is('api/*')) {
             return makeResponse('success', 'List', Response::HTTP_OK, new TopasChildGalleryCollection($topasChildGalleries));
         } else {
@@ -41,9 +42,8 @@ class TopasChildGalleryService
     {
         DB::beginTransaction();
         try {
-//            dd($request->all());
             foreach ($request->title as $key=>$value){
-                $topasChildGallery = TopasChildGallery::create(['topas_gallery_id'=>$request->topas_gallery_id,'title'=>$value,'image'=>$request->image[$key]]);
+                $topasChildGallery = TobaSubGallery::create(['toba_gallery_id'=>$request->topas_gallery_id,'title'=>$value,'image'=>$request->image[$key]]);
             }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $topasChildGallery);
@@ -66,7 +66,7 @@ class TopasChildGalleryService
         }
     }
 
-    public function edit(TopasChildGallery $topasChildGallery)
+    public function edit(TobaSubGallery $topasChildGallery)
     {
         if (request()->is('api/*')) {
 //            dd($topasChildGallery);

@@ -62,7 +62,7 @@
 {{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
                             <li class="dropdown {{ Request::is('article/*') ? 'active' : '' }}">
-                                <a href="{{route('frontend.article.page')}}">Research & Articles</a>
+                                <a href="{{route('frontend.rearchArticle')}}">Research & Articles</a>
                                 <ul>
                                     @foreach($articleGalleries as $articleGallery)
                                         <li class="{{ Request::is('article.gallery/' . $articleGallery->id) ? 'active' : '' }}">

@@ -16,8 +16,15 @@ class TobaSubGalleryController extends Controller
         $this->tobaSubGalleryService= $tobaSubGalleryService;
     }
 
-    public function index(TobaGallery $tobaGallery)
+    public function index(Request $request)
     {
+        $queryParams = request()->query();
+        $key = null;
+        foreach ($queryParams as $key => $value) {
+            $key = $key;
+        }
+        $tobaGallery = TobaGallery::find($key);
+
         return $this->tobaSubGalleryService->index($tobaGallery);
     }
 

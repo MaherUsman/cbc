@@ -3,8 +3,8 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('toba.admin.breadcrumbs.name'), 'route' => 'toba-main.index'],
-        ['name' => __('toba.admin.breadcrumbs.create'), 'route' => 'toba-main.create']],
+        'breadcrumbs' => [['name' => __('toba.admin.breadcrumbs.name'), 'route' => null],
+        ['name' => __('toba.admin.breadcrumbs.create'), 'route' => null]],
         'pageTitle' => __('toba.admin.breadcrumbs.create')
     ])
     <div class="row">
@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">{{__('toba.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('toba-main.store')}}"
+                    <form method="POST" id="formValidation" action="{{route('toba.store')}}"
                           enctype="multipart/form-data">
                         @csrf
 
@@ -185,7 +185,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('toba-main.COE')}}";
+                        window.location.href = "{{route('toba.COE')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
