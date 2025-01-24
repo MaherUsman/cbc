@@ -6,6 +6,8 @@ use App\Models\AboutUsChildGallery;
 use App\Models\AboutUsGallery;
 use App\Models\ActivityGallery;
 use App\Models\GalleriesContent;
+use App\Models\TobaGallery;
+use App\Models\TobaSubGallery;
 use App\Models\TopasGallery;
 use App\Models\VisitorGallery;
 
@@ -38,4 +40,15 @@ class GalleryService
         $data['parentGallery'] = AboutUsGallery::where('id', $id)->first();
         return $data;
     }
+    public function tobasGallery($page = 1 , $id)
+    {
+        $data['topasGallery'] = TobaSubGallery::
+        where('toba_gallery_id' , $id)
+            ->paginate(9, ['*'], 'page', $page);
+        $data['id'] = $id;
+        $data['parentGallery'] = TobaGallery::where('id', $id)->first();
+        return $data;
+    }
+
 }
+

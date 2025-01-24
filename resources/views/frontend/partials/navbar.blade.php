@@ -62,8 +62,23 @@
                             <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a
                                     href="{{url('research-article')}}">Research & Articles</a></li>
 
-                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
+{{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
+{{--                                    href="{{route('frontend.topas.gallery')}}">Tobas</a></li>--}}
+
+                            <li class="dropdown {{ Request::is('tobas/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.tobas.page')}}">Tobas</a>
+                                <ul>
+                                    @foreach($tobasGalleries as $tobasGallery)
+                                        <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
+                                                {{$tobasGallery->title}}
+                                            s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+
                             <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
