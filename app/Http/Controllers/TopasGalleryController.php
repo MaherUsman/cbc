@@ -6,6 +6,7 @@ use App\Http\Requests\TopasGalleryStoreRequest;
 use App\Http\Requests\TopasGalleryUpdateRequest;
 use App\Http\Resources\TopasGalleryCollection;
 use App\Http\Resources\TopasGalleryResource;
+use App\Models\Tobas;
 use App\Models\TopasGallery;
 use App\Services\TopasGalleryService;
 use Illuminate\Http\Request;
@@ -20,19 +21,29 @@ class TopasGalleryController extends Controller
         $this->topasGalleryService= $topasGalleryService;
     }
 
-    public function index()
+//    public function index()
+//    {
+//        return $this->topasGalleryService->index();
+//    }
+
+    public function index(Request $request, Tobas $tobas)
     {
-        return $this->topasGalleryService->index();
+        return $this->topasGalleryService->index($request, $tobas);
     }
 
-    public function create()
+    public function create(Tobas $tobas)
     {
-        return $this->topasGalleryService->create();
+        return $this->topasGalleryService->create($tobas);
     }
 
-    public function store(/*TopasGalleryStore*/Request $request)
+//    public function store(/*TopasGalleryStore*/Request $request)
+//    {
+//        return $this->topasGalleryService->store($request);
+//    }
+
+    public function store(Request $request, Tobas $tobas)
     {
-        return $this->topasGalleryService->store($request);
+        return $this->topasGalleryService->store($request, $tobas);
     }
 
     public function show(TopasGallery $topasGallery)

@@ -125,20 +125,20 @@
                 </ul>
             </li>
         @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-tobas-gallery']))
-            <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-images"></i>
-                    <span class="nav-text">{{__('sidebar.topas.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('topas-galleries.index')}}">{{__('sidebar.topas.index')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
+{{--        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-tobas-gallery']))--}}
+{{--            <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">--}}
+{{--                <a class="has-arrow" href="javascript:void(0);"--}}
+{{--                   aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">--}}
+{{--                    <i class="la la-images"></i>--}}
+{{--                    <span class="nav-text">{{__('sidebar.topas.name')}}</span>--}}
+{{--                </a>--}}
+{{--                <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">--}}
+{{--                    <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">--}}
+{{--                        <a href="{{route('topas-galleries.index')}}">{{__('sidebar.topas.index')}}</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+{{--        @endif--}}
         @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-visitor-gallery']))
             <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
                 <a class="has-arrow" href="javascript:void(0);"

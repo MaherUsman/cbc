@@ -73,7 +73,19 @@ Route::prefix('admin')->group(function () {
         Route::post('galleries-content-store', [GalleriesContentController::class, 'content_store'])->name('galleriesContent.store');
 
         Route::resource('activity-galleries', ActivityGalleryController::class);
-        Route::resource('topas-galleries', TopasGalleryController::class);
+//        Route::resource('topas-galleries', TopasGalleryController::class);
+        Route::controller(TopasGalleryController::class)->group(function () {
+            Route::get('/topas-galleries/{tobas}', 'index')->name('topas-galleries.index');
+            Route::get('/topas-galleries/create/{tobas}', 'create')->name('topas-galleries.create');
+            Route::post('/topas-galleries/{tobas}', 'store')->name('topas-galleries.store');
+            Route::get('/topas-galleries/{topas_gallery}', 'show')->name('topas-galleries.show');
+            Route::get('/topas-galleries/{topas_gallery}/edit', 'edit')->name('topas-galleries.edit');
+            Route::put('/topas-galleries/{topas_gallery}', 'update')->name('topas-galleries.update');
+            Route::delete('/topas-galleries/{topas_gallery}', 'destroy')->name('topas-galleries.destroy');
+            Route::get('/topas-galleries/reorder/{tobas}', 'gridView')->name('topas-galleries.gridView');
+            //Route::post('/topas-galleries/update-order', 'updateOrder')->name('topas-galleries.updateOrder');
+            Route::post('/update-topas-galleries-order', 'updateOrder')->name('topas-galleries.updateOrder');
+        });
         Route::get('topas-child-galleries/{topasGallery}', [TopasChildGalleryController::class, 'index'])->name('topasChildGalleries');
         Route::resource('topas-child-galleries', TopasChildGalleryController::class);
 
@@ -88,6 +100,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-us-child-galleries', AboutUsChildGalleryController::class);
 
         Route::delete('delete-animal-slider-image/{id}', [AnimalController::class, 'deleteAnimalSliderImage'])->name('delete.animal.slider.image');
+
+        //tobas
+        Route::resource('tobas', \App\Http\Controllers\TobasController::class);
 
         Route::resource('animals', AnimalController::class);
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
