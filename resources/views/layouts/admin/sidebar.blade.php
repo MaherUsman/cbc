@@ -89,10 +89,10 @@
                     <span class="nav-text">{{__('sidebar.toba.sec')}}</span>
                 </a>
             </li>
-            <li {{ request()->is('admin/toba*') ? 'active mm-active' : '' }}>
-                <a class="ai-icon" href="{{route('toba.COE')}}" aria-expanded="false">
+            <li {{ request()->is('admin/toba-galleries*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{route('toba-galleries.index')}}" aria-expanded="false">
                     <i class="la la-calendar"></i>
-                    <span class="nav-text">{{__('sidebar.toba.sec')}}</span>
+                    <span class="nav-text">{{__('sidebar.toba.index')}}</span>
                 </a>
             </li>
             {{--            @endif--}}

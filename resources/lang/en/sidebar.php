@@ -52,7 +52,7 @@ return [
     ],
     'toba' => [
         'name' => 'Tobas Gallery',
-        'index' => 'Gallery Pics',
+        'index' => 'Tobas Gallery',
         'create' => 'Add Gallery Pics',
         'sec' => 'Tobas',
     ],
