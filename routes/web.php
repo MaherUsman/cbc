@@ -20,6 +20,9 @@ use App\Http\Controllers\IntroController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TobaController;
+use App\Http\Controllers\TobaGalleryController;
+use App\Http\Controllers\TobaSubGalleryController;
 use App\Http\Controllers\TopasChildGalleryController;
 use App\Http\Controllers\TopasGalleryController;
 use App\Http\Controllers\UserController;
@@ -70,6 +73,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('about-uses', AboutUsController::class);
         Route::get('about-us', [AboutUsController::class, 'createOrEdit'])->name('about-uses.COE');
 
+        Route::resource('toba', TobaController::class);
+        Route::get('toba_', [TobaController::class, 'createOrEdit'])->name('toba.COE');
+        Route::resource('toba-galleries', TobaGalleryController::class);
+        Route::resource('toba-sub-galleries', TobaSubGalleryController::class);
+
+
         Route::post('galleries-content-store', [GalleriesContentController::class, 'content_store'])->name('galleriesContent.store');
 
         Route::resource('activity-galleries', ActivityGalleryController::class);
@@ -78,13 +87,13 @@ Route::prefix('admin')->group(function () {
             Route::get('/topas-galleries/{tobas}', 'index')->name('topas-galleries.index');
             Route::get('/topas-galleries/create/{tobas}', 'create')->name('topas-galleries.create');
             Route::post('/topas-galleries/{tobas}', 'store')->name('topas-galleries.store');
-            Route::get('/topas-galleries/{topas_gallery}', 'show')->name('topas-galleries.show');
-            Route::get('/topas-galleries/{topas_gallery}/edit', 'edit')->name('topas-galleries.edit');
-            Route::put('/topas-galleries/{topas_gallery}', 'update')->name('topas-galleries.update');
-            Route::delete('/topas-galleries/{topas_gallery}', 'destroy')->name('topas-galleries.destroy');
-            Route::get('/topas-galleries/reorder/{tobas}', 'gridView')->name('topas-galleries.gridView');
-            //Route::post('/topas-galleries/update-order', 'updateOrder')->name('topas-galleries.updateOrder');
-            Route::post('/update-topas-galleries-order', 'updateOrder')->name('topas-galleries.updateOrder');
+//            Route::get('/topas-galleries/{topas_gallery}', 'show')->name('topas-galleries.show');
+//            Route::get('/topas-galleries/{topas_gallery}/edit', 'edit')->name('topas-galleries.edit');
+//            Route::put('/topas-galleries/{topas_gallery}', 'update')->name('topas-galleries.update');
+//            Route::delete('/topas-galleries/{topas_gallery}', 'destroy')->name('topas-galleries.destroy');
+//            Route::get('/topas-galleries/reorder/{tobas}', 'gridView')->name('topas-galleries.gridView');
+//            //Route::post('/topas-galleries/update-order', 'updateOrder')->name('topas-galleries.updateOrder');
+//            Route::post('/update-topas-galleries-order', 'updateOrder')->name('topas-galleries.updateOrder');
         });
         Route::get('topas-child-galleries/{topasGallery}', [TopasChildGalleryController::class, 'index'])->name('topasChildGalleries');
         Route::resource('topas-child-galleries', TopasChildGalleryController::class);
