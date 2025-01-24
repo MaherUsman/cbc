@@ -59,8 +59,20 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a
-                                    href="{{url('research-article')}}">Research & Articles</a></li>
+{{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
+{{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
+                            <li class="dropdown {{ Request::is('article/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.article.page')}}">Research & Articles</a>
+                                <ul>
+                                    @foreach($articleGalleries as $articleGallery)
+                                        <li class="{{ Request::is('article.gallery/' . $articleGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.article.gallery', ['articleGallery'=>$articleGallery]) }}">
+                                                {{$articleGallery->title}}
+                                                s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
 {{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{route('frontend.topas.gallery')}}">Tobas</a></li>--}}

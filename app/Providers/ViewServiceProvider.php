@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Animal;
 use App\Models\AnimalCategory;
+use App\Models\ArticleGallery;
 use App\Models\Settings;
 use App\Models\SocialLinks;
 use App\Models\Toba;
@@ -45,11 +46,13 @@ class ViewServiceProvider extends ServiceProvider
             $category = AnimalCategory::first();
 
             $tobasGalleries = TobaGallery::where('show_on_navbar',1)->get();
+            $articleGalleries = ArticleGallery::where('show_on_navbar',1)->get();
 
 
             $view->with('animals', $animals);
             $view->with('category', $category);
             $view->with('tobasGalleries', $tobasGalleries);
+            $view->with('articleGalleries', $articleGalleries);
         });
     }
 }
