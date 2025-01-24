@@ -166,7 +166,7 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
     Route::get('about-us/gallery/{slug}' , [\App\Http\Controllers\Frontend\GalleryController::class , 'aboutUsGallery'])
         ->name('aboutus.gallery');
-    Route::get('tobas/gallery' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
+//    Route::get('tobas/gallery' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
     Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
     Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
     Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
@@ -179,6 +179,11 @@ Route::group([ 'as' => 'frontend.'] , function (){
     Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
     Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
+
+    Route::get('tobas' , [\App\Http\Controllers\Frontend\TobasController::class , 'index'])->name('tobas.page');
+    Route::get('tobas-gallery/{tobasGallery}' , [\App\Http\Controllers\Frontend\TobasController::class , 'topasGallery'])->name('tobas.gallery');
+
+
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'loadMoreAnimalGalleries'])->name('load.more.animal');
     Route::get('loadmore/{slug}/events' , [\App\Http\Controllers\Frontend\EventController::class , 'loadMoreEventGalleries'])->name('load.more.event');
