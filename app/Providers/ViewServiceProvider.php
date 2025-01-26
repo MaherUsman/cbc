@@ -34,6 +34,10 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('socialLinks', $socialLinks);
         });
 
+        View::composer('frontend.index', function ($view) {
+            $setting = Settings::first();
+            $view->with('setting', $setting);
+        });
         View::composer('frontend.layout.index', function ($view) {
             $setting = Settings::first();
             $view->with('setting', $setting);
