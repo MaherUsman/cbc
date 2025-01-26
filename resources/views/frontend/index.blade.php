@@ -213,7 +213,7 @@
     <section class="gallery-section">
         <div class="auto-container">
             <div class="sec-title centred">
-                <h2>amazing Animals <br />in our zoo</h2>
+                <h2>{{$setting->home_page_title}}</h2>
             </div>
         </div>
         <div class="outer-container">
