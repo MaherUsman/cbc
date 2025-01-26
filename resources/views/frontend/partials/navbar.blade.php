@@ -91,8 +91,21 @@
                             </li>
 
 
-                            <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
+
+
+                            <li class="dropdown {{ Request::is('activites/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.activites.page')}}">Acitivities</a>
+                                <ul>
+                                    @foreach($activityGalleries as $tobasGallery)
+                                        <li class="{{ Request::is('activites.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery'=>$tobasGallery]) }}">
+                                                {{$tobasGallery->title}}
+                                                s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a

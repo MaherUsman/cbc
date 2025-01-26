@@ -177,7 +177,10 @@
                     </a>
                     <ul aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
                         <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
-                            <a href="{{route('activity-galleries.index')}}">{{__('sidebar.activity.index')}}</a>
+                            <a href="{{route('rewapactivity.COE')}}">Activity</a>
+                        </li>
+                        <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('rewap_activity_gallery.index')}}">Activity Gallery</a>
                         </li>
                     </ul>
                 </li>

@@ -5,6 +5,7 @@ namespace App\Services\Frontend;
 use App\Models\AboutUsChildGallery;
 use App\Models\AboutUsGallery;
 use App\Models\ActivityGallery;
+use App\Models\ActivitySubGallery;
 use App\Models\GalleriesContent;
 use App\Models\TobaGallery;
 use App\Models\TobaSubGallery;
@@ -47,6 +48,15 @@ class GalleryService
             ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
         $data['parentGallery'] = TobaGallery::where('id', $id)->first();
+        return $data;
+    }
+    public function activityGallery($page = 1 , $id)
+    {
+        $data['topasGallery'] = ActivitySubGallery::
+        where('activity_gallery_id' , $id)
+            ->paginate(9, ['*'], 'page', $page);
+        $data['id'] = $id;
+        $data['parentGallery'] = ActivityGallery::where('id', $id)->first();
         return $data;
     }
 

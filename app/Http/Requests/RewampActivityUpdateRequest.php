@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TobaStoreRequest extends FormRequest
+class RewampActivityUpdateRequest extends FormRequest
 {
     /**
-     * Determine if  the user is authorized to make this request.
+     * Determine if the user is authorized to make this request.
      */
     public function authorize()
     {

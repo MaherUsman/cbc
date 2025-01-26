@@ -143,6 +143,13 @@ Route::prefix('admin')->group(function () {
         });
         Route::resource('jobs', JobController::class);
         Route::get('job-applications/{job}',[JobController::class,'jobsApplications'])->name('jobs.application');
+
+//        Rewap Activities
+        Route::get('activities_main' , [\App\Http\Controllers\ActivityRewappController::class , 'createOrEdit'])->name('rewapactivity.COE');
+        Route::resource('rewap_activity' , \App\Http\Controllers\ActivityRewappController::class);
+        Route::resource('rewap_activity_gallery' , \App\Http\Controllers\RewapActivityGalleryController::class);
+        Route::resource('rewap_activity_sub_gallery', \App\Http\Controllers\RewampActivitysubGallery::class);
+
     });
 
 Route::view('gal','admin/gallery/AboutUsGallery');
@@ -182,6 +189,11 @@ Route::group([ 'as' => 'frontend.'] , function (){
 
     Route::get('tobas' , [\App\Http\Controllers\Frontend\TobasController::class , 'index'])->name('tobas.page');
     Route::get('tobas-gallery/{tobasGallery}' , [\App\Http\Controllers\Frontend\TobasController::class , 'topasGallery'])->name('tobas.gallery');
+
+
+    Route::get('activities' , [\App\Http\Controllers\Frontend\ActivityController::class , 'index'])->name('activites.page');
+    Route::get('activities-gallery/{tobasGallery}' , [\App\Http\Controllers\Frontend\ActivityController::class , 'topasGallery'])->name('activites.gallery');
+
 
 
     Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
