@@ -6,7 +6,7 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{asset($data->image)}});"></div>
+            <div class="parallax-inner back-img" style="background-image: url({{asset($data->image??'')}});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -36,11 +36,11 @@
                     <div class="content_block_three">
                         <div class="content-box">
                             <div class="sec-title">
-                                <h2>{{$data->title}}</h2>
+                                <h2>{{$data->title??''}}</h2>
                             </div>
                             <div class="text">
                                 <div id="limited-text">
-                                    {!! $data->description !!}
+                                    {!! $data->description??'' !!}
                                 </div>
 {{--                                <div id="full-text" style="display: none;">--}}
 {{--                                    {!! $data->description !!}--}}
@@ -80,13 +80,13 @@
                                     <div class="inner-box">
                                         <figure class="image-box">
                                             <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">
-                                                <img src="{{asset($tobaGallery->image)}}" alt=""></a></figure>
+                                                <img src="{{asset($tobaGallery->image??'')}}" alt=""></a></figure>
 
                                     </div>
                                 </div>
                             </a>
                             <div class="category-overlay">
-                                <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">{{$tobaGallery->title}}</a>
+                                <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">{{$tobaGallery->title??''}}</a>
                             </div>
                         </div>
                     @endforeach

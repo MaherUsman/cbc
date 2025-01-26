@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('animals', function (Blueprint $table) {
-            $table->string('image_thumbnail')->nullable();
-            $table->string('banner_image_thumbnail')->nullable();
-            $table->string('home_image_thumbnail')->nullable();
+//            $table->string('image_thumbnail')->nullable();
+//            $table->string('banner_image_thumbnail')->nullable();
+//            $table->string('home_image_thumbnail')->nullable();
         });
     }
 
@@ -24,9 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('animals', function (Blueprint $table) {
-            $table->dropColumn('image_thumbnail');
-            $table->dropColumn('banner_image_thumbnail');
-            $table->dropColumn('home_image_thumbnail');
+//            $table->dropColumn('image_thumbnail');
+//            $table->dropColumn('banner_image_thumbnail');
+//            $table->dropColumn('home_image_thumbnail');
 
         });
     }
