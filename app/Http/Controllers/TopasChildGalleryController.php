@@ -6,6 +6,7 @@ use App\Http\Requests\TopasChildGalleryStoreRequest;
 use App\Http\Requests\TopasChildGalleryUpdateRequest;
 use App\Http\Resources\TopasChildGalleryCollection;
 use App\Http\Resources\TopasChildGalleryResource;
+use App\Models\TobaSubGallery;
 use App\Models\TopasChildGallery;
 use App\Models\TopasGallery;
 use App\Services\TopasChildGalleryService;
@@ -41,12 +42,13 @@ class TopasChildGalleryController extends Controller
         //
     }
 
-    public function edit(TopasChildGallery $topasChildGallery)
+    public function edit($id)
     {
+        $topasChildGallery = TobaSubGallery::find($id);
         return $this->topasChildGalleryService->edit($topasChildGallery);
     }
 
-    public function update(TopasChildGalleryUpdateRequest $request, TopasChildGallery $topasChildGallery)
+    public function update(TopasChildGalleryUpdateRequest $request, TopasChildGallery $topasChildGallery , $id)
     {
         return $this->topasChildGalleryService->update($request , $topasChildGallery);
     }

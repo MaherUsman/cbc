@@ -59,13 +59,53 @@
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
                             </li>
-                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a
-                                    href="{{url('research-article')}}">Research & Articles</a></li>
+{{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
+{{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
+                            <li class="dropdown {{ Request::is('article/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.rearchArticle')}}">Research & Articles</a>
+                                <ul>
+                                    @foreach($articleGalleries as $articleGallery)
+                                        <li class="{{ Request::is('article.gallery/' . $articleGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.article.gallery', ['articleGallery'=>$articleGallery]) }}">
+                                                {{$articleGallery->title}}
+                                                s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
-                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.topas.gallery')}}">Tobas</a></li>
-                            <li class="{{ Request::routeIs('frontend.activities.gallery' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.activities.gallery')}}">Acitivities</a></li>
+{{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
+{{--                                    href="{{route('frontend.topas.gallery')}}">Tobas</a></li>--}}
+
+                            <li class="dropdown {{ Request::is('tobas/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.tobas.page')}}">Tobas</a>
+                                <ul>
+                                    @foreach($tobasGalleries as $tobasGallery)
+                                        <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
+                                                {{$tobasGallery->title}}
+                                            s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+
+
+
+                            <li class="dropdown {{ Request::is('activites/*') ? 'active' : '' }}">
+                                <a href="{{route('frontend.activites.page')}}">Acitivities</a>
+                                <ul>
+                                    @foreach($activityGalleries as $tobasGallery)
+                                        <li class="{{ Request::is('activites.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery'=>$tobasGallery]) }}">
+                                                {{$tobasGallery->title}}
+                                                s</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a

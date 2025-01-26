@@ -10,7 +10,9 @@ use App\Http\Resources\AboutUsGalleryResource;
 use App\Http\Resources\TopasGalleryCollection;
 use App\Http\Resources\TopasGalleryResource;
 use App\Models\AboutUsGallery;
+use App\Models\Animal;
 use App\Models\GalleriesContent;
+use App\Models\Tobas;
 use App\Models\TopasGallery;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,11 +21,25 @@ use Illuminate\Support\Facades\File;
 
 class TopasGalleryService
 {
-    public function index()
+//    public function index()
+//    {
+//        $topasGalleries = TopasGallery::all();
+//        $topasGalleriesContent = GalleriesContent::where('type', 'topas')->first();
+//        return view('admin.topasGallery.index', compact('topasGalleries', 'topasGalleriesContent'));
+//    }
+
+    public function index($request, $tobas)
     {
-        $topasGalleries = TopasGallery::all();
-        $topasGalleriesContent = GalleriesContent::where('type', 'topas')->first();
-        return view('admin.topasGallery.index', compact('topasGalleries', 'topasGalleriesContent'));
+        $tobasGalleries = $tobas->tobasGalleries()->paginate(9); // Adjust items per page as needed
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('admin.tobasGallery.gallery_items', compact('tobasGalleries'))->render(),
+                'nextPageUrl' => $tobasGalleries->nextPageUrl()
+            ]);
+        }
+
+        return view('admin.topasGallery.index', compact('tobas', 'tobasGalleries'));
     }
 
     public function getTopasGallery()
@@ -36,26 +52,27 @@ class TopasGalleryService
         }
     }
 
-    public function create()
+    public function create($tobas)
     {
         if (request()->is('api/*')) {
             return makeResponse('success', '', Response::HTTP_OK);
         } else {
-            return view('admin.topasGallery.createGallery');
+            return view('admin.topasGallery.createGallery', compact('tobas'));
         }
     }
 
-    public function store(/*TopasGalleryStore*/Request $request)
+    public function store(/*TopasGalleryStore*/Request $request, Tobas $tobas)
     {
         DB::beginTransaction();
         try {
 //            dd($request->all());
-            foreach ($request->title as $key=>$value){
-                $topasGallery = TopasGallery::create(['title'=>$value,
-                    'image'=>$request->image[$key],
-                    'thumb'=>$request->thumb,
-                    'compressed'=>$request->compressed,]);
-            }
+            $topasGallery = $tobas->tobasGalleries()->createMany($this->record($request));
+//            foreach ($request->title as $key=>$value){
+//                $topasGallery = TopasGallery::create(['title'=>$value,
+//                    'image'=>$request->image[$key],
+//                    'thumb'=>$request->thumb[$key],
+//                    'compressed'=>$request->compressed[$key],]);
+//            }
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $topasGallery);
         } catch (\Exception $exception) {
@@ -112,5 +129,20 @@ class TopasGalleryService
     {
         $topasGallery->delete();
         return makeResponse('success', 'Deleted Successfully!', Response::HTTP_NO_CONTENT);
+    }
+
+    private function record(Request $request)
+    {
+        $gallery = [];
+//        dd($request->all());
+        foreach ($request->title as $key => $value) {
+            $gallery[] = [
+                'title' => $request->title[$key],
+                'image' => $request->image[$key],
+                'thumb' => $request->thumb[$key],
+                'compressed' => $request->compressed[$key],
+            ];
+        }
+        return $gallery;
     }
 }

@@ -3,36 +3,37 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('aboutUsGallery.admin.breadcrumbs.name'), 'route' => 'about-us-galleries.index'],
-        ['name' => __('aboutUsGallery.admin.breadcrumbs.create'), 'route' => 'about-us-galleries.create']],
-        'pageTitle' => __('aboutUsGallery.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('tobasGalleries.admin.breadcrumbs.name'), 'route' =>null ],
+        ['name' => __('tobasGalleries.admin.breadcrumbs.create'), 'route' =>null ]],
+        'pageTitle' => __('tobasGalleries.admin.breadcrumbs.create')
     ])
+
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('aboutUsGallery.admin.create.create')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('about-us-galleries.store')}}"
+                    <h6 class="card-title">{{__('tobasGalleries.admin.create.create')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('topas-galleries.store',$tobas)}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('aboutUsGallery.admin.create.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('aboutUsGallery.admin.create.title_message')}}"
+                                    <label class="form-label">{{__('tobasGalleries.admin.create.title')}}{{--<span
+                                            class="text-danger">*</span> --}}</label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('tobasGalleries.admin.create.title_message')}}"
                                            name="title[]" class="form-control"
-                                           placeholder="{{__('aboutUsGallery.admin.create.title')}}">
+                                           placeholder="{{__('tobasGalleries.admin.create.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('aboutUsGallery.admin.create.image')}}<span
+                                    <label class="form-label">{{__('tobasGalleries.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
                                     <input type="file" name="image[]" class="form-control" accept="image/*"
                                            data-rule-required="true" onchange="previewImage(this)"
-                                           data-msg-required="{{__('aboutUsGallery.admin.create.image_message')}}">
+                                           data-msg-required="{{__('tobasGalleries.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -46,12 +47,12 @@
                             </div>
                         </div>
 
-                        <a href="{{route('about-us-galleries.index')}}" class="btn btn-danger light btn-sl-sm"
+                        <a href="{{route('topas-galleries.index',$tobas)}}" class="btn btn-danger light btn-sl-sm"
                            type="button">
-                            {{__('aboutUsGallery.admin.form.cancel')}}
+                            {{__('tobasGalleries.admin.form.cancel')}}
                         </a>
-                        <button type="submit" class="btn btn-primary submit">
-                            {{__('aboutUsGallery.admin.create.submit')}}
+                        <button {{--type="submit"--}} class="btn btn-primary submit">
+                            {{__('tobasGalleries.admin.create.submit')}}
                         </button>
                     </form>
 
@@ -68,9 +69,9 @@
         $(document).ready(function () {
             // Function to validate if current row has both title and image filled
             function validateRow($row) {
-                let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
+                // let titleFilled = $row.find('input[name="title[]"]').val().trim() !== '';
                 let imageFilled = $row.find('input[name="image[]"]').val() !== '';
-                return titleFilled && imageFilled;
+                return imageFilled;
             }
 
             // Add Row functionality
@@ -102,7 +103,8 @@
                     // Add the new row
                     addRow();
                 } else {
-                    alert('Please fill both title and image fields before adding a new row.');
+                    errorMsg('Please fill image field before adding a new row.')
+                    // alert('Please fill both title and image fields before adding a new row.');
                 }
             });
 
@@ -142,15 +144,15 @@
                     });
 
                     var url = $(form).attr('action');
-                    //var data = new FormData($(form)[0]); // Form data including all images and titles
-                    var data = new FormData();
+                    var data = new FormData($(form)[0]); // Form data including all images and titles
+                    // var data = new FormData();
                     // Get all file input elements
-                    var titleInputs = $('input[name="title[]"]');
+                    // var titleInputs = $('input[name="title[]"]');
                     var imageInputs = $('input[name="image[]"]');
-                    titleInputs.each(function (index, element) {
+                    /*titleInputs.each(function (index, element) {
                         data.append('title[]', $(element).val());
-                    });
-
+                    });*/
+                    data.delete('image[]');
                     try {
                         for (let i = 0; i < imageInputs.length; i++) {
                             let imageFile = imageInputs[i].files[0]; // Get file from each input
@@ -159,6 +161,8 @@
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
                                     data.append(`image[${i}]`, response.filePath);
+                                    data.append(`thumb[${i}]`, response.thumb);
+                                    data.append(`compressed[${i}]`, response.compressed);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -204,7 +208,10 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -224,7 +231,6 @@
                         color: '#fff'
                     }
                 });
-                $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
                 try {
                     let response = await $.ajax({
                         type: 'POST',
@@ -236,7 +242,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('about-us-galleries.index')}}";
+                        window.location.href = "{{route('topas-galleries.index',$tobas)}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
