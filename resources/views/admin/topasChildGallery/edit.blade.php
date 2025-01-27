@@ -3,8 +3,8 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('topasChildGallery.admin.breadcrumbs.name'), 'route' => 'toba-sub-galleries.index'],
-        ['name' => __('topasChildGallery.admin.breadcrumbs.edit'), 'route' => 'toba-sub-galleries.create']],
+        'breadcrumbs' => [['name' => __('topasChildGallery.admin.breadcrumbs.name'), 'route' => ''],
+        ['name' => __('topasChildGallery.admin.breadcrumbs.edit'), 'route' => '']],
         'pageTitle' => __('topasChildGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">

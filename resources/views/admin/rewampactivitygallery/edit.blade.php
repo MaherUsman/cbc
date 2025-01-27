@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'toba-galleries.index'],
+        'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'rewap_activity_gallery.index'],
         ['name' => __('activityGallery.admin.breadcrumbs.edit'), 'route' => 'toba-galleries.create']],
         'pageTitle' => __('activityGallery.admin.edit.edit')
     ])

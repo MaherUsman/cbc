@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => 'Activity Sub Gallery', 'route' => 'rewap_activity_sub_gallery.index'],
+        'breadcrumbs' => [['name' => 'Activity Sub Gallery', 'route' => ''],
         ['name' => 'Edit Activity Sub Gallery ', 'route' => 'rewap_activity_sub_gallery.create']],
         'pageTitle' => 'Edit Activity Sub Gallery'
     ])
