@@ -21,7 +21,7 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('topasChildGallery.name') , 'route' => null]],
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('Activity Sub Gallery') , 'route' => null]],
 'pageTitle' => 'Activity Sub Gallery'
 ])
 
@@ -62,11 +62,11 @@
                                             </a>
                                             <div class="gallery-overlay rounded">
                                                 <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                    <div class="overlay-icon">
+                                                    {{-- <div class="overlay-icon">
                                                         <a href="{{route('rewap_activity_sub_gallery.edit', $gallery->id)}}">
                                                             <i class="fa-solid fa-plus"></i>
                                                         </a>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="overlay-icon mt-2">
                                                         <a href="{{route('rewap_activity_sub_gallery.edit', $gallery)}}">
                                                             <i class="fa-solid fa-pen-to-square"></i>

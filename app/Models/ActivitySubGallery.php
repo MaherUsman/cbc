@@ -9,4 +9,9 @@ class ActivitySubGallery extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function activityGallery()
+    {
+        return $this->belongsTo(ActivityGallery::class);
+    }
 }

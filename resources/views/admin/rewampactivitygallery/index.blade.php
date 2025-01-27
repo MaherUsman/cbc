@@ -41,7 +41,7 @@
                     <div class="card">
                         <div class="card-header">
                             {{--                            <h4 class="card-title">{{ __('tobaGallery.list_tobaGallery') }}</h4>--}}
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Activity Gallery</button>
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Activity Gallery</button>
                             {{--                            <a href="{{ route('toba-galleries.create') }}"--}}
                             {{--                               class="btn btn-primary">{{ __('tobaGallery.add_tobaGallery') }}</a>--}}
                         </div>
@@ -103,7 +103,7 @@
                       enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title">{{__('tobaGallery.admin.create.create')}}</h5>
+                        <h5 class="modal-title">{{__('activityGallery.admin.create.create')}}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
