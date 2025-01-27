@@ -164,6 +164,7 @@
                     if (imageFile) {
                         try {
                             let response = await uploadImageInChunks(imageFile);
+                            console.log(response);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
                                 await submitFormData(url, data);
@@ -185,7 +186,7 @@
                 var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
                 var totalChunks = Math.ceil(file.size / chunkSize);
                 var currentChunk = 0;
-
+                // alert('poikk');
                 while (currentChunk < totalChunks) {
                     var start = currentChunk * chunkSize;
                     var end = Math.min(start + chunkSize, file.size);
