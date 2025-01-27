@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list_topasChildGallery' => 'Topas Child Gallery',
-    'add_topasChildGallery' => 'Add Topas Child Gallery',
-    'name' => 'Topas Child Gallery',
-    'pageTitle' => 'Topas Child Gallery',
-    'reOrder' => 'Reorder Topas Child Gallery',
+    'list_topasChildGallery' => 'Tobas Child Gallery',
+    'add_topasChildGallery' => 'Add Tobas Child Gallery',
+    'name' => 'Tobas Child Gallery',
+    'pageTitle' => 'Tobas Child Gallery',
+    'reOrder' => 'Reorder Tobas Child Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Topas Child Gallery',
+            'create' => 'Add Tobas Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -18,7 +18,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Topas Child Gallery',
+            'edit' => 'Edit Tobas Child Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -35,16 +35,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'Topas Child Gallery',
-            'create' => 'Add Topas Child Gallery',
-            'edit' => 'Edit Topas Child Gallery',
-            'show' => 'Show Topas Child Gallery',
+            'name' => 'Tobas Child Gallery',
+            'create' => 'Add Tobas Child Gallery',
+            'edit' => 'Edit Tobas Child Gallery',
+            'show' => 'Show Tobas Child Gallery',
         ],
         'response_msg' => [
-            'success' => 'Topas Child Gallery Added successfully',
-            'update' => 'Topas Child Gallery Item Updated successfully',
-            'error' => 'Error in adding Topas Child Gallery',
-            'delete' => 'Topas Child Gallery Item Deleted Successfully'
+            'success' => 'Tobas Child Gallery Added successfully',
+            'update' => 'Tobas Child Gallery Item Updated successfully',
+            'error' => 'Error in adding Tobas Child Gallery',
+            'delete' => 'Tobas Child Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

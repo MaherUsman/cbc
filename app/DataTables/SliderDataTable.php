@@ -25,10 +25,10 @@ class SliderDataTable extends DataTable
             ->addColumn('action', function ($query) {
                 return view('admin.slider.action', ['slider' => $query]);
             })
-            ->editColumn('image', function ($row) {
-                $imageUrl = asset($row->image ?: 'no_image.jpg');
-                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
-            })
+//            ->editColumn('image', function ($row) {
+//                $imageUrl = asset($row->image ?: 'no_image.jpg');
+//                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
+//            })
             ->editColumn('details', function ($query) {
                 return view('admin.slider.message', ['slider' => $query]);
             })
@@ -77,7 +77,7 @@ class SliderDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('title'),
-            Column::make('image'),
+//            Column::make('image'),
             Column::make('slink')->title('Slider Link'),
             Column::make('details')->title('Slider Details'),
             /*Column::make('created_at'),

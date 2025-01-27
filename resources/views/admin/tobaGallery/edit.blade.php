@@ -4,8 +4,8 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => __('tobaGallery.admin.breadcrumbs.name'), 'route' => 'toba-galleries.index'],
-        ['name' => __('tobaGallery.admin.breadcrumbs.create'), 'route' => 'toba-galleries.create']],
-        'pageTitle' => __('tobaGallery.admin.breadcrumbs.create')
+        ['name' => __('tobaGallery.admin.breadcrumbs.edit'), 'route' => 'toba-galleries.create']],
+        'pageTitle' => __('tobaGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
