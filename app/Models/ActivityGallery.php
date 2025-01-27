@@ -31,4 +31,9 @@ class ActivityGallery extends Model
         'id' => 'integer',
         'status' => 'boolean',
     ];
+
+    public function activitySubGalleries()
+    {
+        return $this->hasMany(ActivitySubGallery::class);
+    }
 }

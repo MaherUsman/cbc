@@ -4,8 +4,8 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => 'Activity Sub Gallery', 'route' => 'rewap_activity_sub_gallery.index'],
-        ['name' => 'Activity Sub Gallery Store', 'route' => 'rewap_activity_sub_gallery.create']],
-        'pageTitle' => 'Activity Sub Gallery Update'
+        ['name' => 'Edit Activity Sub Gallery ', 'route' => 'rewap_activity_sub_gallery.create']],
+        'pageTitle' => 'Edit Activity Sub Gallery'
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
@@ -32,7 +32,7 @@
                                     <label class="form-label">{{__('visitorChildGallery.admin.create.image')}}<span
                                             class="text-danger">*</span></label>
                                     <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
-                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-rule-required="false" onchange="previewImage(this)"
                                            data-msg-required="{{__('visitorChildGallery.admin.create.image_message')}}">
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <a href="{{route('toba-sub-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                        <a href="{{route('rewap_activity_sub_gallery.index',$visitorChildGallery->activityGallery)}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('visitorChildGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
@@ -177,7 +177,8 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        location.reload();
+                        window.location.href = "{{route('rewap_activity_gallery.index')}}";
+                        // location.reload();
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

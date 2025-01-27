@@ -3,15 +3,14 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('toba.admin.breadcrumbs.name'), 'route' => null],
-        ['name' => 'Create', 'route' => null]],
-        'pageTitle' => 'Create Article'
+        'breadcrumbs' => [['name' => 'Create', 'route' => null]],
+        'pageTitle' => 'Create Activity'
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Article Create</h6>
+                    <h6 class="card-title">Activity Create</h6>
                     <form method="POST" id="formValidation" action="{{route('rewap_activity.store')}}"
                           enctype="multipart/form-data">
                         @csrf

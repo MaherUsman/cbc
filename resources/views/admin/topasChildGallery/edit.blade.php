@@ -3,15 +3,15 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('visitorChildGallery.admin.breadcrumbs.name'), 'route' => 'toba-sub-galleries.index'],
-        ['name' => __('visitorChildGallery.admin.breadcrumbs.create'), 'route' => 'toba-sub-galleries.create']],
-        'pageTitle' => __('visitorChildGallery.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('topasChildGallery.admin.breadcrumbs.name'), 'route' => 'toba-sub-galleries.index'],
+        ['name' => __('topasChildGallery.admin.breadcrumbs.edit'), 'route' => 'toba-sub-galleries.create']],
+        'pageTitle' => __('topasChildGallery.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('visitorChildGallery.admin.create.create')}}</h6>
+                    <h6 class="card-title">{{__('topasChildGallery.admin.edit.edit')}}</h6>
                     <form method="POST" id="formValidation" action="{{route('toba-sub-galleries.update',$visitorChildGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <a href="{{route('toba-sub-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                        <a href="{{route('toba-sub-galleries.index', $visitorChildGallery->tobaGallery)}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('visitorChildGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">

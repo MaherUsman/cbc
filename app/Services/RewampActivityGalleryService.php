@@ -35,7 +35,7 @@ class RewampActivityGalleryService
         if (request()->is('api/*')) {
             return makeResponse('success', '', Response::HTTP_OK);
         } else {
-            return view('admin.rewampactivitygallery.createGallery');
+            return view('admin.rewampactivitygallery.create');
         }
     }
 

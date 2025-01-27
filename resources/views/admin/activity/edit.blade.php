@@ -4,7 +4,7 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => '', 'route' =>null],
-        ['name' => __('toba.admin.breadcrumbs.edit'), 'route' => null]],
+        ['name' => __('EditActivity'), 'route' => null]],
         'pageTitle' => 'Edit Activity'
     ])
     <div class="row">

@@ -3,9 +3,9 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('tobaGallery.admin.breadcrumbs.name'), 'route' => 'toba-galleries.index'],
-        ['name' => __('tobaGallery.admin.breadcrumbs.create'), 'route' => 'toba-galleries.create']],
-        'pageTitle' => __('tobaGallery.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('activityGallery.admin.breadcrumbs.name'), 'route' => 'toba-galleries.index'],
+        ['name' => __('activityGallery.admin.breadcrumbs.edit'), 'route' => 'toba-galleries.create']],
+        'pageTitle' => __('activityGallery.admin.edit.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
@@ -61,12 +61,12 @@
                             </div>
                         </div>
 
-                        <a href="{{route('toba-galleries.index')}}" class="btn btn-danger light btn-sl-sm"
+                        <a href="{{route('rewap_activity_gallery.index')}}" class="btn btn-danger light btn-sl-sm"
                            type="button">
                             {{__('tobaGallery.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('tobaGallery.admin.edit.submit')}}
+                            {{__('activityGallery.admin.edit.submit')}}
                         </button>
                     </form>
 

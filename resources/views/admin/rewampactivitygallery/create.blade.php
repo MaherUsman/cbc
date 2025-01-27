@@ -3,15 +3,15 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('tobaGallery.admin.breadcrumbs.name'), 'route' => 'toba-galleries.index'],
-        ['name' => __('tobaGallery.admin.breadcrumbs.create'), 'route' => 'toba-galleries.create']],
-        'pageTitle' => __('tobaGallery.admin.breadcrumbs.create')
+        'breadcrumbs' => [['name' => __('activityGallery.admin.create.create'), 'route' => 'toba-galleries.index'],
+        ['name' => __('activityGallery.admin.create.create'), 'route' => 'toba-galleries.create']],
+        'pageTitle' => __('activityGallery.admin.create.create')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('tobaGallery.admin.create.create')}}</h6>
+                    <h6 class="card-title">{{__('tobaGallery.admin.breadcrumbs.name')}}</h6>
                     <form method="POST" id="formValidation" action="{{route('toba-galleries.store')}}"
                           enctype="multipart/form-data">
                         @csrf
