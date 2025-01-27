@@ -177,8 +177,9 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('toba-sub-galleries.index')}}";
+                        window.location.href = "{{route('toba-galleries.index')}}";
                     }, 1000);
+                    
                 } catch (xhr) {
                     $.unblockUI();
                     errorMsg(xhr.responseJSON.message || 'An error occurred');
