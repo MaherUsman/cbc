@@ -50,7 +50,7 @@
 
 {{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
                         <div class="item-video" data-merge="1">
-                            <video autoplay muted loop controls>
+                            <video autoplay muted loop>
                                 <source src="{{ asset($slider->image) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -107,18 +107,12 @@
                         $introDetails = strip_tags($intro->details); // Remove HTML tags for accurate character counting
                         if (strlen($introDetails) > $charLimit) {
                             // If the content exceeds the limit, display a truncated version with a "Show More" button
-<<<<<<< HEAD
-                            $shortDetails = substr($introDetails, 0, $charLimit) . '... <span><a href="#full-text-modal" data-fancybox class="btn p-0 show-more">Show More</a></span>';
-                            echo '<p class="highness-text">' . $shortDetails . '</p>';
-
-=======
                             $shortDetails = substr($introDetails, 0, $charLimit) . '...';
                             echo '<p class="highness-text short-text">' . $shortDetails . ' <span><a href="javascript:void(0)" class="btn p-0 show-more">Show More</a></span></p>';
 
                             echo '<div style="display:none" class="highness-text full-text" id="full-text-modal">
         <p>'.$intro->details.' <span><a href="javascript:void(0)" class="btn p-0 show-less">Show Less</a></span></p>
     </div>';
->>>>>>> 942a4c41dbedad1338782e3bcd06089a2122d5ec
                         } else {
                             // If the content is within the limit, display the full content
                             echo '<p class="highness-text">' . $intro->details . '</p>';
@@ -164,19 +158,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
-<<<<<<< HEAD
                         <div class="content_block_one home-page-content">
                             <div class="content-box">
-=======
                         <div class="content_block_one">
                             <div class="content-box ss">
->>>>>>> 942a4c41dbedad1338782e3bcd06089a2122d5ec
-                                <div class="sec-title">
-                                    <h2>{{$animal->title}}</h2>
-                                </div>
                                 <div class="text">
                                     <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                </div>
                                 <div class="btn-box">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
