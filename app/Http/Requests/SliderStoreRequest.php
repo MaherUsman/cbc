@@ -19,14 +19,12 @@ class SliderStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $isImage = $this->input('is_image') == 1; // Check if it's an image (is_image = 1)
         return [
-            'title' => ['string', 'max:255'],
-            'slink' => ['string', 'max:255'],
-            'details' => ['string', 'max:255'],
-            'image' => ['string', 'max:255'],
-            'is_image' => ['boolean'],
-//            'display_order' => ['nullable', 'required', 'integer'],
-//            'status' => ['nullable', 'required'],
+            'slink' => $isImage ? ['required', 'string', 'max:255'] : ['nullable', 'string', 'max:255'], // Required for image, optional for video
+            'details' => $isImage ? ['required', 'string'] : ['nullable', 'string'], // Required for image, optional for video
+            'image' => ['required', 'string', 'max:255'],
+            'is_image' => ['required', 'boolean'], // Required to indicate if it's an image or video
         ];
     }
 }
