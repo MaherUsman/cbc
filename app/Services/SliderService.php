@@ -76,6 +76,7 @@ class SliderService
 
     public function update(SliderUpdateRequest $request, Slider $slider)
     {
+//        dd($request->all());
         DB::beginTransaction();
         try {
             if ($request->has('image') &&

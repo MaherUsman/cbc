@@ -19,14 +19,12 @@ class SliderUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $isImage = $this->input('is_image') == 1; // Check if it's an image (is_image = 1)
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'slink' => ['required', 'string', 'max:255'],
-            'details' => ['required', 'string', 'max:255'],
-            'image' => [$this->route('slider')->image ? 'nullable' : 'required', 'string', 'max:255'],
-            'is_image'=>['boolean']
-//            'display_order' => ['required', 'integer'],
-//            'status' => ['required'],
+            'slink' => $isImage ? ['required', 'string', 'max:255'] : ['nullable', 'string', 'max:255'], // Required for image, optional for video
+            'details' => $isImage ? ['required', 'string'] : ['nullable', 'string'], // Required for image, optional for video
+            'image' => ['required', 'string', 'max:255'],
+            'is_image' => ['required', 'boolean'], // Required to indicate if it's an image or video
         ];
     }
 }
