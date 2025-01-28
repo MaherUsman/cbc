@@ -168,7 +168,7 @@ p{
   position: relative;
   font-family: 'Rubik', sans-serif ;
   /* color: #71747a; */
-  margin: 0px;
+  margin: 10px 0px;
   transition: all 500ms ease;
 }
 
@@ -177,7 +177,7 @@ h1,h2,h3,h4,h5,h6{
   font-family: 'Rubik', sans-serif ;
   font-weight: 900;
   color: var(--seconadry);
-  margin: 0px;
+  margin: 10px 0px;
   transition: all 500ms ease;
 }
 
@@ -354,6 +354,7 @@ img {
   line-height: 35px;
   padding-top: 11px;
   text-transform: uppercase;
+  word-break: break-word;
 }
 
 .sec-title h2:before{
@@ -2074,11 +2075,9 @@ div#mCSB_1_container{
   line-height: 36px;
   margin-bottom: 32px;
   display: -webkit-box;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
-
 }
 
 .set-direction-wrapper section:nth-child(2) img, .set-direction-wrapper section:nth-child(4) img{
@@ -2289,6 +2288,7 @@ div#mCSB_1_container{
   line-height: 40px;
   color: #fff;
   text-transform: uppercase;
+  word-break: break-word;
 }
 
 .gallery-block-one .inner-box h3 a{
@@ -2746,7 +2746,7 @@ div#mCSB_1_container{
 .counter-block-one .inner-box{
   position: relative;
   display: block;
-  padding-left: 60px;
+  padding-left: 30px;
 }
 
 .counter-block-one .inner-box:before{
@@ -2779,11 +2779,12 @@ div#mCSB_1_container{
 .counter-block-one .inner-box .count-outer{
   position: relative;
   display: block;
-  font-size: 70px;
+  font-size: 40px;
   line-height: 70px;
   color: #fff;
   font-weight: 900;
   margin-bottom: 6px;
+  word-break: break-word;
 }
 
 .counter-block-one .inner-box p{

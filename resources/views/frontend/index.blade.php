@@ -50,7 +50,7 @@
 
 {{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
                         <div class="item-video" data-merge="1">
-                            <video autoplay muted loop controls>
+                            <video autoplay muted loop>
                                 <source src="{{ asset($slider->image) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -158,14 +158,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
+                        <div class="content_block_one home-page-content">
+                            <div class="content-box">
                         <div class="content_block_one">
                             <div class="content-box ss">
-                                <div class="sec-title">
-                                    <h2>{{$animal->title}}</h2>
-                                </div>
                                 <div class="text">
                                     <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                </div>
                                 <div class="btn-box">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
