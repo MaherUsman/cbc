@@ -15,6 +15,29 @@
             display: block;
         }
 
+        .customSlider-wrapper:first-child h2{
+            display: none;
+        }
+        .banner-carousel .customSlider-wrapper .content-box{
+            max-width: 85%;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h2{
+            font-size: 44px;
+            line-height: 54px;
+            margin-bottom: 0px;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h3{
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        .banner-carousel .customSlider-wrapper .content-box h4{
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 24px;
+        }
+
     </style>
 
     <!-- banner-section -->
@@ -28,7 +51,7 @@
 {{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
                         <div class="item-video" data-merge="1">
                             <video autoplay muted loop controls>
-                                <source src="{{ $slider->image }}" type="video/mp4">
+                                <source src="{{ asset($slider->image) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -42,9 +65,9 @@
                         <div class="slide-item">
                     <!-- If no video, fallback to image -->
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
-                            <div class="auto-container">
+                            <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
-                                    <h3>{{ $slider->title }}</h3>
+{{--                                    <h3 class="mb-4">{{ $slider->title }}</h3>--}}
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
                                         <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
@@ -135,7 +158,7 @@
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                <figure class="image "><img src="{{asset($animal->image)}}" alt="" class="img-fluid"></figure>
+                                <figure class="image "><img src="{{asset($animal->home_image)}}" alt="" class="img-fluid"></figure>
                                 <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                             </div>
                         </div>
@@ -161,31 +184,31 @@
                         </div>
                     </div>
                     @else
-                        <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
-                            <div class="content_block_one">
-                                <div class="content-box">
-                                    <div class="sec-title">
-                                        <h2>{{$animal->title}}</h2>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
+                        <div class="content_block_one">
+                            <div class="content-box">
+                                <div class="sec-title">
+                                    <h2>{{$animal->title}}</h2>
+                                </div>
+                                <div class="text">
+                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
+                                </div>
+                                <div style="display: none;" id="full-text-modal">
+                                    <div class="full-text-content">
+                                        {!! $intro->details !!}
                                     </div>
-                                    <div class="text">
-                                        <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                    </div>
-                                    <div style="display: none;" id="full-text-modal">
-                                        <div class="full-text-content">
-                                            {!! $intro->details !!}
-                                        </div>
-                                    </div>
-                                    <div class="btn-box">
-                                        <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
-                                    </div>
+                                </div>
+                                <div class="btn-box">
+                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                             <div class="image_block_one">
                                 <div class="image-box">
-                                    <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                    <figure class="image "><img src="{{asset($animal->image)}}" alt=""></figure>
+                                    <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>
+                                    <figure class="image {{$animal->title}}"><img src="{{asset($animal->home_image)}}" alt=""></figure>
                                     <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
                                 </div>
                             </div>
@@ -201,7 +224,7 @@
     <section class="gallery-section">
         <div class="auto-container">
             <div class="sec-title centred">
-                <h2>amazing Animals <br />in our zoo</h2>
+                <h2>{{$setting->home_page_title}}</h2>
             </div>
         </div>
         <div class="outer-container">
@@ -209,7 +232,7 @@
                 @foreach($amazing_animals as $amazing_animal)
                     <div class="gallery-block-one">
                         <div class="inner-box">
-                            <figure class="image-box"><img src="{{asset($amazing_animal->image)}}" alt=""></figure>
+                            <figure class="image-box"><img src="{{asset($amazing_animal->home_image)}}" alt=""></figure>
                             <div class="content-box">
                                 <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
                             </div>

@@ -19,51 +19,67 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('sliders.admin.edit.title_message')}}"
-                                           name="title" value="{{$slider->title}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.title')}}">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-rule-maxlength="255"
-                                           data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
-                                           name="slink" value="{{$slider->slink}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.slink')}}">
+                                    <label class="form-label">Select Slider Type</label>
+                                    <select class="form-control" id="fileType" name="file_type">
+                                        <option value="1" {{ $slider->is_image ? 'selected' : '' }}>Image</option>
+                                        <option value="0" {{ !$slider->is_image ? 'selected' : '' }}>Video</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row inputs-to-toggle">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger">*</span></label>
+                                    <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row inputs-to-toggle">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label class="form-label"
-                                    >{{__('sliders.admin.edit.details')}}</label>
-                                    <textarea name="details" id="ckeditor">{{$slider->details}}</textarea>
+                                    <label class="form-label">{{__('sliders.admin.create.details')}}<span class="text-danger">*</span></label>
+                                    <textarea name="details" id="ckeditor"></textarea>
                                 </div>
                             </div>
                         </div>
+                        <!-- File Upload Section -->
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.image')}}</label>
-                                    <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*,video/*">
-                                    <input type="hidden" name="is_image" value="{{$slider->is_image?1:0}}" id="is_image">
+                                    <label class="form-label">{{__('sliders.admin.edit.imageOrVideo')}}</label>
+                                    <input type="file" name="image" class="form-control" id="imageUpload" accept="image/*,video/*">
+                                    <input type="hidden" name="is_image" value="{{$slider->is_image ? 1 : 0}}" id="is_image">
                                 </div>
+
+                                <!-- Preview Section -->
                                 <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($slider->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$slider->is_image?'':'display:none;'}} max-width:200px; height:auto;">
-                                    <video id="videoPreview" src="{{asset($slider->image?:'no_image.jpg')}}" controls style="{{$slider->is_image?'display:none;':''}} max-width:200px; height:auto;"></video>
+                                    <!-- Image Preview -->
+                                    <img id="imagePreview"
+                                         src="{{ $slider->is_image ? asset($slider->image ?: 'no_image.jpg') : '#' }}"
+                                         alt="Image Preview"
+                                         class="img-thumbnail"
+                                         style="{{ $slider->is_image ? '' : 'display:none;' }} max-width:200px; height:auto;">
+
+                                    <img id="imagePreviews"
+                                         src="{{ $slider->is_image ? asset($slider->image ?: 'no_image.jpg') : '#' }}"
+                                         alt="Image Preview"
+                                         class="img-thumbnail"
+                                         style="{{ $slider->is_image ? '' : 'display:none;' }} max-width:200px; height:auto;">
+
+                                    <!-- Video Preview -->
+                                    <video id="videoPreview"
+                                           src="{{ !$slider->is_image ? asset($slider->image ?: 'no_image.jpg') : '#' }}"
+                                           controls
+                                           style="{{ $slider->is_image ? 'display:none;' : '' }} max-width:200px; height:auto;"></video>
+
+                                    <video id="videoPreviews"
+                                           src="{{ !$slider->is_image ? asset($slider->image ?: 'no_image.jpg') : '#' }}"
+                                           controls
+                                           style="{{ $slider->is_image ? 'display:none;' : '' }} max-width:200px; height:auto;"></video>
                                 </div>
-                            </div><!-- Col -->
-                        </div><!-- Row -->
+                            </div>
+                        </div>
                         <a href="{{route('sliders.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('sliders.admin.form.cancel')}}
                         </a>
@@ -79,38 +95,81 @@
 
 @section('script')
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            const imagePreview = document.getElementById('imagePreview');
-            const videoPreview = document.getElementById('videoPreview');
-            const is_image = document.getElementById('is_image');
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    if (file.type.startsWith('image/')) {
-                        imagePreview.style.display = 'block';
-                        videoPreview.style.display = 'none';
-                        imagePreview.src = e.target.result;
-                        is_image.value=1;
-                    } else if (file.type.startsWith('video/')) {
-                        videoPreview.style.display = 'block';
-                        imagePreview.style.display = 'none';
-                        videoPreview.src = e.target.result;
-                        is_image.value=0;
-                    }
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.style.display = 'none';
-                videoPreview.style.display = 'none';
-                is_image.value='';
-            }
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileTypeDropdown = document.getElementById('fileType');
+            const inputsToToggle = document.querySelectorAll('.inputs-to-toggle');
+            const fileInput = document.getElementById('imageUpload');
+            const isImageInput = document.getElementById('is_image'); // Hidden input field
 
-        $(document).ready(function () {
-            var imageColName = 'pic';
+            // Function to toggle fields based on file type
+            function toggleFields() {
+                const isImage = fileTypeDropdown.value === '1'; // 1 for Image, 0 for Video
+
+                // Show/hide fields
+                inputsToToggle.forEach(input => {
+                    input.style.display = isImage ? 'block' : 'none';
+                });
+
+                // Set file input accept attribute
+                fileInput.accept = isImage ? 'image/*' : 'video/*';
+
+                // Set is_image value based on selection
+                isImageInput.value = isImage ? '1' : '0';
+
+                // Reset file input and previews
+                fileInput.value = '';
+                document.getElementById('imagePreview').style.display = 'none';
+                document.getElementById('videoPreview').style.display = 'none';
+            }
+
+            // Event listener for dropdown change
+            fileTypeDropdown.addEventListener('change', toggleFields);
+
+            // Initialize toggle on page load
+            toggleFields();
+
+            // Preview uploaded file
+            fileInput.addEventListener('change', function (event) {
+                const [file] = event.target.files;
+                const imagePreview = document.getElementById('imagePreview');
+                const videoPreview = document.getElementById('videoPreview');
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (file.type.startsWith('image/')) {
+                            imagePreview.style.display = 'block';
+                            videoPreview.style.display = 'none';
+                            imagePreview.src = e.target.result;
+                            isImageInput.value = '1'; // Set as image
+                        } else if (file.type.startsWith('video/')) {
+                            videoPreview.style.display = 'block';
+                            imagePreview.style.display = 'none';
+                            videoPreview.src = e.target.result;
+                            isImageInput.value = '0'; // Set as video
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.style.display = 'none';
+                    videoPreview.style.display = 'none';
+                    isImageInput.value = fileTypeDropdown.value === '1' ? '1' : '0'; // Default value
+                }
+            });
 
             $('#formValidation').validate({
+
+                ignore: ":hidden", // Ignore hidden fields
+                rules: {
+                    slink: { required: true, maxlength: 255 },
+                    details: { required: true, maxlength: 255 },
+                    image: { required: true, accept: "image/*,video/*" },
+                },
+                messages: {
+                    slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },
+                    details: { required: "Details are required", maxlength: "Maximum 255 characters" },
+                    image: { required: "Image or video is required", accept: "Invalid file type" },
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 
@@ -126,23 +185,24 @@
                         }
                     });
 
-                    var url = $(form).attr('action');
-                    var imageColName = $('#imageUpload').attr('name');
-                    var data = new FormData($(form)[0]);
-                    var imageFile = $('#imageUpload')[0].files[0];
+                    const url = $(form).attr('action');
+                    const data = new FormData($(form)[0]);
+                    const file = fileInput.files[0];
 
-                    if (imageFile) {
-                        try {
-                            let response = await uploadImageInChunks(imageFile);
+                    if (file) {
+                        // try {
+                            let response = await uploadImageInChunks(file);
                             if (response.success) {
-                                data.set(imageColName, response.filePath);
+                                data.set('image', response.filePath);
                                 await submitFormData(url, data);
                             } else {
-                                errorMsg('Image upload failed');
+                                $.unblockUI();
+                                errorMsg('File upload failed');
                             }
-                        } catch (error) {
-                            errorMsg('An error occurred during the image upload');
-                        }
+                        // } catch (error) {
+                        //     $.unblockUI();
+                        //     errorMsg('An error occurred during file upload');
+                        // }
                     } else {
                         await submitFormData(url, data);
                     }
@@ -155,15 +215,15 @@
                 var currentChunk = 0;
 
                 while (currentChunk < totalChunks) {
-                    var start = currentChunk * chunkSize;
-                    var end = Math.min(start + chunkSize, file.size);
-                    var chunk = file.slice(start, end);
-                    var chunkData = new FormData();
+                    const start = currentChunk * chunkSize;
+                    const end = Math.min(start + chunkSize, file.size);
+                    const chunk = file.slice(start, end);
+
+                    const chunkData = new FormData();
                     chunkData.append('chunk', chunk);
                     chunkData.append('chunkNumber', currentChunk + 1);
                     chunkData.append('totalChunks', totalChunks);
                     chunkData.append('fileName', file.name);
-                    chunkData.append('ImageUploadPath', imageColName);
 
                     $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
 
@@ -178,7 +238,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.compressedPath };
+                            return {success: true, filePath: response.filePath };
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -217,6 +277,22 @@
                     errorMsg(xhr.responseJSON.message || 'An error occurred');
                 }
             }
+
+            $("#fileType").change(function () {
+                const selectedValue = $(this).val(); // Get the selected value
+
+                // Example: Check if the selected value is 1 (Image) or 0 (Video)
+                if (selectedValue === "1") {
+                    $('#videoPreviews').hide();
+                    // $('#imagePreviews').show();
+                    // Perform actions when Image is selected
+                } else if (selectedValue === "0") {
+                    $('#imagePreviews').hide();
+                    // $('#videoPreviews').show();
+                    console.log("Video selected");
+                    // Perform actions when Video is selected
+                }
+            });
         });
     </script>
 @endsection

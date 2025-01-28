@@ -22,10 +22,6 @@
         }
     </style>
 
-{{--    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('topasGallery.name') , 'route' => null]],--}}
-{{--'pageTitle' => __('topasGallery.pageTitle')--}}
-{{--])--}}
-
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
@@ -42,8 +38,6 @@
                         <div class="card-header">
                             <h4 class="card-title">{{ __('topasGallery.page_content') }}</h4>
 
-{{--                            <a href="{{ route('topas-galleries.create') }}"--}}
-{{--                               class="btn btn-primary">{{ __('topasGallery.add_topasGallery') }}</a>--}}
                         </div>
 
                         <div class="card-body pb-1">
@@ -87,45 +81,9 @@
                             <div id="lightgallery" class="row">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h4 class="card-title">{{ __('topasGallery.list_topasGallery') }}</h4>
-                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('topasGallery.add_topasGallery') }}</button>
+                                    <a type="button" class="btn btn-primary mb-2" href="{{ route('topas-galleries.create', $tobas->id) }}">{{ __('topasGallery.add_topasGallery') }}</a>
                                 </div>
 
-                                @foreach($topasGalleries as $gallery)
-                                <div class="col-lg-3 col-md-6 mb-4">
-                                    <div class="gallery-img-wrapper position-relative w-100 h-100">
-                                        <a
-                                            href="{{asset($gallery->image)}}"
-                                            data-src="{{asset($gallery->image)}}"
-                                            class="lg-item"
-                                        >
-                                            <img
-                                                src="{{asset($gallery->image)}}"
-                                                class="rounded" alt=""
-                                                style="width:100%;"
-                                            >
-                                        </a>
-                                        <div class="gallery-overlay rounded">
-                                            <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                <div class="overlay-icon mt-2">
-                                                    <a href="{{route('topas-galleries.edit', $gallery)}}">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="overlay-icon mt-2">
-                                                    <a href="#" data-url="{{ route('topas-galleries.destroy', $gallery) }}" title="Delete"
-                                                       class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="img-title mt-3">
-                                                <p>{{$gallery->title}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -135,55 +93,6 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="basicModal">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <form method="POST" id="formValidation" action="{{route('topas-galleries.store')}}"
-                      enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{__('topasGallery.admin.create.create')}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                            <div class="row rowTemplate">
-                                <div class="col-sm-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{__('topasGallery.admin.create.title')}}<span
-                                                class="text-danger"></span> </label>
-                                        <input type="text" data-rule-required="false"
-                                               data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
-                                               name="title[]" class="form-control"
-                                               placeholder="{{__('topasGallery.admin.create.title')}}">
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{__('topasGallery.admin.create.image')}}<span
-                                                class="text-danger">*(370 x 422)</span></label>
-                                        <input type="file" name="image[]" class="form-control" accept="image/*"
-                                               data-rule-required="true" onchange="previewImage(this)"
-                                               data-msg-required="{{__('topasGallery.admin.create.image_message')}}">
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="mb-3">
-                                        <img src="#" alt="Image Preview" class="img-thumbnail"
-                                             style="display:none; max-width:200px; height:auto;">
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary submit">{{__('topasGallery.admin.create.submit')}}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     @include('layouts.admin.modal.delete_modal')
     @include('layouts.admin.modal.message_modal')
     <div id="loader" style="display: none;">
@@ -203,59 +112,6 @@
                 var details = $(this).data('details');
                 $('#messageText').html(details);
                 $('#message_modal').modal('show');
-            });
-
-            $(document).on('click', '.deleteRecord', function () {
-                var url = $(this).data('url');
-                $('#delete_form').attr('action', url);
-                $('#delete_modal').modal('show');
-            });
-            $('#deleteRecordBtn').click(function () {
-                var url = $('#delete_form').attr('action');
-                var data = $('#delete_form').serialize();
-                $.blockUI({
-                    css: {
-                        border: 'none',
-                        padding: '15px',
-                        backgroundColor: '#000',
-                        '-webkit-border-radius': '10px',
-                        '-moz-border-radius': '10px',
-                        opacity: .5,
-                        color: '#fff'
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data,
-                    success: function (response, status, xhr) {
-                        if (xhr.status == 204) {
-                            $.unblockUI();
-                            successMsg('Deleted Successfully!');
-                            setTimeout(function () {
-                                window.location.href = "{{route('topas-galleries.index')}}";
-                            }, 1000);
-                        } else if (response.result == 'success') {
-                            $.unblockUI();
-                            successMsg(response.message);
-                            setTimeout(function () {
-                                window.location.href = "{{route('topas-galleries.index')}}";
-                            }, 1000);
-                        } else if (response.result == 'error') {
-                            $.unblockUI();
-                            errorMsg(response.message);
-                        }
-                    },
-                    error: function (data, status) {
-                        if (data.status == 422) {
-                            $.unblockUI();
-                            errorMsg(data.responseJSON.message);
-                        } else {
-                            $.unblockUI();
-                            errorMsg(data.responseJSON.message);
-                        }
-                    }
-                });
             });
 
             $('#formValidationn').validate({
@@ -397,9 +253,9 @@
                     });
                     $.unblockUI();
                     successMsg(response.message);
-                    setTimeout(function () {
-                        window.location.href = "{{route('topas-galleries.index')}}";
-                    }, 1000);
+                    {{--setTimeout(function () {--}}
+                    {{--    window.location.href = "{{route('topas-galleries.index', )}}";--}}
+                    {{--}, 1000);--}}
                 } catch (xhr) {
                     $.unblockUI();
                     errorMsg(xhr.responseJSON.message || 'An error occurred');

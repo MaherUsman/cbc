@@ -41,4 +41,9 @@ class Blog extends Model
         return Carbon::parse($value)->format('d F, Y');
     }
 
+    public function blogGalleries()
+    {
+        return $this->hasMany(BlogGallery::class);
+    }
+
 }

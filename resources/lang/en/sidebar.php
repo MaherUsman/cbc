@@ -50,6 +50,12 @@ return [
         'create' => 'Add Gallery Pics',
         'sec' => 'About Us',
     ],
+    'toba' => [
+        'name' => 'Tobas Gallery',
+        'index' => 'Tobas Gallery',
+        'create' => 'Add Gallery Pics',
+        'sec' => 'Tobas',
+    ],
     'animals' => [
         'name' => 'Animals',
         'index' => 'All Animals',

@@ -20,6 +20,7 @@ class AnimalGalleryController extends Controller
 
     public function index(Request $request, Animal $animal)
     {
+//        dd('adil here');
         return $this->animalGalleryService->index($request, $animal);
     }
 

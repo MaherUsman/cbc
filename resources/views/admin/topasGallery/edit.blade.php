@@ -3,52 +3,53 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('topasGallery.admin.breadcrumbs.name'), 'route' => 'topas-galleries.index'],
-        ['name' => __('topasGallery.admin.breadcrumbs.edit'), 'route' => 'topas-galleries.create']],
-        'pageTitle' => __('topasGallery.admin.breadcrumbs.edit')
+        'breadcrumbs' => [
+            ['name' => __('animalGalleries.admin.breadcrumbs.edit'), 'route' => 'animal-galleries.edit', 'params' => $animalGallery->animal]
+        ],
+        'pageTitle' => __('animalGalleries.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-{{--                    <h6 class="card-title">{{__('topasGallery.admin.edit.edit')}}</h6>--}}
-                    <form method="POST" id="formValidation" action="{{route('topas-galleries.update',$topasGallery)}}"
+                    <h6 class="card-title">{{__('animalGalleries.admin.edit.edit')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('animal-galleries.update',$animalGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row rowTemplate">
                             <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('topasGallery.admin.edit.title')}}<span
-                                            class="text-danger"></span> </label>
+                                    <label class="form-label">{{__('animalGalleries.admin.create.title')}}{{--<span
+                                            class="text-danger">*</span> --}}</label>
                                     <input type="text" data-rule-required="false"
-                                           data-msg-required="{{__('topasGallery.admin.create.title_message')}}"
-                                           name="title" class="form-control" value="{{$topasGallery->title}}"
-                                           placeholder="{{__('topasGallery.admin.create.title')}}">
+                                           data-msg-required="{{__('animalGalleries.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$animalGallery->title}}"
+                                           placeholder="{{__('animalGalleries.admin.create.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('topasGallery.admin.edit.image')}}<span
-                                            class="text-danger"></span></label>
-                                    <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*"
+                                    <label class="form-label">{{__('animalGalleries.admin.create.image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="image" id="imageUpload" class="form-control" accept="image/*"
                                            data-rule-required="false" onchange="previewImage(this)"
-                                           data-msg-required="{{__('topasGallery.admin.create.image_message')}}">
+                                           data-msg-required="{{__('animalGalleries.admin.create.image_message')}}">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <img src="{{asset($topasGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                    <img src="{{asset($animalGallery->image)}}" alt="Image Preview" class="img-thumbnail"
                                          style="display:block; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{route('topas-galleries.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
-                            {{__('topasGallery.admin.form.cancel')}}
+                        <a href="{{route('animal-galleries.index', $animalGallery->animal)}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('animalGalleries.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('topasGallery.admin.create.submit')}}
+                            {{__('animalGalleries.admin.create.submit')}}
                         </button>
                     </form>
 
@@ -144,7 +145,6 @@
                             processData: false,
                             contentType: false,
                         });
-
                         currentChunk++;
                         if (currentChunk === totalChunks) {
                             return {success: true,
@@ -182,7 +182,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('topas-galleries.index')}}";
+                        window.location.href = "{{route('animal-galleries.index', $animalGallery->animal)}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

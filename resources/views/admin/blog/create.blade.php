@@ -145,7 +145,16 @@
     <script src="{{asset('vendor/pickadate/picker.date.js')}}"></script>
 
     <!-- Pickdate -->
-    <script src="{{asset('js/plugins-init/pickadate-init.js')}}"></script>
+{{--    <script src="{{asset('js/plugins-init/pickadate-init.js')}}"></script>--}}
+    <script>
+        (function($) {
+            "use strict"
+
+            //date picker classic default
+            $('.datepicker-default').pickadate();
+        })(jQuery);
+    </script>
+
     <script src="{{asset('js/plugins-init/clock-picker-init.js')}}"></script>
 
     <script>
@@ -321,6 +330,8 @@
                 }
             }
         });
+
+
 
     </script>
 @endsection

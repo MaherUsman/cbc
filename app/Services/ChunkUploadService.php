@@ -24,17 +24,19 @@ class ChunkUploadService
                 File::makeDirectory($chunkUploadDir, 0755, true);
             }
 
+            // Move chunk to temporary chunk directory
             $chunk->move($chunkUploadDir, $fileName . '.part' . $chunkNumber);
 
+            // If all chunks are uploaded, process the final file
             if ($chunkNumber == $totalChunks) {
-                $FinalImageName = time() . '-' . $fileName;
-                $finalFile = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . $FinalImageName;
+                $FinalFileName = time() . '-' . $fileName;
+                $finalFile = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . $FinalFileName;
 
                 if (!File::exists($uploadDir . $FinalPath)) {
                     File::makeDirectory($uploadDir . $FinalPath, 0755, true);
                 }
 
-                // Combine the chunks
+                // Combine the chunks into the final file
                 $out = fopen($finalFile, 'w');
                 for ($i = 1; $i <= $totalChunks; $i++) {
                     $in = fopen($chunkUploadDir . $fileName . '.part' . $i, 'r');
@@ -46,31 +48,49 @@ class ChunkUploadService
                 }
                 fclose($out);
 
-                $image = Image::read($finalFile);
+                // Determine file type
+                $mimeType = mime_content_type($finalFile);
 
 
-                // Save compressed main image
-                $compressedImagePath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'compressed-' . $FinalImageName;
-                $image->save($compressedImagePath, 75); // Compressing the image quality to 75%
+//                dd('video is here','upload directory:', $uploadDir, $finalFile ,$FinalFileName);
 
-                // Create and save thumbnail
-                $thumbnailPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'thumb-' . $FinalImageName;
-                $image->resize(452, 422, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($thumbnailPath);
+                if (str_starts_with($mimeType, 'image/')) {
+                    // Process image
+                    $image = Image::read($finalFile);
 
-                return response()->json([
-                    'message' => 'Upload complete',
-                    'filePath' => 'upload/' . $FinalPath . '/' . $FinalImageName,
-                    'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalImageName,
-                    'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalImageName,
-                ]);
+                    // Save compressed main image
+                    $compressedImagePath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'compressed-' . $FinalFileName;
+                    $image->save($compressedImagePath, 75);
+
+                    // Create and save thumbnail
+                    $thumbnailPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'thumb-' . $FinalFileName;
+                    $image->resize(452, 422, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($thumbnailPath);
+
+                    return response()->json([
+                        'message' => 'Image upload complete',
+                        'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
+                        'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
+                        'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
+                    ]);
+                } elseif (str_starts_with($mimeType, 'video/')) {
+//                    dd('upload/' . $FinalPath . '/' . $FinalFileName);
+                    return response()->json([
+                        'message' => 'Video upload complete',
+                        'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName
+                    ]);
+                } else {
+                    // Unsupported file type
+                    unlink($finalFile);
+                    return response()->json(['error' => 'Unsupported file type'], 400);
+                }
             }
 
             return response()->json(['message' => 'Chunk uploaded']);
         } catch (\Exception $exception) {
-            return makeResponse('error', $exception->getMessage());
+            return response()->json(['error' => $exception->getMessage()], 500);
         }
-
     }
+
 }

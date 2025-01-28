@@ -1,6 +1,5 @@
 @extends('layouts.admin.index')
 @section('css')
-    <!-- Light Gallery -->
     <link href="{{asset('vendor/lightgallery/dist/css/lightgallery.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/lightgallery/dist/css/lg-thumbnail.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/lightgallery/dist/css/lg-zoom.css')}}" rel="stylesheet">
@@ -22,7 +21,7 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('topasChildGallery.name') , 'route' => null]],
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('topasChildGallery.name') , 'route' => null]], 
 'pageTitle' => __('topasChildGallery.pageTitle')
 ])
 
@@ -47,7 +46,7 @@
                         </div>
                         <div class="card-body pb-1">
                             <div id="lightgallery" class="row">
-                                @foreach($topasChildGalleries as $gallery)
+                                @foreach($tobaSubGalleries as $gallery)
                                 <div class="col-lg-3 col-md-6 mb-4">
                                     <div class="gallery-img-wrapper position-relative w-100 h-100">
                                         <a
@@ -63,18 +62,18 @@
                                         </a>
                                         <div class="gallery-overlay rounded">
                                             <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                <div class="overlay-icon">
+                                                {{-- <div class="overlay-icon">
                                                     <a href="{{route('visitorChildGalleries', $gallery->id)}}">
                                                         <i class="fa-solid fa-plus"></i>
                                                     </a>
-                                                </div>
+                                                </div> --}}
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="{{route('topas-child-galleries.edit', $gallery)}}">
+                                                    <a href="{{route('toba-sub-galleries.edit', $gallery)}}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </div>
                                                 <div class="overlay-icon mt-2">
-                                                    <a href="#" data-url="{{ route('topas-child-galleries.destroy', $gallery) }}" title="Delete"
+                                                    <a href="#" data-url="{{ route('toba-sub-galleries.destroy', $gallery) }}" title="Delete"
                                                        class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
@@ -111,7 +110,7 @@
                     <div class="modal-body">
                             <div class="row rowTemplate">
 
-                                <input type="hidden" name="topas_gallery_id" value="{{$topasGallery->id}}">
+                                <input type="hidden" name="topas_gallery_id" value="{{$tobaGallery->id}}">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">{{__('topasChildGallery.admin.create.title')}}<span
@@ -335,7 +334,8 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('topas-child-galleries.index')}}";
+                        location.reload()
+{{--                        window.location.href = "{{route('topas-child-galleries.index')}}";--}}
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

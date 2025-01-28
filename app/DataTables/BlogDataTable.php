@@ -33,6 +33,11 @@ class BlogDataTable extends DataTable
             ->editColumn('start_date', function ($query) {
                 return Carbon::parse($query->start_date)->format('d F, Y');
             })
+            ->addColumn('gallery', function ($query) {
+                if ($query->blogGalleries) {
+                    return view('admin.blog.showGallery', ['blog' => $query]);
+                }
+            })
             ->addColumn('id', function($row) {
                 static $index = 0;
                 return ++$index;
@@ -81,6 +86,11 @@ class BlogDataTable extends DataTable
             Column::make('image'),
             Column::make('title'),
             Column::make('start_date'),
+            Column::computed('gallery')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
             /*Column::make('created_at'),
             Column::make('updated_at'),*/
             Column::computed('action')

@@ -33,6 +33,11 @@
                                        value="{{$settings->Loading_page_text}}" required>
                             </div>
                             <div class="mb-3 col-md-6">
+                                <label for="name" class="form-label">Home Page Title</label>
+                                <input type="text" class="form-control" id="Loading_page_text" name="home_page_title"
+                                       value="{{$settings->home_page_title}}" required>
+                            </div>
+                            <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">{{__('setting.phone')}}</label>
                                 <input type="text" class="form-control" id="phone" name="phone"
                                        value="{{$settings->phone}}" required>

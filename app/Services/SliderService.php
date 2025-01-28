@@ -40,7 +40,7 @@ class SliderService
 
     public function store(SliderStoreRequest $request)
     {
-        //dd($request->all());
+//        dd($request->all());
         DB::beginTransaction();
         try {
             $slider = Slider::create(collect($request->validated())->all());
@@ -76,6 +76,7 @@ class SliderService
 
     public function update(SliderUpdateRequest $request, Slider $slider)
     {
+//        dd($request->all());
         DB::beginTransaction();
         try {
             if ($request->has('image') &&

@@ -27,53 +27,53 @@
             {{--                </ul>--}}
             {{--            </li>--}}
 
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-event']))
-            <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
-                    <i class="la la-calendar"></i>
-                    <span class="nav-text">{{__('sidebar.events.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('blogs.index')}}">{{__('sidebar.events.index')}}</a>
-                    </li>
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-event']))
-                        <li class="{{ request()->is('admin/blogs/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('blogs.create')}}">{{__('sidebar.events.create')}}</a>
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-event']))
+                <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
+                        <i class="la la-calendar"></i>
+                        <span class="nav-text">{{__('sidebar.events.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/blogs*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/blogs*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('blogs.index')}}">{{__('sidebar.events.index')}}</a>
                         </li>
-                    @endif
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-slider']))
-            <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
-                    <i class="la la-sliders-h"></i>
-                    <span class="nav-text">{{__('sidebar.sliders.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('sliders.index')}}">{{__('sidebar.sliders.index')}}</a>
-                    </li>
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-slider']))
-                        <li class="{{ request()->is('admin/sliders/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('sliders.create')}}">{{__('sidebar.sliders.create')}}</a>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-event']))
+                            <li class="{{ request()->is('admin/blogs/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('blogs.create')}}">{{__('sidebar.events.create')}}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-slider']))
+                <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
+                        <i class="la la-sliders-h"></i>
+                        <span class="nav-text">{{__('sidebar.sliders.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/sliders*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/sliders*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('sliders.index')}}">{{__('sidebar.sliders.index')}}</a>
                         </li>
-                    @endif
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-intro']))
-            <li {{ request()->is('admin/intros*') ? 'active mm-active' : '' }}>
-                <a class="ai-icon" href="{{route('intros.COE')}}" aria-expanded="false">
-                    <i class="la la-calendar"></i>
-                    <span class="nav-text">Site Introduction</span>
-                </a>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-about-us']))
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-slider']))
+                            <li class="{{ request()->is('admin/sliders/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('sliders.create')}}">{{__('sidebar.sliders.create')}}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-intro']))
+                <li {{ request()->is('admin/intros*') ? 'active mm-active' : '' }}>
+                    <a class="ai-icon" href="{{route('intros.COE')}}" aria-expanded="false">
+                        <i class="la la-calendar"></i>
+                        <span class="nav-text">Site Introduction</span>
+                    </a>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-about-us']))
                 <li {{ request()->is('admin/about-uses*') ? 'active mm-active' : '' }}>
                     <a class="ai-icon" href="{{route('about-uses.COE')}}" aria-expanded="false">
                         <i class="la la-calendar"></i>
@@ -82,122 +82,140 @@
                 </li>
             @endif
 
+            {{--            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-toba']))--}}
+            <li {{ request()->is('admin/toba*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{route('toba.COE')}}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">{{__('sidebar.toba.sec')}}</span>
+                </a>
+            </li>
+            <li {{ request()->is('admin/toba-galleries*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{route('toba-galleries.index')}}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">{{__('sidebar.toba.index')}}</span>
+                </a>
+            </li>
+            {{--            @endif--}}
 
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal']))
-            <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
-                    <i class="la la-cat"></i>
-                    <span class="nav-text">{{__('sidebar.animals.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal-category']))
-                        <li class="{{ request()->is('admin/animal-categories*') ? 'active mm-active' : '' }}">
-                            <a href="{{route('animal-categories.index')}}">{{__('sidebar.animalCategories.index')}}</a>
+
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal']))
+                <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
+                        <i class="la la-cat"></i>
+                        <span class="nav-text">{{__('sidebar.animals.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/animal-categories*') ? 'true' : 'false' }}">
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal-category']))
+                            <li class="{{ request()->is('admin/animal-categories*') ? 'active mm-active' : '' }}">
+                                <a href="{{route('animal-categories.index')}}">{{__('sidebar.animalCategories.index')}}</a>
+                            </li>
+                        @endif
+                        <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('animals.index')}}">{{__('sidebar.animals.index')}}</a>
                         </li>
-                    @endif
-                    <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('animals.index')}}">{{__('sidebar.animals.index')}}</a>
-                    </li>
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-animal']))
-                        <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
-                            <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-animal']))
+                            <li class="{{ request()->is('admin/animals/create') ? 'active mm-active' : '' }}">
+                                <a href="{{route('animals.create')}}">{{__('sidebar.animals.create')}}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            <li class="nav-label">Galleries</li>
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-about-us-gallery']))
+                <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
+                        <i class="la la-pager"></i>
+                        <span class="nav-text">{{__('sidebar.aboutUs.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/about-us-galleries*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/about-us-galleries*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('about-us-galleries.index')}}">{{__('sidebar.aboutUs.index')}}</a>
                         </li>
-                    @endif
-                </ul>
-            </li>
-        @endif
-        <li class="nav-label">Galleries</li>
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-about-us-gallery']))
-            <li class="{{ request()->is('admin/abouts*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/abouts*') ? 'true' : 'false' }}">
-                    <i class="la la-pager"></i>
-                    <span class="nav-text">{{__('sidebar.aboutUs.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/about-us-galleries*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/about-us-galleries*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('about-us-galleries.index')}}">{{__('sidebar.aboutUs.index')}}</a>
-                    </li>
-                    {{--                    <li class="{{ request()->is('admin/about-us-galleries/create') ? 'active mm-active' : '' }}">--}}
-                    {{--                        <a href="{{route('about-us-galleries.create')}}">{{__('sidebar.aboutUs.create')}}</a>--}}
-                    {{--                    </li>--}}
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-tobas-gallery']))
-            <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-images"></i>
-                    <span class="nav-text">{{__('sidebar.topas.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('topas-galleries.index')}}">{{__('sidebar.topas.index')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-visitor-gallery']))
-            <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-images"></i>
-                    <span class="nav-text">{{__('sidebar.visitor.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('visitor-galleries.index')}}">{{__('sidebar.visitor.index')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-activity-gallery']))
-            <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
-                    <i class="la la-images"></i>
-                    <span class="nav-text">{{__('sidebar.activity.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('activity-galleries.index')}}">{{__('sidebar.activity.index')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-        <li class="nav-label"></li>
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-team']))
-            <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
-                    <i class="la la-user-times"></i>
-                    <span class="nav-text">{{__('sidebar.team.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
-                        <a href="{{route('teams.index')}}">{{__('sidebar.team.index')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-setting']))
-            {{-- <li class="nav-label">{{__('sidebar.setting_page')}}</li> --}}
-            <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
-                <a class="has-arrow" href="javascript:void(0);"
-                   aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
-                    <i class="la la-sitemap"></i>
-                    <span class="nav-text">{{__('sidebar.setting.name')}}</span>
-                </a>
-                <ul aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
-                    <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
-                        <a href="{{route('admin.settings')}}">{{__('sidebar.setting.update')}}</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-job']))
+                        {{--                    <li class="{{ request()->is('admin/about-us-galleries/create') ? 'active mm-active' : '' }}">--}}
+                        {{--                        <a href="{{route('about-us-galleries.create')}}">{{__('sidebar.aboutUs.create')}}</a>--}}
+                        {{--                    </li>--}}
+                    </ul>
+                </li>
+            @endif
+            {{--        @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-tobas-gallery']))--}}
+            {{--            <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">--}}
+            {{--                <a class="has-arrow" href="javascript:void(0);"--}}
+            {{--                   aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">--}}
+            {{--                    <i class="la la-images"></i>--}}
+            {{--                    <span class="nav-text">{{__('sidebar.topas.name')}}</span>--}}
+            {{--                </a>--}}
+            {{--                <ul aria-expanded="{{ request()->is('admin/topas-galleries*') ? 'true' : 'false' }}">--}}
+            {{--                    <li class="{{ request()->is('admin/topas-galleries*') ? 'active mm-active' : '' }}">--}}
+            {{--                        <a href="{{route('topas-galleries.index')}}">{{__('sidebar.topas.index')}}</a>--}}
+            {{--                    </li>--}}
+            {{--                </ul>--}}
+            {{--            </li>--}}
+            {{--        @endif--}}
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-visitor-gallery']))
+                <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
+                        <i class="la la-images"></i>
+                        <span class="nav-text">{{__('sidebar.visitor.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/visitor-galleries*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/visitor-galleries*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('visitor-galleries.index')}}">{{__('sidebar.visitor.index')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-activity-gallery']))
+                <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
+                        <i class="la la-images"></i>
+                        <span class="nav-text">{{__('sidebar.activity.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/activity-galleries*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('rewapactivity.COE')}}">Activity</a>
+                        </li>
+                        <li class="{{ request()->is('admin/activity-galleries*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('rewap_activity_gallery.index')}}">Activity Gallery</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            <li class="nav-label"></li>
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-team']))
+                <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
+                        <i class="la la-user-times"></i>
+                        <span class="nav-text">{{__('sidebar.team.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/teams*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/teams*') ? 'active mm-active' : '' }}">
+                            <a href="{{route('teams.index')}}">{{__('sidebar.team.index')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-setting']))
+                {{-- <li class="nav-label">{{__('sidebar.setting_page')}}</li> --}}
+                <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                       aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                        <i class="la la-sitemap"></i>
+                        <span class="nav-text">{{__('sidebar.setting.name')}}</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/settings') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">
+                            <a href="{{route('admin.settings')}}">{{__('sidebar.setting.update')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if(\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-job']))
                 <li class="{{ request()->is('admin/jobs*') ? 'active mm-active' : '' }}">
                     <a class="has-arrow" href="javascript:void(0);"
                        aria-expanded="{{ request()->is('admin/jobs*') ? 'true' : 'false' }}">
