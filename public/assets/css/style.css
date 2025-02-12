@@ -2091,7 +2091,7 @@ div#mCSB_1_container{
 
 .content_block_one .content-box .btn-box  {
   position: absolute;
-  bottom: 15px !important;
+  /* bottom: unset !important; */
 
 }
 
@@ -5375,11 +5375,20 @@ div#mCSB_1_container{
 
 }
 
+a{
+    color: #000;
+}
+
+@media(min-width: 992px){
+    .content_block_one .content-box .btn-box {
+        bottom: unset !important;
+    }
+}
+
 
 @media(max-width: 820px){
 
     .content_block_one .content-box .btn-box {
-        position: absolute;
         bottom: unset !important;
     }
 }
@@ -5396,7 +5405,6 @@ div#mCSB_1_container{
     }
 
     .content_block_one .content-box .btn-box {
-        position: absolute;
         bottom: unset !important;
     }
 }
