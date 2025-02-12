@@ -510,15 +510,23 @@ img {
     width: 8em;
   }
 
+}
 
+@media screen and (max-width: 992px) {
+    .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 22px; letter-spacing: 8px;}
 }
 @media screen and (max-width: 500px) {
   .handle-preloader .animation-preloader .spinner {
     height: 7em;
     width: 7em;
   }
-  .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 30px; letter-spacing: 10px;}
+  .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 20px; letter-spacing: 10px;}
 }
+
+@media screen and (max-width: 390px) {
+    .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 16px; letter-spacing: 8px;}
+}
+
 
 
 
