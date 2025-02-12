@@ -270,7 +270,7 @@
                                             <li><i class="far fa-map"></i>{{$event->address}}</li>
                                         </ul>
                                         <h3><a href="{{route('frontend.find.event' , $event->slug)}}">{{$event->title}}</a></h3>
-                                        <p>{!! $event->details !!}</p>
+                                        <p>{!! Str::words($event->details, 100, '...') !!}</p>
                                     </div>
                                 </div>
                             </div>
