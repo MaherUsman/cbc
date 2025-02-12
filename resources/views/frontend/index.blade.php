@@ -162,6 +162,9 @@
                             <div class="content-box">
                         <div class="content_block_one">
                             <div class="content-box ss">
+                                <div class="sec-title">
+                                    <h2>{{$animal->title}}</h2>
+                                </div>
                                 <div class="text">
                                     <p>{!! Str::words($animal->details, 100, '...') !!}</p>
                                 <div class="btn-box ">
