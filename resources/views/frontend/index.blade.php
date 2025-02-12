@@ -148,7 +148,7 @@
             <div class="auto-container">
                 <div class="row clearfix">
                     @if($key%2==0)
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
                             <div class="image_block_one">
                                 <div class="image-box">
                                     <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>
