@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="text">
                                     <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                <div class="btn-box ">
+                                <div class="btn-box position-btn">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
