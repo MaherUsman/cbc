@@ -9,5 +9,7 @@ class AnimalSlider extends Model
 {
     use HasFactory;
 
+    // protected $table = 'slider_animal'; // ✅ Assign the correct table name
+
     protected $guarded = [];
 }

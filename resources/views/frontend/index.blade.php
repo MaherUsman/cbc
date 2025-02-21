@@ -135,10 +135,6 @@
     <!-- info-section end -->
 
 
-
-
-
-
     <!-- Chincara-section -->
      <div class="set-direction-wrapper">
 

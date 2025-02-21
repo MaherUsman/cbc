@@ -28,6 +28,7 @@ use App\Http\Controllers\TopasGalleryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitorChildGalleryController;
 use App\Http\Controllers\VisitorGalleryController;
+use App\Http\Controllers\SliderAnimalController;
 use App\Http\Resources\ActivityGalleryCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,12 +38,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
         Route::view('login', 'auth.login')->name('adminLogin');
-//        Route::get('login', function () {
-//            if (auth()->check()) {
-//                return redirect()->route('admin.dashboard');
-//            }
-//            return view('auth.login');
-//        })->name('adminLogin');
+        //        Route::get('login', function () {
+        //            if (auth()->check()) {
+        //                return redirect()->route('admin.dashboard');
+        //            }
+        //            return view('auth.login');
+        //        })->name('adminLogin');
         Route::post('login', [AuthenticationController::class, 'login'])->name('login');
     });
 
@@ -57,14 +58,19 @@ Route::prefix('admin')->group(function () {
         Route::get('settings',  [AdminController::class, 'setting'])->name('admin.settings');
         Route::post('update-setting',  [AdminController::class, 'update_setting'])->name('admin.settings.update');
 
-        Route::resource('user',UserController::class);
-        Route::resource('animal-categories',AnimalCategoryController::class);
+        Route::resource('user', UserController::class);
+        Route::resource('animal-categories', AnimalCategoryController::class);
         Route::resource('blogs', BlogController::class);
         Route::resource('teams', TeamController::class);
         Route::resource('contact-us', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
         Route::get('reorder-sliders', [SliderController::class, 'gridView'])->name('sliders.gridView');
         Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
+        
+        Route::resource('slider-animals', SliderAnimalController::class);
+        Route::get('reorder-slider-animals', [SliderAnimalController::class, 'gridView'])->name('slider-animals.gridView');
+        Route::post('update-slider-animals-order', [SliderAnimalController::class, 'updateOrder'])->name('slider-animals.updateOrder');
+
         Route::resource('intros', IntroController::class);
         Route::get('intro', [IntroController::class, 'createOrEdit'])->name('intros.COE');
         Route::resource('abouts', AboutController::class);
@@ -82,18 +88,18 @@ Route::prefix('admin')->group(function () {
         Route::post('galleries-content-store', [GalleriesContentController::class, 'content_store'])->name('galleriesContent.store');
 
         Route::resource('activity-galleries', ActivityGalleryController::class);
-//        Route::resource('topas-galleries', TopasGalleryController::class);
+        //        Route::resource('topas-galleries', TopasGalleryController::class);
         Route::controller(TopasGalleryController::class)->group(function () {
             Route::get('/topas-galleries/{tobas}', 'index')->name('topas-galleries.index');
             Route::get('/topas-galleries/create/{tobas}', 'create')->name('topas-galleries.create');
             Route::post('/topas-galleries/{tobas}', 'store')->name('topas-galleries.store');
-//            Route::get('/topas-galleries/{topas_gallery}', 'show')->name('topas-galleries.show');
-//            Route::get('/topas-galleries/{topas_gallery}/edit', 'edit')->name('topas-galleries.edit');
-//            Route::put('/topas-galleries/{topas_gallery}', 'update')->name('topas-galleries.update');
-//            Route::delete('/topas-galleries/{topas_gallery}', 'destroy')->name('topas-galleries.destroy');
-//            Route::get('/topas-galleries/reorder/{tobas}', 'gridView')->name('topas-galleries.gridView');
-//            //Route::post('/topas-galleries/update-order', 'updateOrder')->name('topas-galleries.updateOrder');
-//            Route::post('/update-topas-galleries-order', 'updateOrder')->name('topas-galleries.updateOrder');
+            //            Route::get('/topas-galleries/{topas_gallery}', 'show')->name('topas-galleries.show');
+            //            Route::get('/topas-galleries/{topas_gallery}/edit', 'edit')->name('topas-galleries.edit');
+            //            Route::put('/topas-galleries/{topas_gallery}', 'update')->name('topas-galleries.update');
+            //            Route::delete('/topas-galleries/{topas_gallery}', 'destroy')->name('topas-galleries.destroy');
+            //            Route::get('/topas-galleries/reorder/{tobas}', 'gridView')->name('topas-galleries.gridView');
+            //            //Route::post('/topas-galleries/update-order', 'updateOrder')->name('topas-galleries.updateOrder');
+            //            Route::post('/update-topas-galleries-order', 'updateOrder')->name('topas-galleries.updateOrder');
         });
         Route::get('topas-child-galleries/{topasGallery}', [TopasChildGalleryController::class, 'index'])->name('topasChildGalleries');
         Route::resource('topas-child-galleries', TopasChildGalleryController::class);
@@ -142,66 +148,63 @@ Route::prefix('admin')->group(function () {
             Route::post('/update-blog-galleries-order', 'updateOrder')->name('blog-galleries.updateOrder');
         });
         Route::resource('jobs', JobController::class);
-        Route::get('job-applications/{job}',[JobController::class,'jobsApplications'])->name('jobs.application');
+        Route::get('job-applications/{job}', [JobController::class, 'jobsApplications'])->name('jobs.application');
 
-//        Rewap Activities
-        Route::get('activities_main' , [\App\Http\Controllers\ActivityRewappController::class , 'createOrEdit'])->name('rewapactivity.COE');
-        Route::resource('rewap_activity' , \App\Http\Controllers\ActivityRewappController::class);
-        Route::resource('rewap_activity_gallery' , \App\Http\Controllers\RewapActivityGalleryController::class);
+        //        Rewap Activities
+        Route::get('activities_main', [\App\Http\Controllers\ActivityRewappController::class, 'createOrEdit'])->name('rewapactivity.COE');
+        Route::resource('rewap_activity', \App\Http\Controllers\ActivityRewappController::class);
+        Route::resource('rewap_activity_gallery', \App\Http\Controllers\RewapActivityGalleryController::class);
         Route::resource('rewap_activity_sub_gallery', \App\Http\Controllers\RewampActivitysubGallery::class);
-
     });
 
-Route::view('gal','admin/gallery/AboutUsGallery');
-
+    Route::view('gal', 'admin/gallery/AboutUsGallery');
 });
 
 
 Route::post('/ckeditor/upload', [HomeController::class, 'uploadImage'])->name('ckeditor.upload');
 
 
-Route::post('upload-chunk',[ChunkUploadController::class,'uploadImageChunk'])->name('uploadImageChunk');
+Route::post('upload-chunk', [ChunkUploadController::class, 'uploadImageChunk'])->name('uploadImageChunk');
 
-Route::get('/' , [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::group([ 'as' => 'frontend.'] , function (){
+Route::group(['as' => 'frontend.'], function () {
 
-    Route::get('animal/categories' , [\App\Http\Controllers\Frontend\AnimalController::class , 'animalCategories'])
+    Route::get('animal/categories', [\App\Http\Controllers\Frontend\AnimalController::class, 'animalCategories'])
         ->name('animal.categories');
-    Route::get('animals/listing' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimal'])->name('listing.animal');
-    Route::get('animals/listing/{category}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'listingAnimalCategory'])->name('listing.animal.category');
-    Route::get('about-us' , [HomeController::class , 'aboutUs'])->name('about.us');
-    Route::get('about-us/gallery/{slug}' , [\App\Http\Controllers\Frontend\GalleryController::class , 'aboutUsGallery'])
+    Route::get('animals/listing', [\App\Http\Controllers\Frontend\AnimalController::class, 'listingAnimal'])->name('listing.animal');
+    Route::get('animals/listing/{category}', [\App\Http\Controllers\Frontend\AnimalController::class, 'listingAnimalCategory'])->name('listing.animal.category');
+    Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about.us');
+    Route::get('about-us/gallery/{slug}', [\App\Http\Controllers\Frontend\GalleryController::class, 'aboutUsGallery'])
         ->name('aboutus.gallery');
-//    Route::get('tobas/gallery' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
-    Route::get('contact-us' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'contactUs'])->name('contact.us');
-    Route::post('contact-submit' , [\App\Http\Controllers\Frontend\ContactUsCotroller::class , 'submit'])->name('contact.submit');
-    Route::get('career' , [\App\Http\Controllers\Frontend\CareerController::class , 'careerPage'])->name('career.store');
-    Route::get('specific-career/{job}' , [\App\Http\Controllers\Frontend\CareerController::class , 'specificCareer'])->name('career.specific');
-    Route::post('career/apply' , [\App\Http\Controllers\Frontend\CareerController::class , 'submitApplication'])->name('career.apply');
-    Route::get('event/{slug}' , [\App\Http\Controllers\Frontend\EventController::class , 'findEvent'])
+    //    Route::get('tobas/gallery' , [\App\Http\Controllers\Frontend\GalleryController::class , 'topasGallery'])->name('topas.gallery');
+    Route::get('contact-us', [\App\Http\Controllers\Frontend\ContactUsCotroller::class, 'contactUs'])->name('contact.us');
+    Route::post('contact-submit', [\App\Http\Controllers\Frontend\ContactUsCotroller::class, 'submit'])->name('contact.submit');
+    Route::get('career', [\App\Http\Controllers\Frontend\CareerController::class, 'careerPage'])->name('career.store');
+    Route::get('specific-career/{job}', [\App\Http\Controllers\Frontend\CareerController::class, 'specificCareer'])->name('career.specific');
+    Route::post('career/apply', [\App\Http\Controllers\Frontend\CareerController::class, 'submitApplication'])->name('career.apply');
+    Route::get('event/{slug}', [\App\Http\Controllers\Frontend\EventController::class, 'findEvent'])
         ->name('find.event');
-    Route::get('events' , [\App\Http\Controllers\Frontend\EventController::class , 'index'])->name('events.index');
-    Route::get('research-article' , [\App\Http\Controllers\Frontend\HomeController::class , 'rearchArticle'])->name('rearchArticle');
-    Route::get('visitors' , [\App\Http\Controllers\Frontend\GalleryController::class , 'visitorsGallery'])->name('visitors.gallery');
-    Route::get('activities' , [\App\Http\Controllers\Frontend\GalleryController::class , 'activitiesGallery'])->name('activities.gallery');
-    Route::get('search/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'searchAnimal'])->name('search.animal');
+    Route::get('events', [\App\Http\Controllers\Frontend\EventController::class, 'index'])->name('events.index');
+    Route::get('research-article', [\App\Http\Controllers\Frontend\HomeController::class, 'rearchArticle'])->name('rearchArticle');
+    Route::get('visitors', [\App\Http\Controllers\Frontend\GalleryController::class, 'visitorsGallery'])->name('visitors.gallery');
+    Route::get('activities', [\App\Http\Controllers\Frontend\GalleryController::class, 'activitiesGallery'])->name('activities.gallery');
+    Route::get('search/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'searchAnimal'])->name('search.animal');
 
-    Route::get('tobas' , [\App\Http\Controllers\Frontend\TobasController::class , 'index'])->name('tobas.page');
-    Route::get('tobas-gallery/{tobasGallery}' , [\App\Http\Controllers\Frontend\TobasController::class , 'topasGallery'])->name('tobas.gallery');
-
-
-    Route::get('activities' , [\App\Http\Controllers\Frontend\ActivityController::class , 'index'])->name('activites.page');
-    Route::get('activities-gallery/{tobasGallery}' , [\App\Http\Controllers\Frontend\ActivityController::class , 'topasGallery'])->name('activites.gallery');
+    Route::get('tobas', [\App\Http\Controllers\Frontend\TobasController::class, 'index'])->name('tobas.page');
+    Route::get('tobas-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\TobasController::class, 'topasGallery'])->name('tobas.gallery');
 
 
+    Route::get('activities', [\App\Http\Controllers\Frontend\ActivityController::class, 'index'])->name('activites.page');
+    Route::get('activities-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\ActivityController::class, 'topasGallery'])->name('activites.gallery');
 
-    Route::get('animal/{slug}' , [\App\Http\Controllers\Frontend\AnimalController::class , 'findAnimal'])->name('find.animal');
-    Route::get('loadmore/{slug}/animals' , [\App\Http\Controllers\Frontend\AnimalController::class , 'loadMoreAnimalGalleries'])->name('load.more.animal');
-    Route::get('loadmore/{slug}/events' , [\App\Http\Controllers\Frontend\EventController::class , 'loadMoreEventGalleries'])->name('load.more.event');
+
+
+    Route::get('animal/{slug}', [\App\Http\Controllers\Frontend\AnimalController::class, 'findAnimal'])->name('find.animal');
+    Route::get('loadmore/{slug}/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'loadMoreAnimalGalleries'])->name('load.more.animal');
+    Route::get('loadmore/{slug}/events', [\App\Http\Controllers\Frontend\EventController::class, 'loadMoreEventGalleries'])->name('load.more.event');
 });
 
 Route::get('{any?}', function () {
     return view('welcome');
 })->where('any', '.*');
-

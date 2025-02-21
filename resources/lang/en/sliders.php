@@ -9,6 +9,7 @@ return [
     'admin' => [
         'create' => [
             'create' => 'Create Slider',
+            'creates' => 'Create Animal Slider',
             'title' => 'Title',
             'image' => 'Image',
             'imageOrVideo' => 'Image Or Video',
@@ -28,6 +29,7 @@ return [
         ],
         'edit' => [
             'edit' => 'Edit Slider',
+            'edits'=> 'Edit Animal Slider',  
             'title' => 'Title',
             'image' => 'Image',
             'imageOrVideo' => 'Image Or Video',
