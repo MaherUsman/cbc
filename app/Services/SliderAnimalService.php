@@ -37,7 +37,7 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', '', Response::HTTP_OK);
         } else {
-            return view('admin.animalslider.create');
+            return view('admin.Animalslider.create');
         }
     }
 
