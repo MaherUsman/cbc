@@ -45,7 +45,7 @@ class SliderAnimalService
     {
         DB::beginTransaction();
         try {
-            dd($request->all());
+        
             $slider = SliderAnimal::create(collect($request->validated())->all());
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $slider);
