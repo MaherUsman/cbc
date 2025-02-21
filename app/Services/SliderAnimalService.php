@@ -11,6 +11,7 @@ use App\Models\SliderAnimal;
 use App\DataTables\SliderAnimalDataTable;
 use Illuminate\Http\Request;
 use App\Http\Requests\SliderAnimalUpdateRequest;
+use App\Http\Requests\SliderAnimalStoreRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
@@ -40,7 +41,7 @@ class SliderAnimalService
         }
     }
 
-    public function store(SliderStoreRequest $request)
+    public function store(SliderAnimalStoreRequest $request)
     {
         DB::beginTransaction();
         try {

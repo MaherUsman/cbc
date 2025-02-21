@@ -9,6 +9,7 @@ use App\Models\SliderAnimal;
 use App\Services\SliderAnimalService;
 use App\DataTables\SliderAnimalDataTable;
 use App\Http\Requests\SliderAnimalUpdateRequest;
+use App\Http\Requests\SliderAnimalStoreRequest;
 use Illuminate\Http\Request;
 
 class SliderAnimalController extends Controller
@@ -35,7 +36,7 @@ class SliderAnimalController extends Controller
         return $this->sliderAnimalService->create();
     }
 
-    public function store(SliderStoreRequest $request)
+    public function store(SliderAnimalStoreRequest $request)
     {
         return $this->sliderAnimalService->store($request);
     }

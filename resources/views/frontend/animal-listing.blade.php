@@ -50,6 +50,7 @@
 
                     {{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div> --}}
                     <div class="item-video" data-merge="1">
+                        {{-- {{ dd(asset($slider->image)) }} --}}
                         <video autoplay muted loop controls>
                             <source src="{{ asset($slider->image) }}" type="video/mp4">
                             Your browser does not support the video tag.
