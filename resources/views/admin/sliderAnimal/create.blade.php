@@ -211,6 +211,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
+                            console.log(response , 'response test')
                             return {success: true, filePath: response.compressedPath ? response.compressedPath: response.filePath};
 
                         }
