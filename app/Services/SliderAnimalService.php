@@ -44,8 +44,7 @@ class SliderAnimalService
     public function store(SliderAnimalStoreRequest $request)
     {
         DB::beginTransaction();
-        try{
-            dd($request->all());
+        try {
 
             $slider = SliderAnimal::create(collect($request->validated())->all());
             DB::commit();
