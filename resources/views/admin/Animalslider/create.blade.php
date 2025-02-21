@@ -212,7 +212,7 @@
                         currentChunk++;
                         if (currentChunk === totalChunks) {
                             console.log(response , 'response test')
-                            return {success: true, filePath: response.compressedPath?response.compressedPath: response.filePath};
+                            return {success: true, filePath: response.filePath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
