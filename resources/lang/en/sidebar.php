@@ -35,6 +35,7 @@ return [
         'create' => 'Create Contact Us Mail',
     ],
     'sliders' => [
+        'names' => 'Animal Gallery Slider',
         'name' => 'Home Page Slider',
         'index' => 'All Sliders',
         'create' => 'Create Slider',
