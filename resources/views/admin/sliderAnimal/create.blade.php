@@ -211,6 +211,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
+                            console.log(response , 'test')
                             return {success: true, filePath: response.filePath};
 
                         }
