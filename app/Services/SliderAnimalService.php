@@ -10,6 +10,7 @@ use App\Http\Resources\SliderResource;
 use App\Models\SliderAnimal;
 use App\DataTables\SliderAnimalDataTable;
 use Illuminate\Http\Request;
+use App\Http\Requests\SliderAnimalUpdateRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class SliderAnimalService
 {
     public function index(SliderAnimalDataTable $dataTable)
     {
-        return $dataTable->render('admin.Animalslider.index');
+        return $dataTable->render('admin.animalslider.index');
     }
 
     public function getSliders()
@@ -26,7 +27,7 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', 'List', Response::HTTP_OK, new SliderCollection($sliders));
         } else {
-            return view('admin.Animalslider.reorder', compact('sliders'));
+            return view('admin.animalslider.reorder', compact('sliders'));
         }
     }
 
@@ -35,7 +36,7 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', '', Response::HTTP_OK);
         } else {
-            return view('admin.Animalslider.create');
+            return view('admin.animalslider.create');
         }
     }
 
@@ -57,7 +58,7 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', 'Slider Details', Response::HTTP_OK, new SliderResource($slider));
         } else {
-            return view('admin.Animalslider.show', compact('slider'));
+            return view('admin.animalslider.show', compact('slider'));
         }
     }
 
@@ -66,30 +67,30 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', 'Slider Details', Response::HTTP_OK, new SliderResource($slider_animal));
         } else {
-            return view('admin.Animalslider.edit', compact('slider_animal'));
+            return view('admin.animalslider.edit', compact('slider_animal'));
         }
     }
 
-    public function update(SliderUpdateRequest $request, SliderAnimal $slider)
+    public function update(SliderAnimalUpdateRequest $request, SliderAnimal $slider_animal)
     {
+        // dd('dfsdfsd');
         DB::beginTransaction();
         try {
-            if (
-                $request->has('image') &&
-                $request->image != '' &&
-                !empty($slider->image) &&
-                file_exists(public_path($slider->image))
-            ) {
-                unlink(public_path($slider->image));
+            // Check if an image was uploaded
+            if ($request->has('image')) {
+                $slider_animal->image = $request->image;
             }
-            $slider->update(collect($request->validated())->except('role')->all());
+    
+            $slider_animal->update($request->validated());
+    
             DB::commit();
-            return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $slider);
+            return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $slider_animal);
         } catch (\Exception $exception) {
             DB::rollBack();
             return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
 
     public function updateOrder(Request $request)
     {

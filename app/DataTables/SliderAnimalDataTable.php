@@ -24,14 +24,14 @@ class SliderAnimalDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return view('admin.Animalslider.action', ['slider' => $query]);
+                return view('admin.animalslider.action', ['slider_animal' => $query]);
             })
 //            ->editColumn('image', function ($row) {
 //                $imageUrl = asset($row->image ?: 'no_image.jpg');
 //                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
 //            })
             ->editColumn('details', function ($query) {
-                return view('admin.Animalslider.message', ['slider' => $query]);
+                return view('admin.animalslider.message', ['slider' => $query]);
             })
             ->addColumn('id', function($row) {
                 static $index = 0;

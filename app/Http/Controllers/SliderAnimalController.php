@@ -8,6 +8,7 @@ use App\Http\Requests\SliderUpdateRequest;
 use App\Models\SliderAnimal;
 use App\Services\SliderAnimalService;
 use App\DataTables\SliderAnimalDataTable;
+use App\Http\Requests\SliderAnimalUpdateRequest;
 use Illuminate\Http\Request;
 
 class SliderAnimalController extends Controller
@@ -49,7 +50,7 @@ class SliderAnimalController extends Controller
         return $this->sliderAnimalService->edit($sliderAnimal);
     }
 
-    public function update(SliderUpdateRequest $request, SliderAnimal $sliderAnimal)
+    public function update(SliderAnimalUpdateRequest $request, SliderAnimal $sliderAnimal)
     {
         return $this->sliderAnimalService->update($request, $sliderAnimal);
     }

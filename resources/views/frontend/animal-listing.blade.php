@@ -64,7 +64,7 @@
                 @else
                     <div class="slide-item">
                         <!-- If no video, fallback to image -->
-                        <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
+                        <div class="image-layer" style="background-image:url({{ url($slider->image) }})"></div>
                         <div class="auto-container customSlider-wrapper">
                             <div class="content-box">
                                 {{--                                    <h3 class="mb-4">{{ $slider->title }}</h3> --}}
