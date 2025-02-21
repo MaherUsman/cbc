@@ -69,7 +69,7 @@ class SliderAnimalService
         if (request()->is('api/*')) {
             return makeResponse('success', 'Slider Details', Response::HTTP_OK, new SliderResource($slider_animal));
         } else {
-            return view('admin.animalslider.edit', compact('slider_animal'));
+            return view('admin.Animalslider.edit', compact('slider_animal'));
         }
     }
 
