@@ -45,7 +45,7 @@ class SliderAnimalService
     {
         DB::beginTransaction();
         try {
-        
+            dd($request->all());
             $slider = SliderAnimal::create(collect($request->validated())->all());
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $slider);
@@ -82,9 +82,9 @@ class SliderAnimalService
             if ($request->has('image')) {
                 $slider_animal->image = $request->image;
             }
-    
+
             $slider_animal->update($request->validated());
-    
+
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $slider_animal);
         } catch (\Exception $exception) {
@@ -92,7 +92,7 @@ class SliderAnimalService
             return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 
     public function updateOrder(Request $request)
     {
