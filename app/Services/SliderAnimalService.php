@@ -45,13 +45,43 @@ class SliderAnimalService
     {
         DB::beginTransaction();
         try {
-        
+
             $slider = SliderAnimal::create(collect($request->validated())->all());
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $slider);
         } catch (\Exception $exception) {
             DB::rollBack();
             return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function uploadVideo(SliderAnimalStoreRequest  $request)
+    {
+        try {
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $fileName = time() . '_' . $video->getClientOriginalName();
+
+                // Store video in public/upload/video directory
+                $video->move(public_path('upload/video'), $fileName);
+
+                $filePath = 'upload/video/' . $fileName;
+
+                return response()->json([
+                    'success' => true,
+                    'filePath' => $filePath
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'No video file provided'
+            ], 400);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
         }
     }
 
@@ -82,9 +112,9 @@ class SliderAnimalService
             if ($request->has('image')) {
                 $slider_animal->image = $request->image;
             }
-    
+
             $slider_animal->update($request->validated());
-    
+
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $slider_animal);
         } catch (\Exception $exception) {
@@ -92,7 +122,7 @@ class SliderAnimalService
             return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 
     public function updateOrder(Request $request)
     {

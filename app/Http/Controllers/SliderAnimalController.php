@@ -46,6 +46,11 @@ class SliderAnimalController extends Controller
         return $this->sliderAnimalService->show($sliderAnimal);
     }
 
+    public function uploadVideo(SliderAnimalStoreRequest  $request)
+    {
+        return $this->sliderAnimalService->uploadVideo($request);
+    }
+
     public function edit(SliderAnimal $sliderAnimal)
     {
         return $this->sliderAnimalService->edit($sliderAnimal);
