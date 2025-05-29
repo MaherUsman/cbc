@@ -204,7 +204,7 @@
                 try {
                     let response = await $.ajax({
                         type: 'POST',
-                        url: '{{ route('uploadVideo') }}', // You'll need to create this route
+                        url: '{{ route('uploadVideo') }}', 
                         data: formData,
                         processData: false,
                         contentType: false,

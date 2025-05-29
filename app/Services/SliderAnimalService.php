@@ -61,18 +61,13 @@ class SliderAnimalService
             if ($request->hasFile('video')) {
                 $video = $request->file('video');
                 $fileName = time() . '_' . $video->getClientOriginalName();
-
-                // Store video in public/upload/video directory
-                $video->move(public_path('upload/video'), $fileName);
-
+                $video->move(public_path('upload/video'), $fileName); 
                 $filePath = 'upload/video/' . $fileName;
-
                 return response()->json([
                     'success' => true,
                     'filePath' => $filePath
                 ]);
             }
-
             return response()->json([
                 'success' => false,
                 'message' => 'No video file provided'

@@ -36,7 +36,7 @@ class HomeService
     {
         $data['aboutUs'] = AboutUs::first();
         $data['teams'] = Team::all();
-        $data['galleries'] = AboutUsGallery::all();
+        $data['galleries'] = AboutUsGallery::orderBy('id', 'desc')->get();
         return $data;
     }
 

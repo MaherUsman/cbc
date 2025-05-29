@@ -125,6 +125,34 @@
                             @endforeach
                         </div>
 
+
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+                            <div>
+                                <h4 class="mb-3 mb-md-3">Social Links Update</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @foreach($socialLinks as $social)
+                                <div class="mb-3 col-md-4 d-flex align-items-center gap-3">
+                                    <!-- Icon -->
+{{--                                    <i class="{{ $social->social_icon }} fa-2x"></i>--}}
+
+                                    <div class="flex-grow-1">
+                                        <!-- Social Name (readonly) -->
+                                        <label class="form-label">{{ $social->social_name }}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="social_links[{{ $social->social_name }}]"
+                                               value="{{ old('social_links.' . $social->social_name, $social->social_link) }}"
+                                               placeholder="Enter {{ $social->social_name }} URL" />
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

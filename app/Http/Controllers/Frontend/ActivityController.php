@@ -17,7 +17,8 @@ class ActivityController extends Controller
     {
         $data = Activity::first();
 
-        $tobaGalleries = ActivityGallery::all();
+        $tobaGalleries = ActivityGallery::orderBy('id', 'desc')->get();
+
 
         return view('frontend.activity-rewamp',compact('data','tobaGalleries'));
     }

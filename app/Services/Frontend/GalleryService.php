@@ -22,7 +22,8 @@ class GalleryService
     }
     public function visitors($page = 1)
     {
-        $data['visitorGallery'] = VisitorGallery::paginate(9, ['*'], 'page', $page);
+        $data['visitorGallery'] = VisitorGallery::orderBy('id', 'desc')
+            ->paginate(9, ['*'], 'page', $page);
         $data['visitorGalleryContent'] = GalleriesContent::where('type', 'visitor')->first();
         return $data;
     }
@@ -35,7 +36,7 @@ class GalleryService
     public function aboutUsGallery($page = 1 , $id)
     {
         $data['aboutUsGalleries'] = AboutUsChildGallery::
-        where('about_us_gallery_id' , $id)
+        where('about_us_gallery_id' , $id)->orderBy('id', 'desc')
         ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
         $data['parentGallery'] = AboutUsGallery::where('id', $id)->first();
@@ -44,7 +45,7 @@ class GalleryService
     public function tobasGallery($page = 1 , $id)
     {
         $data['topasGallery'] = TobaSubGallery::
-        where('toba_gallery_id' , $id)
+        where('toba_gallery_id' , $id)->orderBy('id', 'desc')
             ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
         $data['parentGallery'] = TobaGallery::where('id', $id)->first();
@@ -53,7 +54,7 @@ class GalleryService
     public function activityGallery($page = 1 , $id)
     {
         $data['topasGallery'] = ActivitySubGallery::
-        where('activity_gallery_id' , $id)
+        where('activity_gallery_id' , $id)->orderBy('id', 'desc')
             ->paginate(9, ['*'], 'page', $page);
         $data['id'] = $id;
         $data['parentGallery'] = ActivityGallery::where('id', $id)->first();

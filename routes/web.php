@@ -64,10 +64,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('teams', TeamController::class);
         Route::resource('contact-us', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
-        
+
         Route::get('reorder-sliders', [SliderController::class, 'gridView'])->name('sliders.gridView');
         Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
-        
+
         Route::post('upload-video', [SliderAnimalController::class, 'uploadVideo'])->name('uploadVideo');
         Route::resource('slider-animals', SliderAnimalController::class);
         Route::get('reorder-slider-animals', [SliderAnimalController::class, 'gridView'])->name('slider-animals.gridView');
