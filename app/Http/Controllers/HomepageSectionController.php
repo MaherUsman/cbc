@@ -17,9 +17,9 @@ class HomepageSectionController extends Controller
         $this->homepageSectionService = $homepageSectionService;
     }
 
-    public function index(HomepageSectionDataTable $dataTable)
+    public function index()
     {
-        return $this->homepageSectionService->index($dataTable);
+        return $this->homepageSectionService->index();
     }
 
     public function create()
@@ -30,21 +30,6 @@ class HomepageSectionController extends Controller
     public function store(HomepageSectionStoreRequest $request)
     {
         return $this->homepageSectionService->store($request);
-    }
-
-    public function show(HomepageSection $homepageSection)
-    {
-        //
-    }
-
-    public function edit(HomepageSection $homepageSection)
-    {
-        return $this->homepageSectionService->edit($homepageSection);
-    }
-
-    public function update(HomepageSectionUpdateRequest $request, HomepageSection $homepageSection)
-    {
-        return $this->homepageSectionService->update($request, $homepageSection);
     }
 
     public function destroy(HomepageSection $homepageSection)

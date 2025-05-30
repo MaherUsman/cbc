@@ -91,6 +91,13 @@ return [
     ],
     'career-listing' => [
         'name' => 'Career Listing',
+    ],
+    'homepageSections' => [
+        'name' => 'Home Page Section',
+        'index' => 'Home Page Section',
+        'create' => 'Create Home Page Section',
+        'edit' => 'Edit Home Page Section',
     ]
+
 
 ];

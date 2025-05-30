@@ -33,6 +33,7 @@ use App\Http\Resources\ActivityGalleryCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\HomepageSectionController;
 
 Route::prefix('admin')->group(function () {
 
@@ -122,6 +123,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('tobas', \App\Http\Controllers\TobasController::class);
 
         Route::resource('animals', AnimalController::class);
+
+        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
+        Route::get('homepage-sections/create', [HomepageSectionController::class, 'create'])->name('homepage-sections.create');
+        Route::post('homepage-sections', [HomepageSectionController::class, 'store'])->name('homepage-sections.store');
+        Route::delete('homepage-sections/{homepageSection}', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
+
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
         Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
         Route::controller(AnimalGalleryController::class)->group(function () {

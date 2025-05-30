@@ -118,7 +118,21 @@
             {{--            @endif --}}
 
 
-            @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal']))
+{{--            @if (Auth::user()->hasPermission(['view-homepage-section']))--}}
+            <li class="{{ request()->is('admin/homepage-sections*') ? 'active mm-active' : '' }}">
+                <a href="{{ route('homepage-sections.index') }}">
+                    <i class="la la-home"></i>
+                    <span class="nav-text">{{ __('sidebar.homepageSections.name') }}</span>
+                </a>
+            </li>
+
+            {{--            @endif--}}
+
+
+
+
+
+        @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-animal']))
                 <li class="{{ request()->is('admin/animals*') ? 'active mm-active' : '' }}">
                     <a class="has-arrow" href="javascript:void(0);"
                         aria-expanded="{{ request()->is('admin/animals*') ? 'true' : 'false' }}">
