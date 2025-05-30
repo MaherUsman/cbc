@@ -93,6 +93,7 @@ body {
     max-width: 1170px;
     padding: 0px 15px;
   }
+
 }
 
 .large-container{
@@ -1946,7 +1947,7 @@ div#mCSB_1_container{
 }
 
 .image-column:nth-child(1) .image_block_one .image-box .image img{
-  height: 520px;
+  height: 555px;
   width: 100% !important;
   object-fit: cover;
 }
@@ -1959,6 +1960,7 @@ div#mCSB_1_container{
 
 .image_block_one .image-box .image:hover img{
   transform: scale(1.05);
+  height: 555px !important;
 }
 
 .image_block_one .image-box .image::before {
