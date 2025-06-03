@@ -32,8 +32,8 @@ class HomepageSectionController extends Controller
         return $this->homepageSectionService->store($request);
     }
 
-    public function destroy(HomepageSection $homepageSection)
+    public function destroy()
     {
-        return $this->homepageSectionService->destroy($homepageSection);
+        return $this->homepageSectionService->destroy();
     }
 }

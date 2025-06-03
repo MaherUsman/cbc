@@ -1,4 +1,12 @@
 @extends('layouts.admin.index')
+
+@section('css')
+    <!-- Light Gallery -->
+    <link href="{{ asset('vendor/lightgallery/dist/css/lightgallery.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/lightgallery/dist/css/lg-thumbnail.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/lightgallery/dist/css/lg-zoom.css') }}" rel="stylesheet">
+@endsection
+
 @section('css')
     <!-- Light Gallery -->
     <link href="{{ asset('vendor/lightgallery/dist/css/lightgallery.css') }}" rel="stylesheet">
@@ -21,6 +29,14 @@
             width: 3rem;
             height: 3rem;
         }
+
+        .gallery-img-wrapper .gallery-overlay {
+            display: none;
+        }
+
+        .gallery-img-wrapper:hover .gallery-overlay {
+            display: block;
+        }
     </style>
 
     @include('layouts.admin.includes.breadcrumbs', [
@@ -42,9 +58,8 @@
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            {{-- <h4 class="card-title">{{ __('homepageSections.list_title') }}</h4> --}}
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#homepageSectionModal">
-                                {{ __('homepageSections.add_section') }}
+                                {{ isset($homepageSection) ? __('homepageSections.edit_section') : __('homepageSections.add_section') }}
                             </button>
                         </div>
                         <div class="card-body pb-1">
@@ -61,9 +76,9 @@
                                             <div class="gallery-overlay rounded">
                                                 <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
                                                     <div class="overlay-icon mt-2">
-                                                        <a href="#" data-url="{{ route('homepage-sections.destroy', $homepageSection) }}" title="Delete"
-                                                           class="deleteRecord" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                            <i class="fa-solid fa-trash"></i>
+                                                        <a href="#" class="deleteSection" title="Delete"
+                                                           data-bs-toggle="tooltip" data-bs-placement="top">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -82,65 +97,96 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="homepageSectionModal" tabindex="-1" aria-labelledby="homepageSectionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form method="POST" id="formValidation" action="{{ route('homepage-sections.store') }}" enctype="multipart/form-data">
+                <form id="homepageSectionForm" method="POST" action="{{ route('homepage-sections.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="_method" value="POST" id="formMethod">
-                    <input type="hidden" name="section_id" value="" id="sectionId">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="homepageSectionModalLabel">Create/Edit Modal</h5>
+                        <h5 class="modal-title" id="homepageSectionModalLabel">
+                            @if($homepageSection)
+                                {{ __('homepageSections.edit_section') }}
+                            @else
+                                {{ __('homepageSections.add_section') }}
+                            @endif
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
                         <div class="row">
                             {{-- Title --}}
-                            <div class="col-sm-12">
+                            <div class="col-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{ __('homepageSections.admin.create.title') }} <span class="text-danger">*</span></label>
-                                    <input type="text" name="title" id="sectionTitle" value="{{ old('title') }}" class="form-control"
-                                           placeholder="{{ __('homepageSections.admin.create.title') }}"
-                                           data-rule-required="true"
-                                           data-msg-required="{{ __('homepageSections.admin.create.title_message') }}">
+                                    <label class="form-label">
+                                        {{ __('homepageSections.title') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text"
+                                           name="title"
+                                           id="sectionTitle"
+                                           value="{{ $homepageSection->title ?? old('title') }}"
+                                           class="form-control"
+                                           placeholder="{{ __('homepageSections.title_placeholder') }}"
+                                           required>
                                 </div>
                             </div>
 
-                            {{-- Background Image --}}
-                            <div class="col-sm-6">
+                            {{-- Background Image Upload --}}
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{ __('homepageSections.admin.create.background_image') }}</label>
-                                    <input type="file" name="background_image" id="backgroundImage" class="form-control" accept="image/*" onchange="previewImage(this)">
-                                    <small class="text-muted">Leave empty to keep current image</small>
+                                    <label class="form-label">{{ __('homepageSections.background_image') }}</label>
+                                    <input type="file"
+                                           name="background_image"
+                                           id="backgroundImage"
+                                           class="form-control"
+                                           accept="image/*"
+                                           onchange="previewImage(this)"
+                                           @if(!$homepageSection) required @endif>
+                                    <small class="text-muted">{{ __('homepageSections.image_help') }}</small>
                                 </div>
+
                             </div>
 
-                            <div class="col-sm-6">
+                            {{-- Image Preview --}}
+                            <div class="col-md-6">
                                 <div class="mb-3">
-{{--                                    <label class="form-label">Current/Preview Image</label>--}}
-                                    <div class="image-preview-container">
-                                        <img src="#" alt="Image Preview" id="imagePreview" class="img-thumbnail"
-                                             style="display:none; max-width:200px; height:auto;">
-                                        <div id="currentImageContainer" style="display:none;">
-                                            <img src="#" alt="Current Image" id="currentImage" class="img-thumbnail"
-                                                 style="max-width:200px; height:auto;">
-                                            <div class="text-center mt-2">
-                                                <small class="text-muted">Current Image</small>
-                                            </div>
-                                        </div>
+                                    <label class="form-label">{{ __('homepageSections.preview') }}</label>
+                                    <div class="image-preview-container position-relative">
+                                        @if($homepageSection && $homepageSection->background_image)
+                                            <img src="{{ asset($homepageSection->background_image) }}"
+                                                 alt="Current Image"
+                                                 id="currentImage"
+                                                 class="img-thumbnail d-block w-100"
+                                                 style="max-width: 100%; max-height: 250px; object-fit: contain;"
+                                            >
+
+                                        @endif
+
+                                            <img src="#"
+                                                 alt="Image Preview"
+                                                 id="imagePreview"
+                                                 class="img-thumbnail w-100"
+                                                 style="display: none; max-width: 100%; max-height: 250px; object-fit: contain; position: absolute; top: 0; left: 0;"
+                                            >
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">{{ __('homepageSections.cancel') }}</button>
-                        <button type="submit" class="btn btn-primary submit">{{ __('homepageSections.save') }}</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            {{ __('common.cancel') }}
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> {{ __('common.save') }}
+                        </button>
                     </div>
                 </form>
             </div>
@@ -150,12 +196,6 @@
     @include('layouts.admin.modal.delete_modal')
     @include('layouts.admin.modal.message_modal')
 
-    <div id="loader" style="display: none;">
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">{{ __('common.loading') }}</span>
-        </div>
-    </div>
-
 @endsection
 
 @section('script')
@@ -164,229 +204,194 @@
     <script src="{{ asset('vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js') }}"></script>
 
     <script>
-        // Function to preview the selected image
+        // Preview uploaded image
         function previewImage(input) {
             if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                const reader = new FileReader();
                 reader.onload = function (e) {
-                    // Hide current image and show preview
-                    $('#currentImageContainer').hide();
-                    $('#imagePreview').attr('src', e.target.result).show();
+                    const current = document.getElementById('currentImage');
+                    const preview = document.getElementById('imagePreview');
+
+                    // Always hide current image
+                    if (current) current.style.display = 'none';
+
+                    // Show new preview
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
                 };
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        // Reset modal when opening for new section
-        $('#homepageSectionModal').on('hidden.bs.modal', function () {
-            $('#formValidation')[0].reset();
-            $('#sectionId').val('');
-            $('#formMethod').val('POST');
-            $('#formValidation').attr('action', '{{ route("homepage-sections.store") }}');
-            $('#homepageSectionModalLabel').text('{{ __("Create/Edit Modal") }}');
-            $('#imagePreview').hide();
-            $('#currentImageContainer').hide();
-            // Clear file input
-            $('#backgroundImage').val('');
-        });
-
-        // Handle new section button click
-        $('.btn[data-bs-target="#homepageSectionModal"]').on('click', function() {
-            // Reset form for new section
-            $('#formValidation')[0].reset();
-            $('#sectionId').val('');
-            $('#formMethod').val('POST');
-            $('#formValidation').attr('action', '{{ route("homepage-sections.store") }}');
-            $('#homepageSectionModalLabel').text('{{ __("Create/Edit Modal") }}');
-            $('#imagePreview').hide();
-            $('#currentImageContainer').hide();
-            $('#backgroundImage').val('');
-        });
 
         $(document).ready(function () {
             // Initialize Light Gallery
             if (document.getElementById('lightgallery')) {
                 lightGallery(document.getElementById('lightgallery'), {
+                    selector: '.lg-item',
                     thumbnail: true,
                     zoom: true
                 });
             }
 
-            // Delete record functionality
-            // Delete record functionality with proper event handling to prevent lightbox
-            $(document).on('click', '.deleteRecord', function (e) {
-                // Prevent all default behaviors and event bubbling
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-
-                var url = $(this).data('url');
-                $('#delete_form').attr('action', url);
-                $('#delete_modal').modal('show');
-
-                // Return false as additional prevention
-                return false;
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
 
+            // Edit section (open modal)
+            $(document).on('click', '.editSection', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#homepageSectionModal').modal('show');
+            });
+
+            // Delete section
+            $(document).on('click', '.deleteSection', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#delete_form').attr('action', '{{ route("homepage-sections.destroy") }}');
+                $('#delete_modal').modal('show');
+            });
+
+            // Handle delete confirmation
             $('#deleteRecordBtn').click(function () {
-                var url = $('#delete_form').attr('action');
-                var data = $('#delete_form').serialize();
-
-                $.blockUI({
-                    css: {
-                        border: 'none',
-                        padding: '15px',
-                        backgroundColor: '#000',
-                        '-webkit-border-radius': '10px',
-                        '-moz-border-radius': '10px',
-                        opacity: .5,
-                        color: '#fff'
-                    }
-                });
-
+                var form = $('#delete_form');
                 $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data,
-                    success: function (response, status, xhr) {
-                        if (xhr.status == 204 || (response.result && response.result === 'success')) {
-                            $.unblockUI();
-                            $('#delete_modal').modal('hide'); // Hide modal before reload
-                            successMsg(response.message || '{{ __("common.deleted_successfully") }}');
+                    type: 'DELETE',
+                    url: form.attr('action'),
+                    data: {
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    beforeSend: function() {
+                        $.blockUI({
+                            css: {
+                                border: 'none',
+                                padding: '15px',
+                                backgroundColor: '#000',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .5,
+                                color: '#fff'
+                            }
+                        });
+                    },
+                    success: function (response) {
+                        $.unblockUI();
+                        $('#delete_modal').modal('hide');
+                        if (response.result === 'success') {
+                            successMsg(response.message);
                             setTimeout(function () {
-                                window.location.reload(true); // Force reload from server
+                                window.location.reload();
                             }, 1000);
-                        } else if (response.result === 'error') {
-                            $.unblockUI();
+                        } else {
                             errorMsg(response.message);
                         }
                     },
-                    error: function (data, status) {
+                    error: function (xhr) {
                         $.unblockUI();
-                        $('#delete_modal').modal('hide'); // Hide modal on error too
-                        errorMsg(data.responseJSON?.message || '{{ __("common.error_occurred") }}');
+                        $('#delete_modal').modal('hide');
+                        errorMsg(xhr.responseJSON?.message || 'An error occurred');
                     }
                 });
             });
+
             // Form validation and submission
-            $('#formValidation').validate({
-                submitHandler: async function (form, event) {
+            $('#homepageSectionForm').validate({
+                rules: {
+                    title: {
+                        required: true,
+                        maxlength: 255
+                    },
+                    @if(!$homepageSection)
+                    background_image: {
+                        required: true
+                    }
+                    @endif
+                },
+                messages: {
+                    title: {
+                        required: 'The title field is required.',
+                        maxlength: 'The title may not be greater than 255 characters.'
+                    },
+                    @if(!$homepageSection)
+                    background_image: {
+                        required: 'The background image is required.'
+                    }
+                    @endif
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.mb-3').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+                submitHandler: function (form, event) {
                     event.preventDefault();
-
-                    $.blockUI({
-                        css: {
-                            border: 'none',
-                            padding: '15px',
-                            backgroundColor: '#000',
-                            '-webkit-border-radius': '10px',
-                            '-moz-border-radius': '10px',
-                            opacity: .5,
-                            color: '#fff'
-                        }
-                    });
-
-                    var url = $(form).attr('action');
-                    var data = new FormData();
-
-                    // Get form data
-                    data.append('title', $('#sectionTitle').val());
-                    // data.append('button_text', $('#buttonText').val());
-                    // data.append('button_link', $('#buttonLink').val());
-
-                    if ($('#sectionId').val()) {
-                        data.append('section_id', $('#sectionId').val());
-                        data.append('_method', 'PUT');
-                    }
-
-                    // Handle image upload
-                    var imageFile = $('#backgroundImage')[0].files[0];
-                    if (imageFile) {
-                        try {
-                            let response = await uploadImageInChunks(imageFile);
-                            if (response.success) {
-                                data.append('background_image', response.filePath);
-                                data.append('thumb', response.thumb);
-                                data.append('compressed', response.compressed);
-                            } else {
-                                $.unblockUI();
-                                errorMsg('Image upload failed');
-                                return;
-                            }
-                        } catch (error) {
-                            $.unblockUI();
-                            errorMsg('An error occurred during the image upload');
-                            return;
-                        }
-                    }
-
-                    // Submit form data
-                    await submitFormData(url, data);
+                    submitForm(form);
                 }
             });
 
-            // Chunked image upload function
-            async function uploadImageInChunks(file) {
-                var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
-                var totalChunks = Math.ceil(file.size / chunkSize);
-                var currentChunk = 0;
+            function submitForm(form) {
+                var formData = new FormData(form);
+                var url = $(form).attr('action');
 
-                while (currentChunk < totalChunks) {
-                    var start = currentChunk * chunkSize;
-                    var end = Math.min(start + chunkSize, file.size);
-                    var chunk = file.slice(start, end);
-                    var chunkData = new FormData();
-                    chunkData.append('chunk', chunk);
-                    chunkData.append('chunkNumber', currentChunk + 1);
-                    chunkData.append('totalChunks', totalChunks);
-                    chunkData.append('fileName', file.name);
-                    chunkData.append('ImageUploadPath', 'homepage_background');
-
-                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
-
-                    try {
-                        let response = await $.ajax({
-                            type: 'POST',
-                            url: '{{ route("uploadImageChunk") }}',
-                            data: chunkData,
-                            processData: false,
-                            contentType: false,
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $.blockUI({
+                            css: {
+                                border: 'none',
+                                padding: '15px',
+                                backgroundColor: '#000',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: .5,
+                                color: '#fff'
+                            }
                         });
+                    },
+                    success: function (response) {
+                        $.unblockUI();
+                        $('#homepageSectionModal').modal('hide');
 
-                        currentChunk++;
-                        if (currentChunk === totalChunks) {
-                            return {
-                                success: true,
-                                filePath: response.filePath,
-                                thumb: response.thumbnailPath,
-                                compressed: response.compressedPath
-                            };
+                        if (response.result === 'success') {
+                            successMsg(response.message);
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1000);
+                        } else {
+                            errorMsg(response.message);
                         }
-                    } catch (error) {
-                        return {success: false, error: error};
+                    },
+                    error: function (xhr) {
+                        $.unblockUI();
+                        var message = xhr.responseJSON?.message || 'An error occurred';
+                        if (xhr.responseJSON?.errors) {
+                            message = Object.values(xhr.responseJSON.errors).join('<br>');
+                        }
+                        errorMsg(message);
                     }
-                }
+                });
             }
 
-            // Submit form data function
-            async function submitFormData(url, data) {
-                $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
-                try {
-                    let response = await $.ajax({
-                        type: 'POST',
-                        url: url,
-                        data: data,
-                        processData: false,
-                        contentType: false,
-                    });
-                    $.unblockUI();
-                    successMsg(response.message || '{{ __("common.saved_successfully") }}');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
-                } catch (xhr) {
-                    $.unblockUI();
-                    errorMsg(xhr.responseJSON?.message || '{{ __("common.error_occurred") }}');
-                }
-            }
+            // Reset form when modal is closed
+            $('#homepageSectionModal').on('hidden.bs.modal', function () {
+                $('#homepageSectionForm')[0].reset();
+                $('#imagePreview').hide();
+                $('#currentImage').show();
+                $('.is-invalid').removeClass('is-invalid');
+                $('.invalid-feedback').remove();
+            });
         });
     </script>
 @endsection

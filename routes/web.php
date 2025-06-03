@@ -127,7 +127,7 @@ Route::prefix('admin')->group(function () {
         Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
         Route::get('homepage-sections/create', [HomepageSectionController::class, 'create'])->name('homepage-sections.create');
         Route::post('homepage-sections', [HomepageSectionController::class, 'store'])->name('homepage-sections.store');
-        Route::delete('homepage-sections/{homepageSection}', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
+        Route::delete('homepage-sections', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
 
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
         Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
@@ -203,11 +203,8 @@ Route::group(['as' => 'frontend.'], function () {
     Route::get('tobas', [\App\Http\Controllers\Frontend\TobasController::class, 'index'])->name('tobas.page');
     Route::get('tobas-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\TobasController::class, 'topasGallery'])->name('tobas.gallery');
 
-
     Route::get('activities', [\App\Http\Controllers\Frontend\ActivityController::class, 'index'])->name('activites.page');
     Route::get('activities-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\ActivityController::class, 'topasGallery'])->name('activites.gallery');
-
-
 
     Route::get('animal/{slug}', [\App\Http\Controllers\Frontend\AnimalController::class, 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'loadMoreAnimalGalleries'])->name('load.more.animal');

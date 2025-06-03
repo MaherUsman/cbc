@@ -34,63 +34,77 @@ class HomepageSectionService
         try {
             $data = $request->validated();
 
-            // Find existing section or create new instance
+            // Always get the first (and only) record
             $section = HomepageSection::first();
 
+            // Handle file upload
             if ($request->hasFile('background_image')) {
                 $file = $request->file('background_image');
                 $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
                 $destinationPath = public_path('homepage');
 
+                // Create directory if it doesn't exist
                 if (!is_dir($destinationPath)) {
                     mkdir($destinationPath, 0755, true);
                 }
 
-                // Delete old image if updating
-                if ($section && $section->background_image && file_exists(public_path($section->background_image))) {
-                    unlink(public_path($section->background_image));
+                // Delete old image if updating and old image exists
+                if ($section && $section->background_image) {
+                    $oldImagePath = public_path($section->background_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
                 }
 
+                // Move new file
                 $file->move($destinationPath, $filename);
                 $data['background_image'] = 'homepage/' . $filename;
             }
 
-            if (!$section) {
-                // Create new record
-                $section = HomepageSection::create($data);
-            } else {
+            if ($section) {
                 // Update existing record
                 $section->update($data);
+                $message = 'Homepage section updated successfully!';
+            } else {
+                // Create new record (first time)
+                $section = HomepageSection::create($data);
+                $message = 'Homepage section created successfully!';
             }
 
             DB::commit();
 
-            return makeResponse('success', 'Saved Successfully!', Response::HTTP_OK, $section);
+            return makeResponse('success', $message, Response::HTTP_OK, $section);
+
         } catch (\Exception $exception) {
             DB::rollBack();
 
-            $errorMessage = $exception->getMessage() ?: 'Unknown error';
-            return makeResponse('error', 'error: ' . $errorMessage, Response::HTTP_INTERNAL_SERVER_ERROR);
+            return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function destroy(HomepageSection $homepageSection)
+    public function destroy()
     {
         try {
-            if ($homepageSection->background_image) {
-                $oldImagePath = str_replace('storage/', '', $homepageSection->background_image);
-                if (Storage::disk('public')->exists($oldImagePath)) {
-                    Storage::disk('public')->delete($oldImagePath);
+            $section = HomepageSection::first();
+
+            if ($section) {
+                // Delete associated image file
+                if ($section->background_image) {
+                    $imagePath = public_path($section->background_image);
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
                 }
+
+                $section->delete();
+
+                return makeResponse('success', 'Homepage section deleted successfully!', Response::HTTP_OK);
             }
 
-            $homepageSection->delete();
+            return makeResponse('error', 'No homepage section found to delete.', Response::HTTP_NOT_FOUND);
 
-            return makeResponse('success', 'Deleted Successfully!', Response::HTTP_NO_CONTENT);
         } catch (\Exception $exception) {
-            $errorMessage = $exception->getMessage() ?: 'Unknown error';
-            return makeResponse('error', 'error: ' . $errorMessage, Response::HTTP_INTERNAL_SERVER_ERROR);
+            return makeResponse('error', 'Error: ' . $exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

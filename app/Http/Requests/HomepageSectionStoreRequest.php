@@ -19,7 +19,7 @@ class HomepageSectionStoreRequest extends FormRequest
         return [
             'title'            => ['nullable', 'string'],
             'content'          => ['nullable', 'string'],
-            'background_image' => ['nullable', 'string'], // can be url or file path
+            'background_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg'], // can be url or file path
             'button_text'      => ['nullable', 'string'],
             'button_link'      => ['nullable', 'string'], // url or route name
         ];
