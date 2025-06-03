@@ -1,4 +1,4 @@
-<a href="{{route('slider-animals.edit',$slider_animal)}}" title="Edit"
+<a href="{{route('researchArticle.edit', $researchArticle)}}" title="Edit"
    data-bs-toggle="tooltip" data-bs-placement="top">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"
@@ -8,7 +8,7 @@
     </svg>
 </a>
 
-<a data-url="{{ route('slider-animals.destroy', $slider_animal) }}" title="Delete"
+<a data-url="{{ route('researchArticle.destroy', $researchArticle) }}" title="Delete"
    class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"

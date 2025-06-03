@@ -41,7 +41,7 @@ class AnimalService
     public function listingAnimalCategory($slug)
     {
         $category = AnimalCategory::where('slug' , $slug)->first();
-        $data['animals'] = Animal::where('category_id' , $category->id)->paginate(9);
+        $data['animals'] = Animal::where('category_id' , $category->id)->orderBy('id', 'desc')->paginate(9);
         $data['category'] = $category;
         return $data;
     }
