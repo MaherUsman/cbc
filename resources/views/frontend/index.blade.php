@@ -243,12 +243,12 @@
     <!-- events-section -->
     <section class="events-section sec-pad mt-5">
         <div class="bg-layer"></div>
-        <div class="bg-image" style="background-image: url(assets/images/background/events-bg.jpg);"></div>
+        <div class="bg-image" style="background-image: url('{{ asset($homepageSection->background_image ?? 'assets/images/background/events-bg.jpg') }}');"></div>
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-12 col-sm-12 title-column">
                     <div class="sec-title light">
-                        <h2>Check zoo upcoming events</h2>
+                        <h2>{{ $homepageSection->title ?? 'Check zoo upcoming events' }}</h2>
                         <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>
                     </div>
                 </div>

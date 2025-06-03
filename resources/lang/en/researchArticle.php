@@ -1,0 +1,58 @@
+<?php
+
+return [
+    'list_researchArticle' => 'List Research Article',
+    'add_researchArticle' => 'Add Research Article',
+    'name' => 'Research Article List',
+    'pageTitle' => 'All Research Article',
+    'reOrder' => 'Reorder Research Article',
+    'admin' => [
+        'create' => [
+            'create' => 'Create Research Article',
+            'title' => 'Title',
+            'image' => 'Image',
+            'description' => 'Description',
+            'submit' => 'Submit',
+            'title_message' => 'Please Enter Title',
+            'image_message' => 'Please Select Image',
+            'description_message' => 'Please Enter Description',
+            'title_required' => 'Title is Required',
+            'image_required' => 'Image is Required',
+            'description_required' => 'Description is Required',
+        ],
+        'edit' => [
+            'edit' => 'Edit Research Article',
+            'title' => 'Title',
+            'image' => 'Image',
+            'description' => 'Description',
+            'submit' => 'Submit',
+            'title_message' => 'Please Enter Title',
+            'image_message' => 'Please Select Image',
+            'description_message' => 'Please Enter Description',
+            'title_required' => 'Title is Required',
+            'image_required' => 'Image is Required',
+            'description_required' => 'Description is Required',
+        ],
+        'index' => [
+            'action' => 'Action',
+            'title' => 'Title',
+            'image' => 'Image',
+            'description' => 'Description',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ],
+        'breadcrumbs' => [
+            'name' => 'List Research Article',
+            'create' => 'Create Research Article',
+            'edit' => 'Edit Research Article',
+            'show' => 'Edit Research Article',
+        ],
+        'response_msg' => [
+            'success' => 'Research Article created successfully',
+            'update' => 'Research Article Updated successfully',
+            'error' => 'Error creating Research Article',
+            'delete' => 'Research Article Deleted Successfully'
+        ],
+        'form' => ['cancel' => 'Cancel']
+    ],
+];

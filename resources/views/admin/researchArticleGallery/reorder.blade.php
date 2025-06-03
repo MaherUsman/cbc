@@ -79,29 +79,29 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('sliders.name') , 'route' => null]],
-'pageTitle' => __('sliders.reOrder')
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('animalGalleries.name') , 'route' => null]],
+'pageTitle' => __('animalGalleries.reOrder').$animal->title.__('animalGalleries.gallery')
 ])
 
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills mb-3">
-                <li class="nav-item"><a href="{{route('sliders.index')}}#list-view" {{--data-bs-toggle="tab"--}}
-                                        class="nav-link">{{ __('common.list_view') }}</a></li>
-                <li class="nav-item"><a href="{{route('sliders.gridView')}}#grid-view" data-bs-toggle="tab"
-                                        class="nav-link me-1 show active">{{ __('common.grid_view') }}</a></li>
+                <li class="nav-item"><a href="{{route('animal-galleries.index',$animal)}}#list-view" {{--data-bs-toggle="tab"--}}
+                                        class="nav-link">{{ __('animalGalleries.list_view') }}</a></li>
+                <li class="nav-item"><a href="{{route('animal-galleries.gridView',$animal)}}#grid-view" data-bs-toggle="tab"
+                                        class="nav-link me-1 show active">{{ __('animalGalleries.grid_view') }}</a></li>
             </ul>
         </div>
         <div class="col-lg-12">
             <div class="row tab-content">
                 <div id="grid-view" class="tab-pane fade active show col-lg-12">
                     <div class="row" id="sortable">
-                        @foreach($sliders as $slider)
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12" id="{{$slider->id}}">
+                        @foreach($animal->animalGalleries()->orderBy('display_order','asc')->get() as $gallery)
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12" id="{{$gallery->id}}">
                             <div class="card card-img">
-                                <img src="{{asset($slider->image?:'no_image.jpg')}}" class="card-img-top img-fluid" alt="...">
+                                <img src="{{asset($gallery->image?:'no_image.jpg')}}" class="card-img-top img-fluid" alt="...">
                                 <div class="card-img-icon">
-                                    <a title="Edit" href="{{route('sliders.edit',$slider)}}">
+                                    <a title="Edit" href="{{route('animal-galleries.edit',$gallery)}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"
                                              style="color: #ffffff;">
@@ -109,7 +109,7 @@
                                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                         </svg>
                                     </a>
-                                    <a data-url="{{ route('sliders.destroy', $slider) }}"
+                                    <a data-url="{{ route('animal-galleries.destroy', $gallery) }}"
                                        title="Delete" class="deleteRecord"
                                        href="javascript:void(0)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -121,28 +121,6 @@
                                     </a>
                                 </div>
                             </div>
-                            {{--<div class="card card-profile" style="background-image: {{asset($slider->image)}}">
-                                <div class="card-header justify-content-end pb-0 border-0">
-                                    <div class="dropdown">
-                                        <button class="btn btn-link" type="button" data-bs-toggle="dropdown">
-                                            <span class="dropdown-dots fs--1"></span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right border py-0">
-                                            <div class="py-2">
-                                                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                <a class="dropdown-item text-danger" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-2">
-                                    <div class="text-center">
-                                        <div class="profile-photo">
-                                            <img src="{{asset($slider->image)}}" width="100" class="img-fluid rounded-circle" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>--}}
                         </div>
                         @endforeach
                     </div>
@@ -182,7 +160,7 @@
                     });
                     $.ajax({
                         type: 'POST',
-                        url: '{{route("slider-animals.updateOrder")}}',
+                        url: '{{route("animal-galleries.updateOrder")}}',
                         data: {
                             _token: '{{ csrf_token() }}',
                             order: order
@@ -245,13 +223,13 @@
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
                             setTimeout(function () {
-                                window.location.href = "{{route('slider-animal.index')}}";
+                                window.location.href = "{{route('animal-galleries.index',$animal)}}";
                             }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
                             setTimeout(function () {
-                                window.location.href = "{{route('slider-animal.index')}}";
+                                window.location.href = "{{route('animal-galleries.index',$animal)}}";
                             }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();

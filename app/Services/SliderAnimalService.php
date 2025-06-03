@@ -55,6 +55,31 @@ class SliderAnimalService
         }
     }
 
+    public function uploadVideo(SliderAnimalStoreRequest  $request)
+    {
+        try {
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $fileName = time() . '_' . $video->getClientOriginalName();
+                $video->move(public_path('upload/video'), $fileName); 
+                $filePath = 'upload/video/' . $fileName;
+                return response()->json([
+                    'success' => true,
+                    'filePath' => $filePath
+                ]);
+            }
+            return response()->json([
+                'success' => false,
+                'message' => 'No video file provided'
+            ], 400);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function show(SliderAnimal $slider)
     {
         if (request()->is('api/*')) {

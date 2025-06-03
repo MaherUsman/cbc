@@ -16,27 +16,27 @@
         }
     </style>
 
-    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('sliders.name') , 'route' => null]],
-'pageTitle' => __('sliders.pageTitle')
+    @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' => __('researchArticle.name') , 'route' => null]],
+'pageTitle' => __('researchArticle.pageTitle')
 ])
 
     <div class="row">
-{{--        <div class="col-lg-12">--}}
-{{--            <ul class="nav nav-pills mb-3">--}}
-{{--                <li class="nav-item"><a href="{{route('sliders.index')}}#list-view" data-bs-toggle="tab"--}}
-{{--                                        class="nav-link me-1 show active">{{ __('common.list_view') }}</a></li>--}}
-{{--                <li class="nav-item"><a href="{{route('sliders.gridView')}}#grid-view" --}}{{--data-bs-toggle="tab"--}}
-{{--                                        class="nav-link">{{ __('common.grid_view') }}</a></li>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
+        <div class="col-lg-12">
+            <ul class="nav nav-pills mb-3">
+                {{--<li class="nav-item"><a href="#list-view" data-bs-toggle="tab"
+                                        class="nav-link me-1 show active">{{ __('common.list_view') }}</a></li>
+                <li class="nav-item"><a href="#grid-view" data-bs-toggle="tab"
+                                        class="nav-link">{{ __('common.grid_view') }}</a></li>--}}
+            </ul>
+        </div>
         <div class="col-lg-12">
             <div class="row tab-content">
                 <div id="list-view" class="tab-pane fade active show col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{ __('sliders.list_sliders') }}</h4>
-                            <a href="{{ route('slider-animals.create') }}"
-                               class="btn btn-primary">{{ __('sliders.add_slider') }}</a>
+                            <h4 class="card-title">{{ __('researchArticle.list_researchArticle') }}</h4>
+                            <a href="{{ route('researchArticle.create') }}"
+                               class="btn btn-primary">{{ __('researchArticle.add_researchArticle') }}</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -50,7 +50,6 @@
         </div>
     </div>
     @include('layouts.admin.modal.delete_modal')
-    @include('layouts.admin.modal.message_modal')
     <div id="loader" style="display: none;">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -62,12 +61,6 @@
 
     <script>
         $(document).ready(function () {
-            $(document).on('click', '.messageDetails', function () {
-                var details = $(this).data('details');
-                $('#messageText').html(details);
-                $('#message_modal').modal('show');
-            });
-
             $(document).on('click', '.deleteRecord', function () {
                 var url = $(this).data('url');
                 $('#delete_form').attr('action', url);
@@ -96,13 +89,13 @@
                             $.unblockUI();
                             successMsg('Deleted Successfully!');
                             setTimeout(function () {
-                                window.location.href = "{{route('slider-animals.index')}}";
+                                window.location.href = "{{route('researchArticle.index')}}";
                             }, 1000);
                         } else if (response.result == 'success') {
                             $.unblockUI();
                             successMsg(response.message);
                             setTimeout(function () {
-                                window.location.href = "{{route('slider-animals.index')}}";
+                                window.location.href = "{{route('researchArticle.index')}}";
                             }, 1000);
                         } else if (response.result == 'error') {
                             $.unblockUI();
