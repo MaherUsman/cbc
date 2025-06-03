@@ -3,39 +3,38 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' =>'slider-animals.index'],
-        ['name' => __('sliders.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('sliders.admin.breadcrumbs.edit')
+        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' => 'slider-animals.index'],
+        ['name' => __('sliders.admin.breadcrumbs.create'), 'route' => 'sliders.create']],
+        'pageTitle' => __('sliders.admin.breadcrumbs.create')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-{{--                    <h6 class="card-title">{{__('sliders.admin.edit.edit')}}</h6>--}}
-                    <form method="POST" id="formValidation" action="{{route('slider-animals.update',['slider_animal'=>$slider_animal])}}"
+{{--                    <h6 class="card-title">{{__('sliders.admin.create.create')}}</h6>--}}
+                    <form method="POST" id="formValidation" action="{{route('slider-animals.store')}}"
                           enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.title')}}<span
+                                    <label class="form-label">{{__('sliders.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('sliders.admin.edit.title_message')}}"
-                                           name="title" value="{{$slider_animal->title}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.title')}}">
+                                           data-msg-required="{{__('sliders.admin.create.title_message')}}"
+                                           name="title" value="{{old('title')}}" class="form-control"
+                                           placeholder="{{__('sliders.admin.create.title')}}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.slink_message')}}"
+                                           name="slink" value="{{old('slink')}}" class="form-control"
                                            data-rule-maxlength="255"
-                                           data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
-                                           name="slink" value="{{$slider_animal->slink}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.slink')}}">
+                                           placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
                         </div>
@@ -43,34 +42,53 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                    >{{__('sliders.admin.edit.details')}}</label>
-                                    <textarea name="details" id="ckeditor">{{$slider_animal->details}}</textarea>
+                                    >{{__('sliders.admin.create.details')}}<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="details" data-rule-required="true"
+                                              data-msg-required="Detail is Required"  id="ckeditor"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.imageOrVideo')}}</label>
+                                    <label class="form-label">{{__('sliders.admin.create.imageOrVideo')}}<span
+                                            class="text-danger">(1894 x 906)*</span></label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*,video/*">
-                                    <input type="hidden" name="is_image" value="{{$slider_animal->is_image?1:0}}" id="is_image">
+                                           accept="image/*,video/*" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.imageOrVideo_message')}}">
+                                    <input type="hidden" name="is_image" value="1" id="is_image">
                                 </div>
                                 <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($slider_animal->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$slider_animal->is_image?'':'display:none;'}} max-width:200px; height:auto;">
-                                    <video id="videoPreview" src="{{asset($slider_animal->image?:'no_image.jpg')}}" controls style="{{$slider_animal->is_image?'display:none;':''}} max-width:200px; height:auto;"></video>
+                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
+                                    <video id="videoPreview" controls style="display:none; max-width:200px; height:auto;"></video>
                                 </div>
-                            </div><!-- Col -->
-                        </div><!-- Row -->
-                        <a href="{{route('slider-animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            </div>
+                        </div>
+                        {{--<div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('sliders.admin.create.image')}}<span
+                                            class="text-danger">(1894 x 906)*</span></label>
+                                    <input type="file" name="image" class="form-control" id="imageUpload"
+                                           accept="image/*" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.slink_message')}}">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                        </div>--}}
+                        <a href="{{route('sliders.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
                             {{__('sliders.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('sliders.admin.edit.submit')}}
+                            {{__('sliders.admin.create.submit')}}
                         </button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -78,6 +96,7 @@
 @endsection
 
 @section('script')
+
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -108,9 +127,20 @@
         });
 
         $(document).ready(function () {
-            var imageColName = 'pic';
+            var imageColName = 'image';
 
             $('#formValidation').validate({
+                ignore: [],
+                rules: {
+                    details: {
+                        required: true
+                    }
+                },
+                messages: {
+                    details: {
+                        required: "Detail is Required"
+                    }
+                },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 
@@ -129,37 +159,22 @@
                     var url = $(form).attr('action');
                     var imageColName = $('#imageUpload').attr('name');
                     var data = new FormData($(form)[0]);
-                    var file = $('#imageUpload')[0].files[0];
-                    var isImage = $('#is_image').val() === '1';
+                    var imageFile = $('#imageUpload')[0].files[0];
 
-                    if (file) {
+                    if (imageFile) {
                         try {
-                            let response;
-                            if (isImage) {
-                                // Use chunk upload for images
-                                response = await uploadImageInChunks(file);
-                                if (response.success) {
-                                    data.set(imageColName, response.filePath);
-                                } else {
-                                    $.unblockUI();
-                                    errorMsg('Image upload failed');
-                                    return;
-                                }
+                            let response = await uploadImageInChunks(imageFile);
+                            console.log(response);
+                            if (response.success) {
+                                data.set(imageColName, response.filePath);
+                                await submitFormData(url, data);
                             } else {
-                                // Direct upload for videos
-                                response = await uploadVideo(file);
-                                if (response.success) {
-                                    data.set(imageColName, response.filePath);
-                                } else {
-                                    $.unblockUI();
-                                    errorMsg('Video upload failed');
-                                    return;
-                                }
+                                $.unblockUI();
+                                errorMsg('Image upload failed');
                             }
-                            await submitFormData(url, data);
                         } catch (error) {
                             $.unblockUI();
-                            errorMsg('An error occurred during the upload');
+                            errorMsg('An error occurred during the image upload');
                         }
                     } else {
                         await submitFormData(url, data);
@@ -167,36 +182,11 @@
                 }
             });
 
-            async function uploadVideo(file) {
-                var formData = new FormData();
-                formData.append('video', file);
-                formData.append('_token', "{{ csrf_token() }}");
-
-                try {
-                    let response = await $.ajax({
-                        type: 'POST',
-                        url: '{{ route('uploadVideo') }}', // You'll need to create this route
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                    });
-                    return {
-                        success: true,
-                        filePath: response.filePath
-                    };
-                } catch (error) {
-                    return {
-                        success: false,
-                        error: error
-                    };
-                }
-            }
-
             async function uploadImageInChunks(file) {
                 var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
                 var totalChunks = Math.ceil(file.size / chunkSize);
                 var currentChunk = 0;
-
+                // alert('poikk');
                 while (currentChunk < totalChunks) {
                     var start = currentChunk * chunkSize;
                     var end = Math.min(start + chunkSize, file.size);
@@ -221,7 +211,9 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
+                            console.log(response , 'test')
                             return {success: true, filePath: response.filePath};
+
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -261,5 +253,6 @@
                 }
             }
         });
+
     </script>
 @endsection

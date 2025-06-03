@@ -204,7 +204,7 @@
                 try {
                     let response = await $.ajax({
                         type: 'POST',
-                        url: '{{ route('uploadVideo') }}', 
+                        url: '{{ route('uploadVideo') }}',
                         data: formData,
                         processData: false,
                         contentType: false,
@@ -254,10 +254,13 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {
-                                success: true,
-                                filePath: response.compressedPath
-                            };
+
+                            console.log(response , 'response test')
+                            return {success: true, filePath: response.filePath};
+                            // return {
+                            //     success: true,
+                            //     filePath: response.compressedPath
+                            // };
                         }
                     } catch (error) {
                         return {
