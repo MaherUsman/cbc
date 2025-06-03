@@ -8,9 +8,11 @@ use App\Models\Animal;
 use App\Models\Blog;
 use App\Models\HomeCounter;
 use App\Models\Intro;
+use App\Models\ResearchArticle;
 use App\Models\Settings;
 use App\Models\Slider;
 use App\Models\Team;
+use App\Models\HomepageSection;
 
 class HomeService
 {
@@ -30,19 +32,20 @@ class HomeService
         $homeCounter = json_decode($settings->home_counter, true);
 
         $data['homeCounter'] = $homeCounter;
+        $data['homepageSection'] = HomepageSection::first();
         return $data;
     }
     public function aboutUs()
     {
         $data['aboutUs'] = AboutUs::first();
         $data['teams'] = Team::all();
-        $data['galleries'] = AboutUsGallery::all();
+        $data['galleries'] = AboutUsGallery::orderBy('id', 'desc')->get();
         return $data;
     }
 
     public function rearchArticle()
     {
-        $data = [];
+        $data['researchArticles'] = ResearchArticle::all();
         return $data;
     }
 }

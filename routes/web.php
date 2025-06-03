@@ -18,6 +18,8 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GalleriesContentController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ResearchArticleController;
+use App\Http\Controllers\ResearchArticleGalleryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TobaController;
@@ -33,6 +35,7 @@ use App\Http\Resources\ActivityGalleryCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\HomepageSectionController;
 
 Route::prefix('admin')->group(function () {
 
@@ -64,9 +67,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('teams', TeamController::class);
         Route::resource('contact-us', ContactUsController::class);
         Route::resource('sliders', SliderController::class);
+
         Route::get('reorder-sliders', [SliderController::class, 'gridView'])->name('sliders.gridView');
         Route::post('update-sliders-order', [SliderController::class, 'updateOrder'])->name('sliders.updateOrder');
-        
+
+        Route::post('upload-video', [SliderAnimalController::class, 'uploadVideo'])->name('uploadVideo');
         Route::resource('slider-animals', SliderAnimalController::class);
         Route::get('reorder-slider-animals', [SliderAnimalController::class, 'gridView'])->name('slider-animals.gridView');
         Route::post('update-slider-animals-order', [SliderAnimalController::class, 'updateOrder'])->name('slider-animals.updateOrder');
@@ -117,9 +122,35 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete-animal-slider-image/{id}', [AnimalController::class, 'deleteAnimalSliderImage'])->name('delete.animal.slider.image');
 
         //tobas
-        Route::resource('tobas', \App\Http\Controllers\TobasController::class);
+        Route::resource('tobas', \App\Http\Controllers\TobasController::class);//
+
+        Route::get('research-article', [ResearchArticleController::class, 'index'])->name('researchArticle.index');
+        Route::get('research-article/create', [ResearchArticleController::class, 'create'])->name('researchArticle.create');
+        Route::post('research-article/store', [ResearchArticleController::class, 'store'])->name('researchArticle.store');
+        Route::get('research-article/{researchArticle}', [ResearchArticleController::class, 'edit'])->name('researchArticle.edit');
+        Route::put('research-article/{researchArticle}', [ResearchArticleController::class, 'update'])->name('researchArticle.update');
+        Route::delete('research-article/{researchArticle}', [ResearchArticleController::class, 'destroy'])->name('researchArticle.destroy');
+
+        //Route::get('researchArticle-galleries', [ResearchArticleGalleryController::class, 'index'])->name('researchArticle-galleries.index');
+        Route::controller(ResearchArticleGalleryController::class)->group(function () {
+            Route::get('/research-article-galleries/{researchArticle}', 'index')->name('researchArticleGalleries.index');
+            Route::get('/research-article-galleries/create/{researchArticle}', 'create')->name('researchArticleGalleries.create');
+            Route::post('/research-article-galleries/{researchArticle}', 'store')->name('researchArticleGalleries.store');
+            Route::get('/research-article-galleries/{researchArticleGallery}', 'show')->name('researchArticleGalleries.show');
+            Route::get('/research-article-galleries/{researchArticleGallery}/edit', 'edit')->name('researchArticleGalleries.edit');
+            Route::put('/research-article-galleries/{researchArticleGallery}', 'update')->name('researchArticleGalleries.update');
+            Route::delete('/research-article-galleries/{researchArticleGallery}', 'destroy')->name('researchArticleGalleries.destroy');
+            Route::get('/research-article-galleries/reorder/{researchArticle}', 'gridView')->name('researchArticleGalleries.gridView');
+            Route::post('/update-blog-galleries-order', 'updateOrder')->name('researchArticleGalleries.updateOrder');
+        });
 
         Route::resource('animals', AnimalController::class);
+
+        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
+        Route::get('homepage-sections/create', [HomepageSectionController::class, 'create'])->name('homepage-sections.create');
+        Route::post('homepage-sections', [HomepageSectionController::class, 'store'])->name('homepage-sections.store');
+        Route::delete('homepage-sections', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
+
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
         Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
         Route::controller(AnimalGalleryController::class)->group(function () {
@@ -194,15 +225,14 @@ Route::group(['as' => 'frontend.'], function () {
     Route::get('tobas', [\App\Http\Controllers\Frontend\TobasController::class, 'index'])->name('tobas.page');
     Route::get('tobas-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\TobasController::class, 'topasGallery'])->name('tobas.gallery');
 
-
     Route::get('activities', [\App\Http\Controllers\Frontend\ActivityController::class, 'index'])->name('activites.page');
     Route::get('activities-gallery/{tobasGallery}', [\App\Http\Controllers\Frontend\ActivityController::class, 'topasGallery'])->name('activites.gallery');
-
-
 
     Route::get('animal/{slug}', [\App\Http\Controllers\Frontend\AnimalController::class, 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'loadMoreAnimalGalleries'])->name('load.more.animal');
     Route::get('loadmore/{slug}/events', [\App\Http\Controllers\Frontend\EventController::class, 'loadMoreEventGalleries'])->name('load.more.event');
+
+    Route::get('research-article/{researchArticle}', [ResearchArticleController::class, 'frontShow'])->name('researchArticle.FShow');
 });
 
 Route::get('{any?}', function () {

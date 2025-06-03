@@ -57,6 +57,12 @@ return [
         'create' => 'Add Gallery Pics',
         'sec' => 'Tobas',
     ],
+    'researchArticle' => [
+        'name' => 'Research Article Gallery',
+        'index' => 'Research Articles',
+        'create' => 'Add Gallery Pics',
+        'sec' => 'Research Article',
+    ],
     'animals' => [
         'name' => 'Animals',
         'index' => 'All Animals',
@@ -91,6 +97,13 @@ return [
     ],
     'career-listing' => [
         'name' => 'Career Listing',
+    ],
+    'homepageSections' => [
+        'name' => 'Home Page Section',
+        'index' => 'Home Page Section',
+        'create' => 'Create Home Page Section',
+        'edit' => 'Edit Home Page Section',
     ]
+
 
 ];

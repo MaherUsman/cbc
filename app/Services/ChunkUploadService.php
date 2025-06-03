@@ -77,15 +77,29 @@ class ChunkUploadService
                 } elseif (str_starts_with($mimeType, 'video/')) {
 //                    dd('upload/' . $FinalPath . '/' . $FinalFileName);
                     return response()->json([
-                        'message' => 'Video upload complete',
-                        'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName
-                    ]);
+//                        'message' => 'Video upload complete',
+  //                      'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName
+   
+ 'message' => 'Video upload complete',
+                        'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
+                        'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
+                        'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
+
+                 ]);
                 } else {
                     // Unsupported file type
                     unlink($finalFile);
                     return response()->json(['error' => 'Unsupported file type'], 400);
                 }
             }
+
+
+//                    return response()->json([
+  //                      'message' => 'Image upload complete',
+    ///                    'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
+       //                 'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
+         //               'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
+           //         ]);
 
             return response()->json(['message' => 'Chunk uploaded']);
         } catch (\Exception $exception) {

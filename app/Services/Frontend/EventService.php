@@ -10,7 +10,7 @@ class EventService
     {
         $data['event'] = Blog::where('slug' , $slug)
             ->with(['blogGalleries' => function ($query) {
-                $query->paginate(9); // Load only 10 images initially
+                $query->orderBy('id', 'desc')->take(9); // Load only 10 images initially
             }])
             ->firstOrFail();
         $data['recentEvents'] = Blog::orderBy('created_at' , 'DESC')->limit(3)->get();

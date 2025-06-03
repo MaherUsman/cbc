@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\SocialLinks;
 
 class AdminController extends Controller
 {
@@ -64,7 +65,8 @@ class AdminController extends Controller
     {
         $settings = Settings::first();
         $homeCounter = HomeCounter::all();
-        return view('admin.settings.setting', compact('settings', 'homeCounter'));
+        $socialLinks = SocialLinks::all();
+        return view('admin.settings.setting', compact('settings', 'homeCounter', 'socialLinks'));
     }
 
     public function update_setting(AdminSettingUpdate $request)
@@ -107,8 +109,29 @@ class AdminController extends Controller
                 Settings::create($settingArray);
             }
 
+            // Assume request contains 'social_links' => [
+            //    'Facebook' => 'https://facebook.com/newlink',
+            //    'Twitter' => 'https://twitter.com/newlink',
+            //    ...
+            // ]
+
+            if ($request->has('social_links') && is_array($request->social_links)) {
+                foreach ($request->social_links as $socialName => $socialUrl) {
+                    // Validate url before updating if needed
+                    if (filter_var($socialUrl, FILTER_VALIDATE_URL)) {
+                        // Update only the social_link, social_name and social_icon remain fixed from seeder
+                        SocialLinks::where('social_name', $socialName)
+                            ->update(['social_link' => $socialUrl]);
+                    }
+                }
+            }
+
             DB::commit();
-            $data = $settings;
+
+            $data = [
+                'settings' => $settings,
+                'social_links' => SocialLinks::all(), // return updated social links
+            ];
             return makeResponse('success', 'Settings Updated Successfully!', Response::HTTP_OK, $data);
         } catch (\Exception $exception) {
             DB::rollBack();

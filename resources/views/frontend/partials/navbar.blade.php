@@ -110,8 +110,8 @@
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li>
                             <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.contact.us')}}">Contact Us</a></li>
-                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a
-                                    href="{{route('frontend.career.store')}}">Career</a></li>
+{{--                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a--}}
+{{--                                    href="{{route('frontend.career.store')}}">Career</a></li>--}}
                         </ul>
                     </div>
                 </nav>

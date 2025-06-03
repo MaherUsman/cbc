@@ -32,6 +32,14 @@ class AdminSettingUpdate extends FormRequest
             'logo' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:5120'],//jpeg,jpg,png,ico,bmp
             'home_count' => 'required|array|size:4', // Ensure it's an array with exactly 4 elements
             'home_count.*' => 'required|string',
+            'social_links' => ['nullable', 'array'],
+
+            // Validate each social link url (optional), keys should match your fixed social names
+            'social_links.Facebook' => ['nullable', 'string', 'max:255', 'url'],
+            'social_links.Twitter' => ['nullable', 'string', 'max:255', 'url'],
+            'social_links.Youtube' => ['nullable', 'string', 'max:255', 'url'],
+            'social_links.Instagram' => ['nullable', 'string', 'max:255', 'url'],
+            'social_links.Linkedin' => ['nullable', 'string', 'max:255', 'url'],
         ];
     }
 }

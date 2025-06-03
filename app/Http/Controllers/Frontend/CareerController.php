@@ -18,7 +18,8 @@ class CareerController extends Controller
 
     public function careerPage()
     {
-        $jobs = Job::all();
+        $jobs = Job::orderBy('id', 'desc')->get();
+
         return view('frontend.career',compact('jobs'));
     }
 

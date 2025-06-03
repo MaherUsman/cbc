@@ -35,6 +35,12 @@ class SettingSeed extends Seeder
                 'social_icon' => 'fab fa-instagram',
                 'social_link' => 'https://www.instagram.com/hfip_216/',
             ],
+            [
+                'social_name' => 'Linkedin',
+                'social_icon' => 'fab fa-linkedin-in',
+                'social_link' => 'https://www.linkedin.com',
+            ],
+
         ];
 
         foreach ($links as $link) {

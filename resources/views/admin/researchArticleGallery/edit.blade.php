@@ -3,74 +3,58 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' =>'slider-animals.index'],
-        ['name' => __('sliders.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('sliders.admin.breadcrumbs.edit')
+        'breadcrumbs' => [
+
+            ['name' => __('researchArticleGalleries.admin.breadcrumbs.edit'), 'route' => 'researchArticleGalleries.edit', 'params' => $researchArticleGallery->researchArticle]
+        ],
+        'pageTitle' => __('researchArticleGalleries.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-{{--                    <h6 class="card-title">{{__('sliders.admin.edit.edit')}}</h6>--}}
-                    <form method="POST" id="formValidation" action="{{route('slider-animals.update',['slider_animal'=>$slider_animal])}}"
+                    <h6 class="card-title">{{__('researchArticleGalleries.admin.edit.edit')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('researchArticleGalleries.update',$researchArticleGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="row">
-                            <div class="col-sm-6">
+                        <div class="row rowTemplate">
+                            <div class="col-sm-5">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.title')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('sliders.admin.edit.title_message')}}"
-                                           name="title" value="{{$slider_animal->title}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.title')}}">
+                                    <label class="form-label">{{__('researchArticleGalleries.admin.create.title')}}{{--<span
+                                            class="text-danger">*</span> --}}</label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('researchArticleGalleries.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$researchArticleGallery->title}}"
+                                           placeholder="{{__('researchArticleGalleries.admin.create.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.slink')}}<span
-                                            class="text-danger">*</span> </label>
-                                    <input type="text" data-rule-required="true"
-                                           data-rule-maxlength="255"
-                                           data-msg-required="{{__('sliders.admin.edit.slink_message')}}"
-                                           name="slink" value="{{$slider_animal->slink}}" class="form-control"
-                                           placeholder="{{__('sliders.admin.edit.slink')}}">
+                                    <label class="form-label">{{__('researchArticleGalleries.admin.create.image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="image" id="imageUpload" class="form-control" accept="image/*"
+                                           data-rule-required="false" onchange="previewImage(this)"
+                                           data-msg-required="{{__('researchArticleGalleries.admin.create.image_message')}}">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                    >{{__('sliders.admin.edit.details')}}</label>
-                                    <textarea name="details" id="ckeditor">{{$slider_animal->details}}</textarea>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img src="{{asset($researchArticleGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                         style="display:block; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.edit.imageOrVideo')}}</label>
-                                    <input type="file" name="image" class="form-control" id="imageUpload"
-                                           accept="image/*,video/*">
-                                    <input type="hidden" name="is_image" value="{{$slider_animal->is_image?1:0}}" id="is_image">
-                                </div>
-                                <div class="mb-3">
-                                    <img id="imagePreview" src="{{asset($slider_animal->image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$slider_animal->is_image?'':'display:none;'}} max-width:200px; height:auto;">
-                                    <video id="videoPreview" src="{{asset($slider_animal->image?:'no_image.jpg')}}" controls style="{{$slider_animal->is_image?'display:none;':''}} max-width:200px; height:auto;"></video>
-                                </div>
-                            </div><!-- Col -->
-                        </div><!-- Row -->
-                        <a href="{{route('slider-animals.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
-                            {{__('sliders.admin.form.cancel')}}
+
+                        <a href="{{route('researchArticleGalleries.index', $researchArticleGallery->researchArticle)}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('researchArticleGalleries.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('sliders.admin.edit.submit')}}
+                            {{__('researchArticleGalleries.admin.create.submit')}}
                         </button>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -78,34 +62,19 @@
 @endsection
 
 @section('script')
+
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            const imagePreview = document.getElementById('imagePreview');
-            const videoPreview = document.getElementById('videoPreview');
-            const is_image = document.getElementById('is_image');
-            if (file) {
-                const reader = new FileReader();
+        // Function to preview the selected image
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
                 reader.onload = function (e) {
-                    if (file.type.startsWith('image/')) {
-                        imagePreview.style.display = 'block';
-                        videoPreview.style.display = 'none';
-                        imagePreview.src = e.target.result;
-                        is_image.value=1;
-                    } else if (file.type.startsWith('video/')) {
-                        videoPreview.style.display = 'block';
-                        imagePreview.style.display = 'none';
-                        videoPreview.src = e.target.result;
-                        is_image.value=0;
-                    }
+                    // Find the nearest image element in the same row and display it
+                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
                 };
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.style.display = 'none';
-                videoPreview.style.display = 'none';
-                is_image.value='';
+                reader.readAsDataURL(input.files[0]); // Convert the file to a URL
             }
-        });
+        }
 
         $(document).ready(function () {
             var imageColName = 'pic';
@@ -136,6 +105,8 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
+                                data.set(`thumb`, response.thumb);
+                                data.set(`compressed`, response.compressed);
                                 await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
@@ -175,10 +146,12 @@
                             processData: false,
                             contentType: false,
                         });
-
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.compressedPath };
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -210,7 +183,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('slider-animals.index')}}";
+                        window.location.href = "{{route('researchArticleGalleries.index', $researchArticleGallery->researchArticle)}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
@@ -218,5 +191,7 @@
                 }
             }
         });
+
+
     </script>
 @endsection
