@@ -153,27 +153,31 @@
 
                             </div>
 
+
                             {{-- Image Preview --}}
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{ __('homepageSections.preview') }}</label>
-                                    <div class="image-preview-container position-relative">
+                                    <div class="image-preview-container" style="min-height: 250px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ddd; border-radius: 0.375rem;">
                                         @if($homepageSection && $homepageSection->background_image)
                                             <img src="{{ asset($homepageSection->background_image) }}"
                                                  alt="Current Image"
                                                  id="currentImage"
-                                                 class="img-thumbnail d-block w-100"
-                                                 style="max-width: 100%; max-height: 250px; object-fit: contain;"
+                                                 class="img-thumbnail"
+                                                 style="max-width: 100%; max-height: 250px; object-fit: contain; display: block;"
                                             >
-
                                         @endif
 
-                                            <img src="#"
-                                                 alt="Image Preview"
-                                                 id="imagePreview"
-                                                 class="img-thumbnail w-100"
-                                                 style="display: none; max-width: 100%; max-height: 250px; object-fit: contain; position: absolute; top: 0; left: 0;"
-                                            >
+                                        <img src="#"
+                                             alt="Image Preview"
+                                             id="imagePreview"
+                                             class="img-thumbnail"
+                                             style="display: none; max-width: 100%; max-height: 250px; object-fit: contain;"
+                                        >
+
+                                        @if(!$homepageSection || !$homepageSection->background_image)
+{{--                                            <span class="text-muted" id="noImageText">{{ __('homepageSections.no_image_selected') }}</span>--}}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -206,20 +210,42 @@
     <script>
         // Preview uploaded image
         function previewImage(input) {
+            const current = document.getElementById('currentImage');
+            const preview = document.getElementById('imagePreview');
+            const noImageText = document.getElementById('noImageText');
+
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    const current = document.getElementById('currentImage');
-                    const preview = document.getElementById('imagePreview');
+                    // Remove current image from DOM if it exists
+                    if (current) {
+                        current.remove();
+                    }
 
-                    // Always hide current image
-                    if (current) current.style.display = 'none';
+                    // Hide "no image" text if it exists
+                    if (noImageText) {
+                        noImageText.style.display = 'none';
+                    }
 
-                    // Show new preview
+                    // Show new preview with consistent styling
                     preview.src = e.target.result;
                     preview.style.display = 'block';
+                    preview.style.maxWidth = '100%';
+                    preview.style.maxHeight = '250px';
+                    preview.style.objectFit = 'contain';
                 };
                 reader.readAsDataURL(input.files[0]);
+            } else {
+                // If no file selected, hide preview and show current image if it exists
+                if (preview) {
+                    preview.style.display = 'none';
+                }
+
+                if (current) {
+                    current.style.display = 'block';
+                } else if (noImageText) {
+                    noImageText.style.display = 'block';
+                }
             }
         }
 
