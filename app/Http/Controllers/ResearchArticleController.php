@@ -47,4 +47,10 @@ class ResearchArticleController extends Controller
     {
         return $this->researchArticleService->destroy($researchArticle);
     }
+
+
+    public function frontShow(ResearchArticle $researchArticle)
+    {
+        return view('frontend.researchArticleDetail', compact('researchArticle'));
+    }
 }

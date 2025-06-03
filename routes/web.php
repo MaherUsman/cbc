@@ -234,6 +234,8 @@ Route::group(['as' => 'frontend.'], function () {
     Route::get('animal/{slug}', [\App\Http\Controllers\Frontend\AnimalController::class, 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'loadMoreAnimalGalleries'])->name('load.more.animal');
     Route::get('loadmore/{slug}/events', [\App\Http\Controllers\Frontend\EventController::class, 'loadMoreEventGalleries'])->name('load.more.event');
+
+    Route::get('research-article/{researchArticle}', [ResearchArticleController::class, 'frontShow'])->name('researchArticle.FShow');
 });
 
 Route::get('{any?}', function () {

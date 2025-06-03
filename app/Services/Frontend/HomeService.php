@@ -8,6 +8,7 @@ use App\Models\Animal;
 use App\Models\Blog;
 use App\Models\HomeCounter;
 use App\Models\Intro;
+use App\Models\ResearchArticle;
 use App\Models\Settings;
 use App\Models\Slider;
 use App\Models\Team;
@@ -44,7 +45,7 @@ class HomeService
 
     public function rearchArticle()
     {
-        $data = [];
+        $data['researchArticles'] = ResearchArticle::all();
         return $data;
     }
 }

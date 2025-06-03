@@ -21,17 +21,16 @@ class HomeController extends Controller
     public function index()
     {
         $data = $this->service->index();
-        return view('frontend.index' , $data);
+        return view('frontend.index', $data);
     }
 
     public function aboutUs()
     {
         $data = $this->service->aboutUs();
-        return view('frontend.about-us' , $data);
+        return view('frontend.about-us', $data);
     }
 
-
-        public function uploadImage(Request $request)
+    public function uploadImage(Request $request)
     {
         $validator = validator::make($request->all(), [
             'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -62,7 +61,7 @@ class HomeController extends Controller
     public function rearchArticle()
     {
         $data = $this->service->rearchArticle();
-        return view('frontend.rearch_article' , $data);
+        return view('frontend.rearch_article', $data);
     }
 
     public function contactUs()
