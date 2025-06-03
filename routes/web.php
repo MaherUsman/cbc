@@ -18,6 +18,8 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\GalleriesContentController;
 use App\Http\Controllers\IntroController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ResearchArticleController;
+use App\Http\Controllers\ResearchArticleGalleryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TobaController;
@@ -120,7 +122,27 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete-animal-slider-image/{id}', [AnimalController::class, 'deleteAnimalSliderImage'])->name('delete.animal.slider.image');
 
         //tobas
-        Route::resource('tobas', \App\Http\Controllers\TobasController::class);
+        Route::resource('tobas', \App\Http\Controllers\TobasController::class);//
+
+        Route::get('research-article', [ResearchArticleController::class, 'index'])->name('researchArticle.index');
+        Route::get('research-article/create', [ResearchArticleController::class, 'create'])->name('researchArticle.create');
+        Route::post('research-article/store', [ResearchArticleController::class, 'store'])->name('researchArticle.store');
+        Route::get('research-article/{researchArticle}', [ResearchArticleController::class, 'edit'])->name('researchArticle.edit');
+        Route::put('research-article/{researchArticle}', [ResearchArticleController::class, 'update'])->name('researchArticle.update');
+        Route::delete('research-article/{researchArticle}', [ResearchArticleController::class, 'destroy'])->name('researchArticle.destroy');
+
+        //Route::get('researchArticle-galleries', [ResearchArticleGalleryController::class, 'index'])->name('researchArticle-galleries.index');
+        Route::controller(ResearchArticleGalleryController::class)->group(function () {
+            Route::get('/research-article-galleries/{researchArticle}', 'index')->name('researchArticleGalleries.index');
+            Route::get('/research-article-galleries/create/{researchArticle}', 'create')->name('researchArticleGalleries.create');
+            Route::post('/research-article-galleries/{researchArticle}', 'store')->name('researchArticleGalleries.store');
+            Route::get('/research-article-galleries/{researchArticleGallery}', 'show')->name('researchArticleGalleries.show');
+            Route::get('/research-article-galleries/{researchArticleGallery}/edit', 'edit')->name('researchArticleGalleries.edit');
+            Route::put('/research-article-galleries/{researchArticleGallery}', 'update')->name('researchArticleGalleries.update');
+            Route::delete('/research-article-galleries/{researchArticleGallery}', 'destroy')->name('researchArticleGalleries.destroy');
+            Route::get('/research-article-galleries/reorder/{researchArticle}', 'gridView')->name('researchArticleGalleries.gridView');
+            Route::post('/update-blog-galleries-order', 'updateOrder')->name('researchArticleGalleries.updateOrder');
+        });
 
         Route::resource('animals', AnimalController::class);
 
@@ -209,6 +231,8 @@ Route::group(['as' => 'frontend.'], function () {
     Route::get('animal/{slug}', [\App\Http\Controllers\Frontend\AnimalController::class, 'findAnimal'])->name('find.animal');
     Route::get('loadmore/{slug}/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'loadMoreAnimalGalleries'])->name('load.more.animal');
     Route::get('loadmore/{slug}/events', [\App\Http\Controllers\Frontend\EventController::class, 'loadMoreEventGalleries'])->name('load.more.event');
+
+    Route::get('research-article/{researchArticle}', [ResearchArticleController::class, 'frontShow'])->name('researchArticle.FShow');
 });
 
 Route::get('{any?}', function () {

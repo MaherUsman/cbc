@@ -115,6 +115,12 @@
                     <span class="nav-text">{{ __('sidebar.toba.index') }}</span>
                 </a>
             </li>
+            <li {{ request()->is('admin/research-article*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{ route('researchArticle.index') }}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">{{ __('sidebar.researchArticle.index') }}</span>
+                </a>
+            </li>
             {{--            @endif --}}
 
 

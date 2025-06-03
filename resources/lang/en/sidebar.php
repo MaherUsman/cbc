@@ -57,6 +57,12 @@ return [
         'create' => 'Add Gallery Pics',
         'sec' => 'Tobas',
     ],
+    'researchArticle' => [
+        'name' => 'Research Article Gallery',
+        'index' => 'Research Articles',
+        'create' => 'Add Gallery Pics',
+        'sec' => 'Research Article',
+    ],
     'animals' => [
         'name' => 'Animals',
         'index' => 'All Animals',
