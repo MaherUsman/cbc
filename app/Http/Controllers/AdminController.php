@@ -12,6 +12,7 @@ use App\Models\Animal;
 use App\Models\Blog;
 use App\Models\CareerApplication;
 use App\Models\HomeCounter;
+use App\Models\HomepageSection;
 use App\Models\Settings;
 use App\Models\Team;
 use App\Models\VisitorGallery;
@@ -66,13 +67,16 @@ class AdminController extends Controller
         $settings = Settings::first();
         $homeCounter = HomeCounter::all();
         $socialLinks = SocialLinks::all();
-        return view('admin.settings.setting', compact('settings', 'homeCounter', 'socialLinks'));
+        $homepageSection = HomepageSection::first();
+        return view('admin.settings.setting', compact('settings', 'homeCounter', 'socialLinks', 'homepageSection'));
     }
 
     public function update_setting(AdminSettingUpdate $request)
     {
         DB::beginTransaction();
         try {
+
+            //dd($request->all());
             // Fetch the existing settings record (assuming you have only one settings row or you're fetching by some unique identifier)
             $settings = Settings::first(); // Fetch the first record
 
@@ -125,6 +129,44 @@ class AdminController extends Controller
                     }
                 }
             }
+
+            /* Save home page section title and image*/
+            if ($request->has('background_image') || $request->has('title'))
+            $section = HomepageSection::first();
+
+            // Handle file upload
+            if ($request->hasFile('background_image')) {
+                $file = $request->file('background_image');
+                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $destinationPath = public_path('homepage');
+
+                // Create directory if it doesn't exist
+                if (!is_dir($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+
+                // Delete old image if updating and old image exists
+                if ($section && $section->background_image) {
+                    $oldImagePath = public_path($section->background_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                // Move new file
+                $file->move($destinationPath, $filename);
+                $data['background_image'] = 'homepage/' . $filename;
+            }
+            if ($request->has('title')) {
+                $data['title'] = $request->title;
+            }
+
+            if ($section) {
+                $section->update($data);
+            } else {
+                $section = HomepageSection::create($data);
+            }
+            /* Save home page section title and image*/
 
             DB::commit();
 

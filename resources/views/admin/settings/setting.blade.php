@@ -152,6 +152,73 @@
                             @endforeach
                         </div>
 
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+                            <div>
+                                <h4 class="mb-3 mb-md-3">Homepage Section</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            {{-- Title --}}
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        {{ __('homepageSections.title') }}
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text"
+                                           name="title"
+                                           id="sectionTitle"
+                                           value="{{ $homepageSection->title ?? '' }}"
+                                           class="form-control"
+                                           placeholder="{{ __('homepageSections.title_placeholder') }}"
+                                           required>
+                                </div>
+                            </div>
+
+                            {{-- Background Image Upload --}}
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('homepageSections.background_image') }}</label>
+                                    <input type="file"
+                                           name="background_image"
+                                           id="backgroundImage"
+                                           class="form-control"
+                                           accept="image/*"
+                                           onchange="previewImage2(this)"
+                                           @if(!$homepageSection) required @endif>
+                                    <small class="text-muted">{{ __('homepageSections.image_help') }}</small>
+                                </div>
+
+                            </div>
+
+
+                            {{-- Image Preview --}}
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ __('homepageSections.preview') }}</label>
+                                    <div class="image-preview-container" style="min-height: 250px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ddd; border-radius: 0.375rem;">
+                                        @if($homepageSection && $homepageSection->background_image)
+                                            <img src="{{ asset($homepageSection->background_image) }}"
+                                                 alt="Current Image"
+                                                 id="currentImage"
+                                                 class="img-thumbnail"
+                                                 style="max-width: 100%; max-height: 250px; object-fit: contain; display: block;"
+                                            >
+                                        @endif
+
+                                        <img src="#"
+                                             alt="Image Preview"
+                                             id="imagePreview"
+                                             class="img-thumbnail"
+                                             style="display: none; max-width: 100%; max-height: 250px; object-fit: contain;"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary">Update</button>
@@ -165,6 +232,46 @@
 @section('script')
 
     <script>
+        function previewImage2(input) {
+            const current = document.getElementById('currentImage');
+            const preview = document.getElementById('imagePreview');
+            const noImageText = document.getElementById('noImageText');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Remove current image from DOM if it exists
+                    if (current) {
+                        current.remove();
+                    }
+
+                    // Hide "no image" text if it exists
+                    if (noImageText) {
+                        noImageText.style.display = 'none';
+                    }
+
+                    // Show new preview with consistent styling
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    preview.style.maxWidth = '100%';
+                    preview.style.maxHeight = '250px';
+                    preview.style.objectFit = 'contain';
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                // If no file selected, hide preview and show current image if it exists
+                if (preview) {
+                    preview.style.display = 'none';
+                }
+
+                if (current) {
+                    current.style.display = 'block';
+                } else if (noImageText) {
+                    noImageText.style.display = 'block';
+                }
+            }
+        }
+
         function previewImage(event) {
             const file = event.target.files[0];
             if (file instanceof Blob) {
