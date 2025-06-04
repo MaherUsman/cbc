@@ -146,10 +146,10 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('animals', AnimalController::class);
 
-        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
-        Route::get('homepage-sections/create', [HomepageSectionController::class, 'create'])->name('homepage-sections.create');
-        Route::post('homepage-sections', [HomepageSectionController::class, 'store'])->name('homepage-sections.store');
-        Route::delete('homepage-sections', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
+//        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
+//        Route::get('homepage-sections/create', [HomepageSectionController::class, 'create'])->name('homepage-sections.create');
+//        Route::post('homepage-sections', [HomepageSectionController::class, 'store'])->name('homepage-sections.store');
+//        Route::delete('homepage-sections', [HomepageSectionController::class, 'destroy'])->name('homepage-sections.destroy');
 
         Route::get('reorder-animals', [AnimalController::class, 'gridView'])->name('animals.gridView');
         Route::post('update-animals-order', [AnimalController::class, 'updateOrder'])->name('animals.updateOrder');
