@@ -1577,10 +1577,12 @@ div#mCSB_1_container{
 
 .banner-section{
   position: relative;
-    height: 812px;
+    height: 800px;
     overflow: hidden;
 }
-
+.copyright p{
+    margin: 0px  !important;
+}
 .banner-carousel{
   position: relative;
 }
