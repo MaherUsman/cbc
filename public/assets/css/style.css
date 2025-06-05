@@ -1590,7 +1590,7 @@ div#mCSB_1_container{
 .banner-carousel .slide-item{
   position: relative;
   overflow: hidden;
-  padding: 456px 0px 250px 0px;
+  padding: 350px 0px 250px 0px;
 }
 /*.banner-carousel .item-video{*/
 /*    position: relative;*/
@@ -1751,7 +1751,7 @@ div#mCSB_1_container{
 
 .banner-section .owl-theme .owl-nav {
   position: absolute;
-  top: 52%;
+  top: 48%;
   right: 150px;
 }
 
@@ -5397,7 +5397,9 @@ div#mCSB_1_container{
 .setformobilechin {
   padding-bottom: 0px !important;
 }
-
+  .banner-section {
+    background-color: #E7E0CF;
+  }
 @media screen and (max-width: 768px) {
   .banner-section {
     height: auto !important;
@@ -5409,4 +5411,12 @@ div#mCSB_1_container{
         width: 380px !important;
   }
   
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1024px){
+.banner-section{
+  height: 700px !important;
+}
+
 }
