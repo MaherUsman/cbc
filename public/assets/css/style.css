@@ -5399,7 +5399,7 @@ div#mCSB_1_container{
 
 @media screen and (max-width: 768px) {
   .banner-section {
-    height: 500px !important;
+    height: auto !important;
   }
 
   .set-direction-wrapper .setformobilechin:nth-child(4) .image_block_one .image-box .image img{
