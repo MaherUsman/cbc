@@ -3152,9 +3152,14 @@ div#mCSB_1_container{
   transform: translate(-50%,-50%) scale(1,1);
 }
 
+/*footer*/
+
+
 .footer-bottom{
   padding: 4px 0px;
   background: var(--primary);
+
+
 }
 
 .footer-bottom p{
