@@ -245,14 +245,14 @@
         <div class="bg-layer"></div>
         <div class="bg-image" style="background-image: url('{{ asset($homepageSection->background_image ?? 'assets/images/background/events-bg.jpg') }}');"></div>
         <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-lg-6 col-md-12 col-sm-12 title-column">
+            <div class="row ">
+                <div class="col-lg-5 col-md-12 col-sm-12 title-column">
                     <div class="sec-title light">
                         <h2>{{ $homepageSection->title ?? 'Check zoo upcoming events' }}</h2>
                         <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
+                <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
                     <div class="inner-content">
                         @foreach($events as $event)
                             <div class="events-block-one">
