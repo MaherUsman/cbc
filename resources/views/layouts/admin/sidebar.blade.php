@@ -106,12 +106,12 @@
 
 
 {{--            @if (Auth::user()->hasPermission(['view-homepage-section']))--}}
-            <li class="{{ request()->is('admin/homepage-sections*') ? 'active mm-active' : '' }}">
-                <a href="{{ route('homepage-sections.index') }}">
-                    <i class="la la-home"></i>
-                    <span class="nav-text">{{ __('sidebar.homepageSections.name') }}</span>
-                </a>
-            </li>
+{{--            <li class="{{ request()->is('admin/homepage-sections*') ? 'active mm-active' : '' }}">--}}
+{{--                <a href="{{ route('homepage-sections.index') }}">--}}
+{{--                    <i class="la la-home"></i>--}}
+{{--                    <span class="nav-text">{{ __('sidebar.homepageSections.name') }}</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
 
             {{--            @endif--}}
 

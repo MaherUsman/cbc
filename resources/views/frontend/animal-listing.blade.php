@@ -42,6 +42,7 @@
     </style>
 
 
+    @isset($sliders)
     <section class="banner-section">
         <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
             @foreach ($sliders as $slider)
@@ -81,6 +82,7 @@
             @endforeach
         </div>
     </section>
+    @endisset
     <!-- End Page Title -->
 
     <!-- animals-page-section -->

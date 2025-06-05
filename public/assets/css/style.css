@@ -1586,6 +1586,8 @@ div#mCSB_1_container{
 
 .banner-section{
   position: relative;
+    height: 812px;
+    overflow: hidden;
 }
 
 .banner-carousel{
@@ -1595,7 +1597,7 @@ div#mCSB_1_container{
 .banner-carousel .slide-item{
   position: relative;
   overflow: hidden;
-  padding: 342px 0px 250px 0px;
+  padding: 456px 0px 250px 0px;
 }
 /*.banner-carousel .item-video{*/
 /*    position: relative;*/
@@ -2236,7 +2238,7 @@ div#mCSB_1_container{
 
 .gallery-section{
   position: relative;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 .gallery-block-one .inner-box{
@@ -2583,6 +2585,7 @@ div#mCSB_1_container{
 
 .events-section{
   position: relative;
+
 }
 
 .events-section .bg-image{
@@ -5377,7 +5380,6 @@ div#mCSB_1_container{
 
 }
 
-
 .main-menu .navigation > li.active > ul > li.active a{
   color: #ECAC20 !important;
 
@@ -5441,3 +5443,13 @@ a{
   height: 480px !important;
   width: 480px !important;
 }
+<<<<<<< HEAD
+=======
+.funfact-section {
+    margin-top: 0px !important;
+}
+.events-section{
+    padding-bottom: 0px !important;
+
+}
+>>>>>>> 8f730191271e9d612f092f8e67a85ddff88cf4df
