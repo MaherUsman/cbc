@@ -5413,3 +5413,10 @@ div#mCSB_1_container{
   
 }
 
+
+@media screen and (min-width: 992px) and (max-width: 1024px){
+.banner-section{
+  height: 700px !important;
+}
+
+}
