@@ -60,9 +60,11 @@
     <script>
         $(document).ready(function () {
 
-            $("#passwordLogin").keydown(function (e) {
-                if (e.keyCode == 13) {
-                    $('.loginBtn').click();
+            // Trigger form submission on Enter key press
+            $('#loginForm input').on('keypress', function (e) {
+                if (e.which === 13) { // 13 is the Enter key code
+                    e.preventDefault(); // Prevent default form submission
+                    $('.loginBtn').click(); // Trigger the login button click
                 }
             });
 

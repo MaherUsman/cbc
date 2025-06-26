@@ -45,7 +45,7 @@
                                             <a href="{{ route('frontend.find.event',$event['slug']) }}">{{ $event['title'] }}</a>
                                         </h2>
                                         <a href="{{ route('frontend.find.event',$event['slug']) }}">
-                                        <p>{!! $event['details'] !!}</p></a>
+                                        <p class="test-p">{!! Str::words($event['details'], 100, '...') !!}</p></a>
 
                                     </div>
                                 </div>

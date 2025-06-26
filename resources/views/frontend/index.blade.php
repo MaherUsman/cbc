@@ -50,7 +50,7 @@
 
 {{--                        <div class="item-video" data-merge="1"><a class="owl-video" href="{{ $slider->image }}"></a></div>--}}
                         <div class="item-video" data-merge="1">
-                            <video autoplay muted loop controls>
+                            <video autoplay muted loop>
                                 <source src="{{ asset($slider->image) }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -67,7 +67,7 @@
                         <div class="image-layer" style="background-image:url({{ $slider->image }})"></div>
                             <div class="auto-container customSlider-wrapper">
                                 <div class="content-box">
-{{--                                    <h3 class="mb-4">{{ $slider->title }}</h3>--}}
+                                    <h3></h3>
                                     <h2>{!! $slider->details !!}</h2>
                                     <div class="btn-box">
                                         <a target="_blank" href="{{ $slider->slink }}" class="theme-btn btn-one">Discover More</a>
@@ -144,7 +144,7 @@
             <div class="auto-container">
                 <div class="row clearfix">
                     @if($key%2==0)
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
                         <div class="image_block_one">
                             <div class="image-box">
                                 <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
@@ -154,6 +154,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
+                        <div class="content_block_one home-page-content">
+                            <div class="content-box">
                         <div class="content_block_one">
                             <div class="content-box ss">
                                 <div class="sec-title">
@@ -161,8 +163,7 @@
                                 </div>
                                 <div class="text">
                                     <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                </div>
-                                <div class="btn-box">
+                                <div class="btn-box ">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
@@ -183,13 +184,13 @@
                                         {!! $intro->details !!}
                                     </div>
                                 </div>
-                                <div class="btn-box">
+                                <div class="btn-box position-btn">
                                     <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
                             <div class="image_block_one">
                                 <div class="image-box">
                                     <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>
@@ -268,7 +269,7 @@
                                             <li><i class="far fa-map"></i>{{$event->address}}</li>
                                         </ul>
                                         <h3><a href="{{route('frontend.find.event' , $event->slug)}}">{{$event->title}}</a></h3>
-                                        <p>{!! $event->details !!}</p>
+                                        <p>{!! Str::words($event->details, 100, '...') !!}</p>
                                     </div>
                                 </div>
                             </div>

@@ -65,26 +65,7 @@
                     </ul>
                 </li>
             @endif
-            @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-slider']))
-                <li class="{{ request()->is('admin/slider-animals*') ? 'active mm-active' : '' }}">
-                    <a class="has-arrow" href="javascript:void(0);"
-                        aria-expanded="{{ request()->is('admin/slider-animals*') ? 'true' : 'false' }}">
-                        <i class="la la-sliders-h"></i>
-                        <span class="nav-text">{{ __('sidebar.sliders.names') }}</span>
-                    </a>
-                    <ul aria-expanded="{{ request()->is('admin/slider-animals*') ? 'true' : 'false' }}">
-                        <li class="{{ request()->is('admin/slider-animals*') ? 'active mm-active' : '' }}">
-                            <a href="{{ route('slider-animals.index') }}">{{ __('sidebar.sliders.index') }}</a>
-                        </li>
-                        @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-slider']))
-                            <li class="{{ request()->is('admin/slider-animals/create') ? 'active mm-active' : '' }}">
-                                <a
-                                    href="{{ route('slider-animals.create') }}">{{ __('sidebar.sliders.create') }}</a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-            @endif
+            
             @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-intro']))
                 <li {{ request()->is('admin/intros*') ? 'active mm-active' : '' }}>
                     <a class="ai-icon" href="{{ route('intros.COE') }}" aria-expanded="false">

@@ -51,6 +51,9 @@ class ChunkUploadService
                 // Determine file type
                 $mimeType = mime_content_type($finalFile);
 
+
+//                dd('video is here','upload directory:', $uploadDir, $finalFile ,$FinalFileName);
+
                 if (str_starts_with($mimeType, 'image/')) {
                     // Process image
                     $image = Image::read($finalFile);
@@ -72,28 +75,31 @@ class ChunkUploadService
                         'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
                     ]);
                 } elseif (str_starts_with($mimeType, 'video/')) {
-                    // Process video
-//                    $compressedVideoPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'compressed-' . $FinalFileName;
-//                    $thumbnailPath = $uploadDir . $FinalPath . DIRECTORY_SEPARATOR . 'thumb-' . pathinfo($FinalFileName, PATHINFO_FILENAME) . '.jpg';
-//
-//                    // Compress video using FFmpeg
-//                    shell_exec("ffmpeg -i " . escapeshellarg($finalFile) . " -vcodec libx264 -crf 28 " . escapeshellarg($compressedVideoPath));
-//
-//                    // Generate video thumbnail using FFmpeg
-//                    shell_exec("ffmpeg -i " . escapeshellarg($finalFile) . " -ss 00:00:01.000 -vframes 1 " . escapeshellarg($thumbnailPath));
-
+//                    dd('upload/' . $FinalPath . '/' . $FinalFileName);
                     return response()->json([
-                        'message' => 'Video upload complete',
-                        'compressedPath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
-//                        'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
-//                        'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . pathinfo($FinalFileName, PATHINFO_FILENAME) . '.jpg',
-                    ]);
+//                        'message' => 'Video upload complete',
+  //                      'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName
+   
+ 'message' => 'Video upload complete',
+                        'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
+                        'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
+                        'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
+
+                 ]);
                 } else {
                     // Unsupported file type
                     unlink($finalFile);
                     return response()->json(['error' => 'Unsupported file type'], 400);
                 }
             }
+
+
+//                    return response()->json([
+  //                      'message' => 'Image upload complete',
+    ///                    'filePath' => 'upload/' . $FinalPath . '/' . $FinalFileName,
+       //                 'compressedPath' => 'upload/' . $FinalPath . '/compressed-' . $FinalFileName,
+         //               'thumbnailPath' => 'upload/' . $FinalPath . '/thumb-' . $FinalFileName,
+           //         ]);
 
             return response()->json(['message' => 'Chunk uploaded']);
         } catch (\Exception $exception) {

@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' => 'sliders.index'],
+        'breadcrumbs' => [['name' => __('sliders.admin.breadcrumbs.name'), 'route' => 'slider-animals.index'],
         ['name' => __('sliders.admin.breadcrumbs.create'), 'route' => 'sliders.create']],
         'pageTitle' => __('sliders.admin.breadcrumbs.create')
     ])
@@ -12,35 +12,40 @@
             <div class="card">
                 <div class="card-body">
 {{--                    <h6 class="card-title">{{__('sliders.admin.create.create')}}</h6>--}}
-                    <form method="POST" id="formValidation" action="{{route('sliders.store')}}"
+                    <form method="POST" id="formValidation" action="{{route('slider-animals.store')}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Select Slider Type</label>
-                                        <select class="form-control" id="fileType" name="file_type">
-                                            <option value="1" selected>Image</option>
-                                            <option value="0">Video</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row inputs-to-toggle">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger">*</span></label>
-                                    <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
+                                    <label class="form-label">{{__('sliders.admin.create.title')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.title_message')}}"
+                                           name="title" value="{{old('title')}}" class="form-control"
+                                           placeholder="{{__('sliders.admin.create.title')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="text" data-rule-required="true"
+                                           data-msg-required="{{__('sliders.admin.create.slink_message')}}"
+                                           name="slink" value="{{old('slink')}}" class="form-control"
+                                           data-rule-maxlength="255"
+                                           placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
                         </div>
-                        <div class="row inputs-to-toggle">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label class="form-label">{{__('sliders.admin.create.details')}}<span class="text-danger">*</span></label>
-                                    <textarea name="details" id="ckeditor"></textarea>
+                                    <label class="form-label"
+                                    >{{__('sliders.admin.create.details')}}<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="details" data-rule-required="true"
+                                              data-msg-required="Detail is Required"  id="ckeditor"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -93,85 +98,51 @@
 @section('script')
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            const fileTypeDropdown = document.getElementById('fileType');
-            const inputsToToggle = document.querySelectorAll('.inputs-to-toggle');
-            const fileInput = document.getElementById('imageUpload');
-            const isImageInput = document.getElementById('is_image'); // Hidden input field
-
-            // Function to toggle fields based on file type
-            function toggleFields() {
-                const isImage = fileTypeDropdown.value === '1'; // 1 for Image, 0 for Video
-
-                // Show/hide fields
-                inputsToToggle.forEach(input => {
-                    input.style.display = isImage ? 'block' : 'none';
-                });
-
-                // Set file input accept attribute
-                fileInput.accept = isImage ? 'image/*' : 'video/*';
-
-                // Set is_image value based on selection
-                isImageInput.value = isImage ? '1' : '0';
-
-                // Reset file input and previews
-                fileInput.value = '';
-                document.getElementById('imagePreview').style.display = 'none';
-                document.getElementById('videoPreview').style.display = 'none';
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            const imagePreview = document.getElementById('imagePreview');
+            const videoPreview = document.getElementById('videoPreview');
+            const is_image = document.getElementById('is_image');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    if (file.type.startsWith('image/')) {
+                        imagePreview.style.display = 'block';
+                        videoPreview.style.display = 'none';
+                        imagePreview.src = e.target.result;
+                        is_image.value=1;
+                    } else if (file.type.startsWith('video/')) {
+                        videoPreview.style.display = 'block';
+                        imagePreview.style.display = 'none';
+                        videoPreview.src = e.target.result;
+                        is_image.value=0;
+                    }
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+                videoPreview.style.display = 'none';
+                is_image.value='';
             }
+        });
 
-            // Event listener for dropdown change
-            fileTypeDropdown.addEventListener('change', toggleFields);
+        $(document).ready(function () {
+            var imageColName = 'image';
 
-            // Initialize toggle on page load
-            toggleFields();
-
-            // Preview uploaded file
-            fileInput.addEventListener('change', function (event) {
-                const [file] = event.target.files;
-                const imagePreview = document.getElementById('imagePreview');
-                const videoPreview = document.getElementById('videoPreview');
-
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        if (file.type.startsWith('image/')) {
-                            imagePreview.style.display = 'block';
-                            videoPreview.style.display = 'none';
-                            imagePreview.src = e.target.result;
-                            isImageInput.value = '1'; // Set as image
-                        } else if (file.type.startsWith('video/')) {
-                            videoPreview.style.display = 'block';
-                            imagePreview.style.display = 'none';
-                            videoPreview.src = e.target.result;
-                            isImageInput.value = '0'; // Set as video
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    imagePreview.style.display = 'none';
-                    videoPreview.style.display = 'none';
-                    isImageInput.value = fileTypeDropdown.value === '1' ? '1' : '0'; // Default value
-                }
-            });
-
-            // Initialize jQuery Validation
             $('#formValidation').validate({
-                ignore: ":hidden", // Ignore hidden fields
+                ignore: [],
                 rules: {
-                    slink: { required: true, maxlength: 255 },
-                    details: { required: true, maxlength: 255 },
-                    image: { required: true, accept: "image/*,video/*" },
+                    details: {
+                        required: true
+                    }
                 },
                 messages: {
-                    slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },
-                    details: { required: "Details are required", maxlength: "Maximum 255 characters" },
-                    image: { required: "Image or video is required", accept: "Invalid file type" },
+                    details: {
+                        required: "Detail is Required"
+                    }
                 },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
-
 
                     $.blockUI({
                         css: {
@@ -185,53 +156,54 @@
                         }
                     });
 
-                    const url = $(form).attr('action');
-                    const data = new FormData($(form)[0]);
-                    const file = fileInput.files[0];
+                    var url = $(form).attr('action');
+                    var imageColName = $('#imageUpload').attr('name');
+                    var data = new FormData($(form)[0]);
+                    var imageFile = $('#imageUpload')[0].files[0];
 
-                    if (file) {
+                    if (imageFile) {
                         try {
-                            let response = await uploadImageInChunks(file);
+                            let response = await uploadImageInChunks(imageFile);
+                            console.log(response);
                             if (response.success) {
-                                data.set('image', response.filePath);
+                                data.set(imageColName, response.filePath);
                                 await submitFormData(url, data);
                             } else {
                                 $.unblockUI();
-                                errorMsg('File upload failed');
+                                errorMsg('Image upload failed');
                             }
                         } catch (error) {
                             $.unblockUI();
-                            errorMsg('An error occurred during file upload');
+                            errorMsg('An error occurred during the image upload');
                         }
                     } else {
                         await submitFormData(url, data);
                     }
-                },
+                }
             });
 
-            // Upload file in chunks
             async function uploadImageInChunks(file) {
-                const chunkSize = 1024 * 1024 * 2; // 2MB chunk size
-                const totalChunks = Math.ceil(file.size / chunkSize);
-                let currentChunk = 0;
-
+                var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
+                var totalChunks = Math.ceil(file.size / chunkSize);
+                var currentChunk = 0;
+                // alert('poikk');
                 while (currentChunk < totalChunks) {
-                    const start = currentChunk * chunkSize;
-                    const end = Math.min(start + chunkSize, file.size);
-                    const chunk = file.slice(start, end);
-
-                    const chunkData = new FormData();
+                    var start = currentChunk * chunkSize;
+                    var end = Math.min(start + chunkSize, file.size);
+                    var chunk = file.slice(start, end);
+                    var chunkData = new FormData();
                     chunkData.append('chunk', chunk);
                     chunkData.append('chunkNumber', currentChunk + 1);
                     chunkData.append('totalChunks', totalChunks);
                     chunkData.append('fileName', file.name);
+                    chunkData.append('ImageUploadPath', imageColName);
 
-                    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" } });
+                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
 
                     try {
-                        const response = await $.ajax({
+                        let response = await $.ajax({
                             type: 'POST',
-                            url: '{{ route("uploadImageChunk") }}',
+                            url: '{{route("uploadImageChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,
@@ -239,18 +211,15 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return { success: true, filePath: response.filePath };
+                            return {success: true, filePath: response.compressedPath};
                         }
                     } catch (error) {
-                        return { success: false, error };
+                        return {success: false, error: error};
                     }
                 }
             }
 
-            // Submit form data
             async function submitFormData(url, data) {
-
-
                 $.blockUI({
                     css: {
                         border: 'none',
@@ -264,7 +233,7 @@
                 });
 
                 try {
-                    const response = await $.ajax({
+                    let response = await $.ajax({
                         type: 'POST',
                         url: url,
                         data: data,
@@ -273,16 +242,15 @@
                     });
                     $.unblockUI();
                     successMsg(response.message);
-                    setTimeout(() => {
-                        window.location.href = "{{ route('sliders.index') }}";
+                    setTimeout(function () {
+                        window.location.href = "{{route('slider-animals.index')}}";
                     }, 1000);
-                } catch (error) {
+                } catch (xhr) {
                     $.unblockUI();
-                    errorMsg(error.responseJSON.message || 'An error occurred');
+                    errorMsg(xhr.responseJSON.message || 'An error occurred');
                 }
             }
         });
-
 
     </script>
 @endsection
