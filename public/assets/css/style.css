@@ -1590,7 +1590,7 @@ div#mCSB_1_container{
 .banner-carousel .slide-item{
   position: relative;
   overflow: hidden;
-  padding: 456px 0px 250px 0px;
+  padding: 350px 0px 250px 0px;
 }
 /*.banner-carousel .item-video{*/
 /*    position: relative;*/
@@ -1600,6 +1600,7 @@ div#mCSB_1_container{
 .item-video video{
     width: 100%;
     height: 812px;
+  
 }
 
 .banner-carousel .slide-item:before{
@@ -1750,7 +1751,7 @@ div#mCSB_1_container{
 
 .banner-section .owl-theme .owl-nav {
   position: absolute;
-  top: 52%;
+  top: 48%;
   right: 150px;
 }
 
@@ -2587,7 +2588,7 @@ div#mCSB_1_container{
   left: 0px;
   top: 0px;
   width: calc(50% - 115px);
-  height: calc(100% - 30px);
+  height: calc(100% - 0px);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -3152,9 +3153,14 @@ div#mCSB_1_container{
   transform: translate(-50%,-50%) scale(1,1);
 }
 
+/*footer*/
+
+
 .footer-bottom{
-  padding: 12px 0px;
+  padding: 4px 0px;
   background: var(--primary);
+
+
 }
 
 .footer-bottom p{
@@ -5386,5 +5392,31 @@ div#mCSB_1_container{
 }
 .events-section{
     padding-bottom: 0px !important;
+  background-color: #faf7f3 !important;
+}
+.setformobilechin {
+  padding-bottom: 0px !important;
+}
+  .banner-section {
+    background-color: #E7E0CF;
+  }
+@media screen and (max-width: 768px) {
+  .banner-section {
+    height: auto !important;
+    background-color: #E7E0CF;
+  }
+
+  .set-direction-wrapper .setformobilechin:nth-child(4) .image_block_one .image-box .image img{
+            height: 380px !important;
+        width: 380px !important;
+  }
+  
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1024px){
+.banner-section{
+  height: 700px !important;
+}
 
 }
