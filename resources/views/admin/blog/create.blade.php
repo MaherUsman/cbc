@@ -49,10 +49,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                        <label class="form-label">{{__('blogs.admin.create.start_time')}}<span
-                                                class="text-danger">*</span></label>
+                                        <label class="form-label">{{__('blogs.admin.create.start_time')}}{{--<span
+                                                class="text-danger">*</span>--}}</label>
                                         <div class="input-group clockpicker lable-postion-handler">
-                                            <input name="time" type="text" class="form-control" data-rule-required="true" autocomplete="off"
+                                            <input name="time" type="text" class="form-control" data-rule-required="false" autocomplete="off"
                                                    data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
                                                    placeholder="{{__('blogs.admin.create.start_time')}}">
                                             <span class="input-group-text"><i class="far fa-clock"></i></span>
@@ -62,12 +62,12 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="datepicker">{{__('blogs.admin.create.start_date')}}<span
-                                            class="text-danger">*</span></label>
+                                           for="datepicker">{{__('blogs.admin.create.start_date')}}{{--<span
+                                            class="text-danger">*</span>--}}</label>
                                     <div class="input-hasicon mb-xl-0 mb-3">
                                         <input name="start_date"
                                                class="datepicker-default form-control" autocomplete="off"
-                                               data-rule-required="true"
+                                               data-rule-required="false"
                                                data-msg-required="{{__('blogs.admin.create.start_date_message')}}"
                                                id="datepicker" value="{{old('start_date')}}"
                                                placeholder="{{__('blogs.admin.create.start_date')}}">

@@ -10,6 +10,7 @@ return [
         'create' => [
             'create' => 'Add About Us Gallery',
             'title' => 'Title',
+            'display_order' => 'On Front Display Order',
             'image' => 'Image',
             'submit' => 'Submit',
             'title_message' => 'Please Enter Title',
@@ -20,6 +21,7 @@ return [
         'edit' => [
             'edit' => 'Edit About Us Gallery',
             'title' => 'Title',
+            'display_order' => 'On Front Display Order',
             'image' => 'Image',
             'submit' => 'Submit',
             'title_message' => 'Please Enter Title',

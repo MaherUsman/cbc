@@ -24,8 +24,8 @@ class BlogStoreRequest extends FormRequest
             'slug' => ['nullable', 'string'],
             'image' => ['nullable', 'string'],
             'banner_image' => ['nullable', 'string'],
-            'start_date' => ['required', 'string'],
-            'time' => ['required', 'date_format:H:i'],
+            'start_date' => ['nullable', 'string'],
+            'time' => ['nullable', 'date_format:H:i'],
             'details' => ['required', 'string'],
             'address' => ['required', 'string'],
         ];

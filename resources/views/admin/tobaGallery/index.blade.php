@@ -121,6 +121,16 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="mb-3">
+                                        <label class="form-label">{{__('tobaGallery.admin.create.display_order')}}<span
+                                                class="text-danger">*</span> </label>
+                                        <input type="number" min="0" data-rule-required="true"
+                                               data-msg-required="{{__('tobaGallery.admin.create.display_order_message')}}"
+                                               name="display_order[]" class="form-control"
+                                               placeholder="{{__('tobaGallery.admin.create.display_order')}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
                                         <label class="form-label">
                                             {{ __('tobaGallery.admin.create.show_on_navbar') }}
                                             <span class="text-danger">*</span>
@@ -254,9 +264,13 @@
                     var data = new FormData();
                     // Get all file input elements
                     var titleInputs = $('input[name="title[]"]');
+                    var display_orderInputs = $('input[name="display_order[]"]');
                     var imageInputs = $('input[name="image[]"]');
                     titleInputs.each(function (index, element) {
                         data.append('title[]', $(element).val());
+                    });
+                    display_orderInputs.each(function (index, element) {
+                        data.append('display_order[]', $(element).val());
                     });
 
                     const showOnNavbarVal = $('#show_on_navbar').val();  // "0" or "1"

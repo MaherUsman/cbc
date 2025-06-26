@@ -31,7 +31,7 @@ class BlogDataTable extends DataTable
                 return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
             })
             ->editColumn('start_date', function ($query) {
-                return Carbon::parse($query->start_date)->format('d F, Y');
+                return ($query->start_date != null) ? Carbon::parse($query->start_date)->format('d F, Y') : 'N/A';
             })
             ->addColumn('gallery', function ($query) {
                 if ($query->blogGalleries) {

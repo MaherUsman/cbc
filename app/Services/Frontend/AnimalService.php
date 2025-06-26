@@ -11,7 +11,7 @@ class AnimalService
     {
         $data['animal'] = Animal::where('slug', $slug)
             ->with(['animalProps', 'animalGalleries' => function ($query) {
-                $query->paginate(9); // Load only 10 images initially
+                $query->orderBy('id', 'desc')->paginate(9); // Load only 10 images initially
             }])
             ->first();
         $data['relatedAnimals'] = Animal::inRandomOrder()
@@ -19,6 +19,7 @@ class AnimalService
             ->get();
         return $data;
     }
+
     public function loadMoreAnimalGalleries($slug)
     {
         $animal = Animal::where('slug', $slug)->first();

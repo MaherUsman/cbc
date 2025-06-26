@@ -45,6 +45,7 @@ class TobaGalleryService
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
                 $tobaGallery = TobaGallery::create(['title'=>$value,
+                    'display_order'=>$request->display_order[$key],
                     'image'=>$request->image[$key],
                     'show_on_navbar'=>$request->show_on_navbar[$key],
 //                    'thumb'=>$request->thumb,

@@ -10,6 +10,7 @@ return [
         'create' => [
             'create' => 'Add Tobas Gallery',
             'title' => 'Title',
+            'display_order' => 'On Front Display Order',
             'image' => 'Image',
             'show_on_navbar' => 'Show On Navbar',
             'submit' => 'Submit',
@@ -23,6 +24,7 @@ return [
         'edit' => [
             'edit' => 'Edit Tobas Gallery',
             'title' => 'Title',
+            'display_order' => 'On Front Display Order',
             'image' => 'Image',
             'show_on_navbar' => 'Show On Navbar',
             'submit' => 'Submit',

@@ -29,6 +29,16 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="mb-3">
+                                    <label class="form-label">{{__('tobaGallery.admin.edit.display_order')}}<span
+                                            class="text-danger">*</span> </label>
+                                    <input type="number" min="0" data-rule-required="true"
+                                           data-msg-required="{{__('tobaGallery.admin.edit.display_order_message')}}"
+                                           name="display_order" class="form-control" value="{{$tobaGallery->display_order}}"
+                                           placeholder="{{__('tobaGallery.admin.edit.display_order')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
                                     <label class="form-label">
                                         {{ __('tobaGallery.admin.edit.show_on_navbar') }}
                                         <span class="text-danger">*</span>

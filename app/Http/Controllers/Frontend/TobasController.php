@@ -15,7 +15,7 @@ class TobasController extends Controller
     {
         $data = Toba::first();
 
-        $tobaGalleries = TobaGallery::orderBy('id', 'desc')->get();
+        $tobaGalleries = TobaGallery::orderBy('display_order', 'asc')->get();
 
         return view('frontend.tobas-new',compact('data','tobaGalleries'));
     }

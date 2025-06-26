@@ -21,6 +21,7 @@ class AboutUsGalleryUpdateRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
             'image' => ['nullable', 'string', 'max:255'],
             'thumb' => ['nullable', 'string', 'max:255'],
             'compressed' => ['nullable', 'string', 'max:255'],

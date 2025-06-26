@@ -38,7 +38,7 @@ class Blog extends Model
 
     public function getStartDateAttribute($value)
     {
-        return Carbon::parse($value)->format('d F, Y');
+        return $value != null ? Carbon::parse($value)->format('d F, Y') : null;
     }
 
     public function blogGalleries()

@@ -84,7 +84,7 @@
                                         <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
                                             <a href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
                                                 {{$tobasGallery->title}}
-                                            s</a>
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>

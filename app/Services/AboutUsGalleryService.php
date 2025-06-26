@@ -46,6 +46,7 @@ class AboutUsGalleryService
 //            dd($request->all());
             foreach ($request->title as $key=>$value){
                 $aboutUsGallery = AboutUsGallery::create(['title'=>$value,
+                    'display_order'=>$request->display_order[$key],
                     'image'=>$request->image[$key],
                     'thumb'=>$request->thumb,
                     'compressed'=>$request->compressed,

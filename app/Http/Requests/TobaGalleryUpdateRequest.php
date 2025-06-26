@@ -21,6 +21,7 @@ class TobaGalleryUpdateRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
             'show_on_navbar' => ['required', 'boolean'],

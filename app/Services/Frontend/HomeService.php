@@ -39,7 +39,7 @@ class HomeService
     {
         $data['aboutUs'] = AboutUs::first();
         $data['teams'] = Team::all();
-        $data['galleries'] = AboutUsGallery::orderBy('id', 'desc')->get();
+        $data['galleries'] = AboutUsGallery::orderBy('display_order', 'asc')->get();
         return $data;
     }
 
