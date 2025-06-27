@@ -202,6 +202,9 @@
         <div class="container">
             <div class="row">
                 @foreach($researchArticles as $researchArticle)
+                    @if($researchArticle->article_pdf_file ==  null || $researchArticle->article_pdf_file == '')
+                        @continue
+                    @endif
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="publication-card h-100">
                             <div class="card-body">
