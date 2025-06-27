@@ -10,15 +10,15 @@ class ResearchArticle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'banner_image'];
+    protected $fillable = ['title', 'article_pdf_file'/*'description', 'banner_image'*/];
 
-    public function galleries()
-    {
-        return $this->hasMany(ResearchArticleGallery::class);
-    }
+//    public function galleries()
+//    {
+//        return $this->hasMany(ResearchArticleGallery::class);
+//    }
 
-    public function researchArticleGalleries()
-    {
-        return $this->hasMany(ResearchArticleGallery::class);
-    }
+//    public function researchArticleGalleries()
+//    {
+//        return $this->hasMany(ResearchArticleGallery::class);
+//    }
 }

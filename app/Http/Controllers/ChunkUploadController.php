@@ -18,4 +18,10 @@ class ChunkUploadController extends Controller
     {
         return $this->chunkUploadService->uploadImageChunk($request);
     }
+
+    public function uploadFileChunk(ChunkImageRequest $request)
+    {
+//        dd($request->all());
+        return $this->chunkUploadService->uploadFileChunk($request);
+    }
 }

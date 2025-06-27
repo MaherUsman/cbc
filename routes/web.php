@@ -196,6 +196,7 @@ Route::post('/ckeditor/upload', [HomeController::class, 'uploadImage'])->name('c
 
 
 Route::post('upload-chunk', [ChunkUploadController::class, 'uploadImageChunk'])->name('uploadImageChunk');
+Route::post('upload-file-chunk', [ChunkUploadController::class, 'uploadFileChunk'])->name('uploadFileChunk');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

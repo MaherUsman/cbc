@@ -23,8 +23,12 @@ class ResearchArticleService
 
     public function update(ResearchArticleUpdateRequest $request, ResearchArticle $article)
     {
-        if ($request->has('banner_image')) {
-            $this->deleteImage($article->banner_image);
+//        if ($request->has('banner_image')) {
+//            $this->deleteImage($article->banner_image);
+//        }
+//dd($request->all());
+        if ($request->has('article_pdf_file')) {
+            $this->deleteImage($article->article_pdf_file);
         }
 
         $article->update($request->all());
@@ -33,11 +37,12 @@ class ResearchArticleService
 
     public function destroy(ResearchArticle $article)
     {
-        $this->deleteImage($article->banner_image);
-        foreach ($article->galleries as $gallery) {
-            $this->deleteImage($gallery->image);
-            $gallery->delete();
-        }
+//        $this->deleteImage($article->banner_image);
+        $this->deleteImage($article->article_pdf_file);
+//        foreach ($article->galleries as $gallery) {
+//            $this->deleteImage($gallery->image);
+//            $gallery->delete();
+//        }
         $article->delete();
         return makeResponse('success', 'Deleted Successfully!', Response::HTTP_OK);
     }

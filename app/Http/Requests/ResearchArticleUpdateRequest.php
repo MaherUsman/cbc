@@ -15,8 +15,9 @@ class ResearchArticleUpdateRequest extends FormRequest
     {
         $rules = [
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'banner_image' => 'nullable|string',
+//            'description' => 'required|string',
+            'article_pdf_file' => 'nullable|string',
+//            'banner_image' => 'nullable|string',
             //'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 

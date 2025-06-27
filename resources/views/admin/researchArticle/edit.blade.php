@@ -28,26 +28,38 @@
                                                    placeholder="{{__('researchArticle.admin.edit.title')}}">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label"
-                                            >{{__('researchArticle.admin.edit.description')}}</label>
-                                            <textarea name="description" id="ckeditor" rows="4" class="form-control" data-rule-required="true"
-                                           data-msg-required="{{__('researchArticle.admin.create.description_message')}}">{{$researchArticle->description}}</textarea>
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-sm-12">--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label class="form-label"--}}
+{{--                                            >{{__('researchArticle.admin.edit.description')}}</label>--}}
+{{--                                            <textarea name="description" id="ckeditor" rows="4" class="form-control" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('researchArticle.admin.create.description_message')}}">{{$researchArticle->description}}</textarea>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                     <div class="col-sm-12">
                                         <div class="mb-3">
-                                            <label class="form-label">{{__('researchArticle.admin.edit.image')}}</label>
-                                            <input type="file" name="banner_image" class="form-control" id="imageUpload"
-                                                   accept="image/*">
+                                            <label class="form-label">{{__('researchArticle.admin.edit.article_pdf_file')}}</label>
+                                            <input type="file" name="article_pdf_file" class="form-control" id="imageUpload"
+                                                   accept=".pdf,application/pdf">
                                         </div>
                                         <div class="mb-3">
-                                            <img id="imagePreview" src="{{asset($researchArticle->banner_image?:'no_image.jpg')}}"
+                                            <img id="imagePreview" src="{{asset($researchArticle->article_pdf_file?:'no_image.jpg')}}"
                                                  alt="Image Preview" class="img-thumbnail"
                                                  style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
                                         </div>
                                     </div>
+{{--                                    <div class="col-sm-12">--}}
+{{--                                        <div class="mb-3">--}}
+{{--                                            <label class="form-label">{{__('researchArticle.admin.edit.image')}}</label>--}}
+{{--                                            <input type="file" name="banner_image" class="form-control" id="imageUpload"--}}
+{{--                                                   accept="image/*">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="mb-3">--}}
+{{--                                            <img id="imagePreview" src="{{asset($researchArticle->banner_image?:'no_image.jpg')}}"--}}
+{{--                                                 alt="Image Preview" class="img-thumbnail"--}}
+{{--                                                 style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
 
 
@@ -66,22 +78,23 @@
 
 @section('script')
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById('imagePreview').style.display = 'none';
-            }
-        });
+        // document.getElementById('imageUpload').addEventListener('change', function (event) {
+        //     const [file] = event.target.files;
+        //     if (file) {
+        //         const reader = new FileReader();
+        //         reader.onload = function (e) {
+        //             document.getElementById('imagePreview').style.display = 'block';
+        //             document.getElementById('imagePreview').src = e.target.result;
+        //         };
+        //         reader.readAsDataURL(file);
+        //     } else {
+        //         document.getElementById('imagePreview').style.display = 'none';
+        //     }
+        // });
 
         $(document).ready(function () {
-            var imageColName = 'pic';
+            var imageColName = 'ResearchArticlePDF';
+            // var PDFColName = 'ResearchArticlePDF';
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
@@ -136,14 +149,14 @@
                     chunkData.append('chunkNumber', currentChunk + 1);
                     chunkData.append('totalChunks', totalChunks);
                     chunkData.append('fileName', file.name);
-                    chunkData.append('ImageUploadPath', imageColName);
+                    chunkData.append('uploadPath', imageColName);
 
                     $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
 
                     try {
                         let response = await $.ajax({
                             type: 'POST',
-                            url: '{{route("uploadImageChunk")}}',
+                            url: '{{route("uploadFileChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,

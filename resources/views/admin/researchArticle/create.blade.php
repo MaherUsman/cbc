@@ -27,26 +27,39 @@
                                            placeholder="{{__('researchArticle.admin.create.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="form-label">{{__('researchArticle.admin.create.description')}}</label>
-                                    <textarea name="description" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"
-                                           data-msg-required="{{__('researchArticle.admin.create.description_message')}}"></textarea>
-                                </div>
-                            </div>
+{{--                            <div class="col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label">{{__('researchArticle.admin.create.description')}}</label>--}}
+{{--                                    <textarea name="description" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('researchArticle.admin.create.description_message')}}"></textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('researchArticle.admin.create.image')}}<span
-                                            class="text-danger">(550 x 386)*</span></label>
-                                    <input type="file" name="banner_image" class="form-control" id="imageUpload"
-                                           accept="image/*" data-rule-required="true"
-                                           data-msg-required="{{__('researchArticle.admin.create.image_message')}}">
+                                    <label class="form-label">{{__('researchArticle.admin.create.article_pdf_file')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="article_pdf_file" class="form-control" id="fileUpload"
+                                           accept=".pdf,application/pdf" data-rule-required="true"
+                                           data-msg-required="{{__('researchArticle.admin.create.article_pdf_file_message')}}">
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
+{{--                            <div class="col-sm-12">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="form-label">{{__('researchArticle.admin.create.image')}}<span--}}
+{{--                                            class="text-danger">(550 x 386)*</span></label>--}}
+{{--                                    <input type="file" name="banner_image" class="form-control" id="imageUpload"--}}
+{{--                                           accept="image/*" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('researchArticle.admin.create.image_message')}}">--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"--}}
+{{--                                         style="display:none; max-width:200px; height:auto;">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
                         <a href="{{route('researchArticle.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
@@ -66,22 +79,22 @@
 @section('script')
 
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById('imagePreview').style.display = 'none';
-            }
-        });
+        // document.getElementById('imageUpload').addEventListener('change', function (event) {
+        //     const [file] = event.target.files;
+        //     if (file) {
+        //         const reader = new FileReader();
+        //         reader.onload = function (e) {
+        //             document.getElementById('imagePreview').style.display = 'block';
+        //             document.getElementById('imagePreview').src = e.target.result;
+        //         };
+        //         reader.readAsDataURL(file);
+        //     } else {
+        //         document.getElementById('imagePreview').style.display = 'none';
+        //     }
+        // });
 
         $(document).ready(function () {
-            var imageColName = 'image';
+            var imageColName = 'ResearchArticlePDF';
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
@@ -100,9 +113,10 @@
                     });
 
                     var url = $(form).attr('action');
-                    var imageColName = $('#imageUpload').attr('name');
+                    var imageColName = $('#fileUpload').attr('name');
+                    console.log(imageColName);
                     var data = new FormData($(form)[0]);
-                    var imageFile = $('#imageUpload')[0].files[0];
+                    var imageFile = $('#fileUpload')[0].files[0];
 
                     if (imageFile) {
                         try {
@@ -138,14 +152,14 @@
                     chunkData.append('chunkNumber', currentChunk + 1);
                     chunkData.append('totalChunks', totalChunks);
                     chunkData.append('fileName', file.name);
-                    chunkData.append('ImageUploadPath', imageColName);
+                    chunkData.append('uploadPath', imageColName);
 
                     $.ajaxSetup({headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"}});
 
                     try {
                         let response = await $.ajax({
                             type: 'POST',
-                            url: '{{route("uploadImageChunk")}}',
+                            url: '{{route("uploadFileChunk")}}',
                             data: chunkData,
                             processData: false,
                             contentType: false,

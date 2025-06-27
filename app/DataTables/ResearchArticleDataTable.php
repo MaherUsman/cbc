@@ -26,21 +26,21 @@ class ResearchArticleDataTable extends DataTable
             ->addColumn('action', function ($query) {
                 return view('admin.researchArticle.action', ['researchArticle' => $query]);
             })
-            ->editColumn('banner_image', function ($row) {
-                $imageUrl = asset($row->banner_image ?: 'no_image.jpg');
-                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
-            })
-            ->addColumn('gallery', function ($query) {
-                if ($query->galleries) {
-                    return view('admin.researchArticle.showGallery', ['researchArticle' => $query]);
-                }
-            })
+//            ->editColumn('banner_image', function ($row) {
+//                $imageUrl = asset($row->banner_image ?: 'no_image.jpg');
+//                return '<img src="' . $imageUrl . '"  height="35" class="rdm" />';//width="50"
+//            })
+//            ->addColumn('gallery', function ($query) {
+//                if ($query->galleries) {
+//                    return view('admin.researchArticle.showGallery', ['researchArticle' => $query]);
+//                }
+//            })
             ->addColumn('id', function($row) {
                 static $index = 0;
                 return ++$index;
             })
             ->setRowId('id')
-            ->rawColumns(['banner_image','action']);
+            ->rawColumns([/*'banner_image',*/'action']);
     }
 
     /**
@@ -80,13 +80,13 @@ class ResearchArticleDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('banner_image'),
+//            Column::make('banner_image'),
             Column::make('title'),
-            Column::computed('gallery')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+//            Column::computed('gallery')
+//                ->exportable(false)
+//                ->printable(false)
+//                ->width(60)
+//                ->addClass('text-center'),
             /*Column::make('created_at'),
             Column::make('updated_at'),*/
             Column::computed('action')
