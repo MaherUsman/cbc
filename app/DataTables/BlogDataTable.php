@@ -85,7 +85,7 @@ class BlogDataTable extends DataTable
             Column::make('id'),
             Column::make('image'),
             Column::make('title'),
-            Column::make('start_date'),
+            Column::make('start_date')->title(__('blogs.admin.edit.start_date')),
             Column::computed('gallery')
                 ->exportable(false)
                 ->printable(false)

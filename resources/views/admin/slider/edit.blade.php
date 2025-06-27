@@ -30,7 +30,7 @@
                         <div class="row inputs-to-toggle">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger">*</span></label>
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger"></span></label>
                                     <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
 
                 ignore: ":hidden", // Ignore hidden fields
                 rules: {
-                    slink: { required: true, maxlength: 255 },
+                    slink: { maxlength: 255 },
                     details: { required: true, maxlength: 255 },
                     image: { required: true, accept: "image/*,video/*" },
                 },
