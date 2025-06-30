@@ -31,7 +31,11 @@
                         <div class="row inputs-to-toggle">
                             <div class="col-sm-6">
                                 <div class="mb-3">
+<<<<<<< HEAD
                                     <label class="form-label">{{__('sliders.admin.create.slink')}}{{--<span class="text-danger">*</span>--}}</label>
+=======
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger"></span></label>
+>>>>>>> bbe6664a89fd5a951a405ebf50a0b3dfec47d30f
                                     <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -160,7 +164,7 @@
             $('#formValidation').validate({
                 ignore: ":hidden", // Ignore hidden fields
                 rules: {
-                    // slink: { required: true, maxlength: 255 },
+                    slink: { maxlength: 255 },
                     details: { required: true, maxlength: 255 },
                     image: { required: true, accept: "image/*,video/*" },
                 },
@@ -171,7 +175,6 @@
                 },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
-
 
                     $.blockUI({
                         css: {
