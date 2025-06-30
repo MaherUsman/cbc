@@ -42,8 +42,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="form-label">{{__('blogs.admin.create.start_time')}}<span
-                                            class="text-danger">*</span></label>
+                                    <label class="form-label">{{__('blogs.admin.create.start_time')}}{{--<span
+                                            class="text-danger">*</span>--}}</label>
                                     <div class="input-group clockpicker">
                                         <input name="time" value="{{ $blog->time }}" type="text" class="form-control" data-rule-required="false" autocomplete="off"
                                                data-msg-required="{{__('blogs.admin.create.start_time_message')}}"
@@ -55,8 +55,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="datepicker">{{__('blogs.admin.edit.start_date')}}<span
-                                            class="text-danger">*</span></label>
+                                           for="datepicker">{{__('blogs.admin.edit.start_date')}}{{--<span
+                                            class="text-danger">*</span>--}}</label>
                                     <div class="input-hasicon mb-xl-0 mb-3">
                                         <input name="start_date"
                                                class="datepicker-default form-control"

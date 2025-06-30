@@ -31,7 +31,7 @@
                         <div class="row inputs-to-toggle">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger">*</span></label>
+                                    <label class="form-label">{{__('sliders.admin.create.slink')}}{{--<span class="text-danger">*</span>--}}</label>
                                     <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -160,12 +160,12 @@
             $('#formValidation').validate({
                 ignore: ":hidden", // Ignore hidden fields
                 rules: {
-                    slink: { required: true, maxlength: 255 },
+                    // slink: { required: true, maxlength: 255 },
                     details: { required: true, maxlength: 255 },
                     image: { required: true, accept: "image/*,video/*" },
                 },
                 messages: {
-                    slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },
+                    // slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },
                     details: { required: "Details are required", maxlength: "Maximum 255 characters" },
                     image: { required: "Image or video is required", accept: "Invalid file type" },
                 },
