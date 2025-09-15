@@ -1,13 +1,13 @@
 <?php return array (
   'intervention/image-laravel' => 
   array (
-    'aliases' => 
-    array (
-      'Image' => 'Intervention\\Image\\Laravel\\Facades\\Image',
-    ),
     'providers' => 
     array (
       0 => 'Intervention\\Image\\Laravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Laravel\\Facades\\Image',
     ),
   ),
   'jasonmccreary/laravel-test-assertions' => 
@@ -47,13 +47,13 @@
   ),
   'livewire/livewire' => 
   array (
-    'aliases' => 
-    array (
-      'Livewire' => 'Livewire\\Livewire',
-    ),
     'providers' => 
     array (
       0 => 'Livewire\\LivewireServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Livewire' => 'Livewire\\Livewire',
     ),
   ),
   'nesbot/carbon' => 
@@ -79,13 +79,13 @@
   ),
   'santigarcor/laratrust' => 
   array (
-    'aliases' => 
-    array (
-      'Laratrust' => 'Laratrust\\LaratrustFacade',
-    ),
     'providers' => 
     array (
       0 => 'Laratrust\\LaratrustServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Laratrust' => 'Laratrust\\LaratrustFacade',
     ),
   ),
   'spatie/laravel-permission' => 
@@ -132,13 +132,13 @@
   ),
   'yajra/laravel-datatables-oracle' => 
   array (
-    'aliases' => 
-    array (
-      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
-    ),
     'providers' => 
     array (
       0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
     ),
   ),
 );

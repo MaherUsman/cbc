@@ -129,25 +129,68 @@
                     var url = $(form).attr('action');
                     var imageColName = $('#imageUpload').attr('name');
                     var data = new FormData($(form)[0]);
-                    var imageFile = $('#imageUpload')[0].files[0];
+                    var file = $('#imageUpload')[0].files[0];
+                    var isImage = $('#is_image').val() === '1';
 
-                    if (imageFile) {
+                    if (file) {
                         try {
-                            let response = await uploadImageInChunks(imageFile);
-                            if (response.success) {
-                                data.set(imageColName, response.filePath);
-                                await submitFormData(url, data);
+                            let response;
+                            if (isImage) {
+                                // Use chunk upload for images
+                                response = await uploadImageInChunks(file);
+                                if (response.success) {
+                                    data.set(imageColName, response.filePath);
+                                } else {
+                                    $.unblockUI();
+                                    errorMsg('Image upload failed');
+                                    return;
+                                }
                             } else {
-                                errorMsg('Image upload failed');
+                                // Direct upload for videos
+                                response = await uploadVideo(file);
+                                if (response.success) {
+                                    data.set(imageColName, response.filePath);
+                                } else {
+                                    $.unblockUI();
+                                    errorMsg('Video upload failed');
+                                    return;
+                                }
                             }
+                            await submitFormData(url, data);
                         } catch (error) {
-                            errorMsg('An error occurred during the image upload');
+                            $.unblockUI();
+                            errorMsg('An error occurred during the upload');
                         }
                     } else {
                         await submitFormData(url, data);
                     }
                 }
             });
+
+            async function uploadVideo(file) {
+                var formData = new FormData();
+                formData.append('video', file);
+                formData.append('_token', "{{ csrf_token() }}");
+
+                try {
+                    let response = await $.ajax({
+                        type: 'POST',
+                        url: '{{ route('uploadVideo') }}', // You'll need to create this route
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                    });
+                    return {
+                        success: true,
+                        filePath: response.filePath
+                    };
+                } catch (error) {
+                    return {
+                        success: false,
+                        error: error
+                    };
+                }
+            }
 
             async function uploadImageInChunks(file) {
                 var chunkSize = 1024 * 1024 * 2; // 2MB chunk size
@@ -178,7 +221,7 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.compressedPath };
+                            return {success: true, filePath: response.filePath};
                         }
                     } catch (error) {
                         return {success: false, error: error};

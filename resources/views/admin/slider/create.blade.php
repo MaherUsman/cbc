@@ -31,11 +31,7 @@
                         <div class="row inputs-to-toggle">
                             <div class="col-sm-6">
                                 <div class="mb-3">
-<<<<<<< HEAD
                                     <label class="form-label">{{__('sliders.admin.create.slink')}}{{--<span class="text-danger">*</span>--}}</label>
-=======
-                                    <label class="form-label">{{__('sliders.admin.create.slink')}}<span class="text-danger"></span></label>
->>>>>>> bbe6664a89fd5a951a405ebf50a0b3dfec47d30f
                                     <input type="text" name="slink" value="{{ old('slink') }}" class="form-control" placeholder="{{__('sliders.admin.create.slink')}}">
                                 </div>
                             </div>
@@ -44,7 +40,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('sliders.admin.create.details')}}<span class="text-danger">*</span></label>
-                                    <textarea name="details" id="ckeditor"></textarea>
+                                    <textarea name="details" id="ckeditors"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -95,31 +91,21 @@
 @endsection
 
 @section('script')
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
             const fileTypeDropdown = document.getElementById('fileType');
             const inputsToToggle = document.querySelectorAll('.inputs-to-toggle');
             const fileInput = document.getElementById('imageUpload');
-            const isImageInput = document.getElementById('is_image'); // Hidden input field
+            const isImageInput = document.getElementById('is_image');
 
             // Function to toggle fields based on file type
             function toggleFields() {
-                const isImage = fileTypeDropdown.value === '1'; // 1 for Image, 0 for Video
-
-                // Show/hide fields
+                const isImage = fileTypeDropdown.value === '1';
                 inputsToToggle.forEach(input => {
                     input.style.display = isImage ? 'block' : 'none';
                 });
-
-                // Set file input accept attribute
                 fileInput.accept = isImage ? 'image/*' : 'video/*';
-
-                // Set is_image value based on selection
                 isImageInput.value = isImage ? '1' : '0';
-
-                // Reset file input and previews
                 fileInput.value = '';
                 document.getElementById('imagePreview').style.display = 'none';
                 document.getElementById('videoPreview').style.display = 'none';
@@ -144,21 +130,32 @@
                             imagePreview.style.display = 'block';
                             videoPreview.style.display = 'none';
                             imagePreview.src = e.target.result;
-                            isImageInput.value = '1'; // Set as image
+                            isImageInput.value = '1';
                         } else if (file.type.startsWith('video/')) {
                             videoPreview.style.display = 'block';
                             imagePreview.style.display = 'none';
                             videoPreview.src = e.target.result;
-                            isImageInput.value = '0'; // Set as video
+                            isImageInput.value = '0';
                         }
                     };
                     reader.readAsDataURL(file);
                 } else {
                     imagePreview.style.display = 'none';
                     videoPreview.style.display = 'none';
-                    isImageInput.value = fileTypeDropdown.value === '1' ? '1' : '0'; // Default value
+                    isImageInput.value = fileTypeDropdown.value === '1' ? '1' : '0';
                 }
             });
+
+            // Initialize CKEditor (assuming Classic Editor is used)
+            let editor;
+            ClassicEditor
+                .create(document.querySelector('#ckeditors'))
+                .then(newEditor => {
+                    editor = newEditor; // Store editor instance
+                })
+                .catch(error => {
+                    console.error('CKEditor initialization failed:', error);
+                });
 
             // Initialize jQuery Validation
             $('#formValidation').validate({
@@ -169,12 +166,16 @@
                     image: { required: true, accept: "image/*,video/*" },
                 },
                 messages: {
-                    // slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },
                     details: { required: "Details are required", maxlength: "Maximum 255 characters" },
                     image: { required: "Image or video is required", accept: "Invalid file type" },
                 },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
+
+                    // Sync CKEditor content with textarea before submission
+                    if (editor) {
+                        editor.updateSourceElement(); // Update the underlying textarea
+                    }
 
                     $.blockUI({
                         css: {
@@ -252,8 +253,6 @@
 
             // Submit form data
             async function submitFormData(url, data) {
-
-
                 $.blockUI({
                     css: {
                         border: 'none',
@@ -285,7 +284,5 @@
                 }
             }
         });
-
-
     </script>
 @endsection
