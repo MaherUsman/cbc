@@ -28,7 +28,8 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                    <figure class="image-box"><img src="{{asset('assets/images/about/banner.jpg')}}" alt=""></figure>
+{{--                    <figure class="image-box"><img src="{{asset($aboutUs->image ?? 'assets/images/about/banner.jpg')}}" alt=""></figure>--}}
+                    <figure class="image-box"><img src="{{asset($aboutUs->image)}}" alt=""></figure>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content_block_three">
