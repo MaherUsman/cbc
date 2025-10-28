@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list_tobass' => 'List Tobas',
-    'add_tobas' => 'Add Tobas',
+    'list_tobass' => 'List Hydration',
+    'add_tobas' => 'Add Hydration',
     'name' => 'Tobas List',
-    'pageTitle' => 'All Tobas',
-    'reOrder' => 'Reorder Tobas',
+    'pageTitle' => 'All Hydration',
+    'reOrder' => 'Reorder Hydration',
     'admin' => [
         'create' => [
-            'create' => 'Add Tobas',
+            'create' => 'Add Hydration',
             'title' => 'Title',
             'slug' => 'Slug',
-            'category_id' => 'Tobas Category',
+            'category_id' => 'Hydration Category',
             'image' => 'Detail Page Image',
             'home_image' => 'Home Image',
             'banner_image' => 'Banner Image',
@@ -37,10 +37,10 @@ return [
             'show_on_navbar_required' => 'Required',
         ],
         'edit' => [
-            'edit' => 'Edit Tobas',
+            'edit' => 'Edit Hydration',
             'title' => 'Title',
             'slug' => 'Slug',
-            'category_id' => 'Tobas Category',
+            'category_id' => 'Hydration Category',
             'image' => 'Detail Page Image',
             'home_image' => 'Home Image',
             'banner_image' => 'Banner Image',
@@ -72,15 +72,15 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Tobas',
-            'create' => 'Add Tobas',
-            'edit' => 'Edit Tobas',
+            'name' => 'List Hydration',
+            'create' => 'Add Hydration',
+            'edit' => 'Edit Hydration',
         ],
         'response_msg' => [
-            'success' => 'Tobas created successfully',
-            'update' => 'Tobas Updated successfully',
-            'error' => 'Error adding Tobas',
-            'delete' => 'Tobas Deleted Successfully'
+            'success' => 'Hydration created successfully',
+            'update' => 'Hydration Updated successfully',
+            'error' => 'Error adding Hydration',
+            'delete' => 'Hydration Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

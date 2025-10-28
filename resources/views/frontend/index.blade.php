@@ -136,156 +136,156 @@
 
 
     <!-- Chincara-section -->
-     <div class="set-direction-wrapper">
+{{--     <div class="set-direction-wrapper">--}}
 
 
-    @foreach($animals as $key => $animal)
-        <section class="about-section sec-pad ainmal-sec setformobilechin">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    @if($key%2==0)
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
-                        <div class="image_block_one">
-                            <div class="image-box">
-                                <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>
-                                <figure class="image "><img src="{{asset($animal->home_image)}}" alt="" class="img-fluid"></figure>
-                                <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">
-                        <div class="content_block_one home-page-content">
-                            <div class="content-box">
-                        <div class="content_block_one">
-                            <div class="content-box ss">
-                                <div class="sec-title">
-                                    <h2>{{$animal->title}}</h2>
-                                </div>
-                                <div class="text">
-                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                <div class="btn-box ">
-                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @else
-                    <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">
-                        <div class="content_block_one">
-                            <div class="content-box">
-                                <div class="sec-title">
-                                    <h2>{{$animal->title}}</h2>
-                                </div>
-                                <div class="text">
-                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>
-                                </div>
-                                <div style="display: none;" id="full-text-modal">
-                                    <div class="full-text-content">
-                                        {!! $intro->details !!}
-                                    </div>
-                                </div>
-                                <div class="btn-box position-btn">
-                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">
-                            <div class="image_block_one">
-                                <div class="image-box">
-                                    <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>
-                                    <figure class="image {{$animal->title}}"><img src="{{asset($animal->home_image)}}" alt=""></figure>
-                                    <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->
-                                </div>
-                            </div>
-                        </div>
+{{--    @foreach($animals as $key => $animal)--}}
+{{--        <section class="about-section sec-pad ainmal-sec setformobilechin">--}}
+{{--            <div class="auto-container">--}}
+{{--                <div class="row clearfix">--}}
+{{--                    @if($key%2==0)--}}
+{{--                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">--}}
+{{--                        <div class="image_block_one">--}}
+{{--                            <div class="image-box">--}}
+{{--                                <div class="shape" style="background-image: url(assets/images/shape/shape-1.png);"></div>--}}
+{{--                                <figure class="image "><img src="{{asset($animal->home_image)}}" alt="" class="img-fluid"></figure>--}}
+{{--                                <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-6 col-md-12 col-sm-12 content-column ps-5">--}}
+{{--                        <div class="content_block_one home-page-content">--}}
+{{--                            <div class="content-box">--}}
+{{--                        <div class="content_block_one">--}}
+{{--                            <div class="content-box ss">--}}
+{{--                                <div class="sec-title">--}}
+{{--                                    <h2>{{$animal->title}}</h2>--}}
+{{--                                </div>--}}
+{{--                                <div class="text">--}}
+{{--                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>--}}
+{{--                                <div class="btn-box ">--}}
+{{--                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @else--}}
+{{--                    <div class="col-lg-6 col-md-12 col-sm-12 content-column mt-5 pr-5">--}}
+{{--                        <div class="content_block_one">--}}
+{{--                            <div class="content-box">--}}
+{{--                                <div class="sec-title">--}}
+{{--                                    <h2>{{$animal->title}}</h2>--}}
+{{--                                </div>--}}
+{{--                                <div class="text">--}}
+{{--                                    <p>{!! Str::words($animal->details, 100, '...') !!}</p>--}}
+{{--                                </div>--}}
+{{--                                <div style="display: none;" id="full-text-modal">--}}
+{{--                                    <div class="full-text-content">--}}
+{{--                                        {!! $intro->details !!}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="btn-box position-btn">--}}
+{{--                                    <a href="{{route('frontend.find.animal' , $animal->slug)}}" class="theme-btn btn-one">discover more</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-6 col-md-12 col-sm-12 image-column mt-5 mt-lg-0">--}}
+{{--                            <div class="image_block_one">--}}
+{{--                                <div class="image-box">--}}
+{{--                                    <div class="shape" style="background-image: url('assets/images/shape/shape-1.png');"></div>--}}
+{{--                                    <figure class="image {{$animal->title}}"><img src="{{asset($animal->home_image)}}" alt=""></figure>--}}
+{{--                                    <!-- <div class="icon-box"><img src="assets/images/icons/icon-1.png" alt=""></div> -->--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                    @endif
-                </div>
-            </div>
-        </section>
-    @endforeach
-    </div>
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--    @endforeach--}}
+{{--    </div>--}}
     <!-- gallery-section -->
-    <section class="gallery-section">
-        <div class="auto-container">
-            <div class="sec-title centred">
-                <h2>{{$setting->home_page_title}}</h2>
-            </div>
-        </div>
-        <div class="outer-container">
-            <div class="gallery-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
-                @foreach($amazing_animals as $amazing_animal)
-                    <div class="gallery-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box"><img src="{{asset($amazing_animal->home_image)}}" alt=""></figure>
-                            <div class="content-box">
-                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
-                            </div>
-                            <div class="overlay-content">
-                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
-                                <div class="link"><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+{{--    <section class="gallery-section">--}}
+{{--        <div class="auto-container">--}}
+{{--            <div class="sec-title centred">--}}
+{{--                <h2>{{$setting->home_page_title}}</h2>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="outer-container">--}}
+{{--            <div class="gallery-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">--}}
+{{--                @foreach($amazing_animals as $amazing_animal)--}}
+{{--                    <div class="gallery-block-one">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <figure class="image-box"><img src="{{asset($amazing_animal->home_image)}}" alt=""></figure>--}}
+{{--                            <div class="content-box">--}}
+{{--                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>--}}
+{{--                            </div>--}}
+{{--                            <div class="overlay-content">--}}
+{{--                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>--}}
+{{--                                <div class="link"><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
 
 
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="btn-box d-flex justify-content-center align-items-center mt-5 mb-4">
-            <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>
-        </div>
-    </section>
+{{--        <div class="btn-box d-flex justify-content-center align-items-center mt-5 mb-4">--}}
+{{--            <a href="{{route('frontend.listing.animal')}}" class="theme-btn btn-one">discover more</a>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!-- gallery-section end -->
 
-    @if($events->count() > 0)
-    <!-- events-section -->
-    <section class="events-section sec-pad mt-5">
-        <div class="bg-layer"></div>
-        <div class="bg-image" style="background-image: url('{{ asset($homepageSection->background_image ?? 'assets/images/background/events-bg.jpg') }}');"></div>
-        <div class="auto-container">
-            <div class="row ">
-                <div class="col-lg-5 col-md-12 col-sm-12 title-column">
-                    <div class="sec-title light">
-                        <h2>{{ $homepageSection->title ?? 'Check zoo upcoming events' }}</h2>
-                        <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
-                    <div class="inner-content">
-                        @foreach($events as $event)
-                            <div class="events-block-one">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="{{asset($event->image)}}" alt=""></figure>
-                                        <div class="post-date">    <h6>{{ \Carbon\Carbon::parse($event->start_date)->format('j M') }}</h6>
-                                        </div>
-                                    </div>
-                                    <div class="inner">
-                                        <ul class="info clearfix">
-                                            <li><i class="far fa-clock"></i>{{\Carbon\Carbon::parse($event->time)->format('H:i a')}}</li>
-                                            <li><i class="far fa-map"></i>{{$event->address}}</li>
-                                        </ul>
-                                        <h3><a href="{{route('frontend.find.event' , $event->slug)}}">{{$event->title}}</a></h3>
-                                        <p>{!! Str::words($event->details, 100, '...') !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+{{--    @if($events->count() > 0)--}}
+{{--    <!-- events-section -->--}}
+{{--    <section class="events-section sec-pad mt-5">--}}
+{{--        <div class="bg-layer"></div>--}}
+{{--        <div class="bg-image" style="background-image: url('{{ asset($homepageSection->background_image ?? 'assets/images/background/events-bg.jpg') }}');"></div>--}}
+{{--        <div class="auto-container">--}}
+{{--            <div class="row ">--}}
+{{--                <div class="col-lg-5 col-md-12 col-sm-12 title-column">--}}
+{{--                    <div class="sec-title light">--}}
+{{--                        <h2>{{ $homepageSection->title ?? 'Check zoo upcoming events' }}</h2>--}}
+{{--                        <a href="{{route('frontend.events.index')}}" class="theme-btn btn-one">view all</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-7 col-md-12 col-sm-12 inner-column">--}}
+{{--                    <div class="inner-content">--}}
+{{--                        @foreach($events as $event)--}}
+{{--                            <div class="events-block-one">--}}
+{{--                                <div class="inner-box">--}}
+{{--                                    <div class="image-box">--}}
+{{--                                        <figure class="image"><img src="{{asset($event->image)}}" alt=""></figure>--}}
+{{--                                        <div class="post-date">    <h6>{{ \Carbon\Carbon::parse($event->start_date)->format('j M') }}</h6>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="inner">--}}
+{{--                                        <ul class="info clearfix">--}}
+{{--                                            <li><i class="far fa-clock"></i>{{\Carbon\Carbon::parse($event->time)->format('H:i a')}}</li>--}}
+{{--                                            <li><i class="far fa-map"></i>{{$event->address}}</li>--}}
+{{--                                        </ul>--}}
+{{--                                        <h3><a href="{{route('frontend.find.event' , $event->slug)}}">{{$event->title}}</a></h3>--}}
+{{--                                        <p>{!! Str::words($event->details, 100, '...') !!}</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+{{--    @endif--}}
     <!-- events-section end -->
 
 
     <!-- funfact-section -->
-    <section class="funfact-section mt-5">
+    {{--<section class="funfact-section mt-5">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img" style="background-image: url(assets/images/background/funfact-bg.jpg);"></div>
         </div>
@@ -311,7 +311,7 @@
 
             </div>
         </div>
-    </section>
+    </section>--}}
 
 
     <!-- news-section -->

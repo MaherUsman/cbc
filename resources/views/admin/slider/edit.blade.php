@@ -162,8 +162,22 @@
                 ignore: ":hidden", // Ignore hidden fields
                 rules: {
                     slink: { maxlength: 255 },
-                    details: { required: true, maxlength: 255 },
-                    image: { required: true, accept: "image/*,video/*" },
+                    details: {
+                        @if(!empty($slider->details))
+                        required: false,
+                        @else
+                        required: true,
+                        @endif
+                        maxlength: 255
+                    },
+                    image: {
+                        @if(!empty($slider->image))
+                        required: false,
+                        @else
+                        required: true,
+                        @endif
+                        accept: "image/*,video/*"
+                    },
                 },
                 messages: {
                     // slink: { required: "Slink is required", maxlength: "Maximum 255 characters" },

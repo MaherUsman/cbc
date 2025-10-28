@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list_toba' => 'List Tobas',
-    'add_toba' => 'Add Tobas',
-    'name' => 'Tobas List',
-    'pageTitle' => 'All Tobas',
-    'reOrder' => 'Reorder Tobas',
+    'list_toba' => 'List Hydration',
+    'add_toba' => 'Add Hydration',
+    'name' => 'Hydration List',
+    'pageTitle' => 'All Hydration',
+    'reOrder' => 'Reorder Hydration',
     'admin' => [
         'create' => [
-            'create' => 'Create Tobas',
+            'create' => 'Create Hydration',
             'title' => 'Title',
             'image' => 'Image',
             'description' => 'Description',
@@ -21,7 +21,7 @@ return [
             'description_required' => 'Description is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Tobas',
+            'edit' => 'Edit Hydration',
             'title' => 'Title',
             'image' => 'Image',
             'description' => 'Description',
@@ -42,9 +42,9 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Tobas',
-            'create' => 'Create Tobas',
-            'edit' => 'Edit Tobas',
+            'name' => 'List Hydration',
+            'create' => 'Create Hydration',
+            'edit' => 'Edit Hydration',
             'show' => 'Edit Tobas',
         ],
         'response_msg' => [

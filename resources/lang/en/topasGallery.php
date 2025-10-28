@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'list_topasGallery' => 'Tobas Gallery',
-    'add_topasGallery' => 'Add Tobas Gallery',
-    'name' => 'Tobas Gallery',
-    'page_content' => 'Tobas Gallery Page Content',
-    'pageTitle' => 'Tobas Gallery',
-    'reOrder' => 'Reorder Tobas Gallery',
+    'list_topasGallery' => 'Hydration Gallery',
+    'add_topasGallery' => 'Add Hydration Gallery',
+    'name' => 'Hydration Gallery',
+    'page_content' => 'Hydration Gallery Page Content',
+    'pageTitle' => 'Hydration Gallery',
+    'reOrder' => 'Reorder Hydration Gallery',
     'admin' => [
         'create' => [
-            'create' => 'Add Tobas Gallery',
+            'create' => 'Add Hydration Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -19,7 +19,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Tobas Gallery',
+            'edit' => 'Edit Hydration Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -36,16 +36,16 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'Tobas Gallery',
-            'create' => 'Add Tobas Gallery',
-            'edit' => 'Edit Tobas Gallery',
-            'show' => 'Show Tobas Gallery',
+            'name' => 'Hydration Gallery',
+            'create' => 'Add Hydration Gallery',
+            'edit' => 'Edit Hydration Gallery',
+            'show' => 'Show Hydration Gallery',
         ],
         'response_msg' => [
-            'success' => 'Tobas Gallery Added successfully',
-            'update' => 'Tobas Gallery Item Updated successfully',
-            'error' => 'Error in adding Tobas Gallery',
-            'delete' => 'Tobas Gallery Item Deleted Successfully'
+            'success' => 'Hydration Gallery Added successfully',
+            'update' => 'Hydration Gallery Item Updated successfully',
+            'error' => 'Error in adding Hydration Gallery',
+            'delete' => 'Hydration Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

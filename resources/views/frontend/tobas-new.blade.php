@@ -12,10 +12,10 @@
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Tobas</li>
+                    <li>Hydration</li>
                 </ul>
                 <div class="title">
-                    <h1>Tobas</h1>
+                    <h1>Hydration</h1>
                 </div>
             </div>
         </div>

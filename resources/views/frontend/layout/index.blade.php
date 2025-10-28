@@ -8,46 +8,46 @@
 
 
     <!-- preloader -->
-    <div class="loader-wrap">
-        <div class="preloader">
-            <div class="preloader-close">x</div>
-            <div id="handle-preloader" class="handle-preloader about-page-2">
-                <div class="animation-preloader">
-                    <div class="spinner">
-                        <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}"
-                                                                          alt="" title="" width="300"></a></div>
-                    </div>
+{{--    <div class="loader-wrap">--}}
+{{--        <div class="preloader">--}}
+{{--            <div class="preloader-close">x</div>--}}
+{{--            <div id="handle-preloader" class="handle-preloader about-page-2">--}}
+{{--                <div class="animation-preloader">--}}
+{{--                    <div class="spinner">--}}
+{{--                        <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('assets/images/cbc.png')}}"--}}
+{{--                                                                          alt="" title="" width="300"></a></div>--}}
+{{--                    </div>--}}
 
-                    @php
-                        $preloaderText = "Conservation Breeding Centre";
-                            $textParts = explode(' ', $setting->Loading_page_text??$preloaderText, 2);
-                            $part1 = $textParts[0] ?? '';
-                            $part2 = $textParts[1] ?? '';
-                    @endphp
+{{--                    @php--}}
+{{--                        $preloaderText = "Conservation Breeding Centre";--}}
+{{--                            $textParts = explode(' ', $setting->Loading_page_text??$preloaderText, 2);--}}
+{{--                            $part1 = $textParts[0] ?? '';--}}
+{{--                            $part2 = $textParts[1] ?? '';--}}
+{{--                    @endphp--}}
 
-                    <div class="txt-loading">
-                        @foreach(str_split($part1) as $char)
-                            @if($char === ' ')
-                                <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
-                            @else
-                                <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>
-                            @endif
-                        @endforeach
-                    </div>
+{{--                    <div class="txt-loading">--}}
+{{--                        @foreach(str_split($part1) as $char)--}}
+{{--                            @if($char === ' ')--}}
+{{--                                <span data-text-preloader=" " class="letters-loading">&nbsp;</span>--}}
+{{--                            @else--}}
+{{--                                <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
 
-                    <div class="txt-loading">
-                        @foreach(str_split($part2) as $char)
-                            @if($char === ' ')
-                                <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
-                            @else
-                                <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                    <div class="txt-loading">--}}
+{{--                        @foreach(str_split($part2) as $char)--}}
+{{--                            @if($char === ' ')--}}
+{{--                                <span data-text-preloader=" " class="letters-loading">&nbsp;</span>--}}
+{{--                            @else--}}
+{{--                                <span data-text-preloader="{{ $char }}" class="letters-loading">{{ $char }}</span>--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- preloader end -->
 
 
@@ -113,7 +113,7 @@
                                     <li class="{{ Request::routeIs('frontend.about.us' ) ? 'active' : '' }}"><a
                                             href="{{route('frontend.about.us')}}">About Us</a></li>
                                     <li class="{{ Request::routeIs('frontend.listing.animal' ) ? 'active' : '' }}"><a
-                                            href="{{route('frontend.listing.animal')}}">Our Animals</a></li>
+                                            href="{{route('frontend.listing.animal')}}">Species</a></li>
                                     <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }} "><a
                                             href="{{route('frontend.events.index')}}">Events</a></li>
                                     <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }} "><a
