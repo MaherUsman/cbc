@@ -30,7 +30,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('aboutUses.admin.create.p1')}}</label>
-                                    <textarea name="p1" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"
+                                    <textarea name="p1" id="PageDetails" {{--id="ckeditor"--}} rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('aboutUses.admin.create.p1_message')}}"></textarea>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
 @endsection
 
 @section('script')
-
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -88,6 +88,130 @@
         });
 
         $(document).ready(function () {
+
+            /* Init TinyMC*/
+            tinymce.init({
+                selector: '#PageDetails',
+                skin: 'oxide',
+                images_upload_url: '{{route('ckeditor.upload')}}', //add api link here
+                file_picker_types: 'image media', // Allow selecting images and videos
+                images_upload_handler: function (blobInfo) {
+                    return new Promise((resolve, reject) => {
+                        const formData = new FormData();
+                        formData.append('file', blobInfo.blob(), blobInfo.filename());
+                        formData.append('_token', '{{ csrf_token() }}');
+
+                        $.ajax({
+                            url: '{{route('ckeditor.upload')}}',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            beforeSend: function () {
+                                $.blockUI({
+                                    message: '<h4>Uploading... Please wait.</h4>',
+                                    css: {
+                                        border: 'none',
+                                        padding: '15px',
+                                        backgroundColor: '#000',
+                                        '-webkit-border-radius': '10px',
+                                        '-moz-border-radius': '10px',
+                                        opacity: 0.7,
+                                        color: '#fff'
+                                    }
+                                });
+                            },
+                            success: function (response) {
+                                $.unblockUI();
+                                if (response.location) {
+                                    resolve(response.location);
+                                } else {
+                                    reject('Invalid response from server');
+                                }
+                            },
+                            error: function (xhr) {
+                                $.unblockUI();
+                                reject('Image upload failed: ' + xhr.status);
+                            }
+                        });
+                    });
+                },
+                min_height: 350,
+                default_text_color: 'red',
+                plugins: [
+                    'advlist', /*'media',*/ 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                    'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                ],
+                toolbar1: 'dropcaps | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                image_advtab: true,
+                content_style: `
+          body {
+              color: #ffffff;  /* Set your desired text color */
+          }
+          .dropcaps::first-letter {
+            font-size: 3em;
+            font-weight: bold;
+            float: left;
+            margin-right: 5px;
+            line-height: 1;
+          }
+      `,
+
+                // ✅ Force TinyMCE to store absolute URLs instead of relative
+                relative_urls: false,
+                remove_script_host: false,
+                convert_urls: true,
+
+                // ✅ Block UI Before Upload Starts
+                setup: function (editor) {
+                    editor.ui.registry.addToggleButton('dropcaps', {
+                        text: 'Drop Caps',
+                        tooltip: 'Apply Drop Caps',
+                        onAction: function () {
+                            // Toggle the dropcaps class on the current paragraph
+                            let content = editor.selection.getNode();
+                            console.log(content);
+                            if (content.classList.contains('dropcaps')) {
+                                content.classList.remove('dropcaps');
+                            } else {
+                                content.classList.add('dropcaps');
+                            }
+                        },
+                        onSetup: function (buttonApi) {
+                            // Set button state when selection changes
+                            editor.selection.selectorChanged('p.dropcaps', function (state) {
+                                buttonApi.setActive(state);
+                            });
+                        }
+                    });
+
+                    editor.on('BeforeUpload', function () {
+                        $.blockUI({
+                            message: '<h4>Uploading... Please wait.</h4>',
+                            css: {
+                                border: 'none',
+                                padding: '15px',
+                                backgroundColor: '#000',
+                                '-webkit-border-radius': '10px',
+                                '-moz-border-radius': '10px',
+                                opacity: 0.7,
+                                color: '#fff'
+                            }
+                        });
+                    });
+
+                    editor.on('UploadComplete', function () {
+                        $.unblockUI();
+                    });
+
+                    editor.on('UploadFail', function () {
+                        $.unblockUI();
+                        alert('Upload failed! Please try again.');
+                    });
+                },
+            });
+
             var imageColName = 'image';
 
             $('#formValidation').validate({

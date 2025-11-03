@@ -111,7 +111,8 @@
                         <div class="gallery-block-one">
                             <div class="inner-box">
                                 <figure class="image-box">
-                                    <img src="{{ asset($animal->image) }}" alt="" />
+                                    {{--<img src="{{ asset($animal->image) }}" alt="" />--}}
+                                    <img src="{{ asset($animal->home_image) }}" alt="" />
                                 </figure>
                                 <div class="content-box">
                                     <h3><a

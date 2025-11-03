@@ -6,7 +6,8 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url(assets/images/about/1.jpg);"></div>
+            {{--<div class="parallax-inner back-img" style="background-image: url(assets/images/about/1.jpg);"></div>--}}
+            <div class="parallax-inner back-img" style="background-image: url({{asset($aboutUs->image)}});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -27,26 +28,26 @@
     <section class="about-style-three sec-pad">
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+{{--                <div class="col-lg-6 col-md-12 col-sm-12 image-column">--}}
 {{--                    <figure class="image-box"><img src="{{asset($aboutUs->image ?? 'assets/images/about/banner.jpg')}}" alt=""></figure>--}}
-                    <figure class="image-box"><img src="{{asset($aboutUs->image)}}" alt=""></figure>
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+{{--                    <figure class="image-box"><img src="{{asset($aboutUs->image)}}" alt=""></figure>--}}
+{{--                </div>--}}
+                <div class="col-lg-12 col-md-12 col-sm-12 content-column">
                     <div class="content_block_three">
                         <div class="content-box">
                             <div class="sec-title">
                                 <h2>{{$aboutUs->title}}</h2>
                             </div>
                             <div class="text">
-                                <div id="limited-text">
+                                {{--<div id="limited-text">
                                     {!!   Str::words($aboutUs->p1, 100, '...') !!}
-                                </div>
-                                <div id="full-text" style="display: none;">
+                                </div>--}}
+                                <div id="full-text" {{--style="display: none;"--}}>
                                     {!! $aboutUs->p1 !!}
                                 </div>
-                                <button id="read-more-btn" class="theme-btn btn-one" onclick="toggleReadMore()">Read
+                                {{--<button id="read-more-btn" class="theme-btn btn-one" onclick="toggleReadMore()">Read
                                     More
-                                </button>
+                                </button>--}}
 
                             </div>
                             <!-- <div class="btn-box">
@@ -248,43 +249,43 @@
 
 
 
-    @if($galleries->isNotEmpty())
-        <section class="gallery-page-section pt-0">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-md-12">
-                        <div class="sec-title">
-                            <h2>all images</h2>
-                        </div>
-                    </div>
-                    @foreach($galleries as $gallery)
-                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                            <a>
-                                <div class="gallery-block-two">
-                                    <div class="inner-box">
-                                        <figure class="image-box">
-                                            <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}"><img
-                                                    src="{{asset($gallery->image)}}" alt=""></a></figure>
-                                        {{--                                <div class="view-box d-flex align-items-center flex-column justify-content-center">--}}
-                                        {{--                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">--}}
-                                        {{--                                        <i class="flaticon-plus-symbol"></i>--}}
-                                        {{--                                        <span class="text-heading text-center">--}}
-                                        {{--                                            {{$gallery->title}}--}}
-                                        {{--                                        </span>--}}
-                                        {{--                                    </a>--}}
-                                        {{--                                </div>--}}
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="category-overlay">
-                                <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}">{{$gallery->title}}</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-    @endif
+{{--    @if($galleries->isNotEmpty())--}}
+{{--        <section class="gallery-page-section pt-0">--}}
+{{--            <div class="auto-container">--}}
+{{--                <div class="row clearfix">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <div class="sec-title">--}}
+{{--                            <h2>all images</h2>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @foreach($galleries as $gallery)--}}
+{{--                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">--}}
+{{--                            <a>--}}
+{{--                                <div class="gallery-block-two">--}}
+{{--                                    <div class="inner-box">--}}
+{{--                                        <figure class="image-box">--}}
+{{--                                            <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}"><img--}}
+{{--                                                    src="{{asset($gallery->image)}}" alt=""></a></figure>--}}
+{{--                                        --}}{{--                                <div class="view-box d-flex align-items-center flex-column justify-content-center">--}}
+{{--                                        --}}{{--                                    <a href="{{asset($gallery->image)}}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">--}}
+{{--                                        --}}{{--                                        <i class="flaticon-plus-symbol"></i>--}}
+{{--                                        --}}{{--                                        <span class="text-heading text-center">--}}
+{{--                                        --}}{{--                                            {{$gallery->title}}--}}
+{{--                                        --}}{{--                                        </span>--}}
+{{--                                        --}}{{--                                    </a>--}}
+{{--                                        --}}{{--                                </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <div class="category-overlay">--}}
+{{--                                <a href="{{route('frontend.aboutus.gallery' , $gallery->id)}}">{{$gallery->title}}</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--    @endif--}}
     <!-- team-section -->
     @if(count($teams)>0)
         <section class="team-section sec-pad">

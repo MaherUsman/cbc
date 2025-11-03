@@ -59,21 +59,21 @@
                                 <div class="animal-title">
                                     <h2>{{$animal->title}}</h2>
                                 </div>
-                                <div class="animals-description">
-                                    <p>{!! $animal->details !!}</p>
-                                </div>
+{{--                                <div class="animals-description">--}}
+{{--                                    <p>{!! $animal->details !!}</p>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
-                            <div class="sidebar-content">
-                                @foreach($animal->animalProps as $animalProps)
-                                    <div class="single-item">
-                                        <h5>{{$animalProps->title}}</h5>
-                                        <p>{{$animalProps->details}}</p>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+{{--                        <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">--}}
+{{--                            <div class="sidebar-content">--}}
+{{--                                @foreach($animal->animalProps as $animalProps)--}}
+{{--                                    <div class="single-item">--}}
+{{--                                        <h5>{{$animalProps->title}}</h5>--}}
+{{--                                        <p>{{$animalProps->details}}</p>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -128,7 +128,8 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
                         <div class="gallery-block-one">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="{{asset($relatedAnimal->image)}}" alt=""></figure>
+                                {{--<figure class="image-box"><img src="{{asset($relatedAnimal->image)}}" alt=""></figure>--}}
+                                <figure class="image-box"><img src="{{asset($relatedAnimal->home_image)}}" alt=""></figure>
                                 <div class="content-box">
                                     <h3><a href="{{route('frontend.find.animal' , $relatedAnimal->slug)}}">{{$relatedAnimal->title}}</a></h3>
                                 </div>

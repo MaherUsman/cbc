@@ -45,39 +45,34 @@ class AnimalService
     {
         DB::beginTransaction();
         try {
-//            $data = $this->record($request);
-////            dd($data);
-//            $animal = Animal::create($data['animal']);
-//            count($data['props']) > 0 ? $animal->animalProps()->createMany($data['props']) : '';
-////            count($data['gallery']) > 0 ? $animal->animalGalleries()->createMany($data['gallery']) : '';
-//            count($data['slider']) > 0 ? $animal->animalSliders()->createMany($data['slider']) : '';
-//            DB::commit();
-//            return makeResponse('success', 'Added Successfully!', Response::HTTP_CREATED, $animal);
-
             $data = $this->record($request);
-
-            // Ensure each slider item is an associative array
-            $data['slider'] = array_map(function ($imagePath) {
-                return ['image' => $imagePath];
-            }, $data['slider']);
+            $data['props'] = is_array($data['props']) ? $data['props'] : [];
+            $data['slider'] = is_array($data['slider']) ? $data['slider'] : [];
 
             $animal = Animal::create($data['animal']);
-            if (count($data['props']) > 0) {
+
+            if (!empty($data['props'])) {
                 $animal->animalProps()->createMany($data['props']);
             }
-            if (count($data['slider']) > 0) {
+
+            if (!empty($data['slider'])) {
                 $animal->animalSliders()->createMany($data['slider']);
             }
 
             DB::commit();
-            return makeResponse('success', 'Added Successfully!', Response::HTTP_CREATED, $animal);
+
+            return makeResponse('success', 'Added Successfully!', Response::HTTP_CREATED, $animal->load(['animalProps', 'animalSliders']));
+
         } catch (\Exception $exception) {
             DB::rollBack();
+            \Log::error('Animal creation failed: ' . $exception->getMessage(), [
+                'trace' => $exception->getTraceAsString()
+            ]);
             $errorMessage = $exception->getMessage();
-            if (empty($errorMessage)) {
-                $errorMessage = json_decode($exception->getResponse()->getContent())->message;
+            if (empty($errorMessage) && $exception->getResponse()) {
+                $errorMessage = json_decode($exception->getResponse()->getContent())->message ?? 'Unknown error';
             }
-            return makeResponse('error', 'error: ' . $errorMessage, Response::HTTP_INTERNAL_SERVER_ERROR);
+            return makeResponse('error', 'Error: ' . $errorMessage, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -113,8 +108,10 @@ class AnimalService
                     return ['image' => $imagePath];
                 }, $data['slider']);
             }
-
-            $animal->update(collect($request->validated())->except('role')->all());
+            $animalUpdatedData = collect($request->validated())->except('role','prop_title','prop_details','slider')->all();
+//            dd($data, $animalUpdatedData);
+//            $animal->update(collect($request->validated())->except('role')->all());
+            $animal->update($animalUpdatedData);
 
             // Remove previous props associated with the animal
             $animal->animalProps()->where('animal_id', $animal->id)->delete();

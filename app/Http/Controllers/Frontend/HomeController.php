@@ -30,26 +30,67 @@ class HomeController extends Controller
         return view('frontend.about-us', $data);
     }
 
+//    public function uploadImage(Request $request)
+//    {
+//        $validator = validator::make($request->all(), [
+//            'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+//        ]);
+//
+//        // Store the image
+//        if ($request->hasFile('upload')) {
+//            $file = $request->file('upload');
+//            $fileName = time() . '_' . $file->getClientOriginalName();
+//            $filePath = $file->storeAs('uploads/ckeditor', $fileName, 'public');
+//
+//            // Return the URL for CKEditor
+//            $url = Storage::url($filePath);
+//
+//            return response()->json([
+//                'uploaded' => 1,
+//                'fileName' => $fileName,
+//                'url' => $url,
+//            ]);
+//        }
+//
+//        return response()->json([
+//            'uploaded' => 0,
+//            'error' => ['message' => 'File upload failed.'],
+//        ]);
+//    }
+
     public function uploadImage(Request $request)
     {
-        $validator = validator::make($request->all(), [
-            'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+//        dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json([
+                'uploaded' => 0,
+                'error' => ['message' => 'Validation failed: ' . $validator->errors()->first()]
+            ]);
+        }
+
         // Store the image
-        if ($request->hasFile('upload')) {
-            $file = $request->file('upload');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads/ckeditor', $fileName, 'public');
+
+            // Store in public folder
+            $filePath = 'uploads/ckeditor/' . $fileName;
+            $file->move(public_path('uploads/ckeditor'), $fileName);
 
             // Return the URL for CKEditor
-            $url = Storage::url($filePath);
+            $url = asset('uploads/ckeditor/' . $fileName);
 
-            return response()->json([
-                'uploaded' => 1,
-                'fileName' => $fileName,
-                'url' => $url,
-            ]);
+//            return response()->json([
+//                'uploaded' => 1,
+//                'fileName' => $fileName,
+//                'url' => $url,
+//            ]);
+            return response()->json(['location'=> asset($filePath)]);
         }
 
         return response()->json([

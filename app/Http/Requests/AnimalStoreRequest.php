@@ -22,20 +22,34 @@ class AnimalStoreRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'integer'],
-//            'image_thumbnail' => ['required', 'string', 'max:255'],
-//            'image' => ['required', 'string', 'max:255'],
             'home_image' => ['required', 'string', 'max:255'],
             'home_image_thumbnail' => ['required', 'string', 'max:255'],
             'banner_image' => ['required', 'string', 'max:255'],
             'banner_image_thumbnail' => ['required', 'string', 'max:255'],
-            'details' => ['required', 'string'],
-            'show_on_top_bar' => ['required'],
+            'show_on_top_bar' => ['required', 'boolean'],
             'is_amazing' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer'],
-//            'prop_title.*' => ['required', 'string'], // Each item in prop_title must be a non-null string
-//            'prop_details.*' => ['required', 'string'], // Each item in prop_details must be a non-null string
-//            'status' => ['required'],
-//            'display_order' => ['required', 'integer'],
+//            'details' => ['required', 'string'],
+
+            // Optional arrays — only validate if present
+            'prop_title' => ['nullable', 'array'],
+            'prop_title.*' => ['required_with:prop_title', 'string', 'max:255'],
+
+            'prop_details' => ['nullable', 'array'],
+            'prop_details.*' => ['required_with:prop_details', 'string'],
+
+            'slider' => ['nullable', 'array'],
+            'slider.*' => ['required_with:slider', 'string', 'max:255'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        // Ensure arrays are always present (even if empty)
+        $this->merge([
+            'prop_title' => $this->input('prop_title', []),
+            'prop_details' => $this->input('prop_details', []),
+            'slider' => $this->input('slider', []),
+        ]);
     }
 }

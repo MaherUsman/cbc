@@ -17,23 +17,59 @@ class AnimalUpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      */
+//    public function rules()
+//    {
+//        return [
+//            'title' => ['required', 'string', 'max:255'],
+//            'slug' => ['required', 'string', 'max:255'],
+////            'image' => ['nullable', 'string', 'max:255'],
+////            'image_thumbnail' => ['nullable', 'string', 'max:255'],
+//            'home_image' => ['nullable', 'string', 'max:255'],
+//            'home_image_thumbnail' => ['nullable', 'string', 'max:255'],
+//            'banner_image' => ['nullable', 'string', 'max:255'],
+//            'banner_image_thumbnail' => ['nullable', 'string', 'max:255'],
+////            'details' => ['required', 'string'],
+//            'show_on_top_bar' => ['required'],
+//            'is_amazing' => ['nullable'],
+//            'display_order' => ['nullable', 'integer'],
+////            'status' => ['required'],
+////            'display_order' => ['required', 'integer'],
+//        ];
+//    }
+
     public function rules()
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255'],
-//            'image' => ['nullable', 'string', 'max:255'],
-//            'image_thumbnail' => ['nullable', 'string', 'max:255'],
-            'home_image' => ['nullable', 'string', 'max:255'],
-            'home_image_thumbnail' => ['nullable', 'string', 'max:255'],
-            'banner_image' => ['nullable', 'string', 'max:255'],
-            'banner_image_thumbnail' => ['nullable', 'string', 'max:255'],
-            'details' => ['required', 'string'],
-            'show_on_top_bar' => ['required'],
-            'is_amazing' => ['nullable'],
+            'category_id' => ['required', 'integer'],
+            'home_image' => ['required', 'string', 'max:255'],
+            'home_image_thumbnail' => ['required', 'string', 'max:255'],
+            'banner_image' => ['required', 'string', 'max:255'],
+            'banner_image_thumbnail' => ['required', 'string', 'max:255'],
+            'show_on_top_bar' => ['required', 'boolean'],
+            'is_amazing' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer'],
-//            'status' => ['required'],
-//            'display_order' => ['required', 'integer'],
+//            'details' => ['required', 'string'],
+
+            // Optional arrays — only validate if present
+            'prop_title' => ['nullable', 'array'],
+            'prop_title.*' => ['required_with:prop_title', 'string', 'max:255'],
+
+            'prop_details' => ['nullable', 'array'],
+            'prop_details.*' => ['required_with:prop_details', 'string'],
+
+            'slider' => ['nullable', 'array'],
+            'slider.*' => ['required_with:slider', 'string', 'max:255'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        // Ensure arrays are always present (even if empty)
+        $this->merge([
+            'prop_title' => $this->input('prop_title', []),
+            'prop_details' => $this->input('prop_details', []),
+            'slider' => $this->input('slider', []),
+        ]);
     }
 }
