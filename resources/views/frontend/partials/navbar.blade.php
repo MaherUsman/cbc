@@ -44,15 +44,15 @@
                                             href="{{ route('frontend.find.animal', $animal->slug) }}">{{$animal->title}}</a>
                                     </li>
                                     @endforeach
-                                    <li class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
-                                        <a href="{{ route('frontend.listing.animal.category', $category->slug) }}">Other Species</a>
-                                    </li>
+{{--                                    <li class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">--}}
+{{--                                        <a href="{{ route('frontend.listing.animal.category', $category->slug) }}">Other Species</a>--}}
+{{--                                    </li>--}}
                                 </ul>
                             </li>
 
                             <li class="dropdown {{ Request::is('tobas/*') ? 'active' : '' }}">
                                 <a href="{{route('frontend.tobas.page')}}">Hydration</a>
-                                <ul>
+                                {{--<ul>
                                     @foreach($tobasGalleries as $tobasGallery)
                                         <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
                                             <a href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
@@ -60,16 +60,16 @@
                                             </a>
                                         </li>
                                     @endforeach
-                                </ul>
+                                </ul>--}}
                             </li>
 
                             <li class="dropdown {{ Request::is('activites/*') ? 'active' : '' }}">
                                 <a href="{{route('frontend.activites.page')}}">Activities</a>
                                 <ul>
-                                    @foreach($activityGalleries as $tobasGallery)
-                                        <li class="{{ Request::is('activites.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
-                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery'=>$tobasGallery]) }}">
-                                                {{$tobasGallery->title}}
+                                    @foreach($activityGalleries as $activityGallery)
+                                        <li class="{{ Request::is('activites.gallery/' . $activityGallery->id) ? 'active' : '' }}">
+                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery'=>$activityGallery]) }}">
+                                                {{$activityGallery->title}}
                                             </a>
                                         </li>
                                     @endforeach

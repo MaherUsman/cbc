@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'list_animalCategories' => 'List Animal Categroies',
-    'add_animalCategories' => 'Add Animal Category',
-    'name' => 'Animal Category List',
-    'pageTitle' => 'All Animal Categroies',
+    'list_animalCategories' => 'List Specie Categroies',
+    'add_animalCategories' => 'Add Specie Category',
+    'name' => 'Specie Category List',
+    'pageTitle' => 'All Specie Categories',
     'admin' => [
         'create' => [
-            'create' => 'Create Animal Category',
+            'create' => 'Create Specie Category',
             'name' => 'Name',
             'slug' => 'Slug',
             'image' => 'Image',
@@ -17,7 +17,7 @@ return [
 
         ],
         'edit' => [
-            'edit' => 'Edit Animal Category ',
+            'edit' => 'Edit Specie Category ',
             'name' => 'Name',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -35,15 +35,15 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animal Categories',
-            'create' => 'Create Animal Category ',
-            'edit' => 'Edit Animal Category ',
+            'name' => 'List Specie Categories',
+            'create' => 'Create Specie Category ',
+            'edit' => 'Edit Specie Category ',
         ],
         'response_msg' => [
-            'success' => 'Animal Category  created successfully',
-            'update' => 'Animal Category  Updated successfully',
-            'error' => 'Error creating Animal Category ',
-            'delete' => 'Animal Category  Deleted Successfully'
+            'success' => 'Specie Category  created successfully',
+            'update' => 'Specie Category  Updated successfully',
+            'error' => 'Error creating Specie Category ',
+            'delete' => 'Specie Category  Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

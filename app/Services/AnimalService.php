@@ -46,14 +46,16 @@ class AnimalService
         DB::beginTransaction();
         try {
             $data = $this->record($request);
-            $data['props'] = is_array($data['props']) ? $data['props'] : [];
-            $data['slider'] = is_array($data['slider']) ? $data['slider'] : [];
-
+//            $data['props'] = is_array($data['props']) ? $data['props'] : [];
+//            $data['slider'] = is_array($data['slider']) ? $data['slider'] : [];
+            $data['slider'] = collect($data['slider'] ?? [])->map(function ($path) {
+                return is_string($path) ? ['image' => $path] : $path;
+            })->filter()->values()->toArray();
             $animal = Animal::create($data['animal']);
 
-            if (!empty($data['props'])) {
-                $animal->animalProps()->createMany($data['props']);
-            }
+//            if (!empty($data['props'])) {
+//                $animal->animalProps()->createMany($data['props']);
+//            }
 
             if (!empty($data['slider'])) {
                 $animal->animalSliders()->createMany($data['slider']);
@@ -117,9 +119,9 @@ class AnimalService
             $animal->animalProps()->where('animal_id', $animal->id)->delete();
 
             // Insert new props if they exist
-            if (count($data['props']) > 0) {
-                $animal->animalProps()->createMany($data['props']);
-            }
+//            if (count($data['props']) > 0) {
+//                $animal->animalProps()->createMany($data['props']);
+//            }
 
             if ($data !== null && isset($data['slider'])) {
                 if (count($data['slider']) > 0) {

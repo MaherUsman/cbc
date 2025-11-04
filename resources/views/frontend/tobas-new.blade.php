@@ -66,35 +66,63 @@
 
 
 
-    @if($tobaGalleries->isNotEmpty())
-        <section class="gallery-page-section pt-0">
-            <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-md-12">
-                        <div class="sec-title">
-                            <h2>all images</h2>
-                        </div>
-                    </div>
-                    @foreach($tobaGalleries as $tobaGallery)
-                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                            <a>
-                                <div class="gallery-block-two">
-                                    <div class="inner-box">
-                                        <figure class="image-box">
-                                            <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">
-                                                <img src="{{asset($tobaGallery->image??'')}}" alt=""></a></figure>
+{{--    @if($tobaGalleries->isNotEmpty())--}}
+{{--        <section class="gallery-page-section pt-0">--}}
+{{--            <div class="auto-container">--}}
+{{--                <div class="row clearfix">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <div class="sec-title">--}}
+{{--                            <h2>all images</h2>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @foreach($tobaGalleries as $tobaGallery)--}}
+{{--                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">--}}
+{{--                            <a>--}}
+{{--                                <div class="gallery-block-two">--}}
+{{--                                    <div class="inner-box">--}}
+{{--                                        <figure class="image-box">--}}
+{{--                                            <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">--}}
+{{--                                                <img src="{{asset($tobaGallery->image??'')}}" alt=""></a></figure>--}}
 
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <div class="category-overlay">--}}
+{{--                                <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">{{$tobaGallery->title??''}}</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--    @endif--}}
+
+    @if($tobaGalleries->isNotEmpty())
+        <!-- gallery-page-section -->
+        <section class="gallery-page-section">
+            <div class="auto-container">
+                <div class="row clearfix" id="gallery-items">
+                    @foreach($tobaGalleries as $gallery)
+                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
+                            <div class="gallery-block-two">
+                                <div class="inner-box">
+                                    <figure class="image-box">
+                                        <img src="{{ asset($gallery->image) }}" alt="">
+                                    </figure>
+                                    <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                        <a href="{{ asset($gallery->image) }}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
+                                            <i class="fa fa-eye"></i>
+                                            <span class="text-heading text-center">{{ $gallery->title }}</span>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="category-overlay">
-                                <a href="{{route('frontend.tobas.gallery' , ['tobasGallery'=>$tobaGallery])}}">{{$tobaGallery->title??''}}</a>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
         </section>
+        <!-- gallery-page-section end -->
     @endif
 
 @endsection

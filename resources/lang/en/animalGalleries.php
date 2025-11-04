@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Animals Gallery',
+    'list_animalGalleries' => 'Species Gallery',
     'add' => 'Add ',
     'gallery' => ' Gallery',
-    'name' => 'Animals Gallery',
-    'pageTitle' => 'Animal Gallery',
+    'name' => 'Species Gallery',
+    'pageTitle' => 'Specie Gallery',
     'reOrder' => 'Reorder ',
     'list_view' => 'Gallery View',
     'grid_view' => 'Reorder/Update',
 
     'admin' => [
         'create' => [
-            'create' => 'Add Animal Gallery',
+            'create' => 'Add Specie Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +22,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal Gallery',
+            'edit' => 'Edit Specie Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +39,15 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals Gallery',
-            'create' => 'Add Animal Gallery',
-            'edit' => 'Edit Animal Gallery',
+            'name' => 'List Species Gallery',
+            'create' => 'Add Specie Gallery',
+            'edit' => 'Edit Specie Gallery',
         ],
         'response_msg' => [
-            'success' => 'Animal Gallery Added successfully',
-            'update' => 'Animal Gallery Updated successfully',
-            'error' => 'Error adding Animal Gallery',
-            'delete' => 'Animal Gallery Item Deleted Successfully'
+            'success' => 'Specie Gallery Added successfully',
+            'update' => 'Specie Gallery Updated successfully',
+            'error' => 'Error adding Specie Gallery',
+            'delete' => 'Specie Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

@@ -121,7 +121,7 @@
     <section class="animals-section sec-pad">
         <div class="auto-container">
             <div class="sec-title centred">
-                <h2>visit these <br />animals also</h2>
+                <h2>Visit these <br />species also</h2>
             </div>
             <div class="row clearfix">
                 @foreach($relatedAnimals as $relatedAnimal)

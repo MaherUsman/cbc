@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'list_animals' => 'List Animals',
-    'add_animal' => 'Add Animal',
-    'name' => 'Animals List',
-    'pageTitle' => 'All Animals',
-    'reOrder' => 'Reorder Animals',
+    'list_animals' => 'List Species',
+    'add_animal' => 'Add Specie',
+    'name' => 'Species List',
+    'pageTitle' => 'All Species',
+    'reOrder' => 'Reorder Species',
     'admin' => [
         'create' => [
-            'create' => 'Add Animal',
+            'create' => 'Add Specie',
             'title' => 'Title',
             'slug' => 'Slug',
-            'category_id' => 'Animal Category',
+            'category_id' => 'Specie Category',
             'image' => 'Detail Page Image',
             'home_image' => 'Home Image',
             'banner_image' => 'Banner Image',
@@ -37,10 +37,10 @@ return [
             'show_on_top_bar_required' => 'Required',
         ],
         'edit' => [
-            'edit' => 'Edit Animal',
+            'edit' => 'Edit Specie',
             'title' => 'Title',
             'slug' => 'Slug',
-            'category_id' => 'Animal Category',
+            'category_id' => 'Specie Category',
             'image' => 'Detail Page Image',
             'home_image' => 'Home Image',
             'banner_image' => 'Banner Image',
@@ -72,15 +72,15 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Animals',
-            'create' => 'Add Animal',
-            'edit' => 'Edit Animal',
+            'name' => 'List Species',
+            'create' => 'Add Specie',
+            'edit' => 'Edit Specie',
         ],
         'response_msg' => [
-            'success' => 'Animal created successfully',
-            'update' => 'Animal Updated successfully',
-            'error' => 'Error adding Animal',
-            'delete' => 'Animal Deleted Successfully'
+            'success' => 'Specie created successfully',
+            'update' => 'Specie Updated successfully',
+            'error' => 'Error adding Specie',
+            'delete' => 'Specie Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

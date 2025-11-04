@@ -45,6 +45,7 @@ class ViewServiceProvider extends ServiceProvider
                 $q->where('slug' , 'black-bucks')
                     ->orWhere('slug' , 'houbara-bustard')
                     ->orWhere('slug' , 'chinkara')
+                    ->orWhere('slug' , 'other-species')
                     ->orWhere('slug' , 'blue-bull');
             })
                 ->orderBy('display_order' , 'ASC')

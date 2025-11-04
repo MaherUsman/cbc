@@ -9,7 +9,7 @@ return [
     'category' => 'Categories',
     'home_page' => 'Home Page Sections',
     'aboutUs_page' => 'About Us Page Sections',
-    'animals_page' => 'Animal Page Sections',
+    'animals_page' => 'Specie Page Sections',
     'setting_page' => 'Setting Page Sections',
     'topas_page' => 'Topas Gallery Sections',
     'visitor_page' => 'Visitor Gallery Sections',
@@ -35,7 +35,7 @@ return [
         'create' => 'Create Contact Us Mail',
     ],
     'sliders' => [
-        'names' => 'Animal Gallery Slider',
+        'names' => 'Specie Gallery Slider',
         'name' => 'Home Page Slider',
         'index' => 'All Sliders',
         'create' => 'Create Slider',
@@ -64,9 +64,9 @@ return [
         'sec' => 'Research',
     ],
     'animals' => [
-        'name' => 'Animals',
-        'index' => 'All Animals',
-        'create' => 'Add Animal',
+        'name' => 'Species',
+        'index' => 'All Species',
+        'create' => 'Add Specie',
     ],
     'topas' => [
         'name' => 'Hydration Gallery',
@@ -94,7 +94,7 @@ return [
         'create' => 'Add Security',
     ],
     'animalCategories' => [
-        'index' => 'Animal Categories',
+        'index' => 'Specie Categories',
     ],
     'setting' => [
         'name' => 'Setting',
