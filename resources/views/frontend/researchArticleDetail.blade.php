@@ -54,28 +54,53 @@
 
 
 
+{{--    @if($researchArticle->galleries->isNotEmpty())--}}
+{{--        <section class="gallery-page-section pt-0">--}}
+{{--            <div class="auto-container">--}}
+{{--                <div class="row clearfix">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <div class="sec-title">--}}
+{{--                            <h2>all images</h2>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @foreach($researchArticle->galleries as $gallery)--}}
+{{--                        <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">--}}
+{{--                            <a>--}}
+{{--                                <div class="gallery-block-two">--}}
+{{--                                    <div class="inner-box">--}}
+{{--                                        <figure class="image-box">--}}
+{{--                                                <img src="{{asset($gallery->image??'')}}" alt="">--}}
+{{--                                        </figure>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <div class="category-overlay">--}}
+{{--                               {{$gallery->title??''}}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--    @endif--}}
+
     @if($researchArticle->galleries->isNotEmpty())
-        <section class="gallery-page-section pt-0">
+        <!-- gallery-page-section with "Load More" Button -->
+        <section class="gallery-page-section pt-0 mt-5">
             <div class="auto-container">
-                <div class="row clearfix">
-                    <div class="col-md-12">
-                        <div class="sec-title">
-                            <h2>all images</h2>
-                        </div>
-                    </div>
+                <div class="row clearfix" id="gallery-container">
                     @foreach($researchArticle->galleries as $gallery)
                         <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
-                            <a>
-                                <div class="gallery-block-two">
-                                    <div class="inner-box">
-                                        <figure class="image-box">
-                                                <img src="{{asset($gallery->image??'')}}" alt="">
-                                        </figure>
+                            <div class="gallery-block-two">
+                                <div class="inner-box">
+                                    <figure class="image-box"><img src="{{asset($gallery->image??'')}}" alt=""></figure>
+                                    <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                        <a href="{{asset($gallery->image??'')}}"
+                                           class="lightbox-image d-flex justify-content-center align-items-center flex-column"
+                                           data-fancybox="gallery"> {{$gallery->title??''}} <i class="fa fa-eye"></i>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="category-overlay">
-                               {{$gallery->title??''}}
                             </div>
                         </div>
                     @endforeach
