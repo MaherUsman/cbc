@@ -36,7 +36,8 @@
 
                             </li>
 
-                            <li class="dropdown {{ Request::is('animal/*') || Request::routeIs('frontend.animal.categories') ? 'active' : '' }}"><a href="#">Species</a>
+                            <li class="dropdown {{ Request::is('animal/*') || Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
+                                <a href="{{route('frontend.listing.animal')}}">Species</a>
                                 <ul>
                                     @foreach($animals as $animal)
                                     <li class="{{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
