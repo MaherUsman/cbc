@@ -101,8 +101,15 @@ class HomeController extends Controller
 
     public function rearchArticle()
     {
-        $data = $this->service->rearchArticle();
-        return view('frontend.rearch_article', $data);
+        $researchArticle = $this->service->rearchArticle();
+//        return view('frontend.rearch_article', $data);
+        return view('frontend.researchArticleDetail', compact('researchArticle'));
+    }
+
+    public function security()
+    {
+        $security = $this->service->security();
+        return view('frontend.security', compact('security'));
     }
 
     public function contactUs()

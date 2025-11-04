@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\HomeCounter;
 use App\Models\Intro;
 use App\Models\ResearchArticle;
+use App\Models\Security;
 use App\Models\Settings;
 use App\Models\Slider;
 use App\Models\Team;
@@ -45,7 +46,24 @@ class HomeService
 
     public function rearchArticle()
     {
-        $data['researchArticles'] = ResearchArticle::all();
-        return $data;
+//        $data['researchArticles'] = ResearchArticle::all();
+//        return $data;
+
+        $researchArticle = ResearchArticle::first();
+        if ($researchArticle) {
+            return $researchArticle;
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function security()
+    {
+        $security = Security::first();
+        if ($security) {
+            return $security;
+        } else {
+            return redirect('/');
+        }
     }
 }

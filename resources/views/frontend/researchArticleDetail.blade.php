@@ -11,7 +11,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{route('frontend.rearchArticle')}}">Research & Articles</a></li>
+                    {{--<li><a href="{{route('frontend.rearchArticle')}}">Research & Articles</a></li>--}}
                     <li>{{$researchArticle->title}}</li>
                 </ul>
                 <div class="title">

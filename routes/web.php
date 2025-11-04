@@ -20,6 +20,8 @@ use App\Http\Controllers\IntroController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ResearchArticleController;
 use App\Http\Controllers\ResearchArticleGalleryController;
+use App\Http\Controllers\SecurityController;
+use App\Http\Controllers\SecurityGalleryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TobaController;
@@ -144,6 +146,26 @@ Route::prefix('admin')->group(function () {
             Route::post('/update-blog-galleries-order', 'updateOrder')->name('researchArticleGalleries.updateOrder');
         });
 
+        Route::get('securities', [SecurityController::class, 'index'])->name('security.index');
+        Route::get('securities/create', [SecurityController::class, 'create'])->name('security.create');
+        Route::post('securities/store', [SecurityController::class, 'store'])->name('security.store');
+        Route::get('securities/{security}', [SecurityController::class, 'edit'])->name('security.edit');
+        Route::put('securities/{security}', [SecurityController::class, 'update'])->name('security.update');
+        Route::delete('securities/{security}', [SecurityController::class, 'destroy'])->name('security.destroy');
+
+
+        Route::controller(SecurityGalleryController::class)->group(function () {
+            Route::get('/security-galleries/{security}', 'index')->name('securityGalleries.index');
+            Route::get('/security-galleries/create/{security}', 'create')->name('securityGalleries.create');
+            Route::post('/security-galleries/{security}', 'store')->name('securityGalleries.store');
+            Route::get('/security-galleries/{securityGallery}', 'show')->name('securityGalleries.show');
+            Route::get('/security-galleries/{securityGallery}/edit', 'edit')->name('securityGalleries.edit');
+            Route::put('/security-galleries/{securityGallery}', 'update')->name('securityGalleries.update');
+            Route::delete('/security-galleries/{securityGallery}', 'destroy')->name('securityGalleries.destroy');
+            Route::get('/security-galleries/reorder/{security}', 'gridView')->name('securityGalleries.gridView');
+            Route::post('/update-security-galleries-order', 'updateOrder')->name('securityGalleries.updateOrder');
+        });
+
         Route::resource('animals', AnimalController::class);
 
 //        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');
@@ -219,6 +241,7 @@ Route::group(['as' => 'frontend.'], function () {
         ->name('find.event');
     Route::get('events', [\App\Http\Controllers\Frontend\EventController::class, 'index'])->name('events.index');
     Route::get('research-article', [\App\Http\Controllers\Frontend\HomeController::class, 'rearchArticle'])->name('rearchArticle');
+    Route::get('security', [\App\Http\Controllers\Frontend\HomeController::class, 'security'])->name('security');
     Route::get('visitors', [\App\Http\Controllers\Frontend\GalleryController::class, 'visitorsGallery'])->name('visitors.gallery');
     Route::get('activities', [\App\Http\Controllers\Frontend\GalleryController::class, 'activitiesGallery'])->name('activities.gallery');
     Route::get('search/animals', [\App\Http\Controllers\Frontend\AnimalController::class, 'searchAnimal'])->name('search.animal');

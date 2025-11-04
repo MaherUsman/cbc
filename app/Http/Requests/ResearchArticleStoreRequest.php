@@ -15,9 +15,9 @@ class ResearchArticleStoreRequest extends FormRequest
     {
         $rules = [
             'title' => 'required|string|max:255',
-//            'description' => 'required|string',
-            'article_pdf_file' => 'required|string',
-//            'banner_image' => 'required|string',
+            'description' => 'required|string',
+//            'article_pdf_file' => 'required|string',
+            'banner_image' => 'required|string',
             //'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 

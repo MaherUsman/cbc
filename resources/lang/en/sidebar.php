@@ -52,16 +52,16 @@ return [
         'sec' => 'About Us',
     ],
     'toba' => [
-        'name' => 'Tobas Gallery',
-        'index' => 'Tobas Gallery',
+        'name' => 'Hydration Gallery',
+        'index' => 'Hydration Gallery',
         'create' => 'Add Gallery Pics',
-        'sec' => 'Tobas',
+        'sec' => 'Hydration',
     ],
     'researchArticle' => [
-        'name' => 'Research Article Gallery',
-        'index' => 'Research Articles',
+        'name' => 'Research Gallery',
+        'index' => 'Research',
         'create' => 'Add Gallery Pics',
-        'sec' => 'Research Article',
+        'sec' => 'Research',
     ],
     'animals' => [
         'name' => 'Animals',
@@ -69,9 +69,9 @@ return [
         'create' => 'Add Animal',
     ],
     'topas' => [
-        'name' => 'Tobas Gallery',
-        'index' => 'All Tobas Gallery',
-        'create' => 'Add Tobas',
+        'name' => 'Hydration Gallery',
+        'index' => 'All Hydration Gallery',
+        'create' => 'Add Hydration',
     ],
     'visitor' => [
         'name' => 'Visitor Gallery',
@@ -87,6 +87,11 @@ return [
         'name' => 'Team',
         'index' => 'All Team',
         'create' => 'Add Team',
+    ],
+    'security' => [
+        'name' => 'Security',
+        'index' => 'Security',
+        'create' => 'Add Security',
     ],
     'animalCategories' => [
         'index' => 'Animal Categories',

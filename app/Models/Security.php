@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ResearchArticle extends Model
+class Security extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,11 @@ class ResearchArticle extends Model
 
     public function galleries()
     {
-        return $this->hasMany(ResearchArticleGallery::class);
+        return $this->hasMany(SecurityGallery::class);
     }
 
-    public function researchArticleGalleries()
+    public function securityGalleries()
     {
-        return $this->hasMany(ResearchArticleGallery::class);
+        return $this->hasMany(SecurityGallery::class);
     }
 }

@@ -4,16 +4,16 @@
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
         'breadcrumbs' => [['name' => '', 'route' =>null],
-        ['name' => __('researchArticle.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('researchArticle.admin.breadcrumbs.edit')
+        ['name' => __('security.admin.breadcrumbs.edit'), 'route' => null]],
+        'pageTitle' => __('security.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('researchArticle.admin.edit.edit')}}</h6>
+                    <h6 class="card-title">{{__('security.admin.edit.edit')}}</h6>
                     <form method="POST" id="formValidation"
-                          action="{{route('researchArticle.update',['researchArticle'=>$researchArticle])}}"
+                          action="{{route('security.update',['security'=>$security])}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -21,61 +21,61 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('researchArticle.admin.edit.title')}}<span
+                                    <label class="form-label">{{__('security.admin.edit.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('researchArticle.admin.edit.title_message')}}"
-                                           name="title" value="{{$researchArticle->title}}" class="form-control"
-                                           placeholder="{{__('researchArticle.admin.edit.title')}}">
+                                           data-msg-required="{{__('security.admin.edit.title_message')}}"
+                                           name="title" value="{{$security->title}}" class="form-control"
+                                           placeholder="{{__('security.admin.edit.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                    >{{__('researchArticle.admin.edit.description')}}</label>
-                                    <textarea name="description" id="ckeditor" rows="4" class="form-control"
-                                              data-rule-required="true"
-                                              data-msg-required="{{__('researchArticle.admin.create.description_message')}}">{{$researchArticle->description}}</textarea>
-                                </div>
-                            </div>
+{{--                            <div class="col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label"--}}
+{{--                                    >{{__('security.admin.edit.description')}}</label>--}}
+{{--                                    <textarea name="description" id="ckeditor" rows="4" class="form-control"--}}
+{{--                                              data-rule-required="true"--}}
+{{--                                              data-msg-required="{{__('security.admin.create.description_message')}}">{{$security->description}}</textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             {{--                                    <div class="col-sm-12">--}}
                             {{--                                        <div class="mb-3">--}}
-                            {{--                                            <label class="form-label">{{__('researchArticle.admin.edit.article_pdf_file')}}</label>--}}
+                            {{--                                            <label class="form-label">{{__('security.admin.edit.article_pdf_file')}}</label>--}}
                             {{--                                            <input type="file" name="article_pdf_file" class="form-control" id="imageUpload"--}}
                             {{--                                                   accept=".pdf,application/pdf">--}}
                             {{--                                        </div>--}}
                             {{--                                        <div class="mb-3">--}}
-                            {{--                                            <img id="imagePreview" src="{{asset($researchArticle->article_pdf_file?:'no_image.jpg')}}"--}}
+                            {{--                                            <img id="imagePreview" src="{{asset($security->article_pdf_file?:'no_image.jpg')}}"--}}
                             {{--                                                 alt="Image Preview" class="img-thumbnail"--}}
-                            {{--                                                 style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">--}}
+                            {{--                                                 style="{{$security->banner_image?'':'display:none;'}} max-width:200px; height:auto;">--}}
                             {{--                                        </div>--}}
                             {{--                                    </div>--}}
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('researchArticle.admin.edit.image')}}</label>
+                                    <label class="form-label">{{__('security.admin.edit.image')}}</label>
                                     <input type="file" name="banner_image" class="form-control" id="imageUpload"
                                            accept="image/*">
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview"
-                                         src="{{asset($researchArticle->banner_image?:'no_image.jpg')}}"
+                                         src="{{asset($security->banner_image?:'no_image.jpg')}}"
                                          alt="Image Preview" class="img-thumbnail"
-                                         style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
+                                         style="{{$security->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
 
-                        <a href="{{route('researchArticle.index')}}" class="btn btn-danger light btn-sl-sm"
+                        <a href="{{route('security.index')}}" class="btn btn-danger light btn-sl-sm"
                            type="button">
-                            {{__('researchArticle.admin.form.cancel')}}
+                            {{__('security.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('researchArticle.admin.edit.submit')}}
+                            {{__('security.admin.edit.submit')}}
                         </button>
-                        <a href="{{route('researchArticleGalleries.index',['researchArticle'=>$researchArticle])}}" class="btn btn-success light btn-sl-sm"
+                        <a href="{{route('securityGalleries.index',['security'=>$security])}}" class="btn btn-success light btn-sl-sm"
                            type="button">
-                            {{__('researchArticle.admin.form.research_gallery')}}
+                            {{__('security.admin.form.research_gallery')}}
                         </a>
                     </form>
                 </div>
@@ -204,7 +204,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('researchArticle.index')}}";
+                        window.location.href = "{{route('security.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();

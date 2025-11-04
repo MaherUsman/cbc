@@ -65,7 +65,7 @@
                     </ul>
                 </li>
             @endif
-            
+
             @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-intro']))
                 <li {{ request()->is('admin/intros*') ? 'active mm-active' : '' }}>
                     <a class="ai-icon" href="{{ route('intros.COE') }}" aria-expanded="false">
@@ -102,6 +102,20 @@
                     <span class="nav-text">{{ __('sidebar.researchArticle.index') }}</span>
                 </a>
             </li>
+
+            <li {{ request()->is('admin/securities*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{ route('security.index') }}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">{{ __('sidebar.security.index') }}</span>
+                </a>
+            </li>
+            {{--<li {{ request()->is('admin/research-article-galleries*') ? 'active mm-active' : '' }}>
+                <a class="ai-icon" href="{{ route('researchArticleGalleries.index') }}" aria-expanded="false">
+                    <i class="la la-calendar"></i>
+                    <span class="nav-text">{{ __('sidebar.researchArticle.name') }}</span>
+                </a>
+            </li>--}}
+
             {{--            @endif --}}
 
 

@@ -18,9 +18,11 @@ class ResearchArticleController extends Controller
         $this->researchArticleService= $researchArticleService;
     }
 
-    public function index(ResearchArticleDataTable $dataTable)
+//    public function index(ResearchArticleDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('admin.researchArticle.index');
+        return $this->researchArticleService->createOrEdit();
+//        return $dataTable->render('admin.researchArticle.index');
     }
 
     public function create()

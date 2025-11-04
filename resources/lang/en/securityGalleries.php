@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'list_animalGalleries' => 'Research Gallery',
+    'list_securityGalleries' => 'Security Gallery',
     'add' => 'Add ',
     'gallery' => ' Gallery',
-    'name' => 'Research Gallery',
-    'pageTitle' => 'Research Gallery',
+    'name' => 'Security Gallery',
+    'pageTitle' => 'Security Gallery',
     'reOrder' => 'Reorder ',
     'list_view' => 'Gallery View',
     'grid_view' => 'Reorder/Update',
 
     'admin' => [
         'create' => [
-            'create' => 'Add Research Gallery',
+            'create' => 'Add Security Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -22,7 +22,7 @@ return [
             'image_required' => 'Image is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Research Gallery',
+            'edit' => 'Edit Security Gallery',
             'title' => 'Title',
             'image' => 'Image',
             'submit' => 'Submit',
@@ -39,15 +39,15 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Research Gallery',
-            'create' => 'Add Research Gallery',
-            'edit' => 'Edit Research Gallery',
+            'name' => 'List Security Gallery',
+            'create' => 'Add Security Gallery',
+            'edit' => 'Edit Security Gallery',
         ],
         'response_msg' => [
-            'success' => 'Research Gallery Added successfully',
-            'update' => 'Research Gallery Updated successfully',
-            'error' => 'Error adding Research Gallery',
-            'delete' => 'Research Gallery Item Deleted Successfully'
+            'success' => 'Security Gallery Added successfully',
+            'update' => 'Security Gallery Updated successfully',
+            'error' => 'Error adding Security Gallery',
+            'delete' => 'Security Gallery Item Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel']
     ],

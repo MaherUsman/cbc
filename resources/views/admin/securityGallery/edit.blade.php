@@ -3,61 +3,58 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => '', 'route' =>null],
-        ['name' => __('toba.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('toba.admin.breadcrumbs.edit')
+        'breadcrumbs' => [
+
+            ['name' => __('securityGalleries.admin.breadcrumbs.edit'), 'route' => 'securityGalleries.edit', 'params' => $securityGallery->security]
+        ],
+        'pageTitle' => __('securityGalleries.admin.breadcrumbs.edit')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('toba.admin.edit.edit')}}</h6>
-                    <form method="POST" id="formValidation" action="{{route('toba.update',['toba'=>$toba])}}"
+                    <h6 class="card-title">{{__('securityGalleries.admin.edit.edit')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('securityGalleries.update',$securityGallery)}}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">{{__('toba.admin.edit.title')}}<span
-                                                    class="text-danger">*</span> </label>
-                                            <input type="text" data-rule-required="true"
-                                                   data-msg-required="{{__('toba.admin.edit.title_message')}}"
-                                                   name="title" value="{{$toba->title}}" class="form-control"
-                                                   placeholder="{{__('toba.admin.edit.title')}}">
-                                        </div>
-                                    </div>
-                                    {{--<div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label"
-                                            >{{__('toba.admin.edit.description')}}</label>
-                                            <textarea name="description" id="ckeditor" rows="4" class="form-control" data-rule-required="true"
-                                           data-msg-required="{{__('toba.admin.create.description_message')}}">{{$toba->description}}</textarea>
-                                        </div>
-                                    </div>--}}
-                                    <div class="col-sm-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">{{__('toba.admin.edit.image')}}</label>
-                                            <input type="file" name="image" class="form-control" id="imageUpload"
-                                                   accept="image/*">
-                                        </div>
-                                        <div class="mb-3">
-                                            <img id="imagePreview" src="{{asset($toba->image?:'no_image.jpg')}}"
-                                                 alt="Image Preview" class="img-thumbnail"
-                                                 style="{{$toba->image?'':'display:none;'}} max-width:200px; height:auto;">
-                                        </div>
-                                    </div>
+                        <div class="row rowTemplate">
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('securityGalleries.admin.create.title')}}{{--<span
+                                            class="text-danger">*</span> --}}</label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('securityGalleries.admin.create.title_message')}}"
+                                           name="title" class="form-control" value="{{$securityGallery->title}}"
+                                           placeholder="{{__('securityGalleries.admin.create.title')}}">
                                 </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('securityGalleries.admin.create.image')}}<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="image" id="imageUpload" class="form-control" accept="image/*"
+                                           data-rule-required="false" onchange="previewImage(this)"
+                                           data-msg-required="{{__('securityGalleries.admin.create.image_message')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img src="{{asset($securityGallery->image)}}" alt="Image Preview" class="img-thumbnail"
+                                         style="display:block; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                        </div>
 
-
-                            <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm" type="button">
-                                {{__('toba.admin.form.cancel')}}
-                            </a>
-                            <button type="submit" class="btn btn-primary submit">
-                                {{__('toba.admin.edit.submit')}}
-                            </button>
+                        <a href="{{route('securityGalleries.index', $securityGallery->security)}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('securityGalleries.admin.form.cancel')}}
+                        </a>
+                        <button type="submit" class="btn btn-primary submit">
+                            {{__('securityGalleries.admin.create.submit')}}
+                        </button>
                     </form>
+
+
                 </div>
             </div>
         </div>
@@ -65,20 +62,19 @@
 @endsection
 
 @section('script')
+
     <script>
-        document.getElementById('imageUpload').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            if (file) {
-                const reader = new FileReader();
+        // Function to preview the selected image
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
                 reader.onload = function (e) {
-                    document.getElementById('imagePreview').style.display = 'block';
-                    document.getElementById('imagePreview').src = e.target.result;
+                    // Find the nearest image element in the same row and display it
+                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
                 };
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById('imagePreview').style.display = 'none';
+                reader.readAsDataURL(input.files[0]); // Convert the file to a URL
             }
-        });
+        }
 
         $(document).ready(function () {
             var imageColName = 'pic';
@@ -109,6 +105,8 @@
                             let response = await uploadImageInChunks(imageFile);
                             if (response.success) {
                                 data.set(imageColName, response.filePath);
+                                data.set(`thumb`, response.thumb);
+                                data.set(`compressed`, response.compressed);
                                 await submitFormData(url, data);
                             } else {
                                 errorMsg('Image upload failed');
@@ -148,10 +146,12 @@
                             processData: false,
                             contentType: false,
                         });
-
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true, filePath: response.filePath};
+                            return {success: true,
+                                filePath: response.filePath,
+                                thumb: response.thumbnailPath,
+                                compressed: response.compressedPath};
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -183,7 +183,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('toba.COE')}}";
+                        window.location.href = "{{route('securityGalleries.index', $securityGallery->security)}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
@@ -191,5 +191,7 @@
                 }
             }
         });
+
+
     </script>
 @endsection

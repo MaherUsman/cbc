@@ -27,13 +27,13 @@
                                            placeholder="{{__('toba.admin.create.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            {{--<div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('toba.admin.create.description')}}</label>
                                     <textarea name="description" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('toba.admin.create.description_message')}}"></textarea>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('toba.admin.create.image')}}<span

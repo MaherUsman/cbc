@@ -3,81 +3,73 @@
 @endsection
 @section('content')
     @include('layouts.admin.includes.breadcrumbs', [
-        'breadcrumbs' => [['name' => '', 'route' =>null],
-        ['name' => __('researchArticle.admin.breadcrumbs.edit'), 'route' => null]],
-        'pageTitle' => __('researchArticle.admin.breadcrumbs.edit')
+        'breadcrumbs' => [['name' => __('security.admin.breadcrumbs.name'), 'route' => null],
+        ['name' => __('security.admin.breadcrumbs.create'), 'route' => null]],
+        'pageTitle' => __('security.admin.breadcrumbs.create')
     ])
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">{{__('researchArticle.admin.edit.edit')}}</h6>
-                    <form method="POST" id="formValidation"
-                          action="{{route('researchArticle.update',['researchArticle'=>$researchArticle])}}"
+                    <h6 class="card-title">{{__('security.admin.create.create')}}</h6>
+                    <form method="POST" id="formValidation" action="{{route('security.store')}}"
                           enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('researchArticle.admin.edit.title')}}<span
+                                    <label class="form-label">{{__('security.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
                                     <input type="text" data-rule-required="true"
-                                           data-msg-required="{{__('researchArticle.admin.edit.title_message')}}"
-                                           name="title" value="{{$researchArticle->title}}" class="form-control"
-                                           placeholder="{{__('researchArticle.admin.edit.title')}}">
+                                           data-msg-required="{{__('security.admin.create.title_message')}}"
+                                           name="title" value="{{old('title')}}" class="form-control"
+                                           placeholder="{{__('security.admin.create.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                    >{{__('researchArticle.admin.edit.description')}}</label>
-                                    <textarea name="description" id="ckeditor" rows="4" class="form-control"
-                                              data-rule-required="true"
-                                              data-msg-required="{{__('researchArticle.admin.create.description_message')}}">{{$researchArticle->description}}</textarea>
-                                </div>
-                            </div>
-                            {{--                                    <div class="col-sm-12">--}}
-                            {{--                                        <div class="mb-3">--}}
-                            {{--                                            <label class="form-label">{{__('researchArticle.admin.edit.article_pdf_file')}}</label>--}}
-                            {{--                                            <input type="file" name="article_pdf_file" class="form-control" id="imageUpload"--}}
-                            {{--                                                   accept=".pdf,application/pdf">--}}
-                            {{--                                        </div>--}}
-                            {{--                                        <div class="mb-3">--}}
-                            {{--                                            <img id="imagePreview" src="{{asset($researchArticle->article_pdf_file?:'no_image.jpg')}}"--}}
-                            {{--                                                 alt="Image Preview" class="img-thumbnail"--}}
-                            {{--                                                 style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
+{{--                            <div class="col-sm-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label">{{__('security.admin.create.description')}}</label>--}}
+{{--                                    <textarea name="description" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('security.admin.create.description_message')}}"></textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-sm-12">--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <label class="form-label">{{__('security.admin.create.article_pdf_file')}}<span--}}
+{{--                                            class="text-danger">*</span></label>--}}
+{{--                                    <input type="file" name="article_pdf_file" class="form-control" id="fileUpload"--}}
+{{--                                           accept=".pdf,application/pdf" data-rule-required="true"--}}
+{{--                                           data-msg-required="{{__('security.admin.create.article_pdf_file_message')}}">--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-3">--}}
+{{--                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"--}}
+{{--                                         style="display:none; max-width:200px; height:auto;">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">{{__('researchArticle.admin.edit.image')}}</label>
+                                    <label class="form-label">{{__('security.admin.create.image')}}<span
+                                            class="text-danger">(550 x 386)*</span></label>
                                     <input type="file" name="banner_image" class="form-control" id="imageUpload"
-                                           accept="image/*">
+                                           accept="image/*" data-rule-required="true"
+                                           data-msg-required="{{__('security.admin.create.image_message')}}">
                                 </div>
                                 <div class="mb-3">
-                                    <img id="imagePreview"
-                                         src="{{asset($researchArticle->banner_image?:'no_image.jpg')}}"
-                                         alt="Image Preview" class="img-thumbnail"
-                                         style="{{$researchArticle->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
+                                    <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
 
-
-                        <a href="{{route('researchArticle.index')}}" class="btn btn-danger light btn-sl-sm"
-                           type="button">
-                            {{__('researchArticle.admin.form.cancel')}}
+                        <a href="{{route('security.index')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                            {{__('security.admin.form.cancel')}}
                         </a>
                         <button type="submit" class="btn btn-primary submit">
-                            {{__('researchArticle.admin.edit.submit')}}
+                            {{__('security.admin.create.submit')}}
                         </button>
-                        <a href="{{route('researchArticleGalleries.index',['researchArticle'=>$researchArticle])}}" class="btn btn-success light btn-sl-sm"
-                           type="button">
-                            {{__('researchArticle.admin.form.research_gallery')}}
-                        </a>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -85,6 +77,7 @@
 @endsection
 
 @section('script')
+
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -102,7 +95,6 @@
 
         $(document).ready(function () {
             var imageColName = 'ResearchArticlePDF';
-            // var PDFColName = 'ResearchArticlePDF';
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
@@ -122,6 +114,7 @@
 
                     var url = $(form).attr('action');
                     var imageColName = $('#imageUpload').attr('name');
+                    console.log(imageColName);
                     var data = new FormData($(form)[0]);
                     var imageFile = $('#imageUpload')[0].files[0];
 
@@ -132,9 +125,11 @@
                                 data.set(imageColName, response.filePath);
                                 await submitFormData(url, data);
                             } else {
+                                $.unblockUI();
                                 errorMsg('Image upload failed');
                             }
                         } catch (error) {
+                            $.unblockUI();
                             errorMsg('An error occurred during the image upload');
                         }
                     } else {
@@ -204,7 +199,7 @@
                     $.unblockUI();
                     successMsg(response.message);
                     setTimeout(function () {
-                        window.location.href = "{{route('researchArticle.index')}}";
+                        window.location.href = "{{route('security.index')}}";
                     }, 1000);
                 } catch (xhr) {
                     $.unblockUI();
@@ -212,5 +207,6 @@
                 }
             }
         });
+
     </script>
 @endsection

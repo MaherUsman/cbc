@@ -32,16 +32,18 @@
 {{--                        <img src="{{asset('assets/images/background/page-title.jpg')}}" alt="">--}}
 {{--                    </figure>--}}
 {{--                </div>--}}
-                <div class="col-lg-12 col-md-12 col-sm-12 content-column">
-                    <div class="content_block_three">
-                        <div class="content-box">
-                            <div class="sec-title">
-                                <h2>{{$data->title??''}}</h2>
-                            </div>
-                            <div class="text">
-                                <div id="limited-text">
-                                    {!! $data->description??'' !!}
-                                </div>
+
+{{--                <div class="col-lg-12 col-md-12 col-sm-12 content-column">--}}
+{{--                    <div class="content_block_three">--}}
+{{--                        <div class="content-box">--}}
+{{--                            <div class="sec-title">--}}
+{{--                                <h2>{{$data->title??''}}</h2>--}}
+{{--                            </div>--}}
+{{--                            <div class="text">--}}
+{{--                                <div id="limited-text">--}}
+{{--                                    {!! $data->description??'' !!}--}}
+{{--                                </div>--}}
+
 {{--                                <div id="full-text" style="display: none;">--}}
 {{--                                    {!! $data->description !!}--}}
 {{--                                </div>--}}
@@ -49,13 +51,13 @@
 {{--                                    More--}}
 {{--                                </button>--}}
 
-                            </div>
-                            <!-- <div class="btn-box">
-                                <a href="index-2.html" class="theme-btn btn-one">discover more</a>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
+{{--                            </div>--}}
+{{--                            <!-- <div class="btn-box">--}}
+{{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a>--}}
+{{--                            </div> -->--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
 
         </div>

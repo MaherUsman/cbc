@@ -103,7 +103,7 @@
 {{--                                    href="{{route('frontend.topas.gallery')}}">Hydration</a></li>--}}
 
                             <li class="{{--{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}--}}">
-                                <a href="#">Administration/Security</a>
+                                <a href="{{route('frontend.security')}}">Security</a>
                             </li>
 
                             <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a

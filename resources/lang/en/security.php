@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'list_researchArticle' => 'List Research',
-    'add_researchArticle' => 'Add Research',
-    'name' => 'Research List',
-    'pageTitle' => 'All Research',
-    'reOrder' => 'Reorder Research',
+    'list_security' => 'List Security',
+    'add_security' => 'Add Security',
+    'name' => 'Security List',
+    'pageTitle' => 'All Security',
+    'reOrder' => 'Reorder Security',
     'admin' => [
         'create' => [
-            'create' => 'Create Research',
+            'create' => 'Create Security',
             'title' => 'Title',
             'image' => 'Image',
             'article_pdf_file' => 'Article PDF File',
@@ -24,7 +24,7 @@ return [
             'description_required' => 'Description is Required',
         ],
         'edit' => [
-            'edit' => 'Edit Research',
+            'edit' => 'Edit Security',
             'title' => 'Title',
             'image' => 'Image',
             'article_pdf_file' => 'Article PDF File',
@@ -49,19 +49,19 @@ return [
             'updated_at' => 'Updated At',
         ],
         'breadcrumbs' => [
-            'name' => 'List Research',
-            'create' => 'Create Research',
-            'edit' => 'Edit Research',
-            'show' => 'Edit Research',
+            'name' => 'List Security',
+            'create' => 'Create Security',
+            'edit' => 'Edit Security',
+            'show' => 'Edit Security',
         ],
         'response_msg' => [
-            'success' => 'Research created successfully',
-            'update' => 'Research Updated successfully',
-            'error' => 'Error creating Research',
-            'delete' => 'Research Deleted Successfully'
+            'success' => 'Security created successfully',
+            'update' => 'Security Updated successfully',
+            'error' => 'Error creating Security',
+            'delete' => 'Security Deleted Successfully'
         ],
         'form' => ['cancel' => 'Cancel',
-            'research_gallery' => 'View Research Gallery'
+            'research_gallery' => 'View Security Gallery'
             ]
     ],
 ];
