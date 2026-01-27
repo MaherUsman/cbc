@@ -148,6 +148,18 @@
                                 </div>
                             </div>
 
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Show in top bar sub menu</label>
+                                    <select class="form-control" name="display_in_top_nav_menu">
+                                        <option value="0" {{$animal->display_in_top_nav_menu == 0 ? 'selected':''}}>No</option>
+                                        <option value="1" {{$animal->display_in_top_nav_menu == 1 ? 'selected':''}}>Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="col-sm-6" id="displayOrderContainer"
                                  @if($animal->is_amazing == 'no') style="display:none;"
                                  @else style="display:block;" @endif>

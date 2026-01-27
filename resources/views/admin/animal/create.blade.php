@@ -143,6 +143,16 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Show in top bar sub menu</label>
+                                    <select class="form-control" name="display_in_top_nav_menu">
+                                        <option value="0" selected>No</option>
+                                        <option value="1" >Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col-sm-6" id="displayOrderContainer" style="display:none;">
                                 <div class="form-group">
                                     <label class="form-label">{{__('animals.admin.create.display_order')}}<span

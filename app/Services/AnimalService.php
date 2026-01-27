@@ -157,6 +157,7 @@ class AnimalService
             'is_amazing' => $request->is_amazing ?: 'no',
             'home_image' => $request->home_image,
             'home_image_thumbnail' => $request->home_image_thumbnail,
+            'display_in_top_nav_menu' => $request->display_in_top_nav_menu ?:0,
 //            'banner_image' => $request->banner_image,
 //            'banner_image_thumbnail' => $request->banner_image_thumbnail,
             //'status' => $request->status?:1,

@@ -56,8 +56,11 @@ class ViewServiceProvider extends ServiceProvider
             $articleGalleries = ArticleGallery::where('show_on_navbar',1)->get();
             $activityGalleries = ActivityGallery::where('show_on_navbar',1)->get();
 
-
+            $animalChilds = Animal::where('display_in_top_nav_menu',1)
+                ->orderBy('display_order' , 'ASC')
+                ->get();
             $view->with('animals', $animals);
+            $view->with('animalChilds',$animalChilds);
             $view->with('category', $category);
             $view->with('tobasGalleries', $tobasGalleries);
             $view->with('articleGalleries', $articleGalleries);

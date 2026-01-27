@@ -40,10 +40,25 @@
                                 <a href="{{route('frontend.listing.animal')}}">Species</a>
                                 <ul>
                                     @foreach($animals as $animal)
-                                    <li class="{{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
-                                        <a
-                                            href="{{ route('frontend.find.animal', $animal->slug) }}">{{$animal->title}}</a>
-                                    </li>
+                                        @if($animal->title == 'Other Species')
+                                            <li class="dropdown {{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
+                                                <a href="{{ route('frontend.animal.categories') }}">{{$animal->title}}</a>
+                                                <ul>
+                                                    @foreach($animalChilds as $small)
+                                                        <li>
+                                                            <a href="{{ route('frontend.find.animal', $small->slug) }}">{{$small->title}}</a>
+                                                        </li>
+
+                                                    @endforeach
+
+                                                </ul>
+                                            </li>
+                                        @else
+                                            <li class="{{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
+                                                <a href="{{ route('frontend.find.animal', $animal->slug) }}">{{$animal->title}}</a>
+                                            </li>
+
+                                        @endif
                                     @endforeach
 {{--                                    <li class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">--}}
 {{--                                        <a href="{{ route('frontend.listing.animal.category', $category->slug) }}">Other Species</a>--}}
