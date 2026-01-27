@@ -236,6 +236,25 @@
                     </ul>
                 </li>
             @endif
+{{--            @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-student']))--}}
+                <li class="{{ request()->is('admin/students*') ? 'active mm-active' : '' }}">
+                    <a class="has-arrow" href="javascript:void(0);"
+                        aria-expanded="{{ request()->is('admin/students*') ? 'true' : 'false' }}">
+                        <i class="la la-graduation-cap"></i>
+                        <span class="nav-text">Students</span>
+                    </a>
+                    <ul aria-expanded="{{ request()->is('admin/students*') ? 'true' : 'false' }}">
+                        <li class="{{ request()->is('admin/students*') ? 'active mm-active' : '' }}">
+                            <a href="{{ route('students.index') }}">All Students</a>
+                        </li>
+                        @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['create-student']))
+                            <li class="{{ request()->is('admin/students/create') ? 'active mm-active' : '' }}">
+                                <a href="{{ route('students.create') }}">Create Student</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+{{--            @endif--}}
             @if (\Illuminate\Support\Facades\Auth::user()->hasPermission(['view-setting']))
                 {{-- <li class="nav-label">{{__('sidebar.setting_page')}}</li> --}}
                 <li class="{{ request()->is('admin/settings') ? 'active mm-active' : '' }}">

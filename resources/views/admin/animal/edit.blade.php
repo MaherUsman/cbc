@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <img src="{{asset($animal->banner_image?:'no_image.jpg')}}" id="bannerImagePreview"
-                                         alt="Image Preview" class="img-thumbnail imagePreview"
+                                    alt="Image Preview" class="img-thumbnail imagePreview"
                                          style="{{$animal->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
                                 </div>
                             </div>

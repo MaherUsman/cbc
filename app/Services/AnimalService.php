@@ -110,7 +110,10 @@ class AnimalService
                     return ['image' => $imagePath];
                 }, $data['slider']);
             }
-            $animalUpdatedData = collect($request->validated())->except('role','prop_title','prop_details','slider')->all();
+            // Exclude fields that are not columns on the animals table (e.g. slider arrays)
+            $animalUpdatedData = collect($request->validated())
+                ->except('role', 'prop_title', 'prop_details', 'slider', 'slider_image')
+                ->all();
 //            dd($data, $animalUpdatedData);
 //            $animal->update(collect($request->validated())->except('role')->all());
             $animal->update($animalUpdatedData);
@@ -158,8 +161,8 @@ class AnimalService
             'home_image' => $request->home_image,
             'home_image_thumbnail' => $request->home_image_thumbnail,
             'display_in_top_nav_menu' => $request->display_in_top_nav_menu ?:0,
-//            'banner_image' => $request->banner_image,
-//            'banner_image_thumbnail' => $request->banner_image_thumbnail,
+            'banner_image' => $request->banner_image,
+            'banner_image_thumbnail' => $request->banner_image_thumbnail,
             //'status' => $request->status?:1,
             //'display_order' => $request->display_order?:1,
         ];
@@ -188,7 +191,8 @@ class AnimalService
 //        }
 
 //        $data['gallery'] = $gallery;
-        $data['slider'] = $request->slider_image;
+        // Prefer slider_image (frontend uses slider_image[]), fall back to slider
+        $data['slider'] = $request->input('slider_image', $request->input('slider', []));
 
         return $data;
     }

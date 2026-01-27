@@ -102,18 +102,7 @@
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
-                            <li class="dropdown {{ Request::is('article/*') ? 'active' : '' }}">
-                                <a href="{{route('frontend.rearchArticle')}}">Research {{--& Articles--}}</a>
-                                <ul>
-                                    @foreach($articleGalleries as $articleGallery)
-                                        <li class="{{ Request::is('article.gallery/' . $articleGallery->id) ? 'active' : '' }}">
-                                            <a href="{{ route('frontend.article.gallery', ['articleGallery'=>$articleGallery]) }}">
-                                                {{$articleGallery->title}}
-                                                </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
+                            <li class="{{ Request::routeIs('frontend.students.index') ? 'active' : '' }}"><a href="{{ route('frontend.students.index') }}">Our Students</a></li>
 
 {{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{route('frontend.topas.gallery')}}">Hydration</a></li>--}}
