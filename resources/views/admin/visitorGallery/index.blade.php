@@ -20,6 +20,22 @@
             width: 3rem;
             height: 3rem;
         }
+
+        /* Make preview thumbnails smaller for new rows */
+        .preview-img {
+            max-width: 120px !important;
+            width: auto;
+            height: auto;
+        }
+
+        /* Give the cross icon some padding from the right */
+        .remove-row i {
+            padding-right: 6px;
+        }
+
+        .remove-row {
+            margin-left: -30%;
+        }
     </style>
 
     @include('layouts.admin.includes.breadcrumbs' , ['breadcrumbs' => [['name' =>  __('visitorGallery.name') , 'route' => null]],
@@ -41,8 +57,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{ __('visitorGallery.page_content') }}</h4>
-{{--                            <a href="{{ route('visitor-galleries.create') }}"--}}
-{{--                               class="btn btn-primary">{{ __('visitorGallery.add_visitorGallery') }}</a>--}}
+                            {{--                            <a href="{{ route('visitor-galleries.create') }}"--}}
+                            {{--                               class="btn btn-primary">{{ __('visitorGallery.add_visitorGallery') }}</a>--}}
                         </div>
                         <div class="card-body pb-1">
                             <div class="mb-3">
@@ -57,7 +73,9 @@
                                                         class="text-danger"></span> </label>
                                                 <input type="text" data-rule-required="false"
                                                        data-msg-required="{{__('blogs.admin.create.title_message')}}"
-                                                       name="title" value="{{$topasGalleriesContent->data['title']??''}}" class="form-control"
+                                                       name="title"
+                                                       value="{{$topasGalleriesContent->data['title']??''}}"
+                                                       class="form-control"
                                                        placeholder="{{__('blogs.admin.create.title')}}">
                                             </div>
                                         </div>
@@ -66,13 +84,15 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                >{{__('blogs.admin.create.details')}}<span class="text-danger"></span></label>
+                                                >{{__('blogs.admin.create.details')}}<span
+                                                        class="text-danger"></span></label>
                                                 <textarea name="details" id="ckeditor" data-rule-required="true"
                                                           data-msg-required="{{__('blogs.admin.create.address_message')}}">{{$topasGalleriesContent->data['details']??''}}</textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm" type="button">
+                                    <a href="{{route('admin.dashboard')}}" class="btn btn-danger light btn-sl-sm"
+                                       type="button">
                                         {{__('blogs.admin.form.cancel')}}
                                     </a>
                                     <button type="submit" class="btn btn-primary submit">
@@ -85,43 +105,48 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h4 class="card-title">{{ __('visitorGallery.list_visitorGallery') }}</h4>
-                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">{{ __('visitorGallery.add_visitorGallery') }}</button>
+                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                                            data-bs-target=".bd-example-modal-lg">{{ __('visitorGallery.add_visitorGallery') }}</button>
                                 </div>
                                 @foreach($visitorGalleries as $gallery)
-                                <div class="col-lg-3 col-md-6 mb-4">
-                                    <div class="gallery-img-wrapper position-relative w-100 h-100">
-                                        <a
-                                            href="{{asset($gallery->image)}}"
-                                            data-src="{{asset($gallery->image)}}"
-                                            class="lg-item"
-                                        >
-                                            <img
-                                                src="{{asset($gallery->image)}}"
-                                                class="rounded" alt=""
-                                                style="width:100%;"
+                                    <div class="col-lg-3 col-md-6 mb-4">
+                                        <div class="gallery-img-wrapper position-relative w-100 h-100">
+                                            <a
+                                                href="{{asset($gallery->image)}}"
+                                                data-src="{{asset($gallery->image)}}"
+                                                class="lg-item"
                                             >
-                                        </a>
-                                        <div class="gallery-overlay rounded">
-                                            <div class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
-                                                <div class="overlay-icon mt-2">
-                                                    <a href="{{route('visitor-galleries.edit', $gallery)}}">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </a>
+                                                <img
+                                                    src="{{asset($gallery->image)}}"
+                                                    class="rounded" alt=""
+                                                    style="width:100%;"
+                                                >
+                                            </a>
+                                            <div class="gallery-overlay rounded">
+                                                <div
+                                                    class="overlay-icons-wrapper w-100 d-flex flex-column align-items-end">
+                                                    <div class="overlay-icon mt-2">
+                                                        <a href="{{route('visitor-galleries.edit', $gallery)}}">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="overlay-icon mt-2">
+                                                        <a href="#"
+                                                           data-url="{{ route('visitor-galleries.destroy', $gallery) }}"
+                                                           title="Delete"
+                                                           class="deleteRecord" href="javascript:void(0)"
+                                                           data-bs-toggle="tooltip" data-bs-placement="top">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="overlay-icon mt-2">
-                                                    <a href="#" data-url="{{ route('visitor-galleries.destroy', $gallery) }}" title="Delete"
-                                                       class="deleteRecord" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </a>
+                                                <div class="img-title mt-3">
+                                                    <p>{{$gallery->title}}</p>
                                                 </div>
-                                            </div>
-                                            <div class="img-title mt-3">
-                                                <p>{{$gallery->title}}</p>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -144,38 +169,47 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                            <div class="row rowTemplate">
-                                <div class="col-sm-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
-                                                class="text-danger"></span> </label>
-                                        <input type="text" data-rule-required="false"
-                                               data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
-                                               name="title[]" class="form-control"
-                                               placeholder="{{__('visitorGallery.admin.create.title')}}">
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
-                                                class="text-danger">*(370 x 422)</span></label>
-                                        <input type="file" name="image[]" class="form-control" accept="image/*"
-                                               data-rule-required="true" onchange="previewImage(this)"
-                                               data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="mb-3">
-                                        <img src="#" alt="Image Preview" class="img-thumbnail"
-                                             style="display:none; max-width:200px; height:auto;">
-                                    </div>
+                        <div class="row rowTemplate">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('visitorGallery.admin.create.title')}}<span
+                                            class="text-danger"></span> </label>
+                                    <input type="text" data-rule-required="false"
+                                           data-msg-required="{{__('visitorGallery.admin.create.title_message')}}"
+                                           name="title[]" class="form-control"
+                                           placeholder="{{__('visitorGallery.admin.create.title')}}">
                                 </div>
                             </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label class="form-label">{{__('visitorGallery.admin.create.image')}}<span
+                                            class="text-danger">*(370 x 422)</span></label>
+                                    <input type="file" name="image[]" class="form-control" accept="image/*"
+                                           data-rule-required="true" onchange="previewImage(this)"
+                                           data-msg-required="{{__('visitorGallery.admin.create.image_message')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img src="#" alt="Image Preview" class="img-thumbnail preview-img"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-1 d-flex align-items-center">
+                                <!-- remove button; hidden for the initial row by default -->
+                                <button type="button" class="btn btn-danger remove-row" style="display:none;">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary add-row">{{ __('visitorGallery.add_more') }}</button>
                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary submit">{{__('visitorGallery.admin.create.submit')}}</button>
+                        <button type="submit"
+                                class="btn btn-primary submit">{{__('visitorGallery.admin.create.submit')}}</button>
                     </div>
                 </form>
             </div>
@@ -311,9 +345,10 @@
                             if (imageFile) {
                                 let response = await uploadImageInChunks(imageFile, i);
                                 if (response.success) {
+                                    // Append image path and corresponding thumb/compressed as arrays
                                     data.append(`image[${i}]`, response.filePath);
-                                    data.append(`thumb`, response.thumb);
-                                    data.append(`compressed`, response.compressed);
+                                    data.append('thumb[]', response.thumb);
+                                    data.append('compressed[]', response.compressed);
                                 } else {
                                     $.unblockUI();
                                     errorMsg('Image upload failed');
@@ -359,10 +394,12 @@
 
                         currentChunk++;
                         if (currentChunk === totalChunks) {
-                            return {success: true,
+                            return {
+                                success: true,
                                 filePath: response.filePath,
                                 thumb: response.thumbnailPath,
-                                compressed: response.compressedPath};
+                                compressed: response.compressedPath
+                            };
                         }
                     } catch (error) {
                         return {success: false, error: error};
@@ -401,6 +438,37 @@
                     errorMsg(xhr.responseJSON.message || 'An error occurred');
                 }
             }
+
+            // Add/Remove dynamic rows for multiple image upload
+            $(document).on('click', '.add-row', function () {
+                // Clone the last template row
+                let lastRow = $('.rowTemplate').last();
+                let newRow = lastRow.clone();
+
+                // Clear inputs in the cloned row
+                newRow.find('input[type="text"]').val('');
+                newRow.find('input[type="file"]').val('');
+                newRow.find('.preview-img').attr('src', '#').hide();
+
+                // Show remove button on cloned rows
+                newRow.find('.remove-row').show();
+
+                // Insert after the last row
+                newRow.insertAfter(lastRow);
+            });
+
+            $(document).on('click', '.remove-row', function () {
+                // If there's more than one row, remove; otherwise just clear fields
+                if ($('.rowTemplate').length > 1) {
+                    $(this).closest('.rowTemplate').remove();
+                } else {
+                    let row = $(this).closest('.rowTemplate');
+                    row.find('input[type="text"]').val('');
+                    row.find('input[type="file"]').val('');
+                    row.find('.preview-img').attr('src', '#').hide();
+                    $(this).hide();
+                }
+            });
         });
 
         // Function to preview the selected image
@@ -409,7 +477,7 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Find the nearest image element in the same row and display it
-                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                    $(input).closest('.rowTemplate').find('.preview-img').attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(input.files[0]); // Convert the file to a URL
             }
