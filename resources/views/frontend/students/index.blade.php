@@ -18,7 +18,6 @@
             display: flex;
             flex-direction: column;
             border: 1px solid rgba(0, 0, 0, 0.06);
-            margin-bottom: 30px;
         }
 
         .student-card:hover {
