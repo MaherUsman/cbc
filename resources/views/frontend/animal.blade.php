@@ -91,9 +91,17 @@
                         <div class="gallery-block-two">
                             <div class="inner-box">
                                 <figure class="image-box"><img src="{{ asset($animalGallery->thumb) }}" alt=""></figure>
+                                @if($animalGallery->title)
+                                    <div class="text-center mt-2">
+                                        <p class="mb-0 fw-semibold">
+                                            {{ $animalGallery->title }}
+                                        </p>
+                                    </div>
+                                @endif
                                 <div class="view-box d-flex align-items-center flex-column justify-content-center">
                                     <a href="{{ asset($animalGallery->image) }}"
                                        class="lightbox-image d-flex justify-content-center align-items-center flex-column"
+                                       data-caption="{{ $animalGallery->title ? $animalGallery->title : '' }}"
                                        data-fancybox="gallery"> <i class="fa fa-eye"></i>
                                     </a>
                                 </div>

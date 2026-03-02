@@ -102,7 +102,7 @@
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
-                            <li class="{{ Request::routeIs('frontend.students.index') ? 'active' : '' }}"><a href="{{ route('frontend.students.index') }}">Our Students</a></li>
+                            <li class="{{ Request::routeIs('frontend.students.index') ? 'active' : '' }}"><a href="{{ route('frontend.students.index') }}">Our Vet Dr</a></li>
 
 {{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
 {{--                                    href="{{route('frontend.topas.gallery')}}">Hydration</a></li>--}}

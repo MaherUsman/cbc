@@ -11,7 +11,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Our Student</h1>
+                    <h1>Our Vet Dr</h1>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                                         <tr><th style="width:40%;white-space:normal;">Internship Year</th><td style="word-wrap:break-word;">{{ $student->internship_year ?? '-' }}</td></tr>
                                         <tr><th style="white-space:normal;">Education</th><td style="word-wrap:break-word;">{{ $student->education ?? '-' }}</td></tr>
                                         <tr><th style="white-space:normal;">Service / Attachment</th><td style="word-wrap:break-word;">{{ $student->service_attachment ?? '-' }}</td></tr>
-                                        <tr><th style="white-space:normal;">Internship / Training</th><td style="word-wrap:break-word;">{{ $student->internship_training ?? '-' }}</td></tr>
+                                        <tr><th style="white-space:normal;">Internship / Training with IFHC</th><td style="word-wrap:break-word;">{{ $student->internship_training ?? '-' }}</td></tr>
                                         <tr><th style="white-space:normal;">Present Status</th><td style="word-wrap:break-word;">{{ $student->present_status ?? '-' }}</td></tr>
                                         </tbody>
                                     </table>
