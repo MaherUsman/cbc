@@ -1,26 +1,23 @@
 <style>
     .gallery-block-two {
-        height: 270px;
+        height: 100%;
     }
 
-    .inner-box,
-    .image-box {
+    .inner-box {
         height: 100%;
+    }
+
+    .image-box {
+        height: 270px;
     }
 
     .gallery-block-two .inner-box .image-box img {
         height: 100%;
         object-fit: cover;
     }
-
-    @media (max-width: 767px) {
-        .gallery-block-two {
-            height: 400px;
-        }
-    }
 </style>
 
-@foreach($visitorGallery as $gallery)
+@foreach ($visitorGallery as $gallery)
     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
         <div class="gallery-block-two">
             <div class="inner-box">
@@ -31,7 +28,9 @@
                     <img src="{{ asset($gallery->thumb) }}" alt="">
                 </div>
                 <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                    <a href="{{ asset($gallery->image) }}" class="lightbox-image d-flex justify-content-center align-items-center flex-column" data-fancybox="gallery">
+                    <a href="{{ asset($gallery->image) }}"
+                        class="lightbox-image d-flex justify-content-center align-items-center flex-column"
+                        data-fancybox="gallery">
                         <!-- <i class="flaticon-plus-symbol"></i> -->
                         <i class="fa fa-eye"></i>
                         <span class="text-heading text-center">{{ $gallery->title }}</span>

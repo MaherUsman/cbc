@@ -7,7 +7,10 @@
             height: 270px;
         }
 
-        .inner-box,
+        .inner-box {
+            height: 100%;
+        }
+
         .image-box {
             height: 100%;
         }
@@ -19,7 +22,7 @@
 
         @media (max-width: 767px) {
             .gallery-block-two {
-                height: 400px;
+                height: auto;
             }
         }
     </style>
