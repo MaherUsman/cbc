@@ -7,18 +7,26 @@
             .sec-title h2 {
                 font-size: 20px;
                 line-height: 46px;
+                text-align: justify;
             }
 
             .text p {
                 font-size: 15pt !important;
+                text-align: justify !important;
             }
 
             .text h2 {
                 font-size: 26pt !important;
+                text-align: justify;
             }
 
             .text h3 {
                 font-size: 18pt !important;
+                text-align: justify;
+            }
+
+            .text ul li{
+                text-align: justify;
             }
         }
     </style>
@@ -70,8 +78,8 @@
 
                             </div>
                             <!-- <div class="btn-box">
-                                                <a href="index-2.html" class="theme-btn btn-one">discover more</a>
-                                            </div> -->
+                                                    <a href="index-2.html" class="theme-btn btn-one">discover more</a>
+                                                </div> -->
                         </div>
                     </div>
                 </div>
@@ -178,92 +186,92 @@
 
     <!-- testimonial-section -->
     <!-- <section class="testimonial-section centred sec-pad bg-color-1">
-                        <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-6.png);"></div>
-                        <div class="auto-container">
-                            <div class="sec-title centred">
-                                <h2>What they’re <br />saying?</h2>
+                            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-6.png);"></div>
+                            <div class="auto-container">
+                                <div class="sec-title centred">
+                                    <h2>What they’re <br />saying?</h2>
+                                </div>
+                                <div class="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
+                                    <div class="testimonil-block-one">
+                                        <div class="inner-box">
+                                            <div class="author-thumb">
+                                                <figure class="thumb-box"><img src="assets/images/resource/testimonial-1.jpg" alt=""></figure>
+                                                <div class="quote"><i class="flaticon-quote"></i></div>
+                                            </div>
+                                            <div class="text">
+                                                <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <h5>Christine Rose</h5>
+                                                <span class="designation">Customer</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="testimonil-block-one">
+                                        <div class="inner-box">
+                                            <div class="author-thumb">
+                                                <figure class="thumb-box"><img src="assets/images/resource/testimonial-2.jpg" alt=""></figure>
+                                                <div class="quote"><i class="flaticon-quote"></i></div>
+                                            </div>
+                                            <div class="text">
+                                                <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <h5>Mike hardson</h5>
+                                                <span class="designation">Customer</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="testimonil-block-one">
+                                        <div class="inner-box">
+                                            <div class="author-thumb">
+                                                <figure class="thumb-box"><img src="assets/images/resource/testimonial-3.jpg" alt=""></figure>
+                                                <div class="quote"><i class="flaticon-quote"></i></div>
+                                            </div>
+                                            <div class="text">
+                                                <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <h5>sarah albert</h5>
+                                                <span class="designation">Customer</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="three-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-none">
-                                <div class="testimonil-block-one">
-                                    <div class="inner-box">
-                                        <div class="author-thumb">
-                                            <figure class="thumb-box"><img src="assets/images/resource/testimonial-1.jpg" alt=""></figure>
-                                            <div class="quote"><i class="flaticon-quote"></i></div>
-                                        </div>
-                                        <div class="text">
-                                            <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
-                                        </div>
-                                        <div class="author-info">
-                                            <h5>Christine Rose</h5>
-                                            <span class="designation">Customer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonil-block-one">
-                                    <div class="inner-box">
-                                        <div class="author-thumb">
-                                            <figure class="thumb-box"><img src="assets/images/resource/testimonial-2.jpg" alt=""></figure>
-                                            <div class="quote"><i class="flaticon-quote"></i></div>
-                                        </div>
-                                        <div class="text">
-                                            <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
-                                        </div>
-                                        <div class="author-info">
-                                            <h5>Mike hardson</h5>
-                                            <span class="designation">Customer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonil-block-one">
-                                    <div class="inner-box">
-                                        <div class="author-thumb">
-                                            <figure class="thumb-box"><img src="assets/images/resource/testimonial-3.jpg" alt=""></figure>
-                                            <div class="quote"><i class="flaticon-quote"></i></div>
-                                        </div>
-                                        <div class="text">
-                                            <p>I was impresed by the company services, lorem is simply free text used by copytyping no refreshing.  Neque porro est qui dolorem</p>
-                                        </div>
-                                        <div class="author-info">
-                                            <h5>sarah albert</h5>
-                                            <span class="designation">Customer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section> -->
+                        </section> -->
     <!-- testimonial-section end -->
 
 
     <!-- video-section -->
     <!-- <section class="video-section centred">
-                        <div class="img-wrap parallax-demo-1">
-                            <div class="parallax-inner back-img" style="background-image: url(assets/images/background/video-bg.jpg);"></div>
-                        </div>
-                        <div class="auto-container">
-                            <div class="inner-box">
-                                <div class="video-btn">
-                                    <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
-                                </div>
-                                <h2>ready to meet <br />wildlife animals</h2>
+                            <div class="img-wrap parallax-demo-1">
+                                <div class="parallax-inner back-img" style="background-image: url(assets/images/background/video-bg.jpg);"></div>
                             </div>
-                        </div>
-                    </section> -->
+                            <div class="auto-container">
+                                <div class="inner-box">
+                                    <div class="video-btn">
+                                        <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a>
+                                    </div>
+                                    <h2>ready to meet <br />wildlife animals</h2>
+                                </div>
+                            </div>
+                        </section> -->
     <!-- video-section end -->
 
 
     <!-- clients-section -->
     <!-- <section class="clients-section alternat-2 border-bottom">
-                        <div class="auto-container">
-                            <div class="five-item-carousel owl-carousel owl-theme owl-nav-none owl-dots-none">
-                                <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-6.png" alt=""></a></figure>
-                                <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-7.png" alt=""></a></figure>
-                                <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-8.png" alt=""></a></figure>
-                                <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-9.png" alt=""></a></figure>
-                                <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-10.png" alt=""></a></figure>
+                            <div class="auto-container">
+                                <div class="five-item-carousel owl-carousel owl-theme owl-nav-none owl-dots-none">
+                                    <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-6.png" alt=""></a></figure>
+                                    <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-7.png" alt=""></a></figure>
+                                    <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-8.png" alt=""></a></figure>
+                                    <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-9.png" alt=""></a></figure>
+                                    <figure class="clients-logo"><a href="index.html"><img src="assets/images/clients/clients-10.png" alt=""></a></figure>
+                                </div>
                             </div>
-                        </div>
-                    </section> -->
+                        </section> -->
     <!-- clients-section end -->
 
 
