@@ -13,6 +13,25 @@
         .banner-section{
             margin-top: 168px;
         }
+
+        .gallery-block-two{
+            height: 270px;
+        }
+
+        .inner-box, .image-box{
+            height: 100%;
+        }
+
+         .gallery-block-two .inner-box .image-box img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 767px) {
+            .gallery-block-two {
+                height: 400px;
+            }
+        }
     </style>
 
  <!-- banner-section -->
@@ -90,7 +109,12 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 gallery-block">
                         <div class="gallery-block-two">
                             <div class="inner-box">
-                                <figure class="image-box"><img src="{{ asset($animalGallery->thumb) }}" alt=""></figure>
+                                {{-- <figure class="image-box">
+                                    <img src="{{ asset($animalGallery->thumb) }}" alt="">
+                                </figure> --}}
+                                <div class="image-box">
+                                    <img src="{{ asset($animalGallery->thumb) }}" alt="">
+                                </div>
                                 @if($animalGallery->title)
                                     <div class="text-center mt-2">
                                         <p class="mb-0 fw-semibold">
