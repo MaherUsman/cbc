@@ -219,11 +219,18 @@
                             galleryBlock.innerHTML = `
                             <div class="gallery-block-two">
                                 <div class="inner-box">
-                                    <figure class="image-box">
+                                    <div class="image-box">
                                         <img src="${assetPath}/${gallery.thumb}" alt="">
-                                    </figure>
-                                    <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                        <a href="${assetPath}/${gallery.compressed}"
+                                    </div>
+
+                                    <div class="text-center mt-2">
+                                        <p class="mb-0 fw-semibold img-caption-txt">
+                                            ${ gallery.title }
+                                        </p>
+                                    </div>
+
+                        <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                            <a href="${assetPath}/${gallery.compressed}"
                                             class="lightbox-image d-flex justify-content-center align-items-center flex-column"
                                             data-fancybox="gallery">
                                             <i class="fa fa-eye"></i>
