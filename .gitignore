@@ -8,9 +8,7 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
 .env.backup
-.env.production
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -31,3 +29,4 @@ draft.yaml
 /frontend
 /bootstrap/cache/packages.php
 /bootstrap/cache/services.php
+config.bat
