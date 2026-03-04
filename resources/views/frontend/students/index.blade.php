@@ -86,7 +86,7 @@
             font-size: 12.5px;
             color: #888;
             font-weight: 500;
-            width: 45%;
+            width: 100%;
             padding-right: 10px;
             display: block;
         }
@@ -95,7 +95,7 @@
             font-size: 12.5px;
             color: #444;
             font-weight: 500;
-            width: 55%;
+            width: 100%;
             text-align: right;
             word-break: break-word;
         }
