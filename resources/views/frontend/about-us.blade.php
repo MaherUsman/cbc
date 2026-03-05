@@ -3,6 +3,14 @@
 @section('content')
 
     <style>
+
+        .text ul li{
+            list-style: disc !important;
+        }
+        
+        .text ol li{
+            list-style-type: inherit !important;
+        }
         @media only screen and (max-width: 767px) {
             .sec-title h2 {
                 font-size: 20px;
