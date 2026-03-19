@@ -381,7 +381,15 @@
                     });
 
                     var url = $(form).attr('action');
-                    // var imageColName = $('#imageUpload').attr('name');
+
+                    // Sync CKEditor data to textarea before getting FormData
+                    if (window.editor) {
+                        $('#ckeditor').val(window.editor.getData());
+                    }
+                    if (window.editor2) {
+                        $('#ckeditor2').val(window.editor2.getData());
+                    }
+
                     var formData = new FormData($(form)[0]);
                     // var imageFile = $('#imageUpload')[0].files[0];
 
