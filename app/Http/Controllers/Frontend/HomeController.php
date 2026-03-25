@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function uploadImage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -71,7 +71,7 @@ class HomeController extends Controller
 
             // Make common Laravel validation messages easier to read in the UI.
             if (str_contains($lowerError, 'file of type') || str_contains($lowerError, 'mimes')) {
-                $friendlyMessage = 'Invalid image type. Allowed: jpeg, png, jpg, gif.';
+                $friendlyMessage = 'Invalid image type. Allowed: jpeg, png, jpg, gif, webp.';
             } elseif (
                 str_contains($lowerError, 'too large') ||
                 str_contains($lowerError, 'greater than') ||
