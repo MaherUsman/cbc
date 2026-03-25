@@ -40,6 +40,7 @@ class AnimalStoreRequest extends FormRequest
 
             'slider' => ['nullable', 'array'],
             'slider.*' => ['required_with:slider', 'string', 'max:255'],
+            'display_in_top_nav_menu' => ['required', 'boolean'],
         ];
     }
 

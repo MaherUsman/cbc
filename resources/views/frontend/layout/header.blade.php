@@ -27,6 +27,13 @@
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
+    <style>
+        .main-menu .navigation > li > ul > li.dropdown > a:after
+        {
+            content: "";
+        }
+    </style>
 </head>
 
 

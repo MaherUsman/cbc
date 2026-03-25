@@ -42,10 +42,11 @@ class AnimalUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'integer'],
-            'home_image' => ['required', 'string', 'max:255'],
-            'home_image_thumbnail' => ['required', 'string', 'max:255'],
-            'banner_image' => ['required', 'string', 'max:255'],
-            'banner_image_thumbnail' => ['required', 'string', 'max:255'],
+            // Images are uploaded asynchronously; on edit they should be optional
+            'home_image' => ['nullable', 'string', 'max:255'],
+            'home_image_thumbnail' => ['nullable', 'string', 'max:255'],
+            'banner_image' => ['nullable', 'string', 'max:255'],
+            'banner_image_thumbnail' => ['nullable', 'string', 'max:255'],
             'show_on_top_bar' => ['required', 'boolean'],
             'is_amazing' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer'],
@@ -58,8 +59,11 @@ class AnimalUpdateRequest extends FormRequest
             'prop_details' => ['nullable', 'array'],
             'prop_details.*' => ['required_with:prop_details', 'string'],
 
+            // Accept slider images sent as `slider` or `slider_image` (frontend uses slider_image[] for uploads)
             'slider' => ['nullable', 'array'],
             'slider.*' => ['required_with:slider', 'string', 'max:255'],
+            'slider_image' => ['nullable', 'array'],
+            'slider_image.*' => ['required_with:slider_image', 'string', 'max:255'],
         ];
     }
 
@@ -70,6 +74,7 @@ class AnimalUpdateRequest extends FormRequest
             'prop_title' => $this->input('prop_title', []),
             'prop_details' => $this->input('prop_details', []),
             'slider' => $this->input('slider', []),
+            'slider_image' => $this->input('slider_image', []),
         ]);
     }
 }

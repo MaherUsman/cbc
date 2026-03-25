@@ -3,6 +3,7 @@
 return [
     'list_visitorGallery' => 'Visitor Gallery',
     'add_visitorGallery' => 'Add Visitor Gallery',
+    'add_more' => 'Add More',
     'name' => 'Visitor Gallery',
     'page_content' => 'Visitor Gallery Page Content',
     'pageTitle' => 'Visitor Gallery',

@@ -48,15 +48,32 @@ class VisitorGalleryService
     {
         DB::beginTransaction();
         try {
-//            dd($request->all());
-            foreach ($request->title as $key=>$value){
-                $visitorGallery = VisitorGallery::create(['title'=>$value,
-                    'image'=>$request->image[$key],
-                    'thumb'=>$request->thumb,
-                    'compressed'=>$request->compressed,]);
+            // Support bulk creation when titles and images are submitted as arrays
+            $titles = $request->input('title', []);
+            $images = $request->input('image', []);
+            $thumbs = $request->input('thumb', []);
+            $compressedFiles = $request->input('compressed', []);
+
+            $created = [];
+            foreach ($titles as $key => $value) {
+                $image = isset($images[$key]) ? $images[$key] : null;
+                $thumb = is_array($thumbs) && isset($thumbs[$key]) ? $thumbs[$key] : (is_string($thumbs) ? $thumbs : null);
+                $compressed = is_array($compressedFiles) && isset($compressedFiles[$key]) ? $compressedFiles[$key] : (is_string($compressedFiles) ? $compressedFiles : null);
+
+                // Only create if we have at least an image or a title
+                $visitorGallery = VisitorGallery::create([
+                    'title' => $value,
+                    'image' => $image,
+                    'thumb' => $thumb,
+                    'compressed' => $compressed,
+                ]);
+
+                $created[] = $visitorGallery;
             }
+
             DB::commit();
-            return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $visitorGallery);
+            // Return the list of created items (or last one for compatibility)
+            return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, count($created) === 1 ? $created[0] : $created);
         } catch (\Exception $exception) {
             DB::rollBack();
             $errorMessage = $exception->getMessage();
