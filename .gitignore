@@ -30,3 +30,5 @@ draft.yaml
 /bootstrap/cache/packages.php
 /bootstrap/cache/services.php
 config.bat
+vite.config.js
+.env

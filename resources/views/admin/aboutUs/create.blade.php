@@ -125,13 +125,24 @@
                                 $.unblockUI();
                                 if (response.location) {
                                     resolve(response.location);
+                                } else if (response.error && response.error.message) {
+                                    reject(response.error.message);
                                 } else {
                                     reject('Invalid response from server');
                                 }
                             },
                             error: function (xhr) {
                                 $.unblockUI();
-                                reject('Image upload failed: ' + xhr.status);
+                                var body = xhr.responseJSON;
+                                var msg = null;
+                                if (body) {
+                                    if (body.error && body.error.message) {
+                                        msg = body.error.message;
+                                    } else if (body.message) {
+                                        msg = body.message;
+                                    }
+                                }
+                                reject(msg || ('Image upload failed: ' + xhr.status));
                             }
                         });
                     });
