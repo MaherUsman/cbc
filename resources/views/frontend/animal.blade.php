@@ -81,7 +81,7 @@
                 {{-- <figure class="image-box"><img src="{{asset($animal->image)}}" alt=""></figure> --}}
                 <div class="content-box">
                     <div class="row clearfix">
-                        <div class="col-lg-8 col-md-12 col-sm-12 content-side">
+                        <div class="col-lg-12 col-md-12 col-sm-12 content-side">
                             <div class="text">
                                 <div class="animal-title">
                                     <h2>{{ $animal->title }}</h2>
