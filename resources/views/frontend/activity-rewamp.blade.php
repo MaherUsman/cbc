@@ -48,6 +48,7 @@
 
 
     <!-- about-style-three -->
+    @if(false)
     {{--    <section class="about-style-three sec-pad"> --}}
     {{--        <div class="auto-container"> --}}
     {{--            <div class="row clearfix"> --}}
@@ -84,6 +85,7 @@
 
     {{--        </div> --}}
     {{--    </section> --}}
+    @endif
     <!-- about-style-three end -->
 
 
