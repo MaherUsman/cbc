@@ -120,7 +120,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Our Vet Dr</h1>
+                    <h1>Our Veterinarian</h1>
                 </div>
             </div>
         </div>

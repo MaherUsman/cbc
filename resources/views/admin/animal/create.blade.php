@@ -501,6 +501,15 @@
                     });
 
                     var url = $(form).attr('action');
+
+                    // Sync CKEditor data to textarea before getting FormData
+                    if (window.editor) {
+                        $('#ckeditor').val(window.editor.getData());
+                    }
+                    if (window.editor2) {
+                        $('#ckeditor2').val(window.editor2.getData());
+                    }
+
                     var formData = new FormData($(form)[0]);
                     var homeImageColName = $('#homeImageUpload').attr('name');
                     var homeImageFile = $('#homeImageUpload')[0].files[0];

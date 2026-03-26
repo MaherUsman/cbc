@@ -86,6 +86,13 @@
                                 <div class="animal-title">
                                     <h2>{{ $animal->title }}</h2>
                                 </div>
+                                <div class="animals-description">
+                                    @if(empty(trim(strip_tags($animal->details))) || trim(strip_tags($animal->details)) === '&nbsp;')
+                                        <p><strong>[Dummy Content]:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    @else
+                                        <p>{!! $animal->details !!}</p>
+                                    @endif
+                                </div>
                                 {{--                                <div class="animals-description"> --}}
                                 {{--                                    <p>{!! $animal->details !!}</p> --}}
                                 {{--                                </div> --}}
