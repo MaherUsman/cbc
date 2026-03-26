@@ -110,16 +110,13 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="links-list clearfix">
-                                    <li class="{{ Request::routeIs('frontend.about.us' ) ? 'active' : '' }}"><a
-                                            href="{{route('frontend.about.us')}}">About Us</a></li>
-                                    <li class="{{ Request::routeIs('frontend.listing.animal' ) ? 'active' : '' }}"><a
-                                            href="{{route('frontend.listing.animal')}}">Species</a></li>
-                                    <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }} "><a
-                                            href="{{route('frontend.events.index')}}">Events</a></li>
-                                    <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }} "><a
-                                            href="{{route('frontend.contact.us')}}">Contact Us</a></li>
-                                    <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a
-                                            href="{{route('frontend.career.store')}}">Career</a></li>
+                                    <li class="{{ Request::routeIs('frontend.about.us' ) ? 'active' : '' }}"><a href="{{route('frontend.about.us')}}">About Us</a></li>
+                                    <li class="{{ Request::routeIs('frontend.listing.animal' ) ? 'active' : '' }}"><a href="{{route('frontend.listing.animal')}}">Species</a></li>
+                                    <li class="{{ Request::routeIs('frontend.tobas.page' ) ? 'active' : '' }}"><a href="{{route('frontend.tobas.page')}}">Hydration</a></li>
+                                    {{-- <li class="{{ Request::routeIs('frontend.activites.page' ) ? 'active' : '' }}"><a href="{{route('frontend.activites.page')}}">Activities</a></li> --}}
+                                    {{-- <li class="{{ Request::routeIs('frontend.students.index' ) ? 'active' : '' }}"><a href="{{route('frontend.students.index')}}">Our Veterinarian</a></li> --}}
+                                    <li class="{{ Request::routeIs('frontend.security' ) ? 'active' : '' }}"><a href="{{route('frontend.security')}}">Security</a></li>
+                                    <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a href="{{route('frontend.contact.us')}}">Contact Us</a></li>
 
                                 </ul>
                             </div>
