@@ -39,6 +39,10 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\HomepageSectionController;
 
+Route::get('/run-migration-now', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return "Migration executed successfully! Remember to remove this route afterwards.";
+});
 Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {
