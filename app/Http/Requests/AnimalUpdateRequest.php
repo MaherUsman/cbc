@@ -50,7 +50,7 @@ class AnimalUpdateRequest extends FormRequest
             'show_on_top_bar' => ['required', 'boolean'],
             'is_amazing' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer'],
-//            'details' => ['required', 'string'],
+            'details' => ['nullable', 'string'],
 
             // Optional arrays — only validate if present
             'prop_title' => ['nullable', 'array'],
