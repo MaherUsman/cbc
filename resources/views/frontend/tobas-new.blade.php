@@ -33,21 +33,23 @@
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li>Hydration</li>
+                    <li>{{ $data->title ?? 'Hydration' }}</li>
                 </ul>
                 <div class="title">
-                    <h1>Hydration</h1>
+                    <h1>{{ $data->title ?? 'Hydration' }}</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- End Page Title -->
 
+    @if (!empty($data->description))
     <section class="sec-pad pt-5 pb-0">
         <div class="auto-container">
-            <p style="text-align: center;"><strong>[Dummy Content]:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            {!! $data->description !!}
         </div>
     </section>
+    @endif
 
 
     <!-- about-style-three -->

@@ -29,15 +29,15 @@
                                            placeholder="{{__('security.admin.edit.title')}}">
                                 </div>
                             </div>
-{{--                            <div class="col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="form-label"--}}
-{{--                                    >{{__('security.admin.edit.description')}}</label>--}}
-{{--                                    <textarea name="description" id="ckeditor" rows="4" class="form-control"--}}
-{{--                                              data-rule-required="true"--}}
-{{--                                              data-msg-required="{{__('security.admin.create.description_message')}}">{{$security->description}}</textarea>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                    >{{__('security.admin.edit.description')}}</label>
+                                    <textarea name="description" id="description" rows="4" class="form-control"
+                                              data-rule-required="true"
+                                              data-msg-required="{{__('security.admin.create.description_message')}}">{!! $security->description !!}</textarea>
+                                </div>
+                            </div>
                             {{--                                    <div class="col-sm-12">--}}
                             {{--                                        <div class="mb-3">--}}
                             {{--                                            <label class="form-label">{{__('security.admin.edit.article_pdf_file')}}</label>--}}
@@ -85,6 +85,7 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
     <script>
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
@@ -101,12 +102,31 @@
         });
 
         $(document).ready(function () {
+            // Initialize TinyMCE
+            tinymce.init({
+                selector: '#description',
+                skin: 'oxide',
+                images_upload_url: '{{route('ckeditor.upload')}}',
+                file_picker_types: 'image media',
+                min_height: 350,
+                default_text_color: 'red',
+                plugins: [
+                    'advlist', 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                    'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                ],
+                toolbar1: 'dropcaps | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                image_advtab: true,
+            });
+
             var imageColName = 'ResearchArticlePDF';
             // var PDFColName = 'ResearchArticlePDF';
 
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
                     event.preventDefault();
+
+                    tinymce.triggerSave();
 
                     $.blockUI({
                         css: {

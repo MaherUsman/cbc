@@ -48,6 +48,7 @@ class RewampActivityGalleryService
                 $tobaGallery = ActivityGallery::create(['title'=>$value,
                     'image'=>$request->image[$key],
                     'show_on_navbar'=>$request->show_on_navbar[$key],
+                    'description'=>$request->description[$key] ?? null,
 //                    'thumb'=>$request->thumb,
 //                    'compressed'=>$request->compressed,
                 ]);

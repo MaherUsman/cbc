@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('animals', function (Blueprint $table) {
-            $table->boolean('display_in_top_nav_menu')->default(false)->after('is_homepage');
-        });
+        if (!Schema::hasColumn('animals', 'display_in_top_nav_menu')) {
+            Schema::table('animals', function (Blueprint $table) {
+                $table->boolean('display_in_top_nav_menu')->default(false)->after('is_homepage');
+            });
+        }
     }
 
     /**

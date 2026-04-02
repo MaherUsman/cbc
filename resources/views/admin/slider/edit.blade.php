@@ -94,6 +94,7 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const fileTypeDropdown = document.getElementById('fileType');
@@ -157,6 +158,23 @@
                 }
             });
 
+            // Initialize TinyMCE
+            tinymce.init({
+                selector: '#ckeditor',
+                skin: 'oxide',
+                images_upload_url: '{{route('ckeditor.upload')}}',
+                file_picker_types: 'image media',
+                min_height: 350,
+                default_text_color: 'red',
+                plugins: [
+                    'advlist', 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                    'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                ],
+                toolbar1: 'dropcaps | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                image_advtab: true,
+            });
+
             $('#formValidation').validate({
 
                 ignore: ":hidden", // Ignore hidden fields
@@ -186,6 +204,8 @@
                 },
                 submitHandler: async function (form, event) {
                     event.preventDefault();
+
+                    tinymce.triggerSave();
 
                     $.blockUI({
                         css: {

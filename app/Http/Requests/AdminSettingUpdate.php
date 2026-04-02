@@ -40,6 +40,7 @@ class AdminSettingUpdate extends FormRequest
             'social_links.Youtube' => ['nullable', 'string', 'max:255', 'url'],
             'social_links.Instagram' => ['nullable', 'string', 'max:255', 'url'],
             'social_links.Linkedin' => ['nullable', 'string', 'max:255', 'url'],
+            'student_page_description' => ['nullable', 'string'],
         ];
     }
 }

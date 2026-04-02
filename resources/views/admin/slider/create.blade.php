@@ -91,6 +91,7 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const fileTypeDropdown = document.getElementById('fileType');
@@ -146,16 +147,22 @@
                 }
             });
 
-            // Initialize CKEditor (assuming Classic Editor is used)
-            let editor;
-            ClassicEditor
-                .create(document.querySelector('#ckeditors'))
-                .then(newEditor => {
-                    editor = newEditor; // Store editor instance
-                })
-                .catch(error => {
-                    console.error('CKEditor initialization failed:', error);
-                });
+            // Initialize TinyMCE
+            tinymce.init({
+                selector: '#ckeditors',
+                skin: 'oxide',
+                images_upload_url: '{{route('ckeditor.upload')}}',
+                file_picker_types: 'image media',
+                min_height: 350,
+                default_text_color: 'red',
+                plugins: [
+                    'advlist', 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                    'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                ],
+                toolbar1: 'dropcaps | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                image_advtab: true,
+            });
 
             // Initialize jQuery Validation
             $('#formValidation').validate({
@@ -172,10 +179,8 @@
                 submitHandler: async function (form, event) {
                     event.preventDefault();
 
-                    // Sync CKEditor content with textarea before submission
-                    if (editor) {
-                        editor.updateSourceElement(); // Update the underlying textarea
-                    }
+                    // Sync TinyMCE content with textarea before submission
+                    tinymce.triggerSave();
 
                     $.blockUI({
                         css: {

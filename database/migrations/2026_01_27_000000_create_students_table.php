@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('picture')->nullable();
-            $table->string('name')->nullable();
-            $table->string('internship_year')->nullable();
-            $table->string('education')->nullable();
-            $table->string('service_attachment')->nullable();
-            $table->string('internship_training')->nullable();
-            $table->string('present_status')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if (!Schema::hasTable('students')) {
+            Schema::create('students', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('picture')->nullable();
+                $table->string('name')->nullable();
+                $table->string('internship_year')->nullable();
+                $table->string('education')->nullable();
+                $table->string('service_attachment')->nullable();
+                $table->string('internship_training')->nullable();
+                $table->string('present_status')->nullable();
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**

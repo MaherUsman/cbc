@@ -167,6 +167,7 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::resource('animals', AnimalController::class);
+        Route::post('students-page-description', [\App\Http\Controllers\StudentController::class, 'updateDescription'])->name('students.updateDescription');
         Route::resource('students', \App\Http\Controllers\StudentController::class);
 
         //        Route::get('homepage-sections', [HomepageSectionController::class, 'index'])->name('homepage-sections.index');

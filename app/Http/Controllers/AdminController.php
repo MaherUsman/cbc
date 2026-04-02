@@ -102,6 +102,9 @@ class AdminController extends Controller
             ($request->has('copyright_text') && $request->copyright_text != '') ? $settingArray['copyright_text'] = $request->copyright_text : '';
             ($request->has('copyright_link') && $request->copyright_link != '') ? $settingArray['copyright_link'] = $request->copyright_link : '';
             ($request->has('copyright_link_name') && $request->copyright_link_name != '') ? $settingArray['copyright_link_name'] = $request->copyright_link_name : '';
+            if ($request->has('student_page_description')) {
+                $settingArray['student_page_description'] = $request->student_page_description;
+            }
 
             $settingArray['home_counter'] = $homeCounterData;
             // Check if settings record exists

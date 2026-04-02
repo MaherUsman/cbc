@@ -148,6 +148,12 @@
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="description[]" id="modalDescription" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -168,12 +174,56 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{asset('vendor/lightgallery/dist/lightgallery.min.js')}}"></script>
-    <script src="{{asset('vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js')}}"></script>
-    <script src="{{asset('vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js')}}"></script>
+    <script src="{{ asset('vendor/lightgallery/dist/lightgallery.min.js') }}"></script>
+    <script src="{{ asset('vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js') }}"></script>
+    <script src="{{ asset('vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js') }}"></script>
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 
     <script>
         $(document).ready(function () {
+            $('.bd-example-modal-lg').on('shown.bs.modal', function () {
+                if (tinymce.get('modalDescription')) {
+                    tinymce.get('modalDescription').remove();
+                }
+                tinymce.init({
+                    selector: '#modalDescription',
+                    skin: 'oxide',
+                    images_upload_url: '{{route("ckeditor.upload")}}',
+                    file_picker_types: 'image media',
+                    images_upload_handler: function (blobInfo) {
+                        return new Promise((resolve, reject) => {
+                            const formData = new FormData();
+                            formData.append('file', blobInfo.blob(), blobInfo.filename());
+                            formData.append('_token', '{{ csrf_token() }}');
+
+                            $.ajax({
+                                url: '{{route("ckeditor.upload")}}',
+                                type: 'POST',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (response) {
+                                    if (response.location) {
+                                        resolve(response.location);
+                                    } else {
+                                        reject('Invalid response from server');
+                                    }
+                                },
+                                error: function (xhr) {
+                                    reject('Image upload failed: ' + xhr.status);
+                                }
+                            });
+                        });
+                    },
+                    min_height: 350,
+                    plugins: [
+                        'advlist', 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                        'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                    ],
+                    toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+                });
+            });
+
             $(document).on('click', '.messageDetails', function () {
                 var details = $(this).data('details');
                 $('#messageText').html(details);
@@ -236,6 +286,7 @@
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
                     event.preventDefault();
+                    tinymce.triggerSave();
 
                     $.blockUI({
                         css: {
@@ -250,13 +301,16 @@
                     });
 
                     var url = $(form).attr('action');
-                    //var data = new FormData($(form)[0]); // Form data including all images and titles
                     var data = new FormData();
-                    // Get all file input elements
                     var titleInputs = $('input[name="title[]"]');
                     var imageInputs = $('input[name="image[]"]');
+                    var descriptionInputs = $('textarea[name="description[]"]');
+
                     titleInputs.each(function (index, element) {
                         data.append('title[]', $(element).val());
+                    });
+                    descriptionInputs.each(function (index, element) {
+                        data.append('description[]', $(element).val());
                     });
 
                     const showOnNavbarVal = $('#show_on_navbar').val();  // "0" or "1"

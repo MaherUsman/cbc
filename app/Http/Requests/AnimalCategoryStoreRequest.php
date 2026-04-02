@@ -25,6 +25,7 @@ class AnimalCategoryStoreRequest extends FormRequest
             'name' => ['required', 'string'],
             'slug' => ['nullable', 'string'],
             'image' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
         ];
     }
 }

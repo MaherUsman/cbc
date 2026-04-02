@@ -91,6 +91,11 @@
             @isset($category)
                 <div class="row clearfix pb-5">
                     <h6 class="section-title">{{ $category->name }}</h6>
+                    @if(!empty($category->description))
+                        <div class="mt-3">
+                            {!! $category->description !!}
+                        </div>
+                    @endif
                 </div>
             @endisset
             <div class="row clearfix justify-content-end pb-5">

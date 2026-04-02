@@ -15,7 +15,7 @@ class SecurityUpdateRequest extends FormRequest
     {
         $rules = [
             'title' => 'required|string|max:255',
-//            'description' => 'required|string',
+            'description' => 'required|string',
             'banner_image' => 'nullable|string',
         ];
 

@@ -36,7 +36,8 @@
 
                             </li>
 
-                            <li class="dropdown {{ Request::is('animal/*') || Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
+                            <li
+                                class="dropdown {{ Request::is('animal/*') || Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
                                 <a href="{{route('frontend.listing.animal')}}">Species</a>
                                 <ul>
                                     @foreach($animals as $animal)
@@ -46,7 +47,8 @@
                                                 <ul>
                                                     @foreach($animalChilds as $small)
                                                         <li>
-                                                            <a href="{{ route('frontend.find.animal', $small->slug) }}">{{$small->title}}</a>
+                                                            <a
+                                                                href="{{ route('frontend.find.animal', $small->slug) }}">{{$small->title}}</a>
                                                         </li>
 
                                                     @endforeach
@@ -55,14 +57,19 @@
                                             </li>
                                         @else
                                             <li class="{{ Request::is('animal/' . $animal->slug) ? 'active' : '' }}">
-                                                <a href="{{ route('frontend.find.animal', $animal->slug) }}">{{$animal->title}}</a>
+                                                <a
+                                                    href="{{ route('frontend.find.animal', $animal->slug) }}">{{$animal->title}}</a>
                                             </li>
 
                                         @endif
                                     @endforeach
-{{--                                    <li class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">--}}
-{{--                                        <a href="{{ route('frontend.listing.animal.category', $category->slug) }}">Other Species</a>--}}
-{{--                                    </li>--}}
+                                    {{-- <li
+                                        class="{{ Request::routeIs('frontend.animal.categories') ? 'active' : '' }}">
+                                        --}}
+                                        {{-- <a
+                                            href="{{ route('frontend.listing.animal.category', $category->slug) }}">Other
+                                            Species</a>--}}
+                                        {{-- </li>--}}
                                 </ul>
                             </li>
 
@@ -70,21 +77,28 @@
                                 <a href="{{route('frontend.tobas.page')}}">Hydration</a>
                                 {{--<ul>
                                     @foreach($tobasGalleries as $tobasGallery)
-                                        <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
-                                            <a href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
-                                                {{$tobasGallery->title}}
-                                            </a>
-                                        </li>
+                                    <li class="{{ Request::is('tobas.gallery/' . $tobasGallery->id) ? 'active' : '' }}">
+                                        <a
+                                            href="{{ route('frontend.tobas.gallery', ['tobasGallery'=>$tobasGallery]) }}">
+                                            {{$tobasGallery->title}}
+                                        </a>
+                                    </li>
                                     @endforeach
                                 </ul>--}}
+                            </li>
+
+                            <li class="{{--{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}--}}">
+                                <a href="{{route('frontend.security')}}">Security</a>
                             </li>
 
                             <li class="dropdown {{ Request::is('activites/*') ? 'active' : '' }}">
                                 <a href="{{route('frontend.activites.page')}}">Activities</a>
                                 <ul>
                                     @foreach($activityGalleries as $activityGallery)
-                                        <li class="{{ Request::is('activites.gallery/' . $activityGallery->id) ? 'active' : '' }}">
-                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery'=>$activityGallery]) }}">
+                                        <li
+                                            class="{{ Request::is('activites.gallery/' . $activityGallery->id) ? 'active' : '' }}">
+                                            <a
+                                                href="{{ route('frontend.activites.gallery', ['tobasGallery' => $activityGallery]) }}">
                                                 {{$activityGallery->title}}
                                             </a>
                                         </li>
@@ -92,32 +106,29 @@
                                 </ul>
                             </li>
 
-{{--                            <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }}"><a--}}
-{{--                                    href="{{route('frontend.events.index')}}">Events</a>--}}
+                            {{-- <li class="{{ Request::routeIs('frontend.events.index' ) ? 'active' : '' }}"><a--}}
+                                    {{-- href="{{route('frontend.events.index')}}">Events</a>--}}
 
-                                <!-- <ul>
+                                    <!-- <ul>
                                     <li><a href="events.html">Our Blog</a></li>
                                     <li><a href="event-details.html">Blog Details</a></li>
                                 </ul> -->
-{{--                            </li>--}}
-{{--                            <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
-{{--                                    href="{{url('research-article')}}">Research & Articles</a></li>--}}
-                            <li class="{{ Request::routeIs('frontend.students.index') ? 'active' : '' }}"><a href="{{ route('frontend.students.index') }}">Our Veterinarian</a></li>
+                                    {{-- </li>--}}
+                            {{-- <li class="{{ Request::routeIs('frontend.rearchArticle' ) ? 'active' : '' }}"><a--}}
+                                    {{-- href="{{url('research-article')}}">Research & Articles</a></li>--}}
+                            <li class="{{ Request::routeIs('frontend.students.index') ? 'active' : '' }}"><a
+                                    href="{{ route('frontend.students.index') }}">Our Veterinarians</a></li>
 
-{{--                            <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
-{{--                                    href="{{route('frontend.topas.gallery')}}">Hydration</a></li>--}}
-
-                            <li class="{{--{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}--}}">
-                                <a href="{{route('frontend.security')}}">Security</a>
-                            </li>
+                            {{-- <li class="{{ Request::routeIs('frontend.topas.gallery' ) ? 'active' : '' }}"><a--}}
+                                    {{-- href="{{route('frontend.topas.gallery')}}">Hydration</a></li>--}}
 
                             {{-- <li class="{{ Request::routeIs('frontend.visitors.gallery' ) ? 'active' : '' }}"><a
                                     href="{{route('frontend.visitors.gallery')}}">Visitors</a></li> --}}
 
-                            <li class="{{ Request::routeIs('frontend.contact.us' ) ? 'active' : '' }}"><a
+                            <li class="{{ Request::routeIs('frontend.contact.us') ? 'active' : '' }}"><a
                                     href="{{route('frontend.contact.us')}}">Contact Us</a></li>
-{{--                            <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a--}}
-{{--                                    href="{{route('frontend.career.store')}}">Career</a></li>--}}
+                            {{-- <li class="{{ Request::routeIs('frontend.career.store' ) ? 'active' : '' }}"><a--}}
+                                    {{-- href="{{route('frontend.career.store')}}">Career</a></li>--}}
                         </ul>
                     </div>
                 </nav>
@@ -127,30 +138,31 @@
                     <div class="icon"><i class="flaticon-phone-ringing"></i></div>
                     <span>Have Questions?</span>
                     <h6><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></h6>
-            </div> --}}
-            <div class="search-box-outer">
-                <div class="dropdown">
-                    <button class="search-box-btn" type="button" id="dropdownMenu3" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
-                    <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu3">
-                        <div class="form-container">
-                            <form method="get" action="{{url('search/animals')}}">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" value="{{ request('search-field') }}" placeholder="Search...."
-                                        required="">
-                                    <button type="submit" class="search-btn"><span
-                                            class="fas fa-search"></span></button>
-                                </div>
-                            </form>
+                </div> --}}
+                <div class="search-box-outer">
+                    <div class="dropdown">
+                        <button class="search-box-btn" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><i
+                                class="flaticon-magnifying-glass"></i></button>
+                        <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu3">
+                            <div class="form-container">
+                                <form method="get" action="{{url('search/animals')}}">
+                                    <div class="form-group">
+                                        <input type="search" name="search-field" value="{{ request('search-field') }}"
+                                            placeholder="Search...." required="">
+                                        <button type="submit" class="search-btn"><span
+                                                class="fas fa-search"></span></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="btn-box">
+                <!-- <div class="btn-box">
                     <a href="index.html">Book your ticket</a>
                 </div> -->
+            </div>
         </div>
-    </div>
     </div>
 
     <!--sticky Header-->
@@ -170,26 +182,27 @@
                     <div class="icon"><i class="flaticon-phone-ringing"></i></div>
                     <span>Have Questions?</span>
                     <h6><a href="tel:{{$setting->phone}}">{{$setting->phone}}</a></h6>
-            </div> --}}
-            <div class="search-box-outer">
-                <div class="dropdown">
-                    <button class="search-box-btn" type="button" id="dropdownMenu4" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="flaticon-magnifying-glass"></i></button>
-                    <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu4">
-                        <div class="form-container">
-                            <form method="get" action="{{url('search/animals')}}">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" value="{{ request('search-field') }}"
-                                        required="">
-                                    <button type="submit" class="search-btn"><span
-                                            class="fas fa-search"></span></button>
-                                </div>
-                            </form>
+                </div> --}}
+                <div class="search-box-outer">
+                    <div class="dropdown">
+                        <button class="search-box-btn" type="button" id="dropdownMenu4" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><i
+                                class="flaticon-magnifying-glass"></i></button>
+                        <div class="dropdown-menu search-panel" aria-labelledby="dropdownMenu4">
+                            <div class="form-container">
+                                <form method="get" action="{{url('search/animals')}}">
+                                    <div class="form-group">
+                                        <input type="search" name="search-field" value="{{ request('search-field') }}"
+                                            required="">
+                                        <button type="submit" class="search-btn"><span
+                                                class="fas fa-search"></span></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </header>

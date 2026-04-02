@@ -66,14 +66,14 @@
                                            placeholder="{{__('animals.admin.edit.slug')}}">
                                 </div>
                             </div>
-{{--                            <div class="col-sm-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="form-label">{{__('animals.admin.edit.details')}}<span--}}
-{{--                                            class="text-danger">*</span></label>--}}
-{{--                                    <textarea name="details" id="PageDetails" --}}{{--id="ckeditor"--}}{{-- data-rule-required="true"--}}
-{{--                                              data-msg-required="{{__('animals.admin.edit.details_message')}}">{{$animal->details}}</textarea>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">{{__('animals.admin.edit.details')}}<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="details" id="PageDetails" data-rule-required="true"
+                                              data-msg-required="{{__('animals.admin.edit.details_message')}}">{!! $animal->details !!}</textarea>
+                                </div>
+                            </div>
                             {{--                            <div class="col-sm-6">--}}
                             {{--                                <div class="mb-3">--}}
                             {{--                                    <label class="form-label">{{__('animals.admin.edit.image')}}<span--}}
@@ -472,13 +472,8 @@
 
                     var url = $(form).attr('action');
 
-                    // Sync CKEditor data to textarea before getting FormData
-                    if (window.editor) {
-                        $('#ckeditor').val(window.editor.getData());
-                    }
-                    if (window.editor2) {
-                        $('#ckeditor2').val(window.editor2.getData());
-                    }
+                    // Sync TinyMCE data to textarea before getting FormData
+                    tinymce.triggerSave();
 
                     var formData = new FormData($(form)[0]);
 

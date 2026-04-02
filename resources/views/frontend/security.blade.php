@@ -24,32 +24,32 @@
 
 
     <!-- about-style-three -->
-{{--    <section class="about-style-three sec-pad">--}}
-{{--        <div class="auto-container">--}}
-{{--            <div class="row clearfix">--}}
-{{--               --}}{{-- <div class="col-lg-6 col-md-12 col-sm-12 image-column">--}}
-{{--                    <figure class="image-box">--}}
-{{--                        <img src="{{asset($security->banner_image)}}" alt="">--}}
-{{--                    </figure>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-12 col-md-12 col-sm-12 content-column">--}}
-{{--                    <div class="content_block_three">--}}
-{{--                        <div class="content-box">--}}
-{{--                            --}}{{--<div class="sec-title">--}}
-{{--                                <h2>{{$security->title??''}}</h2>--}}
-{{--                            </div>--}}
-{{--                            <div class="text">--}}
-{{--                                <div id="limited-text">--}}
-{{--                                    {!! $security->description??'' !!}--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+    <section class="about-style-three sec-pad">
+        <div class="auto-container">
+            <div class="row clearfix">
+               {{-- <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <figure class="image-box">
+                        <img src="{{asset($security->banner_image)}}" alt="">
+                    </figure>
+                </div>--}}
+                <div class="col-lg-12 col-md-12 col-sm-12 content-column">
+                    <div class="content_block_three">
+                        <div class="content-box">
+                            {{--<div class="sec-title">
+                                <h2>{{$security->title??''}}</h2>
+                            </div>--}}
+                            <div class="text">
+                                <div id="limited-text">
+                                    {!! $security->description??'' !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-{{--        </div>--}}
-{{--    </section>--}}
+        </div>
+    </section>
     <!-- about-style-three end -->
 
 

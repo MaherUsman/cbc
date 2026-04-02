@@ -36,10 +36,10 @@
             <div class="content-box">
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li>Activites</li>
+                    <li>{{ $data->title ?? 'Activites' }}</li>
                 </ul>
                 <div class="title">
-                    <h1>Activites</h1>
+                    <h1>{{ $data->title ?? 'Activites' }}</h1>
                 </div>
             </div>
         </div>
@@ -88,7 +88,13 @@
     @endif
     <!-- about-style-three end -->
 
-
+    @if (!empty($data->description))
+    <section class="sec-pad pt-5 pb-0">
+        <div class="auto-container">
+            {!! $data->description !!}
+        </div>
+    </section>
+    @endif
 
     @if ($tobaGalleries->isNotEmpty())
         <section class="gallery-page-section pt-0">

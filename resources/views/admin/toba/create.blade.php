@@ -27,13 +27,13 @@
                                            placeholder="{{__('toba.admin.create.title')}}">
                                 </div>
                             </div>
-                            {{--<div class="col-sm-12">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="form-label">{{__('toba.admin.create.description')}}</label>
-                                    <textarea name="description" id="ckeditor"  rows="4" class="form-control" data-rule-required="true"
+                                    <textarea name="description" id="PageDetails"  rows="4" class="form-control" data-rule-required="true"
                                            data-msg-required="{{__('toba.admin.create.description_message')}}"></textarea>
                                 </div>
-                            </div>--}}
+                            </div>
                             <div class="col-sm-12">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('toba.admin.create.image')}}<span
@@ -65,7 +65,48 @@
 
 @section('script')
 
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            tinymce.init({
+                selector: '#PageDetails',
+                skin: 'oxide',
+                images_upload_url: '{{route("ckeditor.upload")}}',
+                file_picker_types: 'image media',
+                images_upload_handler: function (blobInfo) {
+                    return new Promise((resolve, reject) => {
+                        const formData = new FormData();
+                        formData.append('file', blobInfo.blob(), blobInfo.filename());
+                        formData.append('_token', '{{ csrf_token() }}');
+
+                        $.ajax({
+                            url: '{{route("ckeditor.upload")}}',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if (response.location) {
+                                    resolve(response.location);
+                                } else {
+                                    reject('Invalid response from server');
+                                }
+                            },
+                            error: function (xhr) {
+                                reject('Image upload failed: ' + xhr.status);
+                            }
+                        });
+                    });
+                },
+                min_height: 350,
+                plugins: [
+                    'advlist', 'autoresize', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                    'pagebreak', 'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'table'
+                ],
+                toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | media',
+            });
+        });
+
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const [file] = event.target.files;
             if (file) {
@@ -86,6 +127,7 @@
             $('#formValidation').validate({
                 submitHandler: async function (form, event) {
                     event.preventDefault();
+                    tinymce.triggerSave();
 
                     $.blockUI({
                         css: {

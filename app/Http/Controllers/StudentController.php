@@ -52,5 +52,16 @@ class StudentController extends Controller
     {
         return $this->studentService->destroy($student);
     }
+
+    public function updateDescription(Request $request)
+    {
+        $setting = \App\Models\Settings::first();
+        if($setting){
+            $setting->student_page_title = $request->student_page_title;
+            $setting->student_page_description = $request->student_page_description;
+            $setting->save();
+        }
+        return response()->json(['result'=>'success','message'=>'Description Updated Successfully!'], 200);
+    }
 }
 

@@ -160,6 +160,7 @@
                         </div>
 
                         <div class="row">
+
                             {{-- Title --}}
                             <div class="col-12">
                                 <div class="mb-3">
@@ -230,7 +231,6 @@
 @endsection
 
 @section('script')
-
     <script>
         function previewImage2(input) {
             const current = document.getElementById('currentImage');
