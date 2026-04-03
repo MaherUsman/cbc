@@ -59,19 +59,20 @@
     <!-- banner-section end -->
 
     <!-- Page Title -->
-    {{--   <section class="page-title"> --}}
-    {{--        <div class="img-wrap parallax-demo-1"> --}}
-    {{--            <div class="parallax-inner back-img chinkara-img" style="background-image: url({{asset($animal->banner_image)}});"> --}}
-    {{--            </div> --}}
-    {{--        </div> --}}
-    {{--        <div class="auto-container"> --}}
-    {{--            <div class="content-box"> --}}
-    {{--                <div class="title"> --}}
-    {{--                    <h1>{{$animal->title}}</h1> --}}
-    {{--                </div> --}}
-    {{--            </div> --}}
-    {{--        </div> --}}
-    {{--    </section> --}}
+    {{-- <section class="page-title"> --}}
+        {{-- <div class="img-wrap parallax-demo-1"> --}}
+            {{-- <div class="parallax-inner back-img chinkara-img"
+                style="background-image: url({{asset($animal->banner_image)}});"> --}}
+                {{-- </div> --}}
+            {{-- </div> --}}
+        {{-- <div class="auto-container"> --}}
+            {{-- <div class="content-box"> --}}
+                {{-- <div class="title"> --}}
+                    {{-- <h1>{{$animal->title}}</h1> --}}
+                    {{-- </div> --}}
+                {{-- </div> --}}
+            {{-- </div> --}}
+        {{-- </section> --}}
     <!-- End Page Title -->
 
     <!-- animals-details -->
@@ -88,26 +89,31 @@
                                 </div>
                                 <div class="animals-description">
                                     @if(empty(trim(strip_tags($animal->details))) || trim(strip_tags($animal->details)) === '&nbsp;')
-                                        <p><strong>[Dummy Content]:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p><strong>[Dummy Content]:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                            elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     @else
                                         <p>{!! $animal->details !!}</p>
                                     @endif
                                 </div>
-                                {{--                                <div class="animals-description"> --}}
-                                {{--                                    <p>{!! $animal->details !!}</p> --}}
-                                {{--                                </div> --}}
+                                {{-- <div class="animals-description"> --}}
+                                    {{-- <p>{!! $animal->details !!}</p> --}}
+                                    {{-- </div> --}}
                             </div>
                         </div>
-                        {{--                        <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side"> --}}
-                        {{--                            <div class="sidebar-content"> --}}
-                        {{--                                @foreach ($animal->animalProps as $animalProps) --}}
-                        {{--                                    <div class="single-item"> --}}
-                        {{--                                        <h5>{{$animalProps->title}}</h5> --}}
-                        {{--                                        <p>{{$animalProps->details}}</p> --}}
-                        {{--                                    </div> --}}
-                        {{--                                @endforeach --}}
-                        {{--                            </div> --}}
-                        {{--                        </div> --}}
+                        {{-- <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side"> --}}
+                            {{-- <div class="sidebar-content"> --}}
+                                {{-- @foreach ($animal->animalProps as $animalProps) --}}
+                                {{-- <div class="single-item"> --}}
+                                    {{-- <h5>{{$animalProps->title}}</h5> --}}
+                                    {{-- <p>{{$animalProps->details}}</p> --}}
+                                    {{-- </div> --}}
+                                {{-- @endforeach --}}
+                                {{-- </div> --}}
+                            {{-- </div> --}}
                     </div>
                 </div>
             </div>
@@ -187,8 +193,7 @@
                                     <h3><a
                                             href="{{ route('frontend.find.animal', $relatedAnimal->slug) }}">{{ $relatedAnimal->title }}</a>
                                     </h3>
-                                    <div class="link"><a
-                                            href="{{ route('frontend.find.animal', $relatedAnimal->slug) }}"><i
+                                    <div class="link"><a href="{{ route('frontend.find.animal', $relatedAnimal->slug) }}"><i
                                                 class="flaticon-right-arrow"></i></a></div>
                                 </div>
                             </div>
@@ -208,7 +213,7 @@
         let page = 2;
         const slug = "{{ $animal->slug }}";
 
-        document.getElementById('load-more-btn').addEventListener('click', function() {
+        document.getElementById('load-more-btn').addEventListener('click', function () {
             const loadingMessage = document.getElementById('loading-message');
             loadingMessage.style.display = 'block';
             let assetPath = "{{ asset('/') }}"
@@ -224,28 +229,28 @@
                             galleryBlock.classList.add('col-lg-4', 'col-md-6', 'col-sm-12',
                                 'gallery-block');
                             galleryBlock.innerHTML = `
-                            <div class="gallery-block-two">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <img src="${assetPath}/${gallery.thumb}" alt="">
-                                    </div>
+                                <div class="gallery-block-two">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <img src="${assetPath}/${gallery.thumb}" alt="">
+                                        </div>
 
-                                    <div class="text-center mt-2">
-                                        <p class="mb-0 fw-semibold img-caption-txt">
-                                            ${ gallery.title }
-                                        </p>
-                                    </div>
+                                        <div class="text-center mt-2">
+                                            <p class="mb-0 fw-semibold img-caption-txt">
+                                                ${gallery.title}
+                                            </p>
+                                        </div>
 
-                        <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                            <a href="${assetPath}/${gallery.compressed}"
-                                            class="lightbox-image d-flex justify-content-center align-items-center flex-column"
-                                            data-fancybox="gallery">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+                            <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                <a href="${assetPath}/${gallery.compressed}"
+                                                class="lightbox-image d-flex justify-content-center align-items-center flex-column"
+                                                data-fancybox="gallery">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        `;
+                            `;
                             galleryContainer.appendChild(galleryBlock);
                         });
                         page++;

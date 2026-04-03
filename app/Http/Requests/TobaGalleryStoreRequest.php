@@ -23,6 +23,7 @@ class TobaGalleryStoreRequest extends FormRequest
             'title' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
             'show_on_navbar' => ['required', 'boolean'],
         ];
     }

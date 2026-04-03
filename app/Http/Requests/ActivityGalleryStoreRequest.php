@@ -23,6 +23,7 @@ class ActivityGalleryStoreRequest extends FormRequest
             'title' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
             'status' => ['required'],
         ];
     }

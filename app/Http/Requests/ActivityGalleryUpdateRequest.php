@@ -24,6 +24,7 @@ class ActivityGalleryUpdateRequest extends FormRequest
             'slug' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
             'thumb' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
             'compressed' => ['nullable', 'string', 'max:255'],
 //            'status' => ['required'],
         ];
