@@ -11,7 +11,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>{{ $tobaGallery['parent']->title??'' }} Gallery</h1>
+                    <h1>{{ $tobaGallery['parentGallery']->title??'' }} Gallery</h1>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
     <section class="sec-pad pt-5 pb-0">
         <div class="auto-container">
-            {!! $tobaGallery['parent']->description ?? '' !!}
+            {!! $tobaGallery['parentGallery']->description ?? '' !!}
         </div>
     </section>
 
