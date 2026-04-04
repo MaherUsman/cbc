@@ -22,6 +22,7 @@ class StudentStoreRequest extends FormRequest
             'service_attachment' => ['nullable','string','max:255'],
             'internship_training' => ['nullable','string','max:255'],
             'present_status' => ['nullable','string','max:255'],
+            'internship' => ['nullable','string','max:255'],
         ];
     }
 }

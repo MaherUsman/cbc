@@ -20,6 +20,7 @@ class Student extends Model
         'service_attachment',
         'internship_training',
         'present_status',
+        'internship',
     ];
 
     protected $dates = [

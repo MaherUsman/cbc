@@ -44,6 +44,13 @@
         </div>
     </div>
 
+    <div class="col-sm-6">
+        <div class="mb-3">
+            <label class="form-label">Internship</label>
+            <input type="text" name="internship" value="{{ old('internship', $student->internship ?? '') }}" class="form-control" placeholder="Internship">
+        </div>
+    </div>
+
     <div class="col-sm-12">
         <div class="mb-3">
             <label class="form-label">Present Status</label>
