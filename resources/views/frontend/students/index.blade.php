@@ -105,7 +105,7 @@
             text-align: center;
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             color: #777;
             font-size: 18px;
         }
@@ -114,7 +114,7 @@
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img"
-                 style="background-image: url({{asset('assets/images/background/page-title.jpg')}});">
+                style="background-image: url({{asset('assets/images/background/page-title.jpg')}});">
             </div>
         </div>
         <div class="auto-container">
@@ -134,13 +134,11 @@
         $studentDescription = \App\Models\Settings::first()->student_page_description ?? '';
     @endphp
 
-    @if (!empty($studentDescription))
     <section class="sec-pad pt-5 pb-0">
         <div class="auto-container">
             {!! $studentDescription !!}
         </div>
     </section>
-    @endif
 
     <section class="student-gallery-section">
         <div class="auto-container">
@@ -167,11 +165,11 @@
                                         <span class="info-value">{{ $student->education ?? '-' }}</span>
                                     </li>
                                     <li class="info-item">
-                                        <span class="info-label">Service / Attachment</span>
+                                        <span class="info-label">Service</span>
                                         <span class="info-value">{{ $student->service_attachment ?? '-' }}</span>
                                     </li>
                                     <li class="info-item">
-                                        <span class="info-label">Internship / Training with IFHC</span>
+                                        <span class="info-label">Externship with IFHC</span>
                                         <span class="info-value">{{ $student->internship_training ?? '-' }}</span>
                                     </li>
                                     <li class="info-item">
@@ -195,4 +193,3 @@
     </section>
 
 @endsection
-
