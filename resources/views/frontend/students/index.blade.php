@@ -134,11 +134,13 @@
         $studentDescription = \App\Models\Settings::first()->student_page_description ?? '';
     @endphp
 
-    <section class="sec-pad pt-5 pb-0">
-        <div class="auto-container">
-            {!! $studentDescription !!}
-        </div>
-    </section>
+    @if (!empty($studentDescription))
+        <section class="sec-pad pt-5 pb-0">
+            <div class="auto-container">
+                {!! $studentDescription !!}
+            </div>
+        </section>
+    @endif
 
     <section class="student-gallery-section">
         <div class="auto-container">

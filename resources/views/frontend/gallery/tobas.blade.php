@@ -18,13 +18,11 @@
     </section>
     <!-- End Page Title -->
 
-    @if(!empty($tobaGallery['parent']->description))
     <section class="sec-pad pt-5 pb-0">
         <div class="auto-container">
-            {!! $tobaGallery['parent']->description !!}
+            {!! $tobaGallery['parent']->description ?? '' !!}
         </div>
     </section>
-    @endif
 
 
     <!-- gallery-page-section -->
