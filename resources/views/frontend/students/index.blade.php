@@ -171,7 +171,7 @@
                                         <span class="info-value">{{ $student->service_attachment ?? '-' }}</span>
                                     </li>
                                     <li class="info-item">
-                                        <span class="info-label">Internship</span>
+                                        <span class="info-label">Internship with HFIP</span>
                                         <span class="info-value">{{ $student->internship ?? '-' }}</span>
                                     </li>
                                     <li class="info-item">
