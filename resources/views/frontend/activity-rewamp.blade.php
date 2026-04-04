@@ -88,13 +88,11 @@
     @endif
     <!-- about-style-three end -->
 
-    @if (!empty($data->description))
     <section class="sec-pad pt-5 pb-0">
         <div class="auto-container">
-            {!! $data->description !!}
+            {!! $data->description ?? '' !!}
         </div>
     </section>
-    @endif
 
     @if ($tobaGalleries->isNotEmpty())
         <section class="gallery-page-section pt-0">

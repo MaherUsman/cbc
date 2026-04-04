@@ -229,28 +229,28 @@
                             galleryBlock.classList.add('col-lg-4', 'col-md-6', 'col-sm-12',
                                 'gallery-block');
                             galleryBlock.innerHTML = `
-                                <div class="gallery-block-two">
-                                    <div class="inner-box">
-                                        <div class="image-box">
-                                            <img src="${assetPath}/${gallery.thumb}" alt="">
-                                        </div>
+                                    <div class="gallery-block-two">
+                                        <div class="inner-box">
+                                            <div class="image-box">
+                                                <img src="${assetPath}/${gallery.thumb}" alt="">
+                                            </div>
 
-                                        <div class="text-center mt-2">
-                                            <p class="mb-0 fw-semibold img-caption-txt">
-                                                ${gallery.title}
-                                            </p>
-                                        </div>
+                                            <div class="text-center mt-2">
+                                                <p class="mb-0 fw-semibold img-caption-txt">
+                                                    ${gallery.title}
+                                                </p>
+                                            </div>
 
-                            <div class="view-box d-flex align-items-center flex-column justify-content-center">
-                                <a href="${assetPath}/${gallery.compressed}"
-                                                class="lightbox-image d-flex justify-content-center align-items-center flex-column"
-                                                data-fancybox="gallery">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
+                                <div class="view-box d-flex align-items-center flex-column justify-content-center">
+                                    <a href="${assetPath}/${gallery.compressed}"
+                                                    class="lightbox-image d-flex justify-content-center align-items-center flex-column"
+                                                    data-fancybox="gallery">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            `;
+                                `;
                             galleryContainer.appendChild(galleryBlock);
                         });
                         page++;
