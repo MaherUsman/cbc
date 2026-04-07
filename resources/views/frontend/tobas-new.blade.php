@@ -83,10 +83,13 @@
                                         {{-- </button> --}}
 
                                     {{-- </div> --}}
-                                {{-- <!-- <div class="btn-box"> --}}
-                                                                {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
-                                                                {{--                            </div> --> --}}
-                                {{-- </div> --}}
+                                {{--
+                                <!-- <div class="btn-box"> --}}
+                                                                                                {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
+                                                                                                {{--                            </div> -->
+                                --}}
+                                {{--
+                            </div> --}}
                             {{-- </div> --}}
                         {{-- </div> --}}
                 </div>
@@ -166,7 +169,7 @@
     @endif
 
     <!-- bottom-image-section -->
-    <section class="bottom-image-section mb-5 pb-5" style="margin-bottom: 120px;">
+    <section class="bottom-image-section pb-5" style="height: fit-content;">
         <div class="auto-container">
             <div class="image-box text-center">
                 <img src="{{ asset('assets/images/Hydration/cbc_map.jpg') }}" alt="Hydration Map" class="img-fluid"
