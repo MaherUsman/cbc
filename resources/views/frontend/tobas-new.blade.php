@@ -165,6 +165,16 @@
         <!-- gallery-page-section end -->
     @endif
 
+    <!-- bottom-image-section -->
+    <section class="bottom-image-section pb-5" style="margin-top: 30px;">
+        <div class="auto-container">
+            <div class="image-box text-center">
+                <img src="{{ asset('assets/images/Hydration/cbc_map.jpg') }}" alt="Hydration Map" class="img-fluid" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: cover; max-height: 800px;">
+            </div>
+        </div>
+    </section>
+    <!-- bottom-image-section end -->
+
 @endsection
 
 <script>
