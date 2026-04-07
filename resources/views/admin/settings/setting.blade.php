@@ -35,7 +35,7 @@
                             <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">Home Page Title</label>
                                 <input type="text" class="form-control" id="Loading_page_text" name="home_page_title"
-                                       value="{{$settings->home_page_title}}" required>
+                                       value="{{$settings->home_page_title}}">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="name" class="form-label">{{__('setting.phone')}}</label>
@@ -173,8 +173,7 @@
                                            id="sectionTitle"
                                            value="{{ $homepageSection->title ?? '' }}"
                                            class="form-control"
-                                           placeholder="{{ __('homepageSections.title_placeholder') }}"
-                                           required>
+                                           placeholder="{{ __('homepageSections.title_placeholder') }}">
                                 </div>
                             </div>
 
@@ -187,8 +186,7 @@
                                            id="backgroundImage"
                                            class="form-control"
                                            accept="image/*"
-                                           onchange="previewImage2(this)"
-                                           @if(!$homepageSection) required @endif>
+                                           onchange="previewImage2(this)">
                                     <small class="text-muted">{{ __('homepageSections.image_help') }}</small>
                                 </div>
 
