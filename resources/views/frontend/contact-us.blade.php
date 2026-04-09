@@ -50,6 +50,7 @@
                      data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
                 </div> -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1574.4138450616574!2d72.041171!3d29.2950139!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b8b464ba8f583%3A0xee4fbde50e2c9475!2sSHEIKH%20MOHAMMAD%20BIN%20ZAYED%20AL%20NAHYAN%20CONSERVATION%20BREEDING%20CENTRE!5e1!3m2!1sen!2s!4v1731305585633!5m2!1sen!2s" width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                @if(false)
                 <div class="content-box">
                     <h2>get in touch with us</h2>
                     <ul class="info clearfix">
@@ -63,6 +64,7 @@
                         <h4>9:00am to 6:00pm</h4>
                     </div> -->
                 </div>
+                @endif
             </div>
         </div>
     </section>
