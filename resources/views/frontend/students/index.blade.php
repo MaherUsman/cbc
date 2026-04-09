@@ -114,7 +114,7 @@
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img"
-                style="background-image: url({{asset('assets/images/background/page-title.jpg')}});">
+                style="background-image: url({{ \App\Models\Settings::first() && \App\Models\Settings::first()->student_page_banner ? asset(\App\Models\Settings::first()->student_page_banner) : asset('assets/images/background/page-title.jpg') }});">
             </div>
         </div>
         <div class="auto-container">

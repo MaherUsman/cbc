@@ -59,6 +59,13 @@ class StudentController extends Controller
         if($setting){
             $setting->student_page_title = $request->student_page_title;
             $setting->student_page_description = $request->student_page_description;
+            if($request->hasFile('student_page_banner')){
+                $file = $request->file('student_page_banner');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/settings/', $filename);
+                $setting->student_page_banner = 'uploads/settings/' . $filename;
+            }
             $setting->save();
         }
         return response()->json(['result'=>'success','message'=>'Description Updated Successfully!'], 200);

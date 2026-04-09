@@ -12,7 +12,7 @@
                     <h4 class="card-title">Our Veterinarian Page Text</h4>
                 </div>
                 <div class="card-body">
-                    <form id="descriptionForm" action="{{ route('students.updateDescription') }}" method="POST">
+                    <form id="descriptionForm" action="{{ route('students.updateDescription') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
                             <label class="form-label"><b>Page Title</b></label>
@@ -21,6 +21,13 @@
                         <div class="form-group mb-3">
                             <label class="form-label"><b>Description Text</b></label>
                             <textarea name="student_page_description" id="PageDetails" rows="4" class="form-control">{{\App\Models\Settings::first()->student_page_description ?? ''}}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label"><b>Banner Image</b></label>
+                            <input type="file" name="student_page_banner" class="form-control" accept="image/*">
+                            @if(\App\Models\Settings::first() && \App\Models\Settings::first()->student_page_banner)
+                                <img src="{{ asset(\App\Models\Settings::first()->student_page_banner) }}" alt="Banner Preview" style="max-height: 150px; margin-top: 10px; border-radius: 5px;">
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-primary">Save Description</button>
                     </form>
