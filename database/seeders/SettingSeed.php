@@ -40,6 +40,11 @@ class SettingSeed extends Seeder
                 'social_icon' => 'fab fa-linkedin-in',
                 'social_link' => 'https://www.linkedin.com',
             ],
+            [
+                'social_name' => 'Tiktok',
+                'social_icon' => 'fab fa-tiktok',
+                'social_link' => 'https://www.tiktok.com',
+            ],
 
         ];
 

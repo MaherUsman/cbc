@@ -83,6 +83,7 @@
                     <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
                     <li><a href="https://www.instagram.com/hfip_216/"><span class="fab fa-instagram"></span></a></li>
                     <li><a href="https://www.youtube.com/@houbarafoundationinternati5340"><span class="fab fa-youtube"></span></a></li>
+                    <li><a href="index.html"><span class="fab fa-tiktok"></span></a></li>
                 </ul>
             </div>
         </nav>
