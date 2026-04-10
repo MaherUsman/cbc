@@ -14,9 +14,6 @@
                     {{--<li><a href="{{route('frontend.rearchArticle')}}">Research & Articles</a></li>--}}
                     <li>{{$security->title}}</li>
                 </ul>
-                <div class="title">
-                    <h1>{{$security->title}}</h1>
-                </div>
             </div>
         </div>
     </section>

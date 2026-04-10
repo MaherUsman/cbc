@@ -38,9 +38,6 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li>{{ $data->title ?? 'Activites' }}</li>
                 </ul>
-                <div class="title">
-                    <h1>{{ $data->title ?? 'Activites' }}</h1>
-                </div>
             </div>
         </div>
     </section>

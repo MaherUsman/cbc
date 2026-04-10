@@ -119,9 +119,6 @@
         </div>
         <div class="auto-container">
             <div class="content-box">
-                <div class="title">
-                    <h1>{{ \App\Models\Settings::first()->student_page_title ?? 'Our Veterinarian' }}</h1>
-                </div>
             </div>
         </div>
     </section>

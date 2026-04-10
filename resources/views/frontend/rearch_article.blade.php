@@ -190,9 +190,6 @@
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>Research & Articles</li>
                 </ul>
-                <div class="title">
-                    <h1>Research & Articles</h1>
-                </div>
             </div>
         </div>
     </section>
