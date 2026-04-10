@@ -41,7 +41,8 @@ use App\Http\Controllers\HomepageSectionController;
 
 Route::get('/run-migration-now', function () {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-    return "Migration executed successfully! Remember to remove this route afterwards.";
+    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\Seeders\SettingSeed', '--force' => true]);
+    return "Migration and Seeder executed successfully! Remember to remove this route afterwards.";
 });
 Route::prefix('admin')->group(function () {
 
