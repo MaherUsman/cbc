@@ -65,6 +65,20 @@
                                     <textarea name="description" id="editDescription" class="form-control" rows="5">{{$tobaGallery->description}}</textarea>
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Banner Image</label>
+                                    <input type="file" id="bannerImageUpload" name="banner_image" class="form-control"
+                                           accept="image/*"
+                                           data-rule-required="false" onchange="previewBannerImage(this)">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <img src="{{asset($tobaGallery->banner_image)}}" alt="Banner Preview" id="bannerImagePreview" class="img-thumbnail"
+                                         style="display:{{$tobaGallery->banner_image ? 'block' : 'none'}}; max-width:100%; height:auto;">
+                                </div>
+                            </div>
                         </div>
 
                         <a href="{{route('rewap_activity_gallery.index')}}" class="btn btn-danger light btn-sl-sm"
@@ -132,9 +146,22 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Find the nearest image element in the same row and display it
-                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                    $(input).closest('.rowTemplate').find('img').first().attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(input.files[0]); // Convert the file to a URL
+            }
+        }
+
+        // Function to preview the banner image
+        function previewBannerImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#bannerImagePreview').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                $('#bannerImagePreview').hide();
             }
         }
 

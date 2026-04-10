@@ -26,6 +26,7 @@ class TobaGalleryUpdateRequest extends FormRequest
             'image' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'show_on_navbar' => ['required', 'boolean'],
+            'banner_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
         ];
     }
 }

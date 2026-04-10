@@ -44,6 +44,13 @@ Route::get('/run-migration-now', function () {
     \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\Seeders\SettingSeed', '--force' => true]);
     return "Migration and Seeder executed successfully! Remember to remove this route afterwards.";
 });
+
+Route::get('/clear-my-cache', function() {
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    return 'Cache Cleared Successfully!';
+});
+
 Route::prefix('admin')->group(function () {
 
     Route::middleware('guest')->group(function () {

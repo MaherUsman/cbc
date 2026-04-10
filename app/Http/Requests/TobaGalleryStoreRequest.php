@@ -25,6 +25,7 @@ class TobaGalleryStoreRequest extends FormRequest
             'image' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'show_on_navbar' => ['required', 'boolean'],
+            'banner_image' => ['nullable'],
         ];
     }
 }

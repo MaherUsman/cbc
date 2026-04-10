@@ -5,7 +5,7 @@
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
             <div class="parallax-inner back-img"
-                 style="background-image: url({{asset('assets/images/background/page-title.jpg')}});"></div>
+                 style="background-image: url({{ $tobaGallery['parentGallery']->banner_image ? asset($tobaGallery['parentGallery']->banner_image) : asset('assets/images/background/page-title.jpg') }});"></div>
         </div>
 
         <div class="auto-container">

@@ -33,7 +33,7 @@
                                               data-msg-required="{{__('toba.admin.create.description_message')}}"></textarea>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('toba.admin.create.image')}}<span
                                             class="text-danger">(550 x 386)*</span></label>
@@ -43,6 +43,17 @@
                                 </div>
                                 <div class="mb-3">
                                     <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail"
+                                         style="display:none; max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Banner Image<span class="text-danger">(1920 x 350)</span></label>
+                                    <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
+                                           accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="bannerImagePreview" src="#" alt="Banner Preview" class="img-thumbnail"
                                          style="display:none; max-width:200px; height:auto;">
                                 </div>
                             </div>
@@ -120,6 +131,20 @@
             }
         });
 
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('bannerImagePreview').style.display = 'none';
+            }
+        });
+
         $(document).ready(function () {
             var imageColName = 'image';
 
@@ -144,6 +169,11 @@
                     var imageColName = $('#imageUpload').attr('name');
                     var data = new FormData($(form)[0]);
                     var imageFile = $('#imageUpload')[0].files[0];
+                    var bannerFile = $('#bannerImageUpload')[0]?.files[0];
+                    
+                    if (bannerFile) {
+                        data.set('banner_image', bannerFile);
+                    }
 
                     if (imageFile) {
                         try {

@@ -27,7 +27,14 @@ class ActivityRewampService
     {
         DB::beginTransaction();
         try {
-            $toba = Activity::create(collect($request->validated())->all());
+            $data = collect($request->validated())->all();
+            if ($request->hasFile('banner_image')) {
+                $file = $request->file('banner_image');
+                $filename = time() . '_banner.' . $file->getClientOriginalExtension();
+                $file->move('uploads/activity_galleries/', $filename);
+                $data['banner_image'] = 'uploads/activity_galleries/' . $filename;
+            }
+            $toba = Activity::create($data);
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $toba);
         } catch (\Exception $exception) {
@@ -64,7 +71,18 @@ class ActivityRewampService
                     unlink($imagePath);
                 }
             }
-            $toba->update(collect($request->validated())->except('role')->all());
+            $data = collect($request->validated())->except('role')->all();
+            if ($request->hasFile('banner_image')) {
+                $file = $request->file('banner_image');
+                $filename = time() . '_banner.' . $file->getClientOriginalExtension();
+                $file->move('uploads/activity_galleries/', $filename);
+                $data['banner_image'] = 'uploads/activity_galleries/' . $filename;
+
+                if ($toba->banner_image && file_exists(public_path($toba->banner_image))) {
+                    unlink(public_path($toba->banner_image));
+                }
+            }
+            $toba->update($data);
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $toba);
         } catch (\Exception $exception) {

@@ -30,7 +30,7 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{ asset($data->image ?? '') }});"></div>
+            <div class="parallax-inner back-img" style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">

@@ -25,7 +25,14 @@ class TobaService
     {
         DB::beginTransaction();
         try {
-            $toba = Toba::create(collect($request->validated())->all());
+            $data = collect($request->validated())->all();
+            if ($request->hasFile('banner_image')) {
+                $file = $request->file('banner_image');
+                $filename = time() . '_banner.' . $file->getClientOriginalExtension();
+                $file->move('uploads/toba_main/', $filename);
+                $data['banner_image'] = 'uploads/toba_main/' . $filename;
+            }
+            $toba = Toba::create($data);
             DB::commit();
             return makeResponse('success', 'Created Successfully!', Response::HTTP_CREATED, $toba);
         } catch (\Exception $exception) {
@@ -62,7 +69,18 @@ class TobaService
                     unlink($imagePath);
                 }
             }
-            $toba->update(collect($request->validated())->except('role')->all());
+            $data = collect($request->validated())->except('role')->all();
+            if ($request->hasFile('banner_image')) {
+                $file = $request->file('banner_image');
+                $filename = time() . '_banner.' . $file->getClientOriginalExtension();
+                $file->move('uploads/toba_main/', $filename);
+                $data['banner_image'] = 'uploads/toba_main/' . $filename;
+
+                if ($toba->banner_image && file_exists(public_path($toba->banner_image))) {
+                    unlink(public_path($toba->banner_image));
+                }
+            }
+            $toba->update($data);
             DB::commit();
             return makeResponse('success', 'Updated Successfully!', Response::HTTP_OK, $toba);
         } catch (\Exception $exception) {

@@ -16,7 +16,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="row rowTemplate">
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('tobaGallery.admin.create.title')}}<span
                                             class="text-danger">*</span> </label>
@@ -26,7 +26,7 @@
                                            placeholder="{{__('tobaGallery.admin.create.title')}}">
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="mb-3">
                                     <label class="form-label">
                                         {{ __('tobaGallery.admin.create.show_on_navbar') }}
@@ -39,7 +39,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('tobaGallery.admin.create.image')}}<span
                                             class="text-danger">(370 x 422)*</span></label>
@@ -50,8 +50,17 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="mb-3">
-                                    <img src="#" alt="Image Preview" class="img-thumbnail"
-                                         style="display:none; max-width:200px; height:auto;">
+                                    <label class="form-label">Banner Image<span class="text-danger">(1920 x 350)</span></label>
+                                    <input type="file" name="banner_image[]" class="form-control" accept="image/*"
+                                           onchange="previewBannerImageFile(this)">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <img src="#" alt="Image Preview" class="img-thumbnail img-preview"
+                                         style="display:none; max-width:100px; height:auto;">
+                                    <img src="#" alt="Banner Preview" class="banner-preview img-thumbnail"
+                                         style="display:none; max-width:150px; height:auto;">
                                 </div>
                             </div>
                             <div class="col-sm-1">
@@ -130,10 +139,20 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    // Find the nearest image element in the same row and display it
-                    $(input).closest('.rowTemplate').find('img').attr('src', e.target.result).show();
+                    // Find the nearest img preview element in the same row and display it
+                    $(input).closest('.rowTemplate').find('.img-preview').attr('src', e.target.result).show();
                 };
                 reader.readAsDataURL(input.files[0]); // Convert the file to a URL
+            }
+        }
+        
+        function previewBannerImageFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).closest('.rowTemplate').find('.banner-preview').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(input.files[0]);
             }
         }
 
@@ -155,13 +174,24 @@
                     });
 
                     var url = $(form).attr('action');
-                    //var data = new FormData($(form)[0]); // Form data including all images and titles
                     var data = new FormData();
+                    
                     // Get all file input elements
                     var titleInputs = $('input[name="title[]"]');
                     var imageInputs = $('input[name="image[]"]');
+                    var navbarInputs = $('select[name="show_on_navbar[]"]');
+                    var bannerInputs = $('input[name="banner_image[]"]');
+                    
                     titleInputs.each(function (index, element) {
                         data.append('title[]', $(element).val());
+                    });
+                    navbarInputs.each(function (index, element) {
+                        data.append('show_on_navbar[]', $(element).val());
+                    });
+                    bannerInputs.each(function (index, element) {
+                        if (element.files.length > 0) {
+                            data.append('banner_image['+index+']', element.files[0]);
+                        }
                     });
 
                     try {

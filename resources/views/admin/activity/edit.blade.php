@@ -36,7 +36,7 @@
                                               data-msg-required="{{__('toba.admin.create.description_message')}}">{{$toba->description}}</textarea>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label">{{__('toba.admin.edit.image')}}</label>
                                     <input type="file" name="image" class="form-control" id="imageUpload"
@@ -46,6 +46,18 @@
                                     <img id="imagePreview" src="{{asset($toba->image?:'no_image.jpg')}}"
                                          alt="Image Preview" class="img-thumbnail"
                                          style="{{$toba->image?'':'display:none;'}} max-width:200px; height:auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Banner Image</label>
+                                    <input type="file" name="banner_image" class="form-control" id="bannerImageUpload"
+                                           accept="image/*">
+                                </div>
+                                <div class="mb-3">
+                                    <img id="bannerImagePreview" src="{{asset($toba->banner_image?:'no_image.jpg')}}"
+                                         alt="Banner Preview" class="img-thumbnail"
+                                         style="{{$toba->banner_image?'':'display:none;'}} max-width:200px; height:auto;">
                                 </div>
                             </div>
                         </div>
@@ -121,6 +133,20 @@
             }
         });
 
+        document.getElementById('bannerImageUpload').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('bannerImagePreview').style.display = 'block';
+                    document.getElementById('bannerImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('bannerImagePreview').style.display = 'none';
+            }
+        });
+
         $(document).ready(function () {
             var imageColName = 'pic';
 
@@ -145,6 +171,11 @@
                     var imageColName = $('#imageUpload').attr('name');
                     var data = new FormData($(form)[0]);
                     var imageFile = $('#imageUpload')[0].files[0];
+                    var bannerFile = $('#bannerImageUpload')[0]?.files[0];
+
+                    if (bannerFile) {
+                        data.set('banner_image', bannerFile);
+                    }
 
                     if (imageFile) {
                         try {
