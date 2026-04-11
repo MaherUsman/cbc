@@ -10,10 +10,6 @@
         </div>
         <div class="auto-container">
             <div class="content-box">
-                <ul class="bread-crumb clearfix">
-                    {{--<li><a href="{{route('frontend.rearchArticle')}}">Research & Articles</a></li>--}}
-                    <li>{{$security->title}}</li>
-                </ul>
             </div>
         </div>
     </section>

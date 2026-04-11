@@ -186,10 +186,6 @@
         </div>
         <div class="auto-container">
             <div class="content-box">
-                <ul class="bread-crumb clearfix">
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Research & Articles</li>
-                </ul>
             </div>
         </div>
     </section>

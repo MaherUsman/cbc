@@ -31,10 +31,6 @@
         </div>
         <div class="auto-container">
             <div class="content-box">
-                <ul class="bread-crumb clearfix">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li>{{ $data->title ?? 'Hydration' }}</li>
-                </ul>
             </div>
         </div>
     </section>
