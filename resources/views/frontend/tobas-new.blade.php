@@ -35,9 +35,6 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li>{{ $data->title ?? 'Hydration' }}</li>
                 </ul>
-                <div class="title">
-                    <h1>{{ $data->title ?? 'Hydration' }}</h1>
-                </div>
             </div>
         </div>
     </section>
