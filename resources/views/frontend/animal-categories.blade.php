@@ -9,6 +9,9 @@
         </div>
         <div class="auto-container">
             <div class="content-box">
+                <div class="title">
+                    <h1>Animal Categories</h1>
+                </div>
             </div>
         </div>
     </section>

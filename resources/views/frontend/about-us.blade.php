@@ -50,6 +50,9 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li>About Us</li>
                 </ul>
+                <div class="title">
+                    <h1>About Us</h1>
+                </div>
             </div>
         </div>
     </section>

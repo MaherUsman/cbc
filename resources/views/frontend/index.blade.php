@@ -222,15 +222,10 @@
 {{--                            <div class="content-box">--}}
 {{--                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>--}}
 {{--                            </div>--}}
-{{--                            <div class="overlay-content">
-                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>
-                                <div class="text mt-2 mb-2" style="color: rgba(255, 255, 255, 0.8); font-size: 14px; line-height: 1.4;">
-                                    {!! Str::limit(strip_tags($amazing_animal->details), 80) !!}
-                                </div>
-                                <div class="link">
-                                    <a class="mt-2" href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>--}}
+{{--                            <div class="overlay-content">--}}
+{{--                                <h3><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}">{{$amazing_animal->title}}</a></h3>--}}
+{{--                                <div class="link"><a href="{{route('frontend.find.animal' , $amazing_animal->slug)}}"><i class="flaticon-right-arrow"></i></a></div>--}}
+{{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
 {{--                @endforeach--}}

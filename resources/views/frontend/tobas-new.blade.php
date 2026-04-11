@@ -27,8 +27,7 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img"
-                style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
+            <div class="parallax-inner back-img" style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -36,6 +35,9 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li>{{ $data->title ?? 'Hydration' }}</li>
                 </ul>
+                <div class="title">
+                    <h1>{{ $data->title ?? 'Hydration' }}</h1>
+                </div>
             </div>
         </div>
     </section>
@@ -83,8 +85,8 @@
                                     {{-- </div> --}}
                                 {{--
                                 <!-- <div class="btn-box"> --}}
-                                                                                                                                                {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
-                                                                                                                                                {{--                            </div> -->
+                                                                                                {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
+                                                                                                {{--                            </div> -->
                                 --}}
                                 {{--
                             </div> --}}
