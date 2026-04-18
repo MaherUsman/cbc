@@ -27,7 +27,8 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
+            <div class="parallax-inner back-img"
+                style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -78,8 +79,8 @@
                                     {{-- </div> --}}
                                 {{--
                                 <!-- <div class="btn-box"> --}}
-                                                                                                {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
-                                                                                                {{--                            </div> -->
+                                                                                                        {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
+                                                                                                        {{--                            </div> -->
                                 --}}
                                 {{--
                             </div> --}}
@@ -162,14 +163,14 @@
     @endif
 
     <!-- bottom-image-section -->
-    <section class="bottom-image-section pb-5" style="height: fit-content;">
-        <div class="auto-container">
-            <div class="image-box text-center">
-                <img src="{{ asset('assets/images/Hydration/cbc_map.jpg') }}" alt="Hydration Map" class="img-fluid"
-                    style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: contain; max-height: 800px;">
+    <!-- <section class="bottom-image-section pb-5" style="height: fit-content;">
+            <div class="auto-container">
+                <div class="image-box text-center">
+                    <img src="{{ asset('assets/images/Hydration/cbc_map.jpg') }}" alt="Hydration Map" class="img-fluid"
+                        style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: contain; max-height: 800px;">
+                </div>
             </div>
-        </div>
-    </section>
+        </section> -->
     <!-- bottom-image-section end -->
 
 @endsection
