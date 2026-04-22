@@ -30,7 +30,8 @@
     <!-- Page Title -->
     <section class="page-title">
         <div class="img-wrap parallax-demo-1">
-            <div class="parallax-inner back-img" style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
+            <div class="parallax-inner back-img"
+                style="background-image: url({{ asset($data->banner_image ?? $data->image ?? '') }});"></div>
         </div>
         <div class="auto-container">
             <div class="content-box">
@@ -42,42 +43,43 @@
 
     <!-- about-style-three -->
     @if(false)
-    {{--    <section class="about-style-three sec-pad"> --}}
-    {{--        <div class="auto-container"> --}}
-    {{--            <div class="row clearfix"> --}}
-    {{--                --}}{{--                <div class="col-lg-6 col-md-12 col-sm-12 image-column"> --}}
-    {{--                --}}{{--                    <figure class="image-box"> --}}
-    {{--                --}}{{--                        <img src="{{asset('assets/images/background/page-title.jpg')}}" alt=""> --}}
-    {{--                --}}{{--                    </figure> --}}
-    {{--                --}}{{--                </div> --}}
-    {{--                <div class="col-lg-12 col-md-12 col-sm-12 content-column"> --}}
-    {{--                    <div class="content_block_three"> --}}
-    {{--                        <div class="content-box"> --}}
-    {{--                            <div class="sec-title"> --}}
-    {{--                                <h2>{{$data->title??''}}</h2> --}}
-    {{--                            </div> --}}
-    {{--                            <div class="text"> --}}
-    {{--                                <div id="limited-text"> --}}
-    {{--                                    {!! $data->description??'' !!} --}}
-    {{--                                </div> --}}
-    {{--                                --}}{{--                                <div id="full-text" style="display: none;"> --}}
-    {{--                                --}}{{--                                    {!! $data->description !!} --}}
-    {{--                                --}}{{--                                </div> --}}
-    {{--                                --}}{{--                                <button id="read-more-btn" class="theme-btn btn-one" onclick="toggleReadMore()">Read --}}
-    {{--                                --}}{{--                                    More --}}
-    {{--                                --}}{{--                                </button> --}}
+        {{-- <section class="about-style-three sec-pad"> --}}
+            {{-- <div class="auto-container"> --}}
+                {{-- <div class="row clearfix"> --}}
+                    {{-- --}}{{-- <div class="col-lg-6 col-md-12 col-sm-12 image-column"> --}}
+                        {{-- --}}{{-- <figure class="image-box"> --}}
+                            {{-- --}}{{-- <img src="{{asset('assets/images/background/page-title.jpg')}}" alt=""> --}}
+                            {{-- --}}{{-- </figure> --}}
+                        {{-- --}}{{-- </div> --}}
+                    {{-- <div class="col-lg-12 col-md-12 col-sm-12 content-column"> --}}
+                        {{-- <div class="content_block_three"> --}}
+                            {{-- <div class="content-box"> --}}
+                                {{-- <div class="sec-title"> --}}
+                                    {{-- <h2>{{$data->title??''}}</h2> --}}
+                                    {{-- </div> --}}
+                                {{-- <div class="text"> --}}
+                                    {{-- <div id="limited-text"> --}}
+                                        {{-- {!! $data->description??'' !!} --}}
+                                        {{-- </div> --}}
+                                    {{-- --}}{{-- <div id="full-text" style="display: none;"> --}}
+                                        {{-- --}}{{-- {!! $data->description !!} --}}
+                                        {{-- --}}{{-- </div> --}}
+                                    {{-- --}}{{-- <button id="read-more-btn" class="theme-btn btn-one"
+                                        onclick="toggleReadMore()">Read --}}
+                                        {{-- --}}{{-- More --}}
+                                        {{-- --}}{{-- </button> --}}
 
-    {{--                            </div> --}}
-    {{--                            <!-- <div class="btn-box"> --}}
-    {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
-    {{--                            </div> --> --}}
-    {{--                        </div> --}}
-    {{--                    </div> --}}
-    {{--                </div> --}}
-    {{--            </div> --}}
+                                    {{-- </div> --}}
+                                {{-- <!-- <div class="btn-box"> --}}
+                            {{--                                <a href="index-2.html" class="theme-btn btn-one">discover more</a> --}}
+                            {{--                            </div> --> --}}
+                                {{-- </div> --}}
+                            {{-- </div> --}}
+                        {{-- </div> --}}
+                    {{-- </div> --}}
 
-    {{--        </div> --}}
-    {{--    </section> --}}
+                {{-- </div> --}}
+            {{-- </section> --}}
     @endif
     <!-- about-style-three end -->
 
@@ -93,7 +95,7 @@
                 <div class="row clearfix">
                     <div class="col-md-12">
                         <div class="sec-title">
-                            <h2>All Activities</h2>
+                            <h2>Activities</h2>
                         </div>
                     </div>
                     @foreach ($tobaGalleries as $tobaGallery)
@@ -102,14 +104,12 @@
                                 <div class="gallery-block-two">
                                     <div class="inner-box">
                                         {{-- <figure class="image-box">
-                                            <a
-                                                href="{{ route('frontend.activites.gallery', ['tobasGallery' => $tobaGallery]) }}">
+                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery' => $tobaGallery]) }}">
                                                 <img src="{{ asset($tobaGallery->image) }}" alt="">
                                             </a>
                                         </figure> --}}
                                         <div class="image-box">
-                                            <a
-                                                href="{{ route('frontend.activites.gallery', ['tobasGallery' => $tobaGallery]) }}">
+                                            <a href="{{ route('frontend.activites.gallery', ['tobasGallery' => $tobaGallery]) }}">
                                                 <img src="{{ asset($tobaGallery->image) }}" alt="">
                                             </a>
                                         </div>
